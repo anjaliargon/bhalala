@@ -1,9 +1,17 @@
 import 'package:bhalala/app/constant/shreprefrence.dart';
+import 'package:bhalala/app/modules/Editprofile/bindings/Editprofile_binding.dart';
+import 'package:bhalala/app/modules/Editprofile/views/EditProfileScreen.dart';
+import 'package:bhalala/app/modules/gamYadi/views/gamyadi_view.dart';
 import 'package:bhalala/app/modules/login/views/login_view.dart';
 import 'package:bhalala/app/modules/profile/views/profile_view.dart';
 import 'package:get/get.dart';
 
 import '../data/Api/ApiProvider.dart';
+import '../modules/About_family/About_familyscreen.dart';
+import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
+import '../modules/Important_numbers/Important_numberScreen.dart';
+import '../modules/Parivar_karyalay/parivar_karyalay.dart';
+import '../modules/gamYadi/bindings/gamYadi_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -15,7 +23,7 @@ class AppPages {
   AppPages._();
 
   static String INITIAL =
-      (!isNullEmptyOrFalse(MySharedPreferences().getToken()))
+      (!isNullEmptyOrFalse(MySharedPreferences().isLoggedIn()))
           ? Routes.HOME
           : Routes.LOGIN;
 
@@ -35,6 +43,33 @@ class AppPages {
         name: _Paths.PROFILE,
         page: () => ProfileView(),
         binding: ProfileBinding()),
+
+    GetPage(
+        name: _Paths.EditProfile,
+        page: () => EditProfileView(),
+        binding: EditProfileBinding()),
+    GetPage(
+      name: _Paths.ABOUT_FAMILY,
+      page: () => AboutFamily_Details(),
+    ),
+
+    GetPage(
+      name: _Paths.PARIVARKARAYALAY,
+      page: () => const parivar_karyalay(),
+    ),
+    GetPage(
+      name: _Paths.IMP_NUMBER,
+      page: () => ImportantNumber_Screen(),
+    ),
+    GetPage(
+      name: _Paths.VILLAGE,
+      page: () =>  GamYadiView(),
+      binding: GamYadiBinding()
+    ),
+    GetPage(
+      name: _Paths.COMITEE,
+      page: () =>  FamilyCommitte(),
+    ),
     // GetPage(
     //   name: _Paths.APP_HELPLINE,
     //   page: () => const applicationhelpline(),
@@ -57,22 +92,13 @@ class AppPages {
     //   name: _Paths.IMP_NUMBER,
     //   page: () =>  ImportantNumber_Screen(),
     // ),
-    // GetPage(
-    //   name: _Paths.PARIVARKARAYALAY,
-    //   page: () => const parivar_karyalay(),
-    // ),
+
     // GetPage(
     //   name: _Paths.VILLAGE,
     //   page: () =>  villageScreen(),
     // ),
-    // GetPage(
-    //   name: _Paths.ABOUT_FAMILY,
-    //   page: () =>  AboutFamily_Details(),
-    // ),
-    // GetPage(
-    //   name: _Paths.COMITEE,
-    //   page: () =>  FamilyCommitte(),
-    // ),
+
+
     //
     // GetPage(
     //     name: _Paths.PROFILE,

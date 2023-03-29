@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../constant/shreprefrence.dart';
@@ -34,7 +35,7 @@ class ProfileView extends GetView<ProfileController> {
                   padding: EdgeInsets.all(8.0),
                   child: IconButton(
                       onPressed: () {
-                        // Get.to(EditProfileScreen());
+                        Get.toNamed(Routes.EditProfile);
                       },
                       icon: Icon(Icons.edit)),
                 )
@@ -89,55 +90,55 @@ class ProfileView extends GetView<ProfileController> {
                     profiletext(
                         icons: Icons.location_on,
                         heading: StringConstant.address,
-                        text: controller.userAddress.value),
+                        text: box.read('address')),
                     profiletext(
                         icons: FontAwesomeIcons.mobileScreen,
                         heading: StringConstant.mobile,
-                        text: controller.userMobile.value),
+                        text: box.read('mobileno')),
                     profiletext(
                         icons: Icons.location_on,
                         heading: StringConstant.village,
-                        text: "add"),
+                        text: box.read('gam')),
                     profiletext(
                         icons: FontAwesomeIcons.shop,
                         heading: StringConstant.workdetails,
-                        text: "add"),
+                        text: box.read('buissness')),
                     profiletext(
                         icons: Icons.email,
                         heading: StringConstant.emailId,
-                        text: controller.userEmail.value),
+                        text: box.read('emailid')),
                     profiletext(
                         icons: Icons.cake,
                         heading: StringConstant.birthdaydate,
-                        text: "add"),
+                        text: box.read('birthdate')),
                     profiletext(
                         icons: FontAwesomeIcons.graduationCap,
                         heading: StringConstant.education,
-                        text: "add"),
+                        text: box.read('education')),
                     profiletext(
                         icons: Icons.group,
                         heading: StringConstant.gender,
-                        text: "add"),
+                        text: box.read('jati')),
                     profiletext(
                         icons: Icons.location_on,
                         heading: StringConstant.home,
-                        text: "add"),
+                        text: box.read('ghar')),
                     profiletext(
                         icons: FontAwesomeIcons.personCircleCheck,
                         heading: StringConstant.merrige_status,
-                        text: "add"),
+                        text: box.read('merragestatus')),
                     profiletext(
                         icons: Icons.person,
                         heading: StringConstant.age,
-                        text: "add"),
+                        text: box.read('age')),
                     profiletext(
                         icons: FontAwesomeIcons.person,
                         heading: StringConstant.bloodgroup,
-                        text: "add"),
+                        text: box.read('bloodgroup')),
                     profiletext(
                         icons: Icons.group,
                         heading: StringConstant.member_count,
-                        text: "add"),
+                        text: box.read('membercount')),
                     SizedBox(
                       height: 3.h,
                     ),

@@ -7,6 +7,7 @@ class HomeController extends GetxController {
 
   final userName = ''.obs;
   final userEmail = ''.obs;
+  final userLastName = ''.obs;
   final count = 0.obs;
 
   @override
@@ -28,6 +29,7 @@ class HomeController extends GetxController {
   void increment() => count.value++;
   getUserData() async {
     userName.value = (await MySharedPreferences().getUserName()) ?? '';
+    userLastName.value = (await MySharedPreferences().getUserLastname()) ?? '';
     userEmail.value = (await MySharedPreferences().getUserEmail()) ?? '';
   }
 }

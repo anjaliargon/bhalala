@@ -37,8 +37,6 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
-
   login(String email, password) async {
     var result = await ApiProvider().login(email, password);
     if (!result.loginData.isNull) {

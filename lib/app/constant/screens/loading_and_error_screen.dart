@@ -26,7 +26,7 @@ class LoadingAndErrorScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     buildLoadingScreen() => Container(
-          color: colors.black,
+          color: colors.white,
           alignment: Alignment.center,
           child:  CircularProgressIndicator(
             color: colors.darkbrown,

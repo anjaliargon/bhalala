@@ -46,7 +46,7 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           Obx(
                             () => Text(
-                              controller.userName.value,
+                              "${controller.userName.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
                               style: TextStyle(color: colors.white),
                             ),
                           ),
@@ -72,7 +72,7 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Get.toNamed(Routes.VILLAGE);
+                Get.toNamed(Routes.VILLAGE);
               },
             ),
             ListTile(
@@ -85,7 +85,7 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Get.toNamed(Routes.ABOUT_FAMILY);
+                Get.toNamed(Routes.ABOUT_FAMILY);
               },
             ),
             ListTile(
@@ -101,7 +101,7 @@ class HomeView extends GetView<HomeController> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                // Get.toNamed(Routes.PARIVARKARAYALAY);
+                Get.toNamed(Routes.PARIVARKARAYALAY);
               },
             ),
             ListTile(
@@ -114,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Get.toNamed(Routes.COMITEE);
+                Get.toNamed(Routes.COMITEE);
               },
             ),
             ListTile(
@@ -159,7 +159,7 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Get.toNamed(Routes.IMP_NUMBER);
+                Get.toNamed(Routes.IMP_NUMBER);
               },
             ),
             ListTile(
@@ -234,7 +234,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // Get.toNamed(Routes.VILLAGE);
+                    Get.toNamed(Routes.VILLAGE);
                   },
                   child: _container(StringConstant.gamniyadi, Icons.home),
                 ),
@@ -242,7 +242,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // Get.toNamed(Routes.ABOUT_FAMILY);
+                    Get.toNamed(Routes.ABOUT_FAMILY);
                   },
                   child: _container(StringConstant.parivarvise, Icons.group),
                 ),
@@ -250,7 +250,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // Get.toNamed(Routes.COMITEE);
+                    Get.toNamed(Routes.COMITEE);
                   },
                   child:
                       _container(StringConstant.parivar_samiti, Icons.groups),
@@ -299,7 +299,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // Get.toNamed(Routes.IMP_NUMBER);
+                    Get.toNamed(Routes.IMP_NUMBER);
                   },
                   child:
                       _container(StringConstant.important_number, Icons.call),
@@ -308,7 +308,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // Get.toNamed(Routes.PARIVARKARAYALAY);
+                    Get.toNamed(Routes.PARIVARKARAYALAY);
                   },
                   child: _container(StringConstant.parivar_karyalay,
                       Icons.watch_later_outlined),
