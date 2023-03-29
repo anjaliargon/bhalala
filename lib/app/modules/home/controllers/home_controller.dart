@@ -1,11 +1,17 @@
 import 'package:get/get.dart';
 
+import '../../../constant/shreprefrence.dart';
+
 class HomeController extends GetxController {
   //TODO: Implement HomeController
 
+  final userName = ''.obs;
+  final userEmail = ''.obs;
   final count = 0.obs;
+
   @override
   void onInit() {
+    getUserData();
     super.onInit();
   }
 
@@ -20,4 +26,8 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+  getUserData() async {
+    userName.value = (await MySharedPreferences().getUserName()) ?? '';
+    userEmail.value = (await MySharedPreferences().getUserEmail()) ?? '';
+  }
 }

@@ -1,11 +1,14 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:dart_quote/widget_quote.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
+import '../../../constant/shreprefrence.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -27,11 +30,11 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     InkWell(
                       onTap: () {
-                        // Get.toNamed(Routes.PROFILE);
+                        Get.toNamed(Routes.PROFILE);
                       },
                       child: const CircleAvatar(
                         backgroundImage:
-                        AssetImage("assets/images/userprofile.png"),
+                            AssetImage("assets/images/userprofile.png"),
                         radius: 35,
                       ),
                     ),
@@ -41,14 +44,18 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("",
-                            // controller.userName.value,
-                            style: TextStyle(color: colors.white),
+                          Obx(
+                            () => Text(
+                              controller.userName.value,
+                              style: TextStyle(color: colors.white),
+                            ),
                           ),
                           SizedBox(height: 1.h),
-                          Text('aaaa',
-                            // controller.userEmail.value,
-                            style: TextStyle(color: colors.white),
+                          Obx(
+                            () => Text(
+                              controller.userEmail.value,
+                              style: TextStyle(color: colors.white),
+                            ),
                           ),
                         ],
                       ),
@@ -191,9 +198,9 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Fluttertoast.showToast(msg: "Logout Successfully!");
-                // MySharedPreferences().logout();
-                // Get.offAllNamed(Routes.LOGIN);
+                Fluttertoast.showToast(msg: "Logout Successfully!");
+                MySharedPreferences().logout();
+                Get.offAllNamed(Routes.LOGIN);
               },
             ),
           ],

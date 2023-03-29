@@ -50,10 +50,10 @@ class MySharedPreferences {
     return userId;
   }
 
-  void etcatid(String userId) async {
+  void setUserEmail(String userId) async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('megaid', userId);
+    prefs.setString('userEmail', userId);
   }
 
   void setUserName(String userName) async {
@@ -67,6 +67,12 @@ class MySharedPreferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var userId = prefs.getString('userId');
     return userId;
+  }
+  Future<String?> getUserEmail() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var userEmail = prefs.getString('userEmail');
+    return userEmail;
   }
   Future<String?> getEmpId() async{
     WidgetsFlutterBinding.ensureInitialized();
