@@ -111,6 +111,7 @@ class SearchController extends GetxController {
       isLoading(false);
     }
   }
+
   Future<void> getHomeList() async {
     accountHomeListData.clear();
     accountHomeListData.add(StringConstant.education_chooes);
