@@ -1,7 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:dart_quote/widget_quote.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +8,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-import '../../../constant/shreprefrence.dart';
+
 import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
 
@@ -82,10 +80,13 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                     Center(
                       child: Text(
-                        controller.userName.value,
+                          "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
                         style:
                             TextStyle(fontSize: 12.sp, color: colors.darkbrown),
                       ),
+                    ),
+                    SizedBox(
+                      height: 1.h,
                     ),
                     profiletext(
                         icons: Icons.location_on,

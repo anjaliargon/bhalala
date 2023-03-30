@@ -6,8 +6,8 @@ import '../../../../main.dart';
 class ProfileController extends GetxController {
   RxString userName = ''.obs;
   RxString userEmail = ''.obs;
-  RxString userMobile = ''.obs;
-  RxString userAddress = ''.obs;
+  RxString userLastName = ''.obs;
+  RxString usermiddle = ''.obs;
   UserLogin profileData = UserLogin();
   Map<String,dynamic> data = RxMap();
 
@@ -28,10 +28,10 @@ class ProfileController extends GetxController {
   }
 
   getUserData() async {
+    userName.value = (await box.read("UserFirstname"));
+    usermiddle.value = (await box.read("Usermiddlename"));
+    userLastName.value = (await box.read("Userlastname"));
+    userEmail.value = (await box.read("emailid"));
 
-    userEmail.value = profileData.loginData?.emailed ?? '';
-    userName.value = profileData.loginData?.name ?? '';
-    userMobile.value = profileData.loginData?.mobileNo ?? '';
-    userAddress.value = profileData.loginData?.address ?? '';
   }
 }

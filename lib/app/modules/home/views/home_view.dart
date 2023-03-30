@@ -1,4 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:dart_quote/widget_quote.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,8 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
-import '../../../constant/shreprefrence.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -45,9 +46,11 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Obx(
-                            () => Text(
-                              "${controller.userName.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
-                              style: TextStyle(color: colors.white),
+                            () => Flexible(
+                              child: Text(
+                                "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} \n${controller.userLastName.value.toUpperCase()}",
+                                style: TextStyle(color: colors.white),
+                              ),
                             ),
                           ),
                           SizedBox(height: 1.h),
@@ -130,7 +133,7 @@ class HomeView extends GetView<HomeController> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Get.toNamed(Routes.SEARCH);
               },
             ),
             ListTile(
@@ -146,7 +149,7 @@ class HomeView extends GetView<HomeController> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Get.toNamed(Routes.PHOTO);
               },
             ),
             ListTile(
@@ -172,7 +175,7 @@ class HomeView extends GetView<HomeController> {
                 color: colors.darkbrown,
               ),
               onTap: () {
-                // Get.toNamed(Routes.NOTICE);
+                Get.toNamed(Routes.NOTICE);
               },
             ),
             ListTile(
@@ -199,7 +202,7 @@ class HomeView extends GetView<HomeController> {
               ),
               onTap: () {
                 Fluttertoast.showToast(msg: "Logout Successfully!");
-                MySharedPreferences().logout();
+                box.erase();
                 Get.offAllNamed(Routes.LOGIN);
               },
             ),
@@ -213,110 +216,115 @@ class HomeView extends GetView<HomeController> {
           ),
           backgroundColor: colors.darkbrown,
           elevation: 0),
-      body: Column(
-        children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, top: 4),
-              child: WidgetQuote(
-                      text: StringConstant.mainheading,
-                      quoteStyle:
-                          TextStyle(color: colors.darkbrown, fontSize: 15.sp),
-                      textStyle: TextStyle(
-                          color: colors.darkbrown,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold))
-                  .quote()),
-          SizedBox(
-            height: 4.h,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.VILLAGE);
-                  },
-                  child: _container(StringConstant.gamniyadi, Icons.home),
+      body: LoadingAndErrorScreen(
+        isLoading: controller.isLoading.value,
+        errorOccurred: controller.errorOccurred.value,
+        errorResolvingFunction: controller.getUserData,
+        child: Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 4),
+                child: WidgetQuote(
+                  padding: EdgeInsets.only(left: 30, right: 30, top: 4),
+                        text: StringConstant.mainheading,
+                        quoteStyle:
+                            TextStyle(color: colors.darkbrown, fontSize: 20.sp,),
+                        textStyle: TextStyle(
+                            color: colors.darkbrown,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold))
+                    .quote()),
+            Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.VILLAGE);
+                    },
+                    child: _container(StringConstant.gamniyadi, Icons.home),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.ABOUT_FAMILY);
-                  },
-                  child: _container(StringConstant.parivarvise, Icons.group),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.ABOUT_FAMILY);
+                    },
+                    child: _container(StringConstant.parivarvise, Icons.group),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.COMITEE);
-                  },
-                  child:
-                      _container(StringConstant.parivar_samiti, Icons.groups),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.COMITEE);
+                    },
+                    child:
+                        _container(StringConstant.parivar_samiti, Icons.groups),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Get.toNamed(Routes.VILLAGE);
-                  },
-                  child: _container(StringConstant.search_member, Icons.search),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.SEARCH);
+                    },
+                    child: _container(StringConstant.search_member, Icons.search),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Get.toNamed(Routes.VILLAGE);
-                  },
-                  child: _container(StringConstant.photo_gallary, Icons.photo),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.PHOTO);
+                    },
+                    child: _container(StringConstant.photo_gallary, Icons.photo),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Get.toNamed(Routes.PARIVARKARAYALAY);
-                  },
-                  child: _container(StringConstant.suchna_number, Icons.home),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.NOTICE);
+                    },
+                    child: _container(StringConstant.suchna_number, Icons.home),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Get.toNamed(Routes.VILLAGE);
-                  },
-                  child: _container(StringConstant.parivarsahyoug, Icons.group),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.SAHYOG);
+                    },
+                    child: _container(StringConstant.parivarsahyoug, Icons.group),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.IMP_NUMBER);
-                  },
-                  child:
-                      _container(StringConstant.important_number, Icons.call),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.IMP_NUMBER);
+                    },
+                    child:
+                        _container(StringConstant.important_number, Icons.call),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.PARIVARKARAYALAY);
-                  },
-                  child: _container(StringConstant.parivar_karyalay,
-                      Icons.watch_later_outlined),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.PARIVARKARAYALAY);
+                    },
+                    child: _container(StringConstant.parivar_karyalay,
+                        Icons.watch_later_outlined),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            SizedBox(height: 1.h,)
+          ],
+        ),
       ),
     );
   }

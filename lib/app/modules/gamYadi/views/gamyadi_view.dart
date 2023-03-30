@@ -1,14 +1,13 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:dart_quote/widget_quote.dart';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
-import '../../../constant/shreprefrence.dart';
+
 import '../../../routes/app_pages.dart';
 import '../controllers/gamYadi_controller.dart';
 
@@ -40,40 +39,47 @@ class GamYadiView extends GetView<GamYadiController> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: colors.lightgrey,
-                      borderRadius: BorderRadius.all(Radius.circular(6))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        controller.getmemberData.value.data?[index].village
-                                ?.vName ??
-                            '',
-                        style: TextStyle(
-                            color: colors.darkbrown,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: 0.5.h,
-                      ),
-                      Text(
-                        "કુટુંબ ની સંખ્યા  - ${controller.getmemberData.value.data?[index].count}",
-                        style:
-                            TextStyle(color: colors.darkbrown, fontSize: 12.sp),
-                      ),
-                      SizedBox(
-                        height: 0.5.h,
-                      ),
-                      Text(
-                        "જન  સંખ્યા  - ${controller.getmemberData.value.data?[index].allMemeber}",
-                        style:
-                            TextStyle(color: colors.darkbrown, fontSize: 12.sp),
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.MEMBER,
+                        arguments: controller
+                            .getmemberData.value.data?[index].village?.vId);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: colors.lightgrey,
+                        borderRadius: BorderRadius.all(Radius.circular(6))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          controller.getmemberData.value.data?[index].village
+                                  ?.vName ??
+                              '',
+                          style: TextStyle(
+                              color: colors.darkbrown,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 0.5.h,
+                        ),
+                        Text(
+                          "કુટુંબ ની સંખ્યા  - ${controller.getmemberData.value.data?[index].count}",
+                          style: TextStyle(
+                              color: colors.darkbrown, fontSize: 12.sp),
+                        ),
+                        SizedBox(
+                          height: 0.5.h,
+                        ),
+                        Text(
+                          "જન  સંખ્યા  - ${controller.getmemberData.value.data?[index].allMemeber}",
+                          style: TextStyle(
+                              color: colors.darkbrown, fontSize: 12.sp),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
+import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../main.dart';
 import '../../constant/String_constant.dart';
-import '../../constant/shreprefrence.dart';
 import '../../modules/login/model/login_model.dart';
+import '../../modules/memberDetails/Model/MemberDetailsModel.dart';
 import '../Model/MemberCount.dart';
 import '../Model/basicModel.dart';
 import 'ApiUrl.dart';
@@ -29,6 +31,11 @@ class ApiProvider {
       if (!isNullEmptyOrFalse(data['data'])) {
         loginModel = UserLogin.fromJson(data);
         box.write('mobileno', loginModel.loginData?.mobileNo);
+        box.write('UserFirstname', loginModel.loginData?.name);
+        box.write('Userlastname', loginModel.loginData?.lastName);
+        box.write('Usermiddlename', loginModel.loginData?.middleName);
+        box.write('mobileno', loginModel.loginData?.mobileNo);
+        box.write('userId', loginModel.loginData?.rId);
         box.write('address', loginModel.loginData?.address);
         box.write('buissness', loginModel.loginData?.business);
         box.write('birthdate', loginModel.loginData?.birthdate);
@@ -42,14 +49,6 @@ class ApiProvider {
         box.write('bloodgroup', loginModel.loginData?.bName);
         box.write('membercount', loginModel.loginData?.noOfMember);
         print(box.read('Data'));
-        MySharedPreferences()
-            .setUserId(loginModel.loginData?.rId.toString() ?? '');
-        MySharedPreferences()
-            .setUserName(loginModel.loginData?.name.toString() ?? '');
-        MySharedPreferences()
-            .setUserEmail(loginModel.loginData?.emailed.toString() ?? '');
-        MySharedPreferences()
-            .setUserLastname(loginModel.loginData?.lastName.toString() ?? '');
         Fluttertoast.showToast(msg: StringConstant.suceesfullylogin);
       }
     } else {
@@ -58,6 +57,7 @@ class ApiProvider {
     }
     return loginModel;
   }
+
   Future<BasicModel> getBasicData() async {
     BasicModel basicmodel = BasicModel();
 
@@ -78,7 +78,6 @@ class ApiProvider {
     return basicmodel;
   }
 
-
   Future<MemberCount> memberCount() async {
     MemberCount memberModel = MemberCount();
 
@@ -91,11 +90,77 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       memberModel = MemberCount.fromJson(result);
-      print("basic model${response1.body}");
     } else {
       print(response.reasonPhrase);
     }
     return memberModel;
+  }
+  Future<MemberDetails> memberDetailsCount(villageId) async {
+    MemberDetails memberdetailsModel = MemberDetails();
+
+    var request = http.MultipartRequest('POST',
+        Uri.parse('https://bhalalaparivar.org/webservice/get_all_member.php'));
+    request.fields.addAll({'user_id': villageId});
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    if (response1.statusCode == 200) {
+      memberdetailsModel = MemberDetails.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return memberdetailsModel;
+  }
+
+  Future<Notice> notice() async {
+    Notice noticeModel = Notice();
+
+    var request = http.MultipartRequest(
+        'GET',
+        Uri.parse(
+            'http://bhalalaparivar.org/webservice/get_notice_board_details.php'));
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    if (response1.statusCode == 200) {
+      noticeModel = Notice.fromJson(result);
+      print("basic model${response1.body}");
+    } else {
+      print(response.reasonPhrase);
+    }
+    return noticeModel;
+  }
+
+  Future<SearchModel> search(String village, String home, String industri,
+      String eeducation, String blood) async {
+    SearchModel searchmodel = SearchModel();
+    String query = GlobalData.searchUrl;
+
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+    request.fields.addAll({
+      'village_id': village.trim(),
+      'home_name': home.trim(),
+      'edu_name': eeducation.trim(),
+      'blood_name': blood.trim(),
+      'busi_id': industri.trim()
+    });
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    Map<String, dynamic> data = jsonDecode(response1.body);
+    var list = json.decode(json.encode(response1.body));
+    if (response1.statusCode == 200) {
+      searchmodel = SearchModel.fromJson(data);
+    } else {
+      print("error ${response1.reasonPhrase}");
+    }
+    return searchmodel;
   }
 }
 

@@ -12,6 +12,11 @@ abstract class Routes {
   static const VILLAGE = _Paths.VILLAGE;
   static const COMITEE = _Paths.COMITEE;
   static const EditProfile = _Paths.EditProfile;
+  static const PHOTO = _Paths.PHOTO;
+  static const SEARCH = _Paths.SEARCH;
+  static const NOTICE = _Paths.NOTICE;
+  static const SAHYOG = _Paths.SAHYOG;
+  static const MEMBER = _Paths.MEMBER;
 }
 
 abstract class _Paths {
@@ -25,4 +30,9 @@ abstract class _Paths {
   static const VILLAGE = '/gamniyadi';
   static const COMITEE = '/committe';
   static const EditProfile = '/editprofile';
+  static const SEARCH = '/search';
+  static const PHOTO = '/photo';
+  static const NOTICE = '/notice';
+  static const SAHYOG = '/parivarsahyog';
+  static const MEMBER = '/member';
 }

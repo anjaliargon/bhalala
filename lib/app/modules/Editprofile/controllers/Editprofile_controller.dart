@@ -63,6 +63,7 @@ class EditProfileController extends GetxController {
 
   void onInit() {
     getAccountIndustryList();
+    assignProfileData();
     birthController.text =
         DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
 
@@ -172,5 +173,10 @@ class EditProfileController extends GetxController {
       update();
     }
 
+  }
+
+  void assignProfileData(){
+    Future.delayed(const Duration(milliseconds: 2000), (){
+    });
   }
 }

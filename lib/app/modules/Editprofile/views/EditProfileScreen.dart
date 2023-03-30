@@ -1,17 +1,15 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:dart_quote/widget_quote.dart';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-import '../../../constant/shreprefrence.dart';
-import '../../../routes/app_pages.dart';
+
 import '../controllers/Editprofile_controller.dart';
 
 class EditProfileView extends GetView<EditProfileController> {
@@ -23,7 +21,6 @@ class EditProfileView extends GetView<EditProfileController> {
     String? education;
     String? bloodgroup;
     String? status;
-    String? membercount;
     String? village;
     String? currentcity;
     final EditprofileController = Get.put(EditProfileController());
@@ -77,11 +74,11 @@ class EditProfileView extends GetView<EditProfileController> {
                                 borderRadius: BorderRadius.circular(200),
                                 child: (controller.selectedImg != null)
                                     ? Image.file(controller.selectedImg!.value,
-                                    fit: BoxFit.cover)
+                                        fit: BoxFit.cover)
                                     : Image.asset(
-                                  "assets/images/userprofile.png",
-                                  fit: BoxFit.fill,
-                                )),
+                                        "assets/images/userprofile.png",
+                                        fit: BoxFit.fill,
+                                      )),
                           ),
                         ),
                         Positioned(
@@ -420,7 +417,7 @@ class EditProfileView extends GetView<EditProfileController> {
                         },
                         value: bloodgroup,
                         items:
-                        controller.accountBloodListData.map((String items) {
+                            controller.accountBloodListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(
@@ -529,12 +526,12 @@ class EditProfileView extends GetView<EditProfileController> {
                             borderRadius: BorderRadius.circular(10)),
                         child: Center(
                             child: Text(
-                              StringConstant.registration,
-                              style: TextStyle(
-                                  color: colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13.sp),
-                            )),
+                          StringConstant.registration,
+                          style: TextStyle(
+                              color: colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp),
+                        )),
                       ),
                     ),
                     SizedBox(
@@ -547,6 +544,7 @@ class EditProfileView extends GetView<EditProfileController> {
           );
         });
   }
+
   _openDilogue({required BuildContext context}) {
     MyColor colors = MyColor();
     return Get.dialog(Dialog(

@@ -19,7 +19,10 @@ class AboutFamily_Details extends StatelessWidget {
       body: SingleChildScrollView(
           child: Stack(
         children: [
-          Container(child: Image.asset("assets/images/bg.png")),
+          Container(
+            height: 305.h,
+              child: Image.asset("assets/images/bg.png",fit: BoxFit.fill,)
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -120,6 +123,8 @@ class AboutFamily_Details extends StatelessWidget {
                 Center(
                   child: Text(
                     StringConstant.bhalala_nanaliliya,
+                    textAlign: TextAlign.center,
+
                     style:
                         TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                   ),
@@ -204,6 +209,8 @@ class AboutFamily_Details extends StatelessWidget {
                 Center(
                   child: Text(
                     StringConstant.bhalala_shivgadh,
+                    textAlign: TextAlign.center,
+
                     style:
                         TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                   ),
