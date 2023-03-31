@@ -7,12 +7,12 @@ class Important_number {
 
 }
 class samiti {
-  samiti({required this.image, required this.member_work,required  this.name,required this.mobile
-  });
+  samiti({required this.image, required this.member_work,required  this.name,required this.mobile,this.position});
 
   String image;
   String member_work;
   String name;
   String mobile;
+  String? position;
 
 }

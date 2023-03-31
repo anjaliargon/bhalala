@@ -7,8 +7,10 @@ import 'package:http/http.dart' as http;
 
 import '../../../main.dart';
 import '../../constant/String_constant.dart';
+import '../../constant/sizeConstant.dart';
 import '../../modules/login/model/login_model.dart';
 import '../../modules/memberDetails/Model/MemberDetailsModel.dart';
+import '../../modules/profile/model/profileModel.dart';
 import '../Model/MemberCount.dart';
 import '../Model/basicModel.dart';
 import 'ApiUrl.dart';
@@ -30,6 +32,7 @@ class ApiProvider {
     if (response1.statusCode == 200) {
       if (!isNullEmptyOrFalse(data['data'])) {
         loginModel = UserLogin.fromJson(data);
+        box.write('login', true);
         box.write('mobileno', loginModel.loginData?.mobileNo);
         box.write('UserFirstname', loginModel.loginData?.name);
         box.write('Userlastname', loginModel.loginData?.lastName);
@@ -48,21 +51,38 @@ class ApiProvider {
         box.write('merragestatus', loginModel.loginData?.marriedId);
         box.write('bloodgroup', loginModel.loginData?.bName);
         box.write('membercount', loginModel.loginData?.noOfMember);
-        print(box.read('Data'));
         Fluttertoast.showToast(msg: StringConstant.suceesfullylogin);
       }
     } else {
-      Fluttertoast.showToast(msg: "wrong credencial");
       print("error ${response1.reasonPhrase}");
     }
     return loginModel;
   }
 
+  Future<Profilemodel> Userprofile(userId) async {
+    Profilemodel profilemodel = Profilemodel();
+    String query = GlobalData.profileUrl;
+
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+    request.fields.addAll({'user_id': userId});
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+    Map<String, dynamic> data = jsonDecode(response1.body);
+    if (response1.statusCode == 200) {
+      profilemodel = Profilemodel.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return profilemodel;
+  }
+
   Future<BasicModel> getBasicData() async {
     BasicModel basicmodel = BasicModel();
+    String query = GlobalData.basicdataUrl;
 
-    var request = http.MultipartRequest('GET',
-        Uri.parse('http://bhalalaparivar.org/webservice/getallbasicdata.php'));
+    var request = http.MultipartRequest('GET', Uri.parse(query));
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -70,8 +90,6 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       basicmodel = BasicModel.fromJson(result);
-      print(basicmodel.industrieslist);
-      print("basic model${response1.body}");
     } else {
       print(response.reasonPhrase);
     }
@@ -80,9 +98,8 @@ class ApiProvider {
 
   Future<MemberCount> memberCount() async {
     MemberCount memberModel = MemberCount();
-
-    var request = http.MultipartRequest('GET',
-        Uri.parse('https://bhalalaparivar.org/webservice/getmembercount.php'));
+    String query = GlobalData.membercountUrl;
+    var request = http.MultipartRequest('GET', Uri.parse(query));
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -95,19 +112,22 @@ class ApiProvider {
     }
     return memberModel;
   }
+
   Future<MemberDetails> memberDetailsCount(villageId) async {
     MemberDetails memberdetailsModel = MemberDetails();
+    String query = GlobalData.memberdetailsUrl;
 
-    var request = http.MultipartRequest('POST',
-        Uri.parse('https://bhalalaparivar.org/webservice/get_all_member.php'));
+    var request = http.MultipartRequest('POST', Uri.parse(query));
     request.fields.addAll({'user_id': villageId});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
     final result = jsonDecode(response1.body) as Map<String, dynamic>;
-
+    Map<String, dynamic> data = jsonDecode(response1.body);
     if (response1.statusCode == 200) {
-      memberdetailsModel = MemberDetails.fromJson(result);
+      if ((data['status']) == 1) {
+        memberdetailsModel = MemberDetails.fromJson(result);
+      }
     } else {
       print(response.reasonPhrase);
     }
@@ -116,11 +136,8 @@ class ApiProvider {
 
   Future<Notice> notice() async {
     Notice noticeModel = Notice();
-
-    var request = http.MultipartRequest(
-        'GET',
-        Uri.parse(
-            'http://bhalalaparivar.org/webservice/get_notice_board_details.php'));
+    String query = GlobalData.noticeUrl;
+    var request = http.MultipartRequest('GET', Uri.parse(query));
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -142,19 +159,17 @@ class ApiProvider {
 
     var request = http.MultipartRequest('POST', Uri.parse(query));
     request.fields.addAll({
-      'village_id': village.trim(),
-      'home_name': home.trim(),
-      'edu_name': eeducation.trim(),
-      'blood_name': blood.trim(),
-      'busi_id': industri.trim()
+      'village_id': village.toString(),
+      'home_name': home.toString(),
+      'edu_name': eeducation.toString(),
+      'blood_name': blood.toString(),
+      'busi_id': industri.toString()
     });
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
-    final result = jsonDecode(response1.body) as Map<String, dynamic>;
 
     Map<String, dynamic> data = jsonDecode(response1.body);
-    var list = json.decode(json.encode(response1.body));
     if (response1.statusCode == 200) {
       searchmodel = SearchModel.fromJson(data);
     } else {
@@ -162,11 +177,4 @@ class ApiProvider {
     }
     return searchmodel;
   }
-}
-
-bool isNullEmptyOrFalse(dynamic o) {
-  if (o is Map<String, dynamic> || o is List<dynamic>) {
-    return o == null || o.length == 0;
-  }
-  return o == null || false == o || "" == o;
 }

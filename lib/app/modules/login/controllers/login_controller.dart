@@ -40,7 +40,6 @@ class LoginController extends GetxController {
   login(String email, password) async {
     var result = await ApiProvider().login(email, password);
     if (!result.loginData.isNull) {
-      print(result);
       Get.toNamed(Routes.HOME);
       loginData.value = result;
       isLoading(true);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../constant/Color.dart';
 import '../../constant/String_constant.dart';
 import 'Committecontroller.dart';
@@ -24,6 +25,223 @@ class FamilyCommitte extends StatelessWidget {
             ),
             body: Column(
               children: [
+                // SizedBox(
+                //   height: 1.h,
+                // ),
+                // Container(
+                //   height: 5.h,
+                //   width: double.infinity,
+                //   color: colors.darkbrown,
+                //   child: Center(
+                //       child: Text(
+                //         "સ્થાપક સમિતિ",
+                //         style: TextStyle(
+                //             color: colors.white,
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 16.sp),
+                //       )),
+                // ),
+                // SizedBox(
+                //   height: 1.h,
+                // ),
+                // Expanded(
+                //     child: ListView.builder(
+                //       itemCount: 14,
+                //       shrinkWrap: true,
+                //       itemBuilder: (context, index) {
+                //         return Slidable(
+                //           endActionPane: ActionPane(
+                //             extentRatio: 0.2,
+                //             motion: const ScrollMotion(),
+                //             children: [
+                //               SlidableAction(
+                //                 onPressed: (context) {
+                //                   UrlLauncher.launch(
+                //                       'tel:+${controller.getCommitteDataList[index].mobile}');
+                //                 },
+                //                 backgroundColor: colors.green,
+                //                 icon: Icons.call,
+                //                 foregroundColor: colors.darkbrown,
+                //               ),
+                //             ],
+                //           ),
+                //           child: Column(
+                //             children: [
+                //               Padding(
+                //                 padding: const EdgeInsets.all(8.0),
+                //                 child: Row(
+                //                   children: [
+                //                     Column(
+                //                       children: [
+                //                         Container(
+                //                           height: 10.h,
+                //                           width: 20.w,
+                //                           decoration: BoxDecoration(
+                //                               border: Border.all(
+                //                                   color: colors.darkbrown)),
+                //                           child: Image.asset(
+                //                             committecontroller
+                //                                 .getCommitteDataList[index].image,
+                //                             fit: BoxFit.fill,
+                //                           ),
+                //                         ),
+                //                         SizedBox(
+                //                           height: 1.h,
+                //                         ),
+                //                         Text(
+                //                             committecontroller
+                //                                 .getCommitteDataList[index]
+                //                                 .member_work,
+                //                             style: TextStyle(
+                //                                 color: colors.darkbrown,
+                //                                 fontWeight: FontWeight.bold)),
+                //                       ],
+                //                     ),
+                //                     SizedBox(
+                //                       width: 5.w,
+                //                     ),
+                //                     Column(
+                //                       crossAxisAlignment: CrossAxisAlignment.start,
+                //                       children: [
+                //                         Text(
+                //                           committecontroller
+                //                               .getCommitteDataList[index].name,
+                //                           style: TextStyle(
+                //                               fontSize: 13.sp,
+                //                               color: colors.darkbrown,
+                //                               fontWeight: FontWeight.bold),
+                //                         ),
+                //                         SizedBox(
+                //                           height: 1.h,
+                //                         ),
+                //                         Text(
+                //                             "મોબાઇલ નંબર :${committecontroller.getCommitteDataList[index].mobile}",
+                //                             style: const TextStyle()),
+                //                       ],
+                //                     ),
+                //                   ],
+                //                 ),
+                //               ),
+                //               Divider(
+                //                 thickness: 2,
+                //                 height: 1,
+                //                 color: colors.darkbrown,
+                //               )
+                //             ],
+                //           ),
+                //         );
+                //       },
+                //     )),
+                // Container(
+                //   height: 5.h,
+                //   width: double.infinity,
+                //   color: colors.darkbrown,
+                //   child: Center(
+                //       child: Text(
+                //         "કારોબારી સમિતિ",
+                //         style: TextStyle(
+                //             color: colors.white,
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 16.sp),
+                //       )),
+                // ),
+                // SizedBox(
+                //   height: 1.h,
+                // ),
+                // Expanded(
+                //     child: ListView.builder(
+                //       itemCount: 15,
+                //       physics: NeverScrollableScrollPhysics(),
+                //       shrinkWrap: true,
+                //       itemBuilder: (context, index) {
+                //         return Slidable(
+                //           endActionPane: ActionPane(
+                //             extentRatio: 0.2,
+                //             motion: const ScrollMotion(),
+                //             children: [
+                //               SlidableAction(
+                //                 onPressed: (context) {
+                //                   UrlLauncher.launch(
+                //                       'tel:+${controller.getCommitteDataList[index + 15].mobile}');
+                //                 },
+                //                 backgroundColor: colors.green,
+                //                 icon: Icons.call,
+                //                 foregroundColor: colors.darkbrown,
+                //               ),
+                //             ],
+                //           ),
+                //           child: Column(
+                //             children: [
+                //               Padding(
+                //                 padding: const EdgeInsets.all(8.0),
+                //                 child: Row(
+                //                   children: [
+                //                     Column(
+                //                       children: [
+                //                         Container(
+                //                           height: 10.h,
+                //                           width: 20.w,
+                //                           decoration: BoxDecoration(
+                //                               border: Border.all(
+                //                                   color: colors.darkbrown)),
+                //                           child: Image.asset(
+                //                             committecontroller
+                //                                 .getCommitteDataList[index+14].image,
+                //                             fit: BoxFit.fill,
+                //                           ),
+                //                         ),
+                //                         SizedBox(
+                //                           height: 1.h,
+                //                         ),
+                //                         Text(
+                //                             committecontroller
+                //                                 .getCommitteDataList[index + 14]
+                //                                 .member_work,
+                //                             style: TextStyle(
+                //                                 color: colors.darkbrown,
+                //                                 fontWeight: FontWeight.bold)),
+                //                       ],
+                //                     ),
+                //                     SizedBox(
+                //                       width: 5.w,
+                //                     ),
+                //                     Column(
+                //                       crossAxisAlignment:
+                //                       CrossAxisAlignment.start,
+                //                       children: [
+                //                         Text(
+                //                           committecontroller
+                //                               .getCommitteDataList[index + 14]
+                //                               .name,
+                //                           style: TextStyle(
+                //                               fontSize: 13.sp,
+                //                               color: colors.darkbrown,
+                //                               fontWeight: FontWeight.bold),
+                //                         ),
+                //                         SizedBox(
+                //                           height: 1.h,
+                //                         ),
+                //                         Text(
+                //                             "મોબાઇલ નંબર :${committecontroller.getCommitteDataList[index + 14].mobile}",
+                //                             style: const TextStyle()),
+                //                         Text(
+                //                             "હોદ્દો  :${committecontroller.getCommitteDataList[index + 14].position}",
+                //                             style: const TextStyle()),
+                //                       ],
+                //                     ),
+                //                   ],
+                //                 ),
+                //               ),
+                //               Divider(
+                //                 thickness: 2,
+                //                 height: 1,
+                //                 color: colors.darkbrown,
+                //               )
+                //             ],
+                //           ),
+                //         );
+                //       },
+                //     )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -32,7 +250,8 @@ class FamilyCommitte extends StatelessWidget {
                       width: 45.w,
                       decoration: BoxDecoration(
                           color: colors.lightgrey,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5))),
                       child: Column(
                         children: [
                           SizedBox(
@@ -70,7 +289,8 @@ class FamilyCommitte extends StatelessWidget {
                       width: 45.w,
                       decoration: BoxDecoration(
                           color: colors.lightgrey,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5))),
                       child: Column(
                         children: [
                           SizedBox(
@@ -105,97 +325,347 @@ class FamilyCommitte extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 1.h,
-                ),
-                Container(
-                  height: 5.h,
-                  width: double.infinity,
-                  color: colors.darkbrown,
-                  child: Center(
-                      child: Text(
-                    "સ્થાપક સમિતિ",
-                    style: TextStyle(
-                        color: colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.sp),
-                  )),
-                ),
-                SizedBox(
-                  height: 1.h,
-                ),
                 Expanded(
-                    child: ListView.builder(
-                  itemCount: committecontroller.getCommitteDataList.length,
-                  shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                    return Column(
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        Container(
+                          height: 5.h,
+                          width: double.infinity,
+                          color: colors.darkbrown,
+                          child: Center(
+                              child: Text(
+                            "સ્થાપક સમિતિ",
+                            style: TextStyle(
+                                color: colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp),
+                          )),
+                        ),
+                        ListView.builder(
+                          itemCount: 15,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Slidable(
+                              endActionPane: ActionPane(
+                                extentRatio: 0.2,
+                                motion: const ScrollMotion(),
                                 children: [
-                                  Container(
-                                    height: 10.h,
-                                    width: 20.w,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: colors.darkbrown)),
-                                    child: Image.asset(
-                                      committecontroller
-                                          .getCommitteDataList[index].image,
-                                      fit: BoxFit.fill,
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      UrlLauncher.launch(
+                                          'tel:+${controller.getCommitteDataList[index].mobile}');
+                                    },
+                                    backgroundColor: colors.green,
+                                    icon: Icons.call,
+                                    foregroundColor: colors.darkbrown,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Container(
+                                              height: 10.h,
+                                              width: 20.w,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: colors.darkbrown)),
+                                              child: Image.asset(
+                                                committecontroller
+                                                    .getCommitteDataList[index]
+                                                    .image,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                committecontroller
+                                                    .getCommitteDataList[index]
+                                                    .member_work,
+                                                style: TextStyle(
+                                                    color: colors.darkbrown,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              committecontroller
+                                                  .getCommitteDataList[index]
+                                                  .name,
+                                              style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  color: colors.darkbrown,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                "મોબાઇલ નંબર :${committecontroller.getCommitteDataList[index].mobile}",
+                                                style: const TextStyle()),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                      committecontroller
-                                          .getCommitteDataList[index]
-                                          .member_work,
-                                      style:
-                                          TextStyle(color: colors.darkbrown,fontWeight: FontWeight.bold)),
+                                  Divider(
+                                    thickness: 2,
+                                    height: 1,
+                                    color: colors.darkbrown,
+                                  )
                                 ],
                               ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    committecontroller
-                                        .getCommitteDataList[index].name,
-                                    style: TextStyle(
-                                        fontSize: 13.sp,
-                                        color: colors.darkbrown,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                      committecontroller
-                                          .getCommitteDataList[index].mobile,
-                                      style:
-                                          TextStyle()),
-                                ],
-                              ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
-                        Divider(
-                          thickness: 2,
-                          height: 1,
+                        Container(
+                          height: 5.h,
+                          width: double.infinity,
                           color: colors.darkbrown,
+                          child: Center(
+                              child: Text(
+                            "કારોબારી સમિતિ",
+                            style: TextStyle(
+                                color: colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp),
+                          )),
+                        ),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        ListView.builder(
+                          itemCount: 14,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Slidable(
+                              endActionPane: ActionPane(
+                                extentRatio: 0.2,
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      UrlLauncher.launch(
+                                          'tel:+${controller.getCommitteDataList[index + 15].mobile}');
+                                    },
+                                    backgroundColor: colors.green,
+                                    icon: Icons.call,
+                                    foregroundColor: colors.darkbrown,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Container(
+                                              height: 10.h,
+                                              width: 20.w,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: colors.darkbrown)),
+                                              child: Image.asset(
+                                                committecontroller
+                                                    .getCommitteDataList[
+                                                        index + 15]
+                                                    .image,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                committecontroller
+                                                    .getCommitteDataList[
+                                                        index + 15]
+                                                    .member_work,
+                                                style: TextStyle(
+                                                    color: colors.darkbrown,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              committecontroller
+                                                  .getCommitteDataList[
+                                                      index + 15]
+                                                  .name,
+                                              style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  color: colors.darkbrown,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                "મોબાઇલ નંબર :${committecontroller.getCommitteDataList[index + 15].mobile}",
+                                                style: const TextStyle()),
+                                            Text(
+                                                "હોદ્દો  :${committecontroller.getCommitteDataList[index + 15].position}",
+                                                style: const TextStyle()),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    thickness: 2,
+                                    height: 1,
+                                    color: colors.darkbrown,
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        Container(
+                          height: 5.h,
+                          width: double.infinity,
+                          color: colors.darkbrown,
+                          child: Center(
+                              child: Text(
+                                "સંકલન સમિતિ",
+                                style: TextStyle(
+                                    color: colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16.sp),
+                              )),
+                        ),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        ListView.builder(
+                          itemCount: 14,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Slidable(
+                              endActionPane: ActionPane(
+                                extentRatio: 0.2,
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      UrlLauncher.launch(
+                                          'tel:+${controller.getCommitteDataList[index + 30].mobile}');
+                                    },
+                                    backgroundColor: colors.green,
+                                    icon: Icons.call,
+                                    foregroundColor: colors.darkbrown,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Container(
+                                              height: 10.h,
+                                              width: 20.w,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: colors.darkbrown)),
+                                              child: Image.asset(
+                                                committecontroller
+                                                    .getCommitteDataList[
+                                                index + 30]
+                                                    .image,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                committecontroller
+                                                    .getCommitteDataList[
+                                                index + 30]
+                                                    .member_work,
+                                                style: TextStyle(
+                                                    color: colors.darkbrown,
+                                                    fontWeight:
+                                                    FontWeight.bold)),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              committecontroller
+                                                  .getCommitteDataList[
+                                              index + 30]
+                                                  .name,
+                                              style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  color: colors.darkbrown,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                                "મોબાઇલ નંબર :${committecontroller.getCommitteDataList[index + 30].mobile}",
+                                                style: const TextStyle()),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    thickness: 2,
+                                    height: 1,
+                                    color: colors.darkbrown,
+                                  )
+                                ],
+                              ),
+                            );
+                          },
                         )
                       ],
-                    );
-                  },
-                ))
+                    ),
+                  ),
+                )
               ],
             ),
           );

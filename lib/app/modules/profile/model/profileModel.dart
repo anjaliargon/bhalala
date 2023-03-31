@@ -1,15 +1,15 @@
-class SearchModel {
+class Profilemodel {
   int? status;
-  List<Data>? data;
+  List<ProfileData>? data;
 
-  SearchModel({this.status, this.data});
+  Profilemodel({this.status, this.data});
 
-  SearchModel.fromJson(Map<String, dynamic> json) {
+  Profilemodel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ProfileData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new ProfileData.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class SearchModel {
   }
 }
 
-class Data {
+class ProfileData {
   String? rId;
   String? name;
   String? middleName;
@@ -54,7 +54,7 @@ class Data {
   String? industryId;
   String? busiType;
 
-  Data(
+  ProfileData(
       {this.rId,
         this.name,
         this.middleName,
@@ -84,7 +84,7 @@ class Data {
         this.industryId,
         this.busiType});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ProfileData.fromJson(Map<String, dynamic> json) {
     rId = json['R_id'];
     name = json['Name'];
     middleName = json['middle_name'];

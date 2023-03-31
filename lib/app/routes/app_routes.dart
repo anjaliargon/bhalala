@@ -5,6 +5,7 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
+  static const SIGNUP = _Paths.SIGNUP;
   static const PROFILE = _Paths.PROFILE;
   static const ABOUT_FAMILY = _Paths.ABOUT_FAMILY;
   static const PARIVARKARAYALAY = _Paths.PARIVARKARAYALAY;
@@ -17,12 +18,14 @@ abstract class Routes {
   static const NOTICE = _Paths.NOTICE;
   static const SAHYOG = _Paths.SAHYOG;
   static const MEMBER = _Paths.MEMBER;
+  static const SPLASH = _Paths.SPLASH;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LOGIN = '/login';
+  static const SIGNUP = '/signup';
   static const PROFILE = '/profile';
   static const ABOUT_FAMILY = '/aboutfamily';
   static const PARIVARKARAYALAY = '/parivarkaryalay';
@@ -35,4 +38,5 @@ abstract class _Paths {
   static const NOTICE = '/notice';
   static const SAHYOG = '/parivarsahyog';
   static const MEMBER = '/member';
+  static const SPLASH = '/splace';
 }

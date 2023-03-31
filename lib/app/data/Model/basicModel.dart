@@ -1,11 +1,11 @@
 class BasicModel {
   int? status;
   List<Education>? education;
-  List<Village>? village;
+  List<VillageBasic>? village;
   List<Married>? married;
   List<Home>? home;
   List<BloodGroup>? bloodGroup;
-  List<Industrieslist>? industrieslist;
+  List<IndustrieslistBasic>? industrieslist;
 
   BasicModel(
       {this.status,
@@ -25,9 +25,9 @@ class BasicModel {
       });
     }
     if (json['Village'] != null) {
-      village = <Village>[];
+      village = <VillageBasic>[];
       json['Village'].forEach((v) {
-        village!.add(Village.fromJson(v));
+        village!.add(VillageBasic.fromJson(v));
       });
     }
     if (json['Married'] != null) {
@@ -49,9 +49,9 @@ class BasicModel {
       });
     }
     if (json['Industrieslist'] != null) {
-      industrieslist = <Industrieslist>[];
+      industrieslist = <IndustrieslistBasic>[];
       json['Industrieslist'].forEach((v) {
-        industrieslist!.add(Industrieslist.fromJson(v));
+        industrieslist!.add(IndustrieslistBasic.fromJson(v));
       });
     }
   }
@@ -101,15 +101,15 @@ class Education {
   }
 }
 
-class Village {
+class VillageBasic {
   String? vId;
   String? vName;
   String? vState;
   String? vDistrict;
 
-  Village({this.vId, this.vName, this.vState, this.vDistrict});
+  VillageBasic({this.vId, this.vName, this.vState, this.vDistrict});
 
-  Village.fromJson(Map<String, dynamic> json) {
+  VillageBasic.fromJson(Map<String, dynamic> json) {
     vId = json['V_id'];
     vName = json['V_name'];
     vState = json['V_state'];
@@ -183,13 +183,13 @@ class BloodGroup {
   }
 }
 
-class Industrieslist {
+class IndustrieslistBasic {
   String? id;
   String? name;
 
-  Industrieslist({this.id, this.name});
+  IndustrieslistBasic({this.id, this.name});
 
-  Industrieslist.fromJson(Map<String, dynamic> json) {
+  IndustrieslistBasic.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
   }

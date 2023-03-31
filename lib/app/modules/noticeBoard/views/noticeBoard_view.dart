@@ -45,16 +45,14 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
                       Padding(
                         padding: const EdgeInsets.only(top: 8,right: 8,left: 8,bottom: 4),
                         child: Text(
-                          controller.noticedata.value.newsEvents![index].title
-                              .toString(),
+                          controller.noticedata.value.newsEvents?[index].title ??'',
                           style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15.sp),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8,left: 8,bottom: 4),
                         child: Text(controller
-                            .noticedata.value.newsEvents![index].description
-                            .toString(),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14.sp),),
+                            .noticedata.value.newsEvents?[index].description ??'',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14.sp),),
                       ),
                     ],
                   ),

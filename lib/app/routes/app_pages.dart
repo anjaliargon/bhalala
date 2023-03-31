@@ -7,10 +7,10 @@ import 'package:bhalala/app/modules/noticeBoard/views/noticeBoard_view.dart';
 import 'package:bhalala/app/modules/parivar_sahyog/parivarSahyogView.dart';
 import 'package:bhalala/app/modules/profile/views/profile_view.dart';
 import 'package:bhalala/app/modules/searchMember/views/search_view.dart';
+import 'package:bhalala/app/modules/signUp/views/signUp_view.dart';
 import 'package:get/get.dart';
-
 import '../../main.dart';
-import '../data/Api/ApiProvider.dart';
+import '../constant/sizeConstant.dart';
 import '../modules/About_family/About_familyscreen.dart';
 import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
 import '../modules/Important_numbers/Important_numberScreen.dart';
@@ -25,19 +25,21 @@ import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/searchMember/bindings/search_binding.dart';
+import '../modules/signUp/bindings/signUp_binding.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static String INITIAL =
-      (!isNullEmptyOrFalse(box.read("userId"))) ? Routes.HOME : Routes.LOGIN;
+  static String INITIAL = (!isNullEmptyOrFalse(box.read("userId"))) ? Routes.HOME : Routes.LOGIN;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () =>  HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -45,7 +47,16 @@ class AppPages {
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
-
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => SignUpView(),
+      binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashScreen(),
+      binding: SplashBinding(),
+    ),
     GetPage(
         name: _Paths.PROFILE,
         page: () => ProfileView(),
@@ -96,40 +107,5 @@ class AppPages {
       name: _Paths.COMITEE,
       page: () => FamilyCommitte(),
     ),
-
-    // GetPage(
-    //   name: _Paths.APP_HELPLINE,
-    //   page: () => const applicationhelpline(),
-    // ),
-    // GetPage(
-    //   name: _Paths.NOTICE,
-    //   page: () => NoticeBoardscreen(),
-    // ),
-    // GetPage(
-    //   name: _Paths.SIGNUP,
-    //   page: () => SignUpscreen(),
-    //   binding: SignUpBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.HOME,
-    //   page: () => Homescreen(),
-    //   binding: HomeBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.IMP_NUMBER,
-    //   page: () =>  ImportantNumber_Screen(),
-    // ),
-
-    // GetPage(
-    //   name: _Paths.VILLAGE,
-    //   page: () =>  villageScreen(),
-    // ),
-
-    //
-    // GetPage(
-    //     name: _Paths.PROFILE,
-    //     page: () =>  Profilescreen(),
-    //     binding: ProfileBinding()
-    // ),
   ];
 }

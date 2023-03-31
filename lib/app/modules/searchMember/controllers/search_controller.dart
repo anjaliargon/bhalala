@@ -5,15 +5,17 @@ import 'package:get/get.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
+import '../../../data/Model/MemberCount.dart';
+import '../../../data/Model/basicModel.dart';
 
 class SearchController extends GetxController {
   var isLoading = false.obs;
   var errorOccurred = false.obs;
   final searchData = SearchModel().obs;
-  RxList<String> accountVillageListData = <String>[].obs;
+  RxList<VillageBasic> accountVillageListData = RxList<VillageBasic>([]);
   RxList<String> accountBloodListData = <String>[].obs;
   RxList<String> accountEducationListData = <String>[].obs;
-  RxList<String> accountIndustryListData = <String>[].obs;
+  RxList<IndustrieslistBasic> accountIndustryListData =RxList<IndustrieslistBasic>([]);
   RxList<String> accountHomeListData = <String>[].obs;
   TextEditingController industryController = TextEditingController();
   TextEditingController educationController = TextEditingController();
@@ -41,8 +43,12 @@ class SearchController extends GetxController {
     super.onClose();
   }
 
-  search(String village, String home,String industri,String education,String blood) async {
-    var result = await ApiProvider().search(village,home,industri,education,blood);
+  Future<void> search(String village, String home, String industri,
+      String education, String blood) async {
+    VillageBasic villageData =  accountVillageListData.where((p0) => p0.vName == village).first;
+    IndustrieslistBasic industrialData =  accountIndustryListData.where((p0) => p0.name == industri).first;
+    var result =
+        await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
     if (result.status == 1) {
       print(result.data?.length);
       searchData.value = result;
@@ -58,13 +64,14 @@ class SearchController extends GetxController {
 
   Future<void> getAccountVillageList() async {
     accountVillageListData.clear();
-    accountVillageListData.add(StringConstant.villagegroup);
-    var result = await ApiProvider().getBasicData();
+    // accountVillageListData.add(StringConstant.villagegroup);
+    BasicModel result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      for (var element in result.village!) {
-        accountVillageListData.add(element.vName.toString());
-        isLoading(true);
-      }
+      accountVillageListData.value = result.village!;
+      // for (var element in result.village!) {
+      //   accountVillageListData.add(element.vName.toString());
+      //   isLoading(true);
+      // }
     } else {
       isLoading(false);
     }
@@ -86,13 +93,14 @@ class SearchController extends GetxController {
 
   Future<void> getAccountIndustryList() async {
     accountIndustryListData.clear();
-    accountIndustryListData.add(StringConstant.workdetails);
+    // accountIndustryListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      for (var element in result.industrieslist!) {
-        accountIndustryListData.add(element.name.toString());
-        isLoading(true);
-      }
+      accountIndustryListData.value = result.industrieslist!;
+      // for (var element in result.industrieslist!) {
+      //   accountIndustryListData.add(element.name.toString());
+      //   isLoading(true);
+      // }
     } else {
       isLoading(false);
     }

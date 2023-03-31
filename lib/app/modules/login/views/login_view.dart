@@ -9,6 +9,7 @@ import 'package:email_validator/email_validator.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -121,6 +122,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                     InkWell(
                       onTap: () {
+
                         if (controller.formKey.value.currentState!.validate()) {
                           FocusScope.of(context).unfocus();
                           controller.login(
@@ -153,7 +155,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                     InkWell(
                       onTap: () {
-                        // Get.toNamed(Routes.SIGNUP);
+                        Get.toNamed(Routes.SIGNUP);
                         controller.emailController.value.clear();
                         controller.passwordController.value.clear();
                         Get.deleteAll();

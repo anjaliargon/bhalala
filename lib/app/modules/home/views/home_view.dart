@@ -1,4 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/constant/literals.dart';
 import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:dart_quote/widget_quote.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,12 @@ import 'package:sizer/sizer.dart';
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../routes/app_pages.dart';
+import '../../profile/controllers/profile_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
-
+   HomeView({Key? key}) : super(key: key);
+  final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
@@ -32,6 +34,7 @@ class HomeView extends GetView<HomeController> {
                     InkWell(
                       onTap: () {
                         Get.toNamed(Routes.PROFILE);
+                        // profileController.userProfile(box.read('userId'));
                       },
                       child: const CircleAvatar(
                         backgroundImage:
@@ -234,7 +237,7 @@ class HomeView extends GetView<HomeController> {
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold))
                     .quote()),
-            Spacer(),
+           Spacer(),
             Row(
               children: [
                 Expanded(

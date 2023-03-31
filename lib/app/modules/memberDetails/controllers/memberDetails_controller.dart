@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/MemberCount.dart';
+import '../../../routes/app_pages.dart';
 import '../Model/MemberDetailsModel.dart';
 
 class MemberDetailsController extends GetxController {
@@ -34,9 +35,10 @@ class MemberDetailsController extends GetxController {
     isLoading(true);
     errorOccurred(false);
     try {
-      getmemberDetailsData.value = await ApiProvider().memberDetailsCount(villageId);
-      if (getmemberDetailsData.value.status == 1) {
-        var result =  getmemberDetailsData.value;
+      var result = await ApiProvider().memberDetailsCount(villageId);
+      if (result.status == 1) {
+        getmemberDetailsData.value = result;
+        isLoading(true);
       } else {
         Fluttertoast.showToast(
             msg: "Wrong credential",
@@ -44,6 +46,15 @@ class MemberDetailsController extends GetxController {
             textColor: Colors.black);
         isLoading(false);
       }
+      // if (getmemberDetailsData.value.status == 1) {
+      //   var result =  getmemberDetailsData.value;
+      // } else {
+      //   Fluttertoast.showToast(
+      //       msg: "Wrong credential",
+      //       backgroundColor: Colors.white,
+      //       textColor: Colors.black);
+      //   isLoading(false);
+      // }
     } catch (e) {
       errorOccurred(true);
     } finally {

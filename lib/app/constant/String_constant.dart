@@ -81,6 +81,9 @@ class StringConstant {
   static  String  member_count  ="સભ્ય સંખ્યા";
   static  String  addnew_member  ="નવા સભ્ય ઉમેરો";
   static  String  search_village  ="ગામ પસંદ કરો";
+  static  String  search_home  ="રહેણાંક પસંદ કરો";
+  static  String  search_education  ="શિક્ષણ પસંદ કરો";
+
 
 //name
   static  String  ravajibhai = "સ્વ રવજીભાઈ કેશવભાઈ";

@@ -4,11 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:email_validator/email_validator.dart';
 
 import '../../../constant/String_constant.dart';
-import '../../../constant/Widget.dart';
-import '../../../constant/screens/loading_and_error_screen.dart';
 import '../controllers/search_controller.dart';
 
 class SearchView extends GetView<SearchController> {
@@ -49,6 +46,9 @@ class SearchView extends GetView<SearchController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 70.sp,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -61,13 +61,14 @@ class SearchView extends GetView<SearchController> {
                         children: [
                           Expanded(
                               child: Icon(
-                            Icons.home,
+                            Icons.location_on,
                             color: colors.darkbrown,
+                            size: 22.sp,
                           )),
                           Expanded(
                             flex: 6,
                             child: DropdownButton(
-                              hint: Text(StringConstant.search_village),
+                              hint: Text(StringConstant.search_village,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
                               isExpanded: true,
                               elevation: 0,
                               underline: Container(
@@ -80,11 +81,11 @@ class SearchView extends GetView<SearchController> {
                               },
                               value: village,
                               items: controller.accountVillageListData
-                                  .map((String items) {
+                                  .map((items) {
                                 return DropdownMenuItem(
-                                  value: items,
+                                  value: items.vName,
                                   child: Text(
-                                    items,
+                                    items.vName!,
                                     style: TextStyle(
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.bold),
@@ -103,19 +104,20 @@ class SearchView extends GetView<SearchController> {
                       decoration: BoxDecoration(
                         border: Border.all(color: colors.darkbrown),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                            const BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Row(
                         children: [
                           Expanded(
                               child: Icon(
-                                Icons.home,
-                                color: colors.darkbrown,
-                              )),
+                            Icons.home,
+                            color: colors.darkbrown,
+                            size: 22.sp,
+                          )),
                           Expanded(
                             flex: 6,
                             child: DropdownButton(
-                              hint: Text(StringConstant.search_village),
+                              hint: Text(StringConstant.search_home,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
                               isExpanded: true,
                               elevation: 0,
                               underline: Container(
@@ -156,14 +158,19 @@ class SearchView extends GetView<SearchController> {
                       child: Row(
                         children: [
                           Expanded(
-                              child: Icon(
-                            Icons.home,
-                            color: colors.darkbrown,
-                          )),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.graduationCap,
+                                color: colors.darkbrown,
+                                size: 20.sp,
+                              ),
+                            ),
+                          ),
                           Expanded(
                             flex: 6,
                             child: DropdownButton(
-                              hint: Text(StringConstant.workdetails),
+                              hint: Text(StringConstant.work_sectorchoice,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
                               isExpanded: true,
                               elevation: 0,
                               underline: Container(
@@ -176,11 +183,11 @@ class SearchView extends GetView<SearchController> {
                               },
                               value: industry,
                               items: controller.accountIndustryListData
-                                  .map((String items) {
+                                  .map((items) {
                                 return DropdownMenuItem(
-                                  value: items,
+                                  value: items.name,
                                   child: Text(
-                                    items,
+                                    items.name.toString(),
                                     style: TextStyle(
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.bold),
@@ -204,14 +211,19 @@ class SearchView extends GetView<SearchController> {
                       child: Row(
                         children: [
                           Expanded(
-                              child: Icon(
-                            Icons.home,
-                            color: colors.darkbrown,
-                          )),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.graduationCap,
+                                color: colors.darkbrown,
+                                size: 20.sp,
+                              ),
+                            ),
+                          ),
                           Expanded(
                             flex: 6,
                             child: DropdownButton(
-                              hint: Text(StringConstant.education_chooes),
+                              hint: Text(StringConstant.search_education,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
                               isExpanded: true,
                               elevation: 0,
                               underline: Container(
@@ -252,14 +264,19 @@ class SearchView extends GetView<SearchController> {
                       child: Row(
                         children: [
                           Expanded(
-                              child: Icon(
-                            Icons.location_on,
-                            color: colors.darkbrown,
-                          )),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16),
+                              child: FaIcon(
+                                FontAwesomeIcons.person,
+                                color: colors.darkbrown,
+                                size: 20.sp,
+                              ),
+                            ),
+                          ),
                           Expanded(
                             flex: 6,
                             child: DropdownButton(
-                              hint: Text(StringConstant.blood_chooes),
+                              hint: Text(StringConstant.blood_chooes,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
                               isExpanded: true,
                               elevation: 0,
                               underline: Container(
@@ -295,11 +312,11 @@ class SearchView extends GetView<SearchController> {
                               MaterialStateProperty.all(colors.darkbrown)),
                       onPressed: () {
                         controller.search(
-                            controller.villageController.value.text,
-                            controller.homeController.value.text,
-                            controller.industryController.value.text,
-                            controller.educationController.value.text,
-                            controller.bloodController.value.text,
+                          controller.villageController.value.text,
+                          controller.homeController.value.text,
+                          controller.industryController.value.text,
+                          controller.educationController.value.text,
+                          controller.bloodController.value.text,
                         );
                       },
                       child: Text("શોધો"))
