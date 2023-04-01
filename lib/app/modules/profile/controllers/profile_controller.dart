@@ -22,6 +22,7 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
+    userProfile(userId);
     super.onInit();
   }
 
@@ -69,15 +70,6 @@ class ProfileController extends GetxController {
             textColor: Colors.black);
         isLoading(false);
       }
-      // if (getmemberDetailsData.value.status == 1) {
-      //   var result =  getmemberDetailsData.value;
-      // } else {
-      //   Fluttertoast.showToast(
-      //       msg: "Wrong credential",
-      //       backgroundColor: Colors.white,
-      //       textColor: Colors.black);
-      //   isLoading(false);
-      // }
     } catch (e) {
     } finally {
       isLoading(false);

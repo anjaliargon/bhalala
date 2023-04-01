@@ -171,7 +171,10 @@ class ApiProvider {
 
     Map<String, dynamic> data = jsonDecode(response1.body);
     if (response1.statusCode == 200) {
-      searchmodel = SearchModel.fromJson(data);
+      if (data['status'] == 1) {
+        searchmodel = SearchModel.fromJson(data);
+      }
+
     } else {
       print("error ${response1.reasonPhrase}");
     }

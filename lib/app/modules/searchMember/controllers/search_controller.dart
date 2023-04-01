@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
-import '../../../data/Model/MemberCount.dart';
 import '../../../data/Model/basicModel.dart';
+import '../../../routes/app_pages.dart';
 
 class SearchController extends GetxController {
   var isLoading = false.obs;
@@ -49,10 +49,10 @@ class SearchController extends GetxController {
     IndustrieslistBasic industrialData =  accountIndustryListData.where((p0) => p0.name == industri).first;
     var result =
         await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
-    if (result.status == 1) {
+    if (!result.data.isNull) {
+      Get.toNamed(Routes.SEARCHMEMBER);
       print(result.data?.length);
       searchData.value = result;
-      isLoading(true);
     } else {
       Fluttertoast.showToast(
           msg: "No Data Found",

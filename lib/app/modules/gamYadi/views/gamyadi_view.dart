@@ -12,7 +12,7 @@ import '../../../routes/app_pages.dart';
 import '../controllers/gamYadi_controller.dart';
 
 class GamYadiView extends GetView<GamYadiController> {
-  const GamYadiView({Key? key}) : super(key: key);
+   GamYadiView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

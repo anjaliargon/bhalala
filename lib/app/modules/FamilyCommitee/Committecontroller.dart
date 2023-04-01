@@ -186,11 +186,7 @@ class CommitteController extends GetxController {
 
     ////sanklan smittii
 
-    // samiti(
-    //     image: "assets/images/p3.png",
-    //     member_work: "પાંચતોબરા",
-    //     name: "શ્રી ખોડાભાઈ પરષોત્તમભાઇ",
-    //     mobile: "9825162812"),
+
     samiti(
         image: "assets/images/p4.png",
         member_work: "દાધીયા",
@@ -204,137 +200,138 @@ class CommitteController extends GetxController {
     samiti(
         image: "assets/images/p6.png",
         member_work: "પાંચતલાવડા ",
-        name: "શ્રી શીવાભાઈ શંભુભાઈ   ",
+        name: "શ્રી જનકભાઈ ધીરજલાલ",
         mobile: "7405619744"),
     samiti(
         image: "assets/images/p7.png",
         member_work: "મેરિયાણા ",
-        name: "શ્રી વજુભાઇ બચુભાઈ",
+        name: "શ્રી નરેશભાઈ નાગજીભાઈ",
         mobile: "9537539399"),
     samiti(
         image: "assets/images/p8.png",
         member_work: "ઘોબા ",
-        name: "શ્રી અરવિંદભાઈ હરજીભાઇ  ",
+        name: "શ્રી સંજયભાઈ નાનજીભાઈ",
         mobile: "9925525333"),
     samiti(
         image: "assets/images/p52.png",
         member_work: "બળેલ પીપરીયા ",
-        name: "સ્વ ગોરધનભાઈ બચુભાઈ ",
+        name: "શ્રી અનિલભાઈ પોપટભાઈ",
         mobile: "0000"),
     samiti(
         image: "assets/images/p53.png",
         member_work: "મોણપર ",
-        name: "શ્રી શ્યામજીભાઈ મધુભાઈ  ",
+        name: "શ્રી પ્રકાશભાઈ વાઘજીભાઈ",
         mobile: "9825194645"),
     samiti(
         image: "assets/images/p54.png",
         member_work: "પાંચટોબરા ",
-        name: "શ્રી બાલુભાઈ જગાભાઈ  ",
+        name: "શ્રી શામજીભાઈ ડુંગરભાઈ",
         mobile: "9982519464"),
     samiti(
         image: "assets/images/p55.png",
         member_work: "મોણપર ",
-        name: "શ્રી શંભુભાઈ રાઘવભાઈ ",
+        name: "શ્રી મુકેશભાઈ વશરામભાઇ",
         mobile: "9879088203"),
     samiti(
         image: "assets/images/p56.png",
         member_work: "મોટાલીલીયા",
-        name: "શ્રી ભનુભાઇ ધનજીભાઈ ",
+        name: "શ્રી મુકેશભાઈ ગોકળભાઇ",
         mobile: "9427248408"),
     samiti(
         image: "assets/images/p57.png",
         member_work: "પાંચટોબરા",
-        name: "શ્રી જગદીશભાઈ સવજીભાઈ ",
+        name: "શ્રી અલ્પેશભાઈ ખોડાભાઈ",
         mobile: "9825408888"),
     samiti(
         image: "assets/images/p17.png",
         member_work: "અરડોઇ",
-        name: "શ્રી કાનજીભાઈ રાઘવભાઈ ",
+        name: "શ્રી ભાસ્કરભાઈ જયંતિભાઈ",
         mobile: "9925133366"),
     samiti(
         image: "assets/images/p18.png",
         member_work: "તાવેડા",
-        name: "શ્રી કનૈયાલાલ રવજીભાઈ (સીએ)",
+        name: "શ્રી પરેશભાઈ મગનભાઈ",
         mobile: "9428435141"),
     samiti(
         image: "assets/images/p19.png",
         member_work: "સાકરપરા",
-        name: "શ્રી કાંતિભાઈ ખીમજીભાઈ",
+        name: "શ્રી રાજેશભાઈ મનસુખભાઇ",
         mobile: "9825136690"),
     samiti(
         image: "assets/images/p3.png",
         member_work: "તાવેડા",
-        name: "શ્રી ખોડાભાઈ પરષોત્તમભાઇ",
+        name: "શ્રી ઉર્વેશભાઈ પ્રકાશભાઈ",
         mobile: "9825162812"),
     samiti(
         image: "assets/images/p4.png",
         member_work: "દેવળા",
-        name: "શ્રી ગોવિંદભાઇ લલ્લુભાઇ",
+        name: "શ્રી ધર્મેશભાઈ હરિભાઈ",
         mobile: "9825918084"),
     samiti(
         image: "assets/images/p5.png",
         member_work: "શાંતિનગર",
-        name: "શ્રી દુર્લભભાઈ પ્રેમજીભાઈ ",
+        name: "શ્રી રજનીભાઇ મનુભાઈ",
         mobile: "9825107664"),
     samiti(
         image: "assets/images/p6.png",
         member_work: "થોરડી ",
-        name: "શ્રી શીવાભાઈ શંભુભાઈ   ",
+        name: "શ્રી ઘનશ્યામભાઈ મનજીભાઇ",
         mobile: "7405619744"),
     samiti(
         image: "assets/images/p7.png",
         member_work: "મોટાલીલીયા ",
-        name: "શ્રી વજુભાઇ બચુભાઈ",
+        name: "શ્રી દામજીભાઇ નારણભાઇ",
         mobile: "9537539399"),
     samiti(
         image: "assets/images/p8.png",
         member_work: "જાબાળ ",
-        name: "શ્રી અરવિંદભાઈ હરજીભાઇ  ",
+        name: "શ્રી બાબુભાઇ મધુભાઇ",
         mobile: "9925525333"),
     samiti(
         image: "assets/images/p52.png",
         member_work: "ખરેડી ",
-        name: "સ્વ ગોરધનભાઈ બચુભાઈ ",
+        name: "શ્રી હિંમતભાઇ બચુભાઈ",
         mobile: "0000"),
     samiti(
         image: "assets/images/p53.png",
         member_work: "પાંચટોબરા",
-        name: "શ્રી શ્યામજીભાઈ મધુભાઈ  ",
+        name: "શ્રી જયંતીભાઈ માવજીભાઈ",
         mobile: "9825194645"),
     samiti(
         image: "assets/images/p54.png",
         member_work: "ભમરીયાં ",
-        name: "શ્રી બાલુભાઈ જગાભાઈ  ",
+        name: "શ્રી સંજયભાઈ બાલુભાઈ",
         mobile: "9982519464"),
     samiti(
         image: "assets/images/p55.png",
         member_work: "નાના લીલીયા ",
-        name: "શ્રી શંભુભાઈ રાઘવભાઈ ",
+        name: "શ્રી મનીષભાઈ શામજીભાઈ",
         mobile: "9879088203"),
     samiti(
         image: "assets/images/p56.png",
         member_work: "ભુવા",
-        name: "શ્રી ભનુભાઇ ધનજીભાઈ ",
+        name: "શ્રી ભરતભાઈ લાલજીભાઈ",
         mobile: "9427248408"),
     samiti(
         image: "assets/images/p57.png",
         member_work: "ભુવા",
-        name: "શ્રી જગદીશભાઈ સવજીભાઈ ",
+        name: "શ્રી હર્ષભાઈ ધીરુભાઈ",
         mobile: "9825408888"),
     samiti(
         image: "assets/images/p17.png",
         member_work: "વંડા",
-        name: "શ્રી કાનજીભાઈ રાઘવભાઈ ",
+        name: "શ્રી ભાવેશભાઈ સવજીભાઈ",
         mobile: "9925133366"),
     samiti(
         image: "assets/images/p18.png",
         member_work: "મોવિયા",
-        name: "શ્રી કનૈયાલાલ રવજીભાઈ (સીએ)",
+        name: "શ્રી મનીષભાઈ કાનજીભાઈ",
         mobile: "9428435141"),
     samiti(
         image: "assets/images/p19.png",
         member_work: "મોણપર",
-        name: "શ્રી કાંતિભાઈ ખીમજીભાઈ",
+        name: "શ્રી દિનેશભાઇ વશરામભાઇ",
         mobile: "9825136690"),
+
   ]);
 }

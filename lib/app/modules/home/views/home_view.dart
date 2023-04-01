@@ -60,7 +60,7 @@ class HomeView extends GetView<HomeController> {
                           Obx(
                             () => Text(
                               controller.userEmail.value,
-                              style: TextStyle(color: colors.white),
+                              style: TextStyle(color: colors.white,overflow: TextOverflow.ellipsis,fontSize: 10.sp),
                             ),
                           ),
                         ],

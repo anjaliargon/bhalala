@@ -64,7 +64,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
-                        height: 110.sp,
+                        // height: 120.sp,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: colors.lightgrey),
@@ -91,6 +91,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                       "${controller.getmemberDetailsData.value.data?[index].middleName} "
                                       "${controller.getmemberDetailsData.value.data?[index].lastName}",
                                       style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
                                           color: colors.darkbrown,
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.bold),

@@ -19,6 +19,7 @@ abstract class Routes {
   static const SAHYOG = _Paths.SAHYOG;
   static const MEMBER = _Paths.MEMBER;
   static const SPLASH = _Paths.SPLASH;
+  static const SEARCHMEMBER = _Paths.SEARCHMEMBER;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const SAHYOG = '/parivarsahyog';
   static const MEMBER = '/member';
   static const SPLASH = '/splace';
+  static const SEARCHMEMBER = '/searchmember';
 }

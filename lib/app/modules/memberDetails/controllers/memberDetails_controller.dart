@@ -36,7 +36,8 @@ class MemberDetailsController extends GetxController {
     errorOccurred(false);
     try {
       var result = await ApiProvider().memberDetailsCount(villageId);
-      if (result.status == 1) {
+      if (!result.data.isNull) {
+        Get.toNamed(Routes.MEMBER);
         getmemberDetailsData.value = result;
         isLoading(true);
       } else {

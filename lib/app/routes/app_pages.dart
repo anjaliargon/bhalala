@@ -7,6 +7,7 @@ import 'package:bhalala/app/modules/noticeBoard/views/noticeBoard_view.dart';
 import 'package:bhalala/app/modules/parivar_sahyog/parivarSahyogView.dart';
 import 'package:bhalala/app/modules/profile/views/profile_view.dart';
 import 'package:bhalala/app/modules/searchMember/views/search_view.dart';
+import 'package:bhalala/app/modules/searchmemberDetails/views/searchmemberDetails_view.dart';
 import 'package:bhalala/app/modules/signUp/views/signUp_view.dart';
 import 'package:get/get.dart';
 import '../../main.dart';
@@ -25,6 +26,7 @@ import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/searchMember/bindings/search_binding.dart';
+import '../modules/searchmemberDetails/bindings/searchmemberDetails_binding.dart';
 import '../modules/signUp/bindings/signUp_binding.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
@@ -91,6 +93,10 @@ class AppPages {
         name: _Paths.SEARCH,
         page: () => SearchView(),
         binding: SearchBinding()),
+    GetPage(
+        name: _Paths.SEARCHMEMBER,
+        page: () => SearchMemberDetailsView(),
+        binding: SearchMemberDetailsBinding()),
     GetPage(
         name: _Paths.PHOTO,
         page: () => PhotoGallaryView(),
