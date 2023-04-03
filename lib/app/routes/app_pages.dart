@@ -22,6 +22,7 @@ import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/memberDetails/bindings/memberDetails_binding.dart';
 import '../modules/noticeBoard/bindings/noticeBoard_binding.dart';
+import '../modules/noticeBoard/views/Details_noticeboard.dart';
 import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -105,6 +106,10 @@ class AppPages {
         name: _Paths.NOTICE,
         page: () => NoticeBoardView(),
         binding: NoticeBoardBinding()),
+    GetPage(
+        name: _Paths.NOTICEBOARD,
+        page: () => NoticeBoardDetailsView(),
+     ),
     GetPage(
         name: _Paths.MEMBER,
         page: () => MemberDetailsView(),

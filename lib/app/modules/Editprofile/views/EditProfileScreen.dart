@@ -319,13 +319,14 @@ class EditProfileView extends GetView<EditProfileController> {
                                   StringConstant.work_details,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 11.sp,
+                                      fontSize: 10.sp,
                                       color: colors.grey),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
+
                                     value: StringConstant.job,
                                     groupValue: controller.selectedsurname,
                                     onChanged: (value) {}),

@@ -20,6 +20,7 @@ abstract class Routes {
   static const MEMBER = _Paths.MEMBER;
   static const SPLASH = _Paths.SPLASH;
   static const SEARCHMEMBER = _Paths.SEARCHMEMBER;
+  static const NOTICEBOARD = _Paths.NOTICEBOARD;
 }
 
 abstract class _Paths {
@@ -41,4 +42,5 @@ abstract class _Paths {
   static const MEMBER = '/member';
   static const SPLASH = '/splace';
   static const SEARCHMEMBER = '/searchmember';
+  static const NOTICEBOARD = '/noticedetails';
 }

@@ -9,14 +9,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   sizer: ^2.0.15
-  flutter_svg: ^2.0.4
   font_awesome_flutter: ^10.4.0
   fluttertoast: ^8.2.1
   dart_quote: ^0.0.2
   intl: ^0.18.0
   image_picker: ^0.8.7
   http: ^0.13.5
-  flutter_easyloading: ^3.0.5
   email_validator: ^2.1.17
   loader_overlay: ^2.1.0
   get_storage: ^2.1.1

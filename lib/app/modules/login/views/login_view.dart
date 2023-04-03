@@ -31,7 +31,7 @@ class LoginView extends GetView<LoginController> {
             style: TextStyle(
                 color: colors.darkbrown,
                 fontWeight: FontWeight.bold,
-                fontSize: 20.sp),
+                fontSize: 23.sp),
           ),
         ),
         body: GestureDetector(
@@ -55,6 +55,7 @@ class LoginView extends GetView<LoginController> {
                       child: Image.asset("assets/images/applogo.png",
                           height: 150.sp),
                     ),
+                    SizedBox(height: 5.h,),
                     Form(
                       key: controller.formKey.value,
                       child: Column(
@@ -110,7 +111,7 @@ class LoginView extends GetView<LoginController> {
                           child: Text(
                             StringConstant.forgotpassword,
                             style: TextStyle(
-                                fontSize: 12.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,
                                 color: colors.grey),
                           ),
@@ -118,7 +119,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     SizedBox(
-                      height: 70.sp,
+                      height: 10.h,
                     ),
                     InkWell(
                       onTap: () {
@@ -146,7 +147,7 @@ class LoginView extends GetView<LoginController> {
                           style: TextStyle(
                               color: colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 13.sp),
+                              fontSize: 14.sp),
                         )),
                       ),
                     ),
@@ -172,7 +173,7 @@ class LoginView extends GetView<LoginController> {
                           style: TextStyle(
                               color: colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 13.sp),
+                              fontSize: 14.sp),
                         )),
                       ),
                     ),
@@ -195,7 +196,7 @@ class LoginView extends GetView<LoginController> {
                           style: TextStyle(
                               color: colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 13.sp),
+                              fontSize: 14.sp),
                         )),
                       ),
                     )

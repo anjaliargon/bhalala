@@ -17,7 +17,7 @@ class ImportantNumber_Screen extends StatelessWidget {
       appBar: AppBar(elevation: 0,
         centerTitle: true,
         backgroundColor: colors.darkbrown,
-        title: Text(StringConstant.important_number),
+        title: Text(StringConstant.important_number1),
       ),
       body:  Column(
         children: [
@@ -27,7 +27,7 @@ class ImportantNumber_Screen extends StatelessWidget {
             color: colors.darkbrown,
             child: Center(
                 child: Text(
-                  "સ્થાપક સમિતિ",
+                  "સુરત",
                   style: TextStyle(
                       color: colors.white,
                       fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class ImportantNumber_Screen extends StatelessWidget {
                                       fontSize: 12.sp),
                                 ),
                                 Text(
-                                  numberController.getDataList[index].name,
+                                   numberController.getDataList[index].name,
                                   style: TextStyle(
                                       color: colors.darkbrown, fontSize: 14.sp,fontWeight: FontWeight.bold),
                                 )
@@ -74,7 +74,7 @@ class ImportantNumber_Screen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "Number :",
+                                  "Number : ",
                                   style: TextStyle(
                                       color: colors.darkbrown,
                                       fontWeight: FontWeight.bold,

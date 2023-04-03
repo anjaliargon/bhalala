@@ -56,17 +56,22 @@ class StringConstant {
   // homescreen
 
   //------------->
-  static String mainheading ="ભાલાળા પરિવાર મારો છે, \n હું પરિવાર નો  આદર્શ સભ્ય છું.";
-  static String parivarsahyoug ="પરિવાર સહયોગ";
+  static String mainheading ="\"ભાલાળા પરિવાર મારો છે,";
+  static String mainheading2 ="હું પરિવાર નો  આદર્શ સભ્ય છું.\"";
+  static String parivarsahyoug ="પરિવાર\nસહયોગ";
+  static String parivarsahyoug1 ="પરિવાર સહયોગ";
 
 //---------> Drawer
    static  String  gamniyadi  ="ગામની યાદી";
    static  String  parivarvise  ="પરિવાર વિશે";
-   static  String  parivar_karyalay  ="પરિવાર કાર્યાલય";
-   static  String  parivar_samiti  ="પરિવાર સમિતિ";
+   static  String  parivar_karyalay  ="પરિવાર\nકાર્યાલય";
+   static  String  parivar_karyalay1  ="પરિવાર કાર્યાલય";
+   static  String  parivar_samiti  ="પરિવાર\nસમિતિ";
+   static  String  parivar_samiti1  ="પરિવાર સમિતિ";
    static  String  search_member  ="સભ્ય શોધો";
    static  String  photo_gallary  ="ફોટો ગેલેરી";
-   static  String  important_number  ="અગત્યાના નંબર";
+   static  String  important_number  ="અગત્યાના\nનંબર";
+   static  String  important_number1  ="અગત્યાના નંબર";
    static  String  suchna_number  ="સુચના બોર્ડ";
    static  String  logout  ="લૉગ આઉટ";
 

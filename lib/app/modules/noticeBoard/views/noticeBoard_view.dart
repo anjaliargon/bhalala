@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/noticeBoard_controller.dart';
 
 class NoticeBoardView extends GetView<NoticeBoardController> {
@@ -33,28 +34,29 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: colors.lightgrey,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8,right: 8,left: 8,bottom: 4),
-                        child: Text(
+                child: GestureDetector(
+                  onTap: (){
+                    Get.toNamed(Routes.NOTICEBOARD,);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("..અગત્યની સુચના...",style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.bold),),
+                        SizedBox(height: 2.h,),
+                        Text("આદરણીય પરિવારજનો ",style: TextStyle(fontSize: 12.sp),),
+                        SizedBox(height: 2.h,),
+                        Text(
                           controller.noticedata.value.newsEvents?[index].title ??'',
-                          style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15.sp),
+                          style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8,left: 8,bottom: 4),
-                        child: Text(controller
-                            .noticedata.value.newsEvents?[index].description ??'',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14.sp),),
-                      ),
-                    ],
+                        Divider(height: 1.h,thickness: 1,color: colors.darkbrown,)
+                      ],
+                    ),
                   ),
                 ),
               );

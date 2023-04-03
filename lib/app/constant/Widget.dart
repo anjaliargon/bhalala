@@ -37,6 +37,7 @@ customTextField({required String hintText, required IconData?iconfat,
               Padding(
                 padding: const EdgeInsets.only(right:10),
                 child: TextFormField(
+                  style: TextStyle(color: colors.black,fontWeight: FontWeight.bold),
                   cursorColor: colors.darkbrown,
                   keyboardType: keyboardType ?? TextInputType.text,
                   obscureText: obscureText,
@@ -52,8 +53,11 @@ customTextField({required String hintText, required IconData?iconfat,
                     border: InputBorder.none,
                     suffixIcon: suffixicon,
                     hintText: hintText,
-                    hintStyle: const TextStyle(
-                      fontWeight: FontWeight.bold
+
+                    hintStyle:   TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp
+
                     ),
                   ),
                 ),

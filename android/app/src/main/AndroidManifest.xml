@@ -15,7 +15,7 @@
         </intent>
     </queries>
    <application
-        android:label="bhalala"
+        android:label="ભાલાળા પરિવાર"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

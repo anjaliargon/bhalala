@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 
 import '../../../main.dart';
 import '../../constant/String_constant.dart';
@@ -51,7 +53,11 @@ class ApiProvider {
         box.write('merragestatus', loginModel.loginData?.marriedId);
         box.write('bloodgroup', loginModel.loginData?.bName);
         box.write('membercount', loginModel.loginData?.noOfMember);
-        Fluttertoast.showToast(msg: StringConstant.suceesfullylogin);
+        Fluttertoast.showToast(
+            msg: StringConstant.suceesfullylogin,
+            backgroundColor: Colors.white,
+            fontSize: 14.sp,
+            textColor: Colors.black);
       }
     } else {
       print("error ${response1.reasonPhrase}");
@@ -174,7 +180,6 @@ class ApiProvider {
       if (data['status'] == 1) {
         searchmodel = SearchModel.fromJson(data);
       }
-
     } else {
       print("error ${response1.reasonPhrase}");
     }

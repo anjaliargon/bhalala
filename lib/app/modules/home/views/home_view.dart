@@ -15,8 +15,9 @@ import '../../profile/controllers/profile_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-   HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
   final profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
@@ -60,7 +61,10 @@ class HomeView extends GetView<HomeController> {
                           Obx(
                             () => Text(
                               controller.userEmail.value,
-                              style: TextStyle(color: colors.white,overflow: TextOverflow.ellipsis,fontSize: 10.sp),
+                              style: TextStyle(
+                                  color: colors.white,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 10.sp),
                             ),
                           ),
                         ],
@@ -96,7 +100,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                StringConstant.parivar_karyalay,
+                StringConstant.parivar_karyalay1,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
@@ -112,7 +116,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                StringConstant.parivar_samiti,
+                StringConstant.parivar_samiti1,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
@@ -157,7 +161,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                StringConstant.important_number,
+                StringConstant.important_number1,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
@@ -224,20 +228,35 @@ class HomeView extends GetView<HomeController> {
         errorOccurred: controller.errorOccurred.value,
         errorResolvingFunction: controller.getUserData,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 8.h,
+            ),
             Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 4),
-                child: WidgetQuote(
-                  padding: EdgeInsets.only(left: 30, right: 30, top: 4),
-                        text: StringConstant.mainheading,
-                        quoteStyle:
-                            TextStyle(color: colors.darkbrown, fontSize: 20.sp,),
-                        textStyle: TextStyle(
-                            color: colors.darkbrown,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold))
-                    .quote()),
-           Spacer(),
+              padding: const EdgeInsets.only(left: 20, bottom: 4),
+              child: Text(
+                StringConstant.mainheading,
+                style: TextStyle(
+                    color: colors.darkbrown,
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 35),
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  StringConstant.mainheading2,
+                  style: TextStyle(
+                      color: colors.darkbrown,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Spacer(),
             Row(
               children: [
                 Expanded(
@@ -274,7 +293,8 @@ class HomeView extends GetView<HomeController> {
                     onTap: () {
                       Get.toNamed(Routes.SEARCH);
                     },
-                    child: _container(StringConstant.search_member, Icons.search),
+                    child:
+                        _container(StringConstant.search_member, Icons.search),
                   ),
                 ),
                 Expanded(
@@ -282,7 +302,8 @@ class HomeView extends GetView<HomeController> {
                     onTap: () {
                       Get.toNamed(Routes.PHOTO);
                     },
-                    child: _container(StringConstant.photo_gallary, Icons.photo),
+                    child:
+                        _container(StringConstant.photo_gallary, Icons.photo),
                   ),
                 ),
                 Expanded(
@@ -302,7 +323,8 @@ class HomeView extends GetView<HomeController> {
                     onTap: () {
                       Get.toNamed(Routes.SAHYOG);
                     },
-                    child: _container(StringConstant.parivarsahyoug, Icons.group),
+                    child:
+                        _container(StringConstant.parivarsahyoug, Icons.group),
                   ),
                 ),
                 Expanded(
@@ -325,7 +347,9 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
-            SizedBox(height: 1.h,)
+            SizedBox(
+              height: 1.h,
+            )
           ],
         ),
       ),
@@ -337,7 +361,7 @@ class HomeView extends GetView<HomeController> {
     return Padding(
       padding: const EdgeInsets.only(right: 4, top: 8, left: 4),
       child: Container(
-        height: 19.h,
+        height: 20.h,
         decoration: BoxDecoration(
           color: colors.lightgrey,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -348,14 +372,18 @@ class HomeView extends GetView<HomeController> {
             Icon(
               icon,
               color: colors.darkbrown,
-              size: 25.sp,
+              size: 27.sp,
             ),
             SizedBox(
               height: 1.h,
             ),
             Text(
               title,
-              style: TextStyle(fontSize: 14.sp, color: colors.grey),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: colors.grey,
+              ),
             )
           ],
         ),

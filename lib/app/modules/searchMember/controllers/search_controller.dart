@@ -55,7 +55,7 @@ class SearchController extends GetxController {
       searchData.value = result;
     } else {
       Fluttertoast.showToast(
-          msg: "No Data Found",
+          msg: "કોઈ સભ્ય મળ્યું નથી",
           backgroundColor: Colors.white,
           textColor: Colors.black);
       isLoading(false);
