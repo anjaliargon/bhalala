@@ -1,18 +1,14 @@
-
-
 import 'dart:io';
-
-import 'package:bhalala/app/data/Model/basicModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
+import '../../profile/model/profileModel.dart';
 
 class EditProfileController extends GetxController {
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
-  final getBassicData = BasicModel().obs;
   var isLoadingDustry = false.obs;
   RxList<String> industriesData = <String>[].obs;
   RxList<String> accountIndustryListData = <String>[].obs;
@@ -46,6 +42,7 @@ class EditProfileController extends GetxController {
   RxString birthValid = ''.obs;
   RxString selectedsurname = "".obs;
   RxString selectedgender = "".obs;
+  RxString selectedwork = "".obs;
   RxString dropdownfamilycount = StringConstant.parivar_membercount.obs;
   Rx<File>? selectedImg;
   RxList<String> dropdownListfamilycount = <String>[
@@ -60,10 +57,26 @@ class EditProfileController extends GetxController {
     "9",
     "10"
   ].obs;
+  ProfileData? profiledata;
 
+  onChnagedSurname(var surname){
+    selectedsurname.value = surname;
+
+  }
+  onChnagedGender(var gender){
+    selectedgender.value = gender;
+  }
+  onChnagedWork(var work){
+    selectedwork.value = work;
+  }
   void onInit() {
     getAccountIndustryList();
+    getAccountEducationList();
+    getAccountStausList();
+    getAccountBloodList();
     assignProfileData();
+    getAccountVillageList();
+    getAccountCurentCityList();
     birthController.text =
         DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
 
@@ -149,6 +162,34 @@ class EditProfileController extends GetxController {
       isLoadingDustry(false);
     }
   }
+  Future<void> getAccountVillageList() async {
+    accountVillageListData.clear();
+    accountVillageListData.add(StringConstant.villagegroup);
+    var result = await ApiProvider().getBasicData();
+    if (result.status == 1) {
+      for (var element in result.village!) {
+        accountVillageListData.add(element.vName.toString());
+        isLoadingDustry(true);
+      }
+    } else {
+      isLoadingDustry(false);
+    }
+  }
+
+  //......current city
+  Future<void> getAccountCurentCityList() async {
+    accountCurrentCityListData.clear();
+    accountCurrentCityListData.add(StringConstant.currentcity);
+    var result = await ApiProvider().getBasicData();
+    if (result.status == 1) {
+      for (var element in result.home!) {
+        accountCurrentCityListData.add(element.homeName.toString());
+        isLoadingDustry(true);
+      }
+    } else {
+      isLoadingDustry(false);
+    }
+  }
   void pickImagefromGallary() async{
 
     final image = await ImagePicker().pickImage(source: ImageSource.gallery,
@@ -177,6 +218,7 @@ class EditProfileController extends GetxController {
 
   void assignProfileData(){
     Future.delayed(const Duration(milliseconds: 2000), (){
+      nameController.text = profiledata?.name ??'';
     });
   }
 }

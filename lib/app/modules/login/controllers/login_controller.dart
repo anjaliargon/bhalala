@@ -40,12 +40,13 @@ class LoginController extends GetxController {
   login(String email, password) async {
     var result = await ApiProvider().login(email, password);
     if (!result.loginData.isNull) {
+      isLoading(true);
       Get.toNamed(Routes.HOME);
       loginData.value = result;
       isLoading(true);
     } else {
       Fluttertoast.showToast(
-          msg: "Wrong credential",
+          msg: "Enter correct UserName And Password",
           backgroundColor: Colors.white,
           textColor: Colors.black);
       isLoading(false);

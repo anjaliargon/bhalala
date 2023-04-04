@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../Color.dart';
 
@@ -28,9 +29,17 @@ class LoadingAndErrorScreen extends StatelessWidget {
     buildLoadingScreen() => Container(
           color: colors.white,
           alignment: Alignment.center,
-          child:  CircularProgressIndicator(
-            color: colors.darkbrown,
-            strokeWidth: 5,
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                color: colors.darkbrown,
+
+                strokeWidth: 5,
+              ),
+              SizedBox(width: 10.w,),
+              Text("મેહરબાની કરી ને રાહ જોવો",style: TextStyle(fontSize: 14.sp),)
+            ],
           ),
         );
 

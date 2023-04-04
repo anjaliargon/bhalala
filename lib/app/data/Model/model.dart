@@ -1,9 +1,9 @@
 class Important_number {
-  Important_number({required this.name, required this.number,
+  Important_number({required this.name, this.number,
   });
 
   String name;
-  String number;
+  String? number;
 
 }
 class samiti {

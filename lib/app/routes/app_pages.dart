@@ -1,5 +1,9 @@
 import 'package:bhalala/app/modules/Editprofile/bindings/Editprofile_binding.dart';
 import 'package:bhalala/app/modules/Editprofile/views/EditProfileScreen.dart';
+import 'package:bhalala/app/modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
+import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
+import 'package:bhalala/app/modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
+import 'package:bhalala/app/modules/Memberprofile/views/Memberprofile_view.dart';
 import 'package:bhalala/app/modules/gamYadi/views/gamyadi_view.dart';
 import 'package:bhalala/app/modules/login/views/login_view.dart';
 import 'package:bhalala/app/modules/memberDetails/views/memberDetails_view.dart';
@@ -14,7 +18,9 @@ import '../../main.dart';
 import '../constant/sizeConstant.dart';
 import '../modules/About_family/About_familyscreen.dart';
 import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
+import '../modules/FamilymemberDetails/bindings/Familymember_binding.dart';
 import '../modules/Important_numbers/Important_numberScreen.dart';
+import '../modules/Memberprofile/bindings/Memberprofile_binding.dart';
 import '../modules/Parivar_karyalay/parivar_karyalay.dart';
 import '../modules/gamYadi/bindings/gamYadi_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -27,6 +33,8 @@ import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/searchMember/bindings/search_binding.dart';
+import '../modules/searchMemberprofile/bindings/searchMemberprofile_binding.dart';
+import '../modules/searchMemberprofile/views/searchMemberprofile_view.dart';
 import '../modules/searchmemberDetails/bindings/searchmemberDetails_binding.dart';
 import '../modules/signUp/bindings/signUp_binding.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -64,6 +72,22 @@ class AppPages {
         name: _Paths.PROFILE,
         page: () => ProfileView(),
         binding: ProfileBinding()),
+    GetPage(
+        name: _Paths.MEMBERPROFILE,
+        page: () => MemberProfileView(),
+        binding: MemberProfileBinding()),
+    GetPage(
+        name: _Paths.FAMILYMEMBER,
+        page: () => FamilyMemberView(),
+        binding: FamilyMemberBinding()),
+    GetPage(
+        name: _Paths.FAMILYMEMBERPROFILE,
+        page: () => FamilyMemberProfileView(),
+        binding: FamilyMemberBinding()),
+    GetPage(
+        name: _Paths.SearchMEMBERPROFILE,
+        page: () => SearchProfileView(),
+        binding: SearchProfileBinding()),
 
     GetPage(
         name: _Paths.EditProfile,

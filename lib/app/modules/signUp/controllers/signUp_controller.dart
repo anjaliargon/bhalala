@@ -49,6 +49,7 @@ class SignUpController extends GetxController {
   RxString birthValid = ''.obs;
   RxString selectedsurname = "".obs;
   RxString selectedgender = "".obs;
+  RxString selectedwork = "".obs;
   RxString dropdownfamilycount = StringConstant.parivar_membercount.obs;
   Rx<File>? selectedImg;
   RxList<String> dropdownListfamilycount =
@@ -76,7 +77,16 @@ class SignUpController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  onChnagedSurname(var surname){
+    selectedsurname.value = surname;
 
+  }
+  onChnagedGender(var gender){
+    selectedgender.value = gender;
+  }
+  onChnagedWork(var work){
+    selectedwork.value = work;
+  }
   void pickImagefromGallary() async {
     final image = await ImagePicker().pickImage(
       source: ImageSource.gallery,

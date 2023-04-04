@@ -10,4 +10,5 @@ class GlobalData {
   static String memberdetailsUrl = '${baseUrl}/get_all_member.php';
   static String noticeUrl = '${baseUrl}/get_notice_board_details.php';
   static String profileUrl = '${baseUrl}/getUserProfile.php';
+  static String Familymember = '${baseUrl}/get_all_family_member.php';
 }

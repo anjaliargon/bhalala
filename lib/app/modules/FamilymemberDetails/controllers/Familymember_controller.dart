@@ -1,24 +1,23 @@
-import 'package:bhalala/app/data/Model/basicModel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
-import '../../../data/Model/MemberCount.dart';
 import '../../../routes/app_pages.dart';
-import '../Model/MemberDetailsModel.dart';
 
-class MemberDetailsController extends GetxController {
+import '../Model/FamilyMemberModel.dart';
+
+class FamilyMemberController extends GetxController {
   //TODO: Implement HomeController
   var isLoading = false.obs;
   var errorOccurred = false.obs;
-  var villageId = Get.arguments;
-  final getmemberDetailsData = MemberDetails().obs;
+  var memeberId = Get.arguments;
+  final familyMemberData = FamilyMember().obs;
 
   @override
   void onInit() {
-    getAccountmemberCount();
+    getFamilymemberCount();
     super.onInit();
   }
 
@@ -32,14 +31,17 @@ class MemberDetailsController extends GetxController {
     super.onClose();
   }
 
-  Future<void> getAccountmemberCount() async {
+  void makeUrlRequest() {
+
+  }
+  Future<void> getFamilymemberCount() async {
     isLoading(true);
     errorOccurred(false);
     try {
-      var result = await ApiProvider().memberDetailsCount(villageId);
+      var result = await ApiProvider().FamilymemberDetails(memeberId);
       if (!result.data.isNull) {
-        Get.toNamed(Routes.MEMBER);
-        getmemberDetailsData.value = result;
+        Get.toNamed(Routes.FAMILYMEMBER);
+        familyMemberData.value = result;
         isLoading(true);
       } else {
         Get.back();

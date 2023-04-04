@@ -132,3 +132,18 @@ profiletext({required  IconData?icons, required String heading, String? text}){
     ],
   );
 }
+
+// box.write('mobileno', loginModel.loginData?.mobileNo);
+//
+// box.write('address', loginModel.loginData?.address);
+// box.write('buissness', loginModel.loginData?.business);
+// box.write('birthdate', loginModel.loginData?.birthdate);
+// box.write('emailid', loginModel.loginData?.emailed);
+// box.write('education', loginModel.loginData?.educationId);
+// box.write('jati', loginModel.loginData?.gender);
+// box.write('gam', loginModel.loginData?.vId);
+// box.write('age', loginModel.loginData?.age);
+// box.write('ghar', loginModel.loginData?.homeId);
+// box.write('merragestatus', loginModel.loginData?.marriedId);
+// box.write('bloodgroup', loginModel.loginData?.bName);
+// box.write('membercount', loginModel.loginData?.noOfMember);

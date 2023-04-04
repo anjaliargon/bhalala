@@ -9,7 +9,8 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
 
-import 'package:url_launcher/url_launcher.dart'as UrlLauncher;
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import '../../../routes/app_pages.dart';
 import '../controllers/memberDetails_controller.dart';
 
 class MemberDetailsView extends GetView<MemberDetailsController> {
@@ -31,7 +32,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
         () => LoadingAndErrorScreen(
             isLoading: controller.isLoading.value,
             errorOccurred: controller.errorOccurred.value,
-            errorResolvingFunction: controller.getAccountmemberCount,
+            errorResolvingFunction: controller.getmemberDetailsData,
             child: ListView.builder(
               itemCount: controller.getmemberDetailsData.value.data?.length,
               itemBuilder: (context, index) {
@@ -48,7 +49,8 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                         ),
                         SlidableAction(
                           onPressed: (context) {
-                            UrlLauncher.launch('tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                            UrlLauncher.launch(
+                                'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
                           },
                           backgroundColor: colors.white,
                           icon: Icons.call,
@@ -63,74 +65,85 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        // height: 120.sp,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: colors.lightgrey),
-                        child: Row(
-                          children: [
-                            const Expanded(
-                              flex: 2,
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage("assets/images/userprofile.png"),
-                                radius: 35,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 6,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "${controller.getmemberDetailsData.value.data?[index].name} "
-                                      "${controller.getmemberDetailsData.value.data?[index].middleName} "
-                                      "${controller.getmemberDetailsData.value.data?[index].lastName}",
-                                      style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                          color: colors.darkbrown,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height:1.h,
-                                    ),
-                                    Text(
-                                      "${StringConstant.mobile} : ${controller.getmemberDetailsData.value.data?[index].mobileNo}",
-                                      style: TextStyle(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    SizedBox(
-                                      height: 0.5.h,
-                                    ),
-                                    Text(
-                                      "${StringConstant.address} : ${controller.getmemberDetailsData.value.data?[index].address}",
-                                      style: TextStyle(
-                                          fontSize: 12.sp,
-                                          overflow: TextOverflow.ellipsis,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 0.5.h,
-                                    ),
-                                    Text(
-                                      "${StringConstant.workdetails} : ${controller.getmemberDetailsData.value.data?[index].business}",
-                                      style: TextStyle(
-                                          fontSize: 12.sp,
-                                          overflow: TextOverflow.ellipsis,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.MEMBERPROFILE,
+                              arguments: {
+                            ArgumentConstant.userData : controller
+                                .getmemberDetailsData.value.data?[index]
+                              });
+                        },
+                        child: Container(
+                          // height: 120.sp,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: colors.lightgrey),
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                flex: 2,
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                      "assets/images/userprofile.png"),
+                                  radius: 35,
                                 ),
                               ),
-                            )
-                          ],
+                              Expanded(
+                                flex: 6,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(height: 1.h,),
+                                      Text(
+                                        "${controller.getmemberDetailsData.value.data?[index].name} "
+                                        "${controller.getmemberDetailsData.value.data?[index].middleName} "
+                                        "${controller.getmemberDetailsData.value.data?[index].lastName}",
+                                        style: TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            color: colors.darkbrown,
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Text(
+                                        "${StringConstant.mobile} : ${controller.getmemberDetailsData.value.data?[index].mobileNo}",
+                                        style: TextStyle(
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold,
+                                            overflow: TextOverflow.ellipsis),
+                                      ),
+                                      SizedBox(
+                                        height: 0.5.h,
+                                      ),
+                                      Text(
+                                        "${StringConstant.address} : ${controller.getmemberDetailsData.value.data?[index].address}",
+                                        style: TextStyle(
+                                            fontSize: 12.5.sp,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: 0.5.h,
+                                      ),
+                                      Text(
+                                        "${StringConstant.workdetails} : ${controller.getmemberDetailsData.value.data?[index].business}",
+                                        style: TextStyle(
+                                            fontSize: 12.5.sp,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

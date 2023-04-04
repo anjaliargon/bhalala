@@ -1,5 +1,7 @@
 import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
@@ -9,19 +11,22 @@ import 'package:email_validator/email_validator.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
+import '../../../network/controller/network_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  LoginView({Key? key}) : super(key: key);
+  final loginController = Get.put(LoginController());
+  final NetworkController _networkController = Get.put(NetworkController());
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Get.put(LoginController());
     MyColor colors = MyColor();
     return GetBuilder<LoginController>(
       init: loginController,
       builder: (controller) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -55,7 +60,9 @@ class LoginView extends GetView<LoginController> {
                       child: Image.asset("assets/images/applogo.png",
                           height: 150.sp),
                     ),
-                    SizedBox(height: 5.h,),
+                    SizedBox(
+                      height: 5.h,
+                    ),
                     Form(
                       key: controller.formKey.value,
                       child: Column(
@@ -123,17 +130,26 @@ class LoginView extends GetView<LoginController> {
                     ),
                     InkWell(
                       onTap: () {
-
-                        if (controller.formKey.value.currentState!.validate()) {
-                          FocusScope.of(context).unfocus();
-                          controller.login(
-                              controller.emailController.value.text,
-                              controller.passwordController.value.text);
+                        if (_networkController.connectionStatus.value == 1 ||
+                            _networkController.connectionStatus.value == 2) {
+                          if (controller.formKey.value.currentState!
+                              .validate()) {
+                            FocusScope.of(context).unfocus();
+                            controller.login(
+                                controller.emailController.value.text,
+                                controller.passwordController.value.text);
+                          } else {
+                            return;
+                          }
+                          controller.emailController.value.clear();
+                          controller.passwordController.value.clear();
                         } else {
-                          return;
+                          Fluttertoast.showToast(
+                              msg:
+                                  "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                              textColor: colors.black,
+                              backgroundColor: colors.white);
                         }
-                        controller.emailController.value.clear();
-                        controller.passwordController.value.clear();
                       },
                       child: Container(
                         height: 6.h,
