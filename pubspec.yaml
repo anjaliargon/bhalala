@@ -20,6 +20,7 @@ dependencies:
   get_storage: ^2.1.1
   flutter_slidable: ^2.0.0
   url_launcher: ^6.1.10
+  connectivity_plus: ^3.0.3
 
   flutter: 
     sdk: flutter

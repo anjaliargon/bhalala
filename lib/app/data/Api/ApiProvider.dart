@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:flutter/material.dart';
@@ -39,20 +40,8 @@ class ApiProvider {
         box.write('UserFirstname', loginModel.loginData?.name);
         box.write('Userlastname', loginModel.loginData?.lastName);
         box.write('Usermiddlename', loginModel.loginData?.middleName);
-        box.write('mobileno', loginModel.loginData?.mobileNo);
         box.write('userId', loginModel.loginData?.rId);
-        box.write('address', loginModel.loginData?.address);
-        box.write('buissness', loginModel.loginData?.business);
-        box.write('birthdate', loginModel.loginData?.birthdate);
         box.write('emailid', loginModel.loginData?.emailed);
-        box.write('education', loginModel.loginData?.educationId);
-        box.write('jati', loginModel.loginData?.gender);
-        box.write('gam', loginModel.loginData?.vId);
-        box.write('age', loginModel.loginData?.age);
-        box.write('ghar', loginModel.loginData?.homeId);
-        box.write('merragestatus', loginModel.loginData?.marriedId);
-        box.write('bloodgroup', loginModel.loginData?.bName);
-        box.write('membercount', loginModel.loginData?.noOfMember);
         Fluttertoast.showToast(
             msg: StringConstant.suceesfullylogin,
             backgroundColor: Colors.white,
@@ -65,12 +54,12 @@ class ApiProvider {
     return loginModel;
   }
 
-  Future<Profilemodel> Userprofile(userId) async {
+  Future<Profilemodel> Userprofile() async {
     Profilemodel profilemodel = Profilemodel();
     String query = GlobalData.profileUrl;
-
+    final username = box.read('userId');
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields.addAll({'user_id': userId});
+    request.fields.addAll({'user_id': username.toString()});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -133,11 +122,33 @@ class ApiProvider {
     if (response1.statusCode == 200) {
       if ((data['status']) == 1) {
         memberdetailsModel = MemberDetails.fromJson(result);
+
       }
     } else {
       print(response.reasonPhrase);
     }
     return memberdetailsModel;
+  }
+  Future<FamilyMember> FamilymemberDetails(memberId) async {
+    FamilyMember familymemberModel = FamilyMember();
+    String query = GlobalData.Familymember;
+
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+    request.fields.addAll({'user_id': memberId});
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+    Map<String, dynamic> data = jsonDecode(response1.body);
+    if (response1.statusCode == 200) {
+      if ((data['status']) == 1) {
+        familymemberModel = FamilyMember.fromJson(result);
+
+      }
+    } else {
+      print(response.reasonPhrase);
+    }
+    return familymemberModel;
   }
 
   Future<Notice> notice() async {
@@ -151,7 +162,6 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       noticeModel = Notice.fromJson(result);
-      print("basic model${response1.body}");
     } else {
       print(response.reasonPhrase);
     }

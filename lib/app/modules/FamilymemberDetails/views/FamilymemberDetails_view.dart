@@ -11,11 +11,12 @@ import '../../../constant/screens/loading_and_error_screen.dart';
 
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
-import '../controllers/memberDetails_controller.dart';
+import '../../Memberprofile/controllers/Memberprofile_controller.dart';
+import '../controllers/Familymember_controller.dart';
 
-class MemberDetailsView extends GetView<MemberDetailsController> {
-  const MemberDetailsView({Key? key}) : super(key: key);
-
+class FamilyMemberView extends GetView<FamilyMemberController> {
+   FamilyMemberView({Key? key}) : super(key: key);
+    final usercontroller = Get.put(MemberProfileController());
   @override
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
@@ -23,8 +24,8 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
       appBar: AppBar(
           centerTitle: true,
           title: Text(
-            StringConstant.bhalalaparivar,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            "${usercontroller.userData?.name?.toUpperCase()}",
+            style: const TextStyle(),
           ),
           backgroundColor: colors.darkbrown,
           elevation: 0),
@@ -32,9 +33,9 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
         () => LoadingAndErrorScreen(
             isLoading: controller.isLoading.value,
             errorOccurred: controller.errorOccurred.value,
-            errorResolvingFunction: controller.getmemberDetailsData,
+            errorResolvingFunction: controller.familyMemberData,
             child: ListView.builder(
-              itemCount: controller.getmemberDetailsData.value.data?.length,
+              itemCount: controller.familyMemberData.value.data?.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(3.0),
@@ -50,7 +51,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                         SlidableAction(
                           onPressed: (context) {
                             UrlLauncher.launch(
-                                'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                                'tel:+${controller.familyMemberData.value.data?[index].mobileNo}');
                           },
                           backgroundColor: colors.white,
                           icon: Icons.call,
@@ -67,10 +68,10 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                       padding: const EdgeInsets.all(4.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.MEMBERPROFILE,
+                          Get.toNamed(Routes.FAMILYMEMBERPROFILE,
                               arguments: {
-                            ArgumentConstant.userData : controller
-                                .getmemberDetailsData.value.data?[index]
+                            ArgumentConstant.familyprofiledata : controller
+                                .familyMemberData.value.data?[index]
                               });
                         },
                         child: Container(
@@ -97,24 +98,23 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SizedBox(height: 1.h,),
                                       Text(
-                                        "${controller.getmemberDetailsData.value.data?[index].name} "
-                                        "${controller.getmemberDetailsData.value.data?[index].middleName} "
-                                        "${controller.getmemberDetailsData.value.data?[index].lastName}",
+                                        "${controller.familyMemberData.value.data?[index].name} "
+                                        "${controller.familyMemberData.value.data?[index].middleName} "
+                                        "${controller.familyMemberData.value.data?[index].lastName}",
                                         style: TextStyle(
                                             overflow: TextOverflow.ellipsis,
                                             color: colors.darkbrown,
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
                                       Text(
-                                        "${StringConstant.mobile} : ${controller.getmemberDetailsData.value.data?[index].mobileNo}",
+                                        "${StringConstant.mobile} : ${controller.familyMemberData.value.data?[index].mobileNo}",
                                         style: TextStyle(
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold,
                                             overflow: TextOverflow.ellipsis),
                                       ),
@@ -122,9 +122,9 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                         height: 0.5.h,
                                       ),
                                       Text(
-                                        "${StringConstant.address} : ${controller.getmemberDetailsData.value.data?[index].address}",
+                                        "${StringConstant.address} : ${controller.familyMemberData.value.data?[index].address}",
                                         style: TextStyle(
-                                            fontSize: 12.5.sp,
+                                            fontSize: 12.sp,
                                             overflow: TextOverflow.ellipsis,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -132,9 +132,9 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                         height: 0.5.h,
                                       ),
                                       Text(
-                                        "${StringConstant.workdetails} : ${controller.getmemberDetailsData.value.data?[index].business}",
+                                        "${StringConstant.workdetails} : ${controller.familyMemberData.value.data?[index].business}",
                                         style: TextStyle(
-                                            fontSize: 12.5.sp,
+                                            fontSize: 12.sp,
                                             overflow: TextOverflow.ellipsis,
                                             fontWeight: FontWeight.bold),
                                       ),

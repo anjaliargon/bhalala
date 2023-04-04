@@ -21,7 +21,7 @@ class FamilyCommitte extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               backgroundColor: colors.darkbrown,
-              title: Text(StringConstant.parivar_samiti),
+              title: Text(StringConstant.parivar_samiti1),
             ),
             body: Column(
               children: [

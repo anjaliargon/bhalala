@@ -7,19 +7,20 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-
 import '../../../routes/app_pages.dart';
-import '../controllers/profile_controller.dart';
+import '../../Memberprofile/controllers/Memberprofile_controller.dart';
+import '../controllers/searchMemberprofile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+class SearchProfileView extends GetView<SearchProfileController> {
+  const SearchProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileController = Get.put(ProfileController());
+    final profileController = Get.put(SearchProfileController());
+    final familyController = Get.put(MemberProfileController());
 
     MyColor colors = MyColor();
-    return GetBuilder<ProfileController>(
+    return GetBuilder<SearchProfileController>(
         init: profileController,
         builder: (controller) {
           return Scaffold(
@@ -27,24 +28,12 @@ class ProfileView extends GetView<ProfileController> {
               backgroundColor: colors.darkbrown,
               centerTitle: true,
               title: Text(StringConstant.bhalalaparivar),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: IconButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.EditProfile,arguments: {
-                          ArgumentConstant.editprofiledata : controller.userProfileData.value.data
-                        });
-                      },
-                      icon: Icon(Icons.edit)),
-                )
-              ],
             ),
             body: Obx(
               () => LoadingAndErrorScreen(
                 isLoading: controller.isLoading.value,
                 errorOccurred: controller.errorOccurred.value,
-                errorResolvingFunction: profileController.userProfile,
+                errorResolvingFunction: profileController.isLoading,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +75,7 @@ class ProfileView extends GetView<ProfileController> {
                       Center(
                         child: Text(
                             // "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
-                          "${controller.userProfileData.value.data?.first.name} ${controller.userProfileData.value.data?.first.middleName} ${controller.userProfileData.value.data?.first.lastName}",
+                          "${controller.searchuserData?.name} ${controller.searchuserData?.middleName} ${controller.searchuserData?.lastName}",
                           style:
                               TextStyle(fontSize: 12.sp, color: colors.darkbrown),
                         ),
@@ -97,61 +86,61 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.address,
-                          text:controller.userProfileData.value.data?.first.address),
+                          text:controller.searchuserData?.address),
                       profiletext(
                           icons: FontAwesomeIcons.mobileScreen,
                           heading: StringConstant.mobile,
-                          text:controller.userProfileData.value.data?.first.mobileNo),
+                          text:controller.searchuserData?.mobileNo),
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.village,
-                          text: controller.userProfileData.value.data?.first.vId),
+                          text: controller.searchuserData?.vId),
                       profiletext(
                           icons: FontAwesomeIcons.shop,
                           heading: StringConstant.workdetails,
-                          text: controller.userProfileData.value.data?.first.business),
+                          text: controller.searchuserData?.business),
                       profiletext(
                           icons: Icons.email,
                           heading: StringConstant.emailId,
-                          text: controller.userProfileData.value.data?.first.emailed),
+                          text: controller.searchuserData?.emailed),
                       profiletext(
                           icons: Icons.cake,
                           heading: StringConstant.birthdaydate,
-                          text: controller.userProfileData.value.data?.first.birthdate),
+                          text: controller.searchuserData?.birthdate),
                       profiletext(
                           icons: FontAwesomeIcons.graduationCap,
                           heading: StringConstant.education,
-                          text:controller.userProfileData.value.data?.first.educationId),
+                          text:controller.searchuserData?.educationId),
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.gender,
-                          text: controller.userProfileData.value.data?.first.gender),
+                          text: controller.searchuserData?.gender),
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.home,
-                          text:controller.userProfileData.value.data?.first.homeId),
+                          text:controller.searchuserData?.homeId),
                       profiletext(
                           icons: FontAwesomeIcons.personCircleCheck,
                           heading: StringConstant.merrige_status,
-                          text: controller.userProfileData.value.data?.first.marriedId),
+                          text: controller.searchuserData?.marriedId),
                       profiletext(
                           icons: Icons.person,
                           heading: StringConstant.age,
-                          text:controller.userProfileData.value.data?.first.age),
+                          text:controller.searchuserData?.age),
                       profiletext(
                           icons: FontAwesomeIcons.person,
                           heading: StringConstant.bloodgroup,
-                          text:controller.userProfileData.value.data?.first.bName),
+                          text:controller.searchuserData?.bName),
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.member_count,
-                          text: controller.userProfileData.value.data?.first.noOfMember),
+                          text: controller.searchuserData?.noOfMember),
                       SizedBox(
                         height: 3.h,
                       ),
                       InkWell(
                         onTap: () {
-                          // Get.to(AddNewmemberScreen());
+                          Get.toNamed(Routes.FAMILYMEMBER,arguments: controller.searchuserData?.rId);
                         },
                         child: Center(
                           child: Container(
@@ -162,7 +151,7 @@ class ProfileView extends GetView<ProfileController> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                                 child: Text(
-                              StringConstant.addnew_member,
+                              "સભ્ય ની વિગત જોવો",
                               style: TextStyle(
                                   color: colors.white,
                                   fontWeight: FontWeight.bold,
