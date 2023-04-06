@@ -206,7 +206,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
             SizedBox(height: 2.h,),
             SizedBox(
               height: 6.h,
-              width: 25.w,
+              width: 50.w,
               child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
