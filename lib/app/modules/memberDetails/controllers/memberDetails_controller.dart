@@ -2,7 +2,9 @@ import 'package:bhalala/app/data/Model/basicModel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
+import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/MemberCount.dart';
@@ -63,5 +65,197 @@ class MemberDetailsController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  openDilogueNotEdit({required BuildContext context}) {
+    MyColor colors = MyColor();
+    return Get.dialog(Dialog(
+      child: Container(
+        color: colors.lightgrey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 7.h,
+              color: colors.darkbrown,
+              child: Center(
+                  child: Text(
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                " તમે અન્ય પારિવારિક સભ્ય ની વિગતો ને\nબદલી શકતા નથી.",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            SizedBox(
+              height: 6.h,
+              width: 50.w,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(colors.darkbrown),
+                  ),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    "ઠીક છે ",
+                    style: TextStyle(fontSize: 12.sp),
+                  )),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+
+  openDilogueNotDelete({required BuildContext context}) {
+    MyColor colors = MyColor();
+    return Get.dialog(Dialog(
+      child: Container(
+        color: colors.lightgrey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 7.h,
+              color: colors.darkbrown,
+              child: Center(
+                  child: Text(
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "તમે અન્ય  કૌટુંબિક સભ્ય વિગતોને કાઢી શકતા નથી.",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            SizedBox(
+              height: 6.h,
+              width: 50.w,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(colors.darkbrown),
+                  ),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    "ઠીક છે ",
+                    style: TextStyle(fontSize: 12.sp),
+                  )),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+
+  openDilogueDelete({required BuildContext context}) {
+    MyColor colors = MyColor();
+    return Get.dialog(Dialog(
+      child: Container(
+        color: colors.lightgrey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 7.h,
+              color: colors.darkbrown,
+              child: Center(
+                  child: Text(
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "શું તમે ખરેખર તમારા કુટુંબના સભ્યને તમારા\nકુટુંબની સૂચિમાંથી કાઢી નાખવા માંગો છો ? ",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: 8.h,
+                  width: 30.w,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(colors.darkbrown),
+                      ),
+                      onPressed: () {
+                        // Get.back();
+                      },
+                      child: Text(
+                        "હા",
+                        style: TextStyle(fontSize: 14.sp),
+                      )),
+                ),
+                SizedBox(
+                  height: 8.h,
+                  width: 30.w,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(colors.darkbrown),
+                      ),
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "ના",
+                        style: TextStyle(fontSize: 14.sp),
+                      )),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 }

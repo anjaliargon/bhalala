@@ -13,6 +13,7 @@ import '../../constant/String_constant.dart';
 import '../../constant/sizeConstant.dart';
 import '../../modules/login/model/login_model.dart';
 import '../../modules/memberDetails/Model/MemberDetailsModel.dart';
+import '../../modules/photoGallary/model/photoGallary_model.dart';
 import '../../modules/profile/model/profileModel.dart';
 import '../Model/MemberCount.dart';
 import '../Model/basicModel.dart';
@@ -89,6 +90,23 @@ class ApiProvider {
       print(response.reasonPhrase);
     }
     return basicmodel;
+  }
+  Future<Gallary> getAlbumData() async {
+    Gallary  gallaryphotomodel = Gallary();
+    String query = GlobalData.AlbumData;
+
+    var request = http.MultipartRequest('GET', Uri.parse(query));
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    if (response1.statusCode == 200) {
+      gallaryphotomodel = Gallary.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return gallaryphotomodel;
   }
 
   Future<MemberCount> memberCount() async {

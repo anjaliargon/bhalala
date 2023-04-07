@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constant/Color.dart';
@@ -342,38 +344,50 @@ class ImportantNumber_Screen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(6.0),
-                  child: Container(
-                    height: 6.h,
-                    decoration: BoxDecoration(
-                        color: colors.lightgrey,
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    //height: 14.h,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Name  : ",
-                                style: TextStyle(
-                                    color: colors.darkbrown,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12.sp),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  numberController.getDataList[index + 49].name,
+                  child: GestureDetector(
+                    onTap: () async{
+                      PermissionStatus storagestatus = await Permission.storage.request();
+                      if(storagestatus == PermissionStatus.granted){
+                        Fluttertoast.showToast(msg: 'Permission Granted');
+                      }if(storagestatus == PermissionStatus.denied){
+                        Fluttertoast.showToast(msg: 'you need to provide storage permission');
+                      }if(storagestatus == PermissionStatus.permanentlyDenied){
+                        openAppSettings();
+                      }
+                    },
+                    child: Container(
+                      height: 6.h,
+                      decoration: BoxDecoration(
+                          color: colors.lightgrey,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      //height: 14.h,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Name  : ",
                                   style: TextStyle(
                                       color: colors.darkbrown,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp),
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
+                                Flexible(
+                                  child: Text(
+                                    numberController.getDataList[index + 49].name,
+                                    style: TextStyle(
+                                        color: colors.darkbrown,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

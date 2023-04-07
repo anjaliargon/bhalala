@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../profile/model/profileModel.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class EditProfileController extends GetxController {
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
@@ -57,7 +59,7 @@ class EditProfileController extends GetxController {
     "9",
     "10"
   ].obs;
-  ProfileData? profiledata;
+  ProfileData? profileData;
 
   onChnagedSurname(var surname){
     selectedsurname.value = surname;
@@ -70,10 +72,10 @@ class EditProfileController extends GetxController {
     selectedwork.value = work;
   }
   void onInit() {
-    if(Get.arguments != null) {
-      profiledata = Get.arguments[ArgumentConstant.searchuserData];
-      print(profiledata?.rId);
-    }
+    // if(Get.arguments != null) {
+    //   profileData = Get.arguments[ArgumentConstant.editprofiledata];
+    //   print(profileData?.rId ?? '');
+    // }
     getAccountIndustryList();
     getAccountEducationList();
     getAccountStausList();
@@ -81,10 +83,32 @@ class EditProfileController extends GetxController {
     assignProfileData();
     getAccountVillageList();
     getAccountCurentCityList();
+    // requestCameraPermission();
     birthController.text =
         DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
 
   }
+
+
+  Future<void> requestCameraPermission() async {
+
+    final serviceStatus = await Permission.camera.isGranted ;
+
+    bool isCameraOn = serviceStatus == ServiceStatus.enabled;
+
+    final status = await Permission.camera.request();
+
+    if (status == PermissionStatus.granted) {
+      print('Permission Granted');
+    } else if (status == PermissionStatus.denied) {
+      print('Permission denied');
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      print('Permission Permanently Denied');
+      await openAppSettings();
+    }
+  }
+
+
   datePick({required BuildContext context}) async {
     DateTime? pickedDate = await showDatePicker(
         builder: (context, child) {
@@ -222,7 +246,7 @@ class EditProfileController extends GetxController {
 
   void assignProfileData(){
     Future.delayed(const Duration(milliseconds: 2000), (){
-      nameController.text = profiledata?.name ??'';
+      // nameController.text = userData?.name ??'';
     });
   }
 }

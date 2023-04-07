@@ -16,6 +16,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
 
   @override
   Widget build(BuildContext context) {
+    String? year;
     final loginController = Get.put(PhotoGallaryController());
     MyColor colors = MyColor();
     return GetBuilder<PhotoGallaryController>(
@@ -27,9 +28,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
           centerTitle: true,
           title: Text(
             StringConstant.bhalalaparivar,
-            style: TextStyle(
-                color: colors.white,
-                fontSize: 20.sp),
+            style: TextStyle(color: colors.white, fontSize: 20.sp),
           ),
         ),
         body: GestureDetector(
@@ -41,16 +40,58 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
             }
           },
           child: Obx(
-            () => LoadingAndErrorScreen(
-              isLoading: controller.isLoading.value,
-              errorOccurred: controller.errorOccurred.value,
-              errorResolvingFunction: controller.isLoading,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                   Text("Hello")
-                  ],
-                ),
+            () => SingleChildScrollView(
+              child: Column(
+                children: [
+                  customeDropDown(
+                      dropdown: DropdownButton(
+                    hint: Text(StringConstant.workdetails),
+                    isExpanded: true,
+                    underline: Container(
+                      color: colors.white,
+                    ),
+                    onChanged: (String? newvalue) {
+                      year = newvalue!;
+                      controller.yearController.text = newvalue;
+                      controller.update();
+                    },
+                    value: year,
+                    items: controller.yearListData.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(
+                          items,
+                          style: TextStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                  customeDropDown(
+                      dropdown: DropdownButton(
+                        hint: Text(StringConstant.workdetails),
+                        isExpanded: true,
+                        underline: Container(
+                          color: colors.white,
+                        ),
+                        onChanged: (String? newvalue) {
+                          year = newvalue!;
+                          controller.yearController.text = newvalue;
+                          controller.update();
+                        },
+                        value: year,
+                        items: controller.yearListData.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(
+                              items,
+                              style: TextStyle(
+                                  fontSize: 10.sp, fontWeight: FontWeight.bold),
+                            ),
+                          );
+                        }).toList(),
+                      ))
+                ],
               ),
             ),
           ),

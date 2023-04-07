@@ -1,14 +1,11 @@
 import 'package:bhalala/app/constant/Color.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
+import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
-
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
 import '../../Memberprofile/controllers/Memberprofile_controller.dart';
@@ -46,7 +43,15 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                           motion: ScrollMotion(),
                           children: [
                             SlidableAction(
-                              onPressed: (context) {},
+                              onPressed: (context) {
+                                if (controller
+                                    .familyMemberData.value.data?[index].rId ==
+                                    box.read('userId')) {
+                                  Get.toNamed(Routes.EditProfile);
+                                } else {
+                                  controller.openDilogueNotEdit(context: context);
+                                }
+                              },
                               backgroundColor: colors.green,
                               icon: Icons.edit,
                             ),
@@ -66,7 +71,15 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                               foregroundColor: colors.darkbrown,
                             ),
                             SlidableAction(
-                              onPressed: (context) {},
+                              onPressed: (context) {
+                                if (controller
+                                    .familyMemberData.value.data?[index].rId ==
+                                    box.read('userId')) {
+                                  controller.openDilogueDelete(context: context);
+                                } else {
+                                  controller.openDilogueNotDelete(context: context);
+                                }
+                              },
                               backgroundColor: Color(0xFFFE4A49),
                               icon: Icons.delete,
                             ),
@@ -78,8 +91,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                             onTap: () {
                               Get.toNamed(Routes.FAMILYMEMBERPROFILE,
                                   arguments: {
-                                    ArgumentConstant
-                                        .familyprofiledata: controller
+                                    ArgumentConstant.familyprofiledata: controller
                                         .familyMemberData.value.data?[index]
                                   });
                             },

@@ -64,7 +64,7 @@ class HomeView extends GetView<HomeController> {
                               style: TextStyle(
                                   color: colors.white,
                                   overflow: TextOverflow.ellipsis,
-                                  fontSize: 10.sp),
+                                  fontSize: 11.sp),
                             ),
                           ),
                         ],
@@ -75,11 +75,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.gamniyadi,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.home,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Get.toNamed(Routes.VILLAGE);
@@ -88,11 +89,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.parivarvise,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.group,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Get.toNamed(Routes.ABOUT_FAMILY);
@@ -101,11 +103,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.parivar_karyalay1,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.watch_later_rounded,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 // Update the state of the app
@@ -117,11 +120,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.parivar_samiti1,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.groups,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Get.toNamed(Routes.COMITEE);
@@ -130,11 +134,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.search_member,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.search,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 // Update the state of the app
@@ -146,11 +151,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.photo_gallary,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.photo,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 // Update the state of the app
@@ -162,11 +168,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.important_number1,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.phone,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Get.toNamed(Routes.IMP_NUMBER);
@@ -175,11 +182,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.suchna_number,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.phone,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Get.toNamed(Routes.NOTICE);
@@ -188,11 +196,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.applicationhlpline,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.home,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 // Get.toNamed(Routes.APP_HELPLINE);
@@ -201,11 +210,12 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               title: Text(
                 StringConstant.logout,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               leading: Icon(
                 Icons.logout,
                 color: colors.darkbrown,
+                size: 20.sp,
               ),
               onTap: () {
                 Fluttertoast.showToast(msg: "Logout Successfully!");

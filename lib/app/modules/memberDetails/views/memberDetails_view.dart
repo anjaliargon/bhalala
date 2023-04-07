@@ -2,10 +2,13 @@ import 'package:bhalala/app/constant/Color.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
 
@@ -43,21 +46,51 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                       motion: ScrollMotion(),
                       children: [
                         SlidableAction(
-                          onPressed: (context) {},
+                          onPressed: (context) {
+                            if (controller.getmemberDetailsData.value
+                                    .data?[index].rId ==
+                                box.read('userId')) {
+                              Get.toNamed(Routes.EditProfile,
+                                  arguments: {
+                                ArgumentConstant.editprofiledata: controller
+                                    .getmemberDetailsData.value.data?[index]
+                              }
+                              );
+                            } else {
+                              controller.openDilogueNotEdit(context: context);
+                            }
+                          },
                           backgroundColor: colors.green,
                           icon: Icons.edit,
                         ),
                         SlidableAction(
-                          onPressed: (context) {
-                            UrlLauncher.launch(
-                                'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                          onPressed: (context) async{
+                            PermissionStatus callstatus = await Permission.phone.request();
+                            if(callstatus == PermissionStatus.granted){
+                              Fluttertoast.showToast(msg: 'Permission Granted');
+                              UrlLauncher.launch(
+                                  'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                            }if(callstatus == PermissionStatus.denied){
+                              Fluttertoast.showToast(msg: 'you need to provide call permission');
+                            }if(callstatus == PermissionStatus.permanentlyDenied){
+                              openAppSettings();
+                            }
+
                           },
                           backgroundColor: colors.white,
                           icon: Icons.call,
                           foregroundColor: colors.darkbrown,
                         ),
                         SlidableAction(
-                          onPressed: (context) {},
+                          onPressed: (context) {
+                            if (controller.getmemberDetailsData.value
+                                    .data?[index].rId ==
+                                box.read('userId')) {
+                              controller.openDilogueDelete(context: context);
+                            } else {
+                              controller.openDilogueNotDelete(context: context);
+                            }
+                          },
                           backgroundColor: Color(0xFFFE4A49),
                           icon: Icons.delete,
                         ),
@@ -67,11 +100,10 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                       padding: const EdgeInsets.all(4.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.MEMBERPROFILE,
-                              arguments: {
-                            ArgumentConstant.userData : controller
+                          Get.toNamed(Routes.MEMBERPROFILE, arguments: {
+                            ArgumentConstant.userData: controller
                                 .getmemberDetailsData.value.data?[index]
-                              });
+                          });
                         },
                         child: Container(
                           // height: 120.sp,
@@ -97,7 +129,9 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SizedBox(height: 1.h,),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
                                       Text(
                                         "${controller.getmemberDetailsData.value.data?[index].name} "
                                         "${controller.getmemberDetailsData.value.data?[index].middleName} "

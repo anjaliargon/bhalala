@@ -34,9 +34,7 @@ class ProfileView extends GetView<ProfileController> {
                   padding: EdgeInsets.all(8.0),
                   child: IconButton(
                       onPressed: () {
-                        Get.toNamed(Routes.EditProfile,arguments: {
-                          ArgumentConstant.editprofiledata : controller.userProfileData.value.data
-                        });
+                        Get.toNamed(Routes.EditProfile);
                       },
                       icon: Icon(Icons.edit)),
                 )

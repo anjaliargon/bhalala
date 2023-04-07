@@ -9,7 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import '../controllers/Editprofile_controller.dart';
 
 class EditProfileView extends GetView<EditProfileController> {
@@ -43,7 +43,8 @@ class EditProfileView extends GetView<EditProfileController> {
               ),
             ),
             body: SingleChildScrollView(
-              child: Obx(()=> Form(
+              child: Obx(
+                () => Form(
                   key: controller.formKey.value,
                   child: Column(
                     children: [
@@ -64,8 +65,16 @@ class EditProfileView extends GetView<EditProfileController> {
                       Stack(
                         children: [
                           InkWell(
-                            onTap: () {
-                              _openDilogue(context: context);
+                            onTap: () async {
+                              PermissionStatus camarastatus = await Permission.camera.request();
+                              if(camarastatus == PermissionStatus.granted){
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("permission granted"),));
+                                _openDilogue(context: context);
+                              }if(camarastatus == PermissionStatus.denied){
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("you need to provide camara permission"),));
+                              }if(camarastatus == PermissionStatus.permanentlyDenied){
+                                openAppSettings();
+                              }
                             },
                             child: Container(
                               height: 100,
@@ -73,7 +82,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(200),
                                   child: (controller.selectedImg != null)
-                                      ? Image.file(controller.selectedImg!.value,
+                                      ? Image.file(
+                                          controller.selectedImg!.value,
                                           fit: BoxFit.cover)
                                       : Image.asset(
                                           "assets/images/userprofile.png",
@@ -146,7 +156,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: StringConstant.bhalal,
-                                      groupValue: controller.selectedsurname.value,
+                                      groupValue:
+                                          controller.selectedsurname.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedSurname(value);
@@ -160,7 +171,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: "bhalala",
-                                      groupValue: controller.selectedsurname.value,
+                                      groupValue:
+                                          controller.selectedsurname.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedSurname(value);
@@ -218,7 +230,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: StringConstant.women,
-                                      groupValue: controller.selectedgender.value,
+                                      groupValue:
+                                          controller.selectedgender.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedGender(value);
@@ -232,7 +245,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: StringConstant.gentelmen,
-                                      groupValue: controller.selectedgender.value,
+                                      groupValue:
+                                          controller.selectedgender.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedGender(value);
@@ -303,7 +317,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -338,7 +353,6 @@ class EditProfileView extends GetView<EditProfileController> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
-
                                       value: StringConstant.job,
                                       groupValue: controller.selectedwork.value,
                                       activeColor: colors.darkbrown,
@@ -416,7 +430,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -438,14 +453,15 @@ class EditProfileView extends GetView<EditProfileController> {
                             controller.update();
                           },
                           value: bloodgroup,
-                          items:
-                              controller.accountBloodListData.map((String items) {
+                          items: controller.accountBloodListData
+                              .map((String items) {
                             return DropdownMenuItem(
                               value: items,
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -473,7 +489,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -501,7 +518,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -529,7 +547,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
