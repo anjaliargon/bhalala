@@ -106,7 +106,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                           });
                         },
                         child: Container(
-                          // height: 120.sp,
+                          height: 17.5.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: colors.lightgrey),
