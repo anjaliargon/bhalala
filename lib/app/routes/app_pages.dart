@@ -45,7 +45,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static String INITIAL = (!isNullEmptyOrFalse(box.read("userId"))) ? Routes.HOME : Routes.LOGIN;
+  static String INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(

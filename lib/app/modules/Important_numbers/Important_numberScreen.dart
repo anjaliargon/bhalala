@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -84,7 +86,7 @@ class ImportantNumber_Screen extends StatelessWidget {
                               ),
                               Flexible(
                                 child: Text(
-                                 "${numberController.getDataList[index].number}",
+                                  "${numberController.getDataList[index].number}",
                                   // textAlign: TextAlign.justify,
                                   style: TextStyle(
                                       color: colors.darkbrown, fontSize: 12.sp),
@@ -157,7 +159,8 @@ class ImportantNumber_Screen extends StatelessWidget {
                                     fontSize: 12.sp),
                               ),
                               Flexible(
-                                child: Text("${numberController.getDataList[index + 13].number}",
+                                child: Text(
+                                  "${numberController.getDataList[index + 13].number}",
                                   // textAlign: TextAlign.justify,
                                   style: TextStyle(
                                       color: colors.darkbrown, fontSize: 12.sp),
@@ -254,12 +257,12 @@ class ImportantNumber_Screen extends StatelessWidget {
               color: colors.darkbrown,
               child: Center(
                   child: Text(
-                    "સમગ્ર ભારત",
-                    style: TextStyle(
-                        color: colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.sp),
-                  )),
+                "સમગ્ર ભારત",
+                style: TextStyle(
+                    color: colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.sp),
+              )),
             ),
             ListView.builder(
               itemCount: 13,
@@ -309,7 +312,7 @@ class ImportantNumber_Screen extends StatelessWidget {
                               ),
                               Flexible(
                                 child: Text(
-                                 "${ numberController.getDataList[index + 36].number}",
+                                  "${numberController.getDataList[index + 36].number}",
                                   // textAlign: TextAlign.justify,
                                   style: TextStyle(
                                       color: colors.darkbrown, fontSize: 12.sp),
@@ -330,12 +333,12 @@ class ImportantNumber_Screen extends StatelessWidget {
               color: colors.darkbrown,
               child: Center(
                   child: Text(
-                    "અગત્યની માહિતી",
-                    style: TextStyle(
-                        color: colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.sp),
-                  )),
+                "અગત્યની માહિતી",
+                style: TextStyle(
+                    color: colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.sp),
+              )),
             ),
             ListView.builder(
               itemCount: 3,
@@ -345,16 +348,7 @@ class ImportantNumber_Screen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: GestureDetector(
-                    onTap: () async{
-                      PermissionStatus storagestatus = await Permission.storage.request();
-                      if(storagestatus == PermissionStatus.granted){
-                        Fluttertoast.showToast(msg: 'Permission Granted');
-                      }if(storagestatus == PermissionStatus.denied){
-                        Fluttertoast.showToast(msg: 'you need to provide storage permission');
-                      }if(storagestatus == PermissionStatus.permanentlyDenied){
-                        openAppSettings();
-                      }
-                    },
+                    onTap: () async {},
                     child: Container(
                       height: 6.h,
                       decoration: BoxDecoration(
@@ -377,7 +371,8 @@ class ImportantNumber_Screen extends StatelessWidget {
                                 ),
                                 Flexible(
                                   child: Text(
-                                    numberController.getDataList[index + 49].name,
+                                    numberController
+                                        .getDataList[index + 49].name,
                                     style: TextStyle(
                                         color: colors.darkbrown,
                                         fontSize: 14.sp,

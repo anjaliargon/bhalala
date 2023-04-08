@@ -50,12 +50,10 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                             if (controller.getmemberDetailsData.value
                                     .data?[index].rId ==
                                 box.read('userId')) {
-                              Get.toNamed(Routes.EditProfile,
-                                  arguments: {
+                              Get.toNamed(Routes.EditProfile, arguments: {
                                 ArgumentConstant.editprofiledata: controller
                                     .getmemberDetailsData.value.data?[index]
-                              }
-                              );
+                              });
                             } else {
                               controller.openDilogueNotEdit(context: context);
                             }
@@ -64,18 +62,9 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                           icon: Icons.edit,
                         ),
                         SlidableAction(
-                          onPressed: (context) async{
-                            PermissionStatus callstatus = await Permission.phone.request();
-                            if(callstatus == PermissionStatus.granted){
-                              Fluttertoast.showToast(msg: 'Permission Granted');
-                              UrlLauncher.launch(
-                                  'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
-                            }if(callstatus == PermissionStatus.denied){
-                              Fluttertoast.showToast(msg: 'you need to provide call permission');
-                            }if(callstatus == PermissionStatus.permanentlyDenied){
-                              openAppSettings();
-                            }
-
+                          onPressed: (context) async {
+                            UrlLauncher.launch(
+                                'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
                           },
                           backgroundColor: colors.white,
                           icon: Icons.call,

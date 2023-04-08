@@ -130,6 +130,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                     InkWell(
                       onTap: () {
+
                         if (_networkController.connectionStatus.value == 1 ||
                             _networkController.connectionStatus.value == 2) {
                           if (controller.formKey.value.currentState!
@@ -215,7 +216,8 @@ class LoginView extends GetView<LoginController> {
                               fontSize: 14.sp),
                         )),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 2.h,)
                   ],
                 ),
               ),

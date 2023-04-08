@@ -1,9 +1,10 @@
 class Important_number {
-  Important_number({required this.name, this.number,
+  Important_number({required this.name, this.number,this.filename
   });
 
   String name;
   String? number;
+  String? filename;
 
 }
 class samiti {

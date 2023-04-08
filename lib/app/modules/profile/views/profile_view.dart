@@ -18,7 +18,6 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     final profileController = Get.put(ProfileController());
-    final profile = Get.put(MemberProfileController());
 
     MyColor colors = MyColor();
     return GetBuilder<ProfileController>(
@@ -69,7 +68,8 @@ class ProfileView extends GetView<ProfileController> {
                                   child: CircleAvatar(
                                     radius: 50.0,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100.0),
+                                      borderRadius:
+                                          BorderRadius.circular(100.0),
                                       child: Image.asset(
                                           'assets/images/userprofile.png'),
                                     ),
@@ -85,10 +85,10 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       Center(
                         child: Text(
-                            // "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
+                          // "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
                           "${controller.userProfileData.value.data?.first.name} ${controller.userProfileData.value.data?.first.middleName} ${controller.userProfileData.value.data?.first.lastName}",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: colors.darkbrown),
+                          style: TextStyle(
+                              fontSize: 14.sp, color: colors.darkbrown),
                         ),
                       ),
                       SizedBox(
@@ -97,55 +97,68 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.address,
-                          text:controller.userProfileData.value.data?.first.address),
+                          text: controller
+                              .userProfileData.value.data?.first.address),
                       profiletext(
                           icons: FontAwesomeIcons.mobileScreen,
                           heading: StringConstant.mobile,
-                          text:controller.userProfileData.value.data?.first.mobileNo),
+                          text: controller
+                              .userProfileData.value.data?.first.mobileNo),
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.village,
-                          text: controller.userProfileData.value.data?.first.vId),
+                          text:
+                              controller.userProfileData.value.data?.first.vId),
                       profiletext(
                           icons: FontAwesomeIcons.shop,
                           heading: StringConstant.workdetails,
-                          text: controller.userProfileData.value.data?.first.business),
+                          text: controller
+                              .userProfileData.value.data?.first.business),
                       profiletext(
                           icons: Icons.email,
                           heading: StringConstant.emailId,
-                          text: controller.userProfileData.value.data?.first.emailed),
+                          text: controller
+                              .userProfileData.value.data?.first.emailed),
                       profiletext(
                           icons: Icons.cake,
                           heading: StringConstant.birthdaydate,
-                          text: controller.userProfileData.value.data?.first.birthdate),
+                          text: controller
+                              .userProfileData.value.data?.first.birthdate),
                       profiletext(
                           icons: FontAwesomeIcons.graduationCap,
                           heading: StringConstant.education,
-                          text:controller.userProfileData.value.data?.first.educationId),
+                          text: controller
+                              .userProfileData.value.data?.first.educationId),
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.gender,
-                          text: controller.userProfileData.value.data?.first.gender),
+                          text: controller
+                              .userProfileData.value.data?.first.gender),
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.home,
-                          text:controller.userProfileData.value.data?.first.homeId),
+                          text: controller
+                              .userProfileData.value.data?.first.homeId),
                       profiletext(
                           icons: FontAwesomeIcons.personCircleCheck,
                           heading: StringConstant.merrige_status,
-                          text: controller.userProfileData.value.data?.first.marriedId),
+                          text: controller
+                              .userProfileData.value.data?.first.marriedId),
                       profiletext(
                           icons: Icons.person,
                           heading: StringConstant.age,
-                          text:controller.userProfileData.value.data?.first.age),
+                          text:
+                              controller.userProfileData.value.data?.first.age),
                       profiletext(
                           icons: FontAwesomeIcons.person,
                           heading: StringConstant.bloodgroup,
-                          text:controller.userProfileData.value.data?.first.bName),
+                          text: controller
+                              .userProfileData.value.data?.first.bName),
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.member_count,
-                          text: controller.userProfileData.value.data?.first.noOfMember),
+                          text: controller
+                              .userProfileData.value.data?.first.noOfMember),
                       SizedBox(
                         height: 3.h,
                       ),

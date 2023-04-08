@@ -66,15 +66,7 @@ class EditProfileView extends GetView<EditProfileController> {
                         children: [
                           InkWell(
                             onTap: () async {
-                              PermissionStatus camarastatus = await Permission.camera.request();
-                              if(camarastatus == PermissionStatus.granted){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("permission granted"),));
-                                _openDilogue(context: context);
-                              }if(camarastatus == PermissionStatus.denied){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("you need to provide camara permission"),));
-                              }if(camarastatus == PermissionStatus.permanentlyDenied){
-                                openAppSettings();
-                              }
+                              _openDilogue(context: context);
                             },
                             child: Container(
                               height: 100,

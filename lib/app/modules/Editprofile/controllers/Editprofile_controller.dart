@@ -72,10 +72,10 @@ class EditProfileController extends GetxController {
     selectedwork.value = work;
   }
   void onInit() {
-    // if(Get.arguments != null) {
-    //   profileData = Get.arguments[ArgumentConstant.editprofiledata];
-    //   print(profileData?.rId ?? '');
-    // }
+    if(Get.arguments != null) {
+      profileData = Get.arguments[ArgumentConstant.editprofiledata];
+      print(profileData?.rId ?? '');
+    }
     getAccountIndustryList();
     getAccountEducationList();
     getAccountStausList();

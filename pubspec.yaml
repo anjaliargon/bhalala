@@ -22,6 +22,8 @@ dependencies:
   url_launcher: ^6.1.10
   connectivity_plus: ^3.0.3
   permission_handler: ^10.2.0
+  flutter_downloader: ^1.10.2
+  path_provider: ^2.0.14
 
   flutter: 
     sdk: flutter

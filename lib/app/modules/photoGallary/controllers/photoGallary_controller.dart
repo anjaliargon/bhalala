@@ -1,13 +1,8 @@
+import 'package:bhalala/app/modules/photoGallary/model/photoGallary_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
-
-import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
-import '../../../routes/app_pages.dart';
-import '../model/photoGallary_model.dart';
 
 class PhotoGallaryController extends GetxController {
   //TODO: Implement HomeController
@@ -17,6 +12,7 @@ class PhotoGallaryController extends GetxController {
   TextEditingController yearController = TextEditingController();
   TextEditingController functionController = TextEditingController();
   RxList<String> yearListData = <String>[].obs;
+  final gallaryphotos = Gallary().obs;
 
   @override
   void onInit() {
@@ -33,7 +29,17 @@ class PhotoGallaryController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
+  Future<void>  getalbumlist() async {
+    isLoading(true);
+    errorOccurred(false);
+    try {
+      gallaryphotos.value = await ApiProvider().getAlbumData();
+    } catch (e) {
+      errorOccurred(true);
+    } finally {
+      isLoading(false);
+    }
+  }
   Future<void> getYearData() async {
     yearListData.clear();
     yearListData.add(StringConstant.workdetails);

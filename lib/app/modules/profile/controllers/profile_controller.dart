@@ -8,10 +8,8 @@ import '../model/profileModel.dart';
 
 class ProfileController extends GetxController {
   final userProfileData = Profilemodel().obs;
-  Map<String, dynamic> data = RxMap();
   var isLoading = false.obs;
   var errorOccurred = false.obs;
-  ProfileData? profileDat;
 
   @override
   void onInit() {

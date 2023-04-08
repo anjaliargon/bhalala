@@ -1,11 +1,16 @@
 import 'dart:async';
+import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/constant/String_constant.dart';
 import 'package:bhalala/app/modules/home/views/home_view.dart';
 import 'package:bhalala/app/modules/login/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../main.dart';
+import '../../../constant/sizeConstant.dart';
+import '../../../routes/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,39 +26,51 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
     timer();
   }
 
-
   timer() async {
-
     await Future.delayed(Duration(milliseconds: 15));
     isStared = true;
     Timer(const Duration(seconds: 4), () {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
-      bool? isLogin = box.read("login") ?? false;
-      setState(() {});
-
-      if (isLogin) {
-        Get.offAll(HomeView());
+      if (!isNullEmptyOrFalse(box.read("userId"))) {
+        Get.offAllNamed(Routes.HOME);
       } else {
-     // Yodo1MAS.instance.showRewardAd();
-        Get.offAll(LoginView());
+        Get.offAllNamed(Routes.LOGIN);
       }
-
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Image.asset("assets/images/applogo.png")
+    MyColor colors = MyColor();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                child: Image.asset(
+              "assets/images/applogo.png",
+              height: 20.h,
+            )),
+            SizedBox(
+              height: 5.h,
+            ),
+            Text(
+              StringConstant.bhalalaparivar,
+              style: TextStyle(
+                  fontSize: 14.sp,
+                  color: colors.darkbrown,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            CircularProgressIndicator(color: colors.darkbrown,)
+          ],
+        ),
       ),
     );
   }
