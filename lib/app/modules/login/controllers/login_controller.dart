@@ -262,7 +262,7 @@ class LoginController extends GetxController {
     if (cameraStatus != PermissionStatus.granted ||
         microphoneStatus != PermissionStatus.granted ||
         storageStatus != PermissionStatus.granted) {
-      return false;
+      openAppSettings();
     }
 
     return true;
