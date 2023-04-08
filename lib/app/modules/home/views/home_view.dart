@@ -12,14 +12,15 @@ import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-   HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
   final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
     return GetBuilder<HomeController>(
-      init:homeController ,
-      builder:(controller) => Scaffold(
+      init: homeController,
+      builder: (controller) => Scaffold(
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -71,7 +72,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.gamniyadi,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.home,
@@ -85,7 +87,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.parivarvise,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.group,
@@ -99,7 +102,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.parivar_karyalay1,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.watch_later_rounded,
@@ -116,7 +120,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.parivar_samiti1,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.groups,
@@ -130,7 +135,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.search_member,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.search,
@@ -147,7 +153,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.photo_gallary,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.photo,
@@ -164,7 +171,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.important_number1,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.phone,
@@ -178,7 +186,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.suchna_number,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.phone,
@@ -192,7 +201,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.applicationhlpline,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.home,
@@ -206,7 +216,8 @@ class HomeView extends GetView<HomeController> {
               ListTile(
                 title: Text(
                   StringConstant.logout,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.logout,
@@ -269,6 +280,7 @@ class HomeView extends GetView<HomeController> {
                     child: InkWell(
                       onTap: () {
                         Get.toNamed(Routes.VILLAGE);
+
                       },
                       child: _container(StringConstant.gamniyadi, Icons.home),
                     ),
@@ -278,7 +290,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.ABOUT_FAMILY);
                       },
-                      child: _container(StringConstant.parivarvise, Icons.group),
+                      child:
+                          _container(StringConstant.parivarvise, Icons.group),
                     ),
                   ),
                   Expanded(
@@ -286,8 +299,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.COMITEE);
                       },
-                      child:
-                          _container(StringConstant.parivar_samiti, Icons.groups),
+                      child: _container(
+                          StringConstant.parivar_samiti, Icons.groups),
                     ),
                   ),
                 ],
@@ -299,8 +312,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.SEARCH);
                       },
-                      child:
-                          _container(StringConstant.search_member, Icons.search),
+                      child: _container(
+                          StringConstant.search_member, Icons.search),
                     ),
                   ),
                   Expanded(
@@ -317,7 +330,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.NOTICE);
                       },
-                      child: _container(StringConstant.suchna_number, Icons.home),
+                      child:
+                          _container(StringConstant.suchna_number, Icons.home),
                     ),
                   ),
                 ],
@@ -329,8 +343,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.SAHYOG);
                       },
-                      child:
-                          _container(StringConstant.parivarsahyoug, Icons.group),
+                      child: _container(
+                          StringConstant.parivarsahyoug, Icons.group),
                     ),
                   ),
                   Expanded(
@@ -338,8 +352,8 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(Routes.IMP_NUMBER);
                       },
-                      child:
-                          _container(StringConstant.important_number, Icons.call),
+                      child: _container(
+                          StringConstant.important_number, Icons.call),
                     ),
                   ),
                   Expanded(

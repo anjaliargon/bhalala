@@ -11,6 +11,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
   @override
   Widget build(BuildContext context) {
     String? year;
+    String? function;
     final loginController = Get.put(PhotoGallaryController());
     MyColor colors = MyColor();
     return GetBuilder<PhotoGallaryController>(
@@ -107,12 +108,12 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 ),
                                 onChanged: (String? newvalue) {
                                   year = newvalue!;
-                                  controller.yearController.text = newvalue;
+                                  controller.functionController.text = newvalue;
                                   controller.update();
                                 },
                                 value: year,
                                 items:
-                                    controller.yearListData.map((String items) {
+                                    controller.functionListData.map((String items) {
                                   return DropdownMenuItem(
                                     value: items,
                                     child: Text(
