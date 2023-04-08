@@ -12,6 +12,7 @@ class PhotoGallaryController extends GetxController {
   TextEditingController yearController = TextEditingController();
   TextEditingController functionController = TextEditingController();
   RxList<String> yearListData = <String>[].obs;
+  RxList<String> functionListData = <String>[].obs;
   final gallaryphotos = Gallary().obs;
 
   @override
@@ -43,6 +44,19 @@ class PhotoGallaryController extends GetxController {
   Future<void> getYearData() async {
     yearListData.clear();
     yearListData.add(StringConstant.workdetails);
+    var result = await ApiProvider().getAlbumData();
+    if (result.status == 1) {
+      for (var element in result.data!) {
+        yearListData.add(element.albumYear.toString());
+        isLoading(true);
+      }
+    } else {
+      isLoading(false);
+    }
+  }
+  Future<void> getFunctionData() async {
+    functionListData.clear();
+    functionListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getAlbumData();
     if (result.status == 1) {
       for (var element in result.data!) {
