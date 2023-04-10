@@ -1,5 +1,4 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -58,7 +57,7 @@ class LoginView extends GetView<LoginController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset("assets/images/applogo.png",
-                          height: 150.sp),
+                          height: 120.sp),
                     ),
                     SizedBox(
                       height: 5.h,
@@ -87,7 +86,7 @@ class LoginView extends GetView<LoginController> {
                             hintText: StringConstant.password,
                             iconfat: FontAwesomeIcons.lock,
                             controller: controller.passwordController.value,
-                            suffixicon: IconButton(
+                            iconButton: IconButton(
                                 onPressed: () {
                                   controller.ispasswordvisible.value =
                                       !controller.ispasswordvisible.value;
@@ -129,8 +128,7 @@ class LoginView extends GetView<LoginController> {
                       height: 10.h,
                     ),
                     InkWell(
-                      onTap: () {
-
+                      onTap: () async{
                         if (_networkController.connectionStatus.value == 1 ||
                             _networkController.connectionStatus.value == 2) {
                           if (controller.formKey.value.currentState!

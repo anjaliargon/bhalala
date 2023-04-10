@@ -1,6 +1,6 @@
 class GlobalData {
   ///base url
-  static String baseUrl = "https://bhalalaparivar.org/webservice";
+  static String baseUrl = "http://3.111.29.34/webservice";
 
   ///login Url
   static String loginUrl = '${baseUrl}/login.php';
@@ -12,4 +12,5 @@ class GlobalData {
   static String profileUrl = '${baseUrl}/getUserProfile.php';
   static String Familymember = '${baseUrl}/get_all_family_member.php';
   static String AlbumData = '${baseUrl}/get_year_list.php';
+  static String editprofileUrl = '${baseUrl}/editProfile.php';
 }

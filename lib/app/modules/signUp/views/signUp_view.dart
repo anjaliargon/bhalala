@@ -196,7 +196,7 @@ class SignUpView extends GetView<SignUpController> {
                         hintText: StringConstant.birthdaydate,
                         iconfat: FontAwesomeIcons.cakeCandles,
                         controller: controller.birthController,
-                        suffixicon: IconButton(
+                        iconButton: IconButton(
                             onPressed: () {
                               controller.datePick(context: context);
                             },
