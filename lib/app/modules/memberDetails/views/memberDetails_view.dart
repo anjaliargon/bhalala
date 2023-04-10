@@ -2,10 +2,8 @@ import 'package:bhalala/app/constant/Color.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../main.dart';
@@ -52,7 +50,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                 box.read('userId')) {
                               Get.toNamed(Routes.EditProfile, arguments: {
                                 ArgumentConstant.editprofiledata: controller
-                                    .getmemberDetailsData.value.data?[index]
+                                    .getmemberDetailsData.value.data![index]
                               });
                             } else {
                               controller.openDilogueNotEdit(context: context);

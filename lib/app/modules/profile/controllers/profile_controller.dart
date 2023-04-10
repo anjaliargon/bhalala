@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 
 import '../../../data/Api/ApiProvider.dart';
 
+import '../../memberDetails/Model/MemberDetailsModel.dart';
 import '../model/profileModel.dart';
 
 class ProfileController extends GetxController {
-  final userProfileData = Profilemodel().obs;
+  final userProfileData = MemberDetails().obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
 

@@ -9,7 +9,6 @@ import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../Memberprofile/controllers/Memberprofile_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -33,7 +32,10 @@ class ProfileView extends GetView<ProfileController> {
                   padding: EdgeInsets.all(8.0),
                   child: IconButton(
                       onPressed: () {
-                        Get.toNamed(Routes.EditProfile);
+                        Get.toNamed(Routes.EditProfile,
+                            arguments: {
+                              ArgumentConstant.editprofiledata:controller.userProfileData.value.data!.first
+                            });
                       },
                       icon: Icon(Icons.edit)),
                 )

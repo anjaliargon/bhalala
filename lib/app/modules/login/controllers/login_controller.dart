@@ -21,11 +21,13 @@ class LoginController extends GetxController {
   var ispasswordvisible = true.obs;
   RxString emailValid = ''.obs;
   RxString passwordValid = ''.obs;
+  final errorText = RxString('');
   final count = 0.obs;
 
   @override
   void onInit() {
     check_permission();
+    checkPermissions();
     super.onInit();
   }
 
@@ -42,7 +44,6 @@ class LoginController extends GetxController {
   login(String email, password) async {
     var result = await ApiProvider().login(email, password);
     if (!result.loginData.isNull) {
-      checkPermissions();
       Get.toNamed(Routes.HOME);
       loginData.value = result;
       isLoading(true);
@@ -199,7 +200,6 @@ class LoginController extends GetxController {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-                                        openAppSettings();
                                         Get.back();
                                       },
                                       child: Text(
@@ -213,7 +213,7 @@ class LoginController extends GetxController {
                                     child: TextButton(
                                         onPressed: () {
                                           openAppSettings();
-                                          // Get.back();
+                                          Get.back();
                                         },
                                         child: Text(
                                           "SETTINGS",
@@ -255,14 +255,15 @@ class LoginController extends GetxController {
   }
 
   Future<bool> checkPermissions() async {
+    MyColor colors =MyColor();
     PermissionStatus cameraStatus = await Permission.camera.status;
-    PermissionStatus microphoneStatus = await Permission.microphone.status;
+    PermissionStatus phoneStatus = await Permission.phone.status;
     PermissionStatus storageStatus = await Permission.storage.status;
 
     if (cameraStatus != PermissionStatus.granted ||
-        microphoneStatus != PermissionStatus.granted ||
+        phoneStatus != PermissionStatus.granted ||
         storageStatus != PermissionStatus.granted) {
-      openAppSettings();
+     return false;
     }
 
     return true;
