@@ -126,25 +126,25 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 }).toList(),
                               ),
                             ))),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 4,
-                              mainAxisSpacing: 4,
-                              crossAxisCount: 2),
-                          itemCount: 8,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              child: Image.network(
-                                "${controller.gallaryphotos.value.data?[index].imageUrl}",
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    )
+                    // Expanded(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: GridView.builder(
+                    //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    //         crossAxisSpacing: 4,
+                    //           mainAxisSpacing: 4,
+                    //           crossAxisCount: 2),
+                    //       itemCount: 8,
+                    //       itemBuilder: (context, index) {
+                    //         return Container(
+                    //           child: Image.network(
+                    //             "${controller.gallaryphotos.value.data?[index].imageUrl}",
+                    //           ),
+                    //         );
+                    //       },
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ],

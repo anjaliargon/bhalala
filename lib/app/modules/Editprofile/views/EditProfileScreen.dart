@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
+import '../../../widget/temp2.dart';
 import '../controllers/Editprofile_controller.dart';
 
 class EditProfileView extends GetView<EditProfileController> {
@@ -102,6 +103,13 @@ class EditProfileView extends GetView<EditProfileController> {
                               ),
                             )
                           ],
+                        ),
+                        CustomeTextFields(
+                          iconfat: FontAwesomeIcons.solidCircleUser,
+                          keyboard: 0,
+                          hint: StringConstant.name,
+                          validation: true,
+                          fieldValue: controller.nameController,
                         ),
                         customTextField(
                             hintText: StringConstant.name,
