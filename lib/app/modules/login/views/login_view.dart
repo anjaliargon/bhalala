@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -128,20 +129,84 @@ class LoginView extends GetView<LoginController> {
                       height: 10.h,
                     ),
                     InkWell(
-                      onTap: () async{
+                      onTap: () async {
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.camera,
+                          Permission.storage,
+                          Permission.phone,
+                        ].request();
                         if (_networkController.connectionStatus.value == 1 ||
                             _networkController.connectionStatus.value == 2) {
-                          if (controller.formKey.value.currentState!
-                              .validate()) {
-                            FocusScope.of(context).unfocus();
-                            controller.login(
-                                controller.emailController.value.text,
-                                controller.passwordController.value.text);
+                          if (statuses[Permission.camera] !=
+                                  PermissionStatus.granted ||
+                              statuses[Permission.storage] !=
+                                  PermissionStatus.granted ||
+                              statuses[Permission.phone] !=
+                                  PermissionStatus.granted) {
+                            Get.dialog(Dialog(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Permission",
+                                        style: TextStyle(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 10, right: 10),
+                                    child: Text(
+                                        "Allow Bhalala parivar to access  storage,CAMERA and PHONE permission for use some features \nTap Settings->Permission and turn all permission on.",
+                                        style: TextStyle(fontSize: 12.sp)),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: Text(
+                                            "CANCEL",
+                                            style: TextStyle(
+                                                color: colors.darkbrown),
+                                          )),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 5, left: 5),
+                                        child: TextButton(
+                                            onPressed: () {
+                                              openAppSettings();
+                                              Get.back();
+                                            },
+                                            child: Text(
+                                              "SETTINGS",
+                                              style: TextStyle(
+                                                  color: colors.darkbrown),
+                                            )),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ));
                           } else {
-                            return;
+                            if (controller.formKey.value.currentState!
+                                .validate()) {
+                              FocusScope.of(context).unfocus();
+                              controller.login(
+                                  controller.emailController.value.text,
+                                  controller.passwordController.value.text);
+                            } else {
+                              return;
+                            }
                           }
-                          controller.emailController.value.clear();
-                          controller.passwordController.value.clear();
                         } else {
                           Fluttertoast.showToast(
                               msg:
@@ -215,7 +280,9 @@ class LoginView extends GetView<LoginController> {
                         )),
                       ),
                     ),
-                    SizedBox(height: 2.h,)
+                    SizedBox(
+                      height: 2.h,
+                    )
                   ],
                 ),
               ),
