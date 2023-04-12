@@ -64,7 +64,7 @@ class ApiProvider {
     String query = GlobalData.profileUrl;
     final userid = box.read('userId');
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields.addAll({'user_id': "username.toString()"});
+    request.fields.addAll({'user_id': userid.toString()});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);

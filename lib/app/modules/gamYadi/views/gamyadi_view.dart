@@ -92,10 +92,13 @@ class GamYadiView extends GetView<GamYadiController> {
                     },
                   )
                 : Center(
-                    child: Text(
-                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
-                    style: TextStyle(color: colors.darkbrown, fontSize: 14.sp),
-                  ))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                      "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                      style: TextStyle(color: colors.darkbrown, fontSize: 14.sp),
+                  ),
+                    ))),
       ),
     );
   }
