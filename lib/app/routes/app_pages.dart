@@ -1,42 +1,45 @@
-import 'package:bhalala/app/modules/Editprofile/bindings/Editprofile_binding.dart';
-import 'package:bhalala/app/modules/Editprofile/views/EditProfileScreen.dart';
-import 'package:bhalala/app/modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
-import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
-import 'package:bhalala/app/modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
-import 'package:bhalala/app/modules/Memberprofile/views/Memberprofile_view.dart';
-import 'package:bhalala/app/modules/gamYadi/views/gamyadi_view.dart';
-import 'package:bhalala/app/modules/login/views/login_view.dart';
-import 'package:bhalala/app/modules/memberDetails/views/memberDetails_view.dart';
-import 'package:bhalala/app/modules/noticeBoard/views/noticeBoard_view.dart';
-import 'package:bhalala/app/modules/parivar_sahyog/parivarSahyogView.dart';
-import 'package:bhalala/app/modules/profile/views/profile_view.dart';
-import 'package:bhalala/app/modules/searchMember/views/search_view.dart';
-import 'package:bhalala/app/modules/searchmemberDetails/views/searchmemberDetails_view.dart';
-import 'package:bhalala/app/modules/signUp/views/signUp_view.dart';
 import 'package:get/get.dart';
+
 import '../../main.dart';
 import '../constant/sizeConstant.dart';
 import '../modules/About_family/About_familyscreen.dart';
+import '../modules/Editprofile/bindings/Editprofile_binding.dart';
+import '../modules/Editprofile/views/EditProfileScreen.dart';
 import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
+import '../modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
+import '../modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import '../modules/FamilymemberDetails/bindings/Familymember_binding.dart';
+import '../modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
 import '../modules/Important_numbers/Important_numberScreen.dart';
 import '../modules/Memberprofile/bindings/Memberprofile_binding.dart';
+import '../modules/Memberprofile/views/Memberprofile_view.dart';
 import '../modules/Parivar_karyalay/parivar_karyalay.dart';
+import '../modules/addmember/bindings/addmember_binding.dart';
+import '../modules/addmember/views/addmember_view.dart';
 import '../modules/gamYadi/bindings/gamYadi_binding.dart';
+import '../modules/gamYadi/views/gamyadi_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/memberDetails/bindings/memberDetails_binding.dart';
+import '../modules/memberDetails/views/memberDetails_view.dart';
 import '../modules/noticeBoard/bindings/noticeBoard_binding.dart';
 import '../modules/noticeBoard/views/Details_noticeboard.dart';
+import '../modules/noticeBoard/views/noticeBoard_view.dart';
+import '../modules/parivar_sahyog/parivarSahyogView.dart';
 import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/searchMember/bindings/search_binding.dart';
+import '../modules/searchMember/views/search_view.dart';
 import '../modules/searchMemberprofile/bindings/searchMemberprofile_binding.dart';
 import '../modules/searchMemberprofile/views/searchMemberprofile_view.dart';
 import '../modules/searchmemberDetails/bindings/searchmemberDetails_binding.dart';
+import '../modules/searchmemberDetails/views/searchmemberDetails_view.dart';
 import '../modules/signUp/bindings/signUp_binding.dart';
+import '../modules/signUp/views/signUp_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -50,7 +53,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -88,7 +91,6 @@ class AppPages {
         name: _Paths.SearchMEMBERPROFILE,
         page: () => SearchProfileView(),
         binding: SearchProfileBinding()),
-
     GetPage(
         name: _Paths.EditProfile,
         page: () => EditProfileView(),
@@ -97,7 +99,6 @@ class AppPages {
       name: _Paths.ABOUT_FAMILY,
       page: () => AboutFamily_Details(),
     ),
-
     GetPage(
       name: _Paths.PARIVARKARAYALAY,
       page: () => const parivar_karyalay(),
@@ -131,9 +132,9 @@ class AppPages {
         page: () => NoticeBoardView(),
         binding: NoticeBoardBinding()),
     GetPage(
-        name: _Paths.NOTICEBOARD,
-        page: () => NoticeBoardDetailsView(),
-     ),
+      name: _Paths.NOTICEBOARD,
+      page: () => NoticeBoardDetailsView(),
+    ),
     GetPage(
         name: _Paths.MEMBER,
         page: () => MemberDetailsView(),
@@ -141,6 +142,11 @@ class AppPages {
     GetPage(
       name: _Paths.COMITEE,
       page: () => FamilyCommitte(),
+    ),
+    GetPage(
+      name: _Paths.ADDMEMBER,
+      page: () => const AddmemberView(),
+      binding: AddmemberBinding(),
     ),
   ];
 }

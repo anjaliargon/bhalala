@@ -4,6 +4,7 @@ class GlobalData {
 
   ///login Url
   static String loginUrl = '${baseUrl}/login.php';
+  static String signupUrl = '${baseUrl}/userRegister.php';
   static String basicdataUrl = '${baseUrl}/getallbasicdata.php';
   static String searchUrl = '${baseUrl}/search_member_all.php';
   static String membercountUrl = '${baseUrl}/getmembercount.php';
@@ -13,4 +14,6 @@ class GlobalData {
   static String Familymember = '${baseUrl}/get_all_family_member.php';
   static String AlbumData = '${baseUrl}/get_year_list.php';
   static String editprofileUrl = '${baseUrl}/editProfile.php';
+  static String removememberUrl = '${baseUrl}/removemember.php';
+  static String forgotPasswordUrl = '${baseUrl}/forgotPassword.php';
 }

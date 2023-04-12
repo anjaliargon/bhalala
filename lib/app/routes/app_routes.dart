@@ -25,6 +25,7 @@ abstract class Routes {
   static const SearchMEMBERPROFILE = _Paths.SearchMEMBERPROFILE;
   static const FAMILYMEMBER = _Paths.FAMILYMEMBER;
   static const FAMILYMEMBERPROFILE = _Paths.FAMILYMEMBERPROFILE;
+  static const ADDMEMBER = _Paths.ADDMEMBER;
 }
 
 abstract class _Paths {
@@ -51,4 +52,5 @@ abstract class _Paths {
   static const SearchMEMBERPROFILE = '/searchmemberprofile';
   static const FAMILYMEMBER = '/familymembe';
   static const FAMILYMEMBERPROFILE = '/familymemberprofile';
+  static const ADDMEMBER = '/addmember';
 }

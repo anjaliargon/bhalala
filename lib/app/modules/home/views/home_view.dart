@@ -42,29 +42,33 @@ class HomeView extends GetView<HomeController> {
                           radius: 35,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Obx(
-                              () => Text(
-                                "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} \n${controller.userLastName.value.toUpperCase()}",
-                                style: TextStyle(color: colors.white),
+                      Flexible(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(
+                                () => Text(
+                                  "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
+                                  style: TextStyle(color: colors.white),
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 1.h),
-                            Obx(
-                              () => Text(
-                                controller.userEmail.value,
-                                style: TextStyle(
-                                    color: colors.white,
+                              SizedBox(height: 1.h),
+                              Obx(
+                                () => Flexible(
+                                  child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    fontSize: 11.sp),
+                                    controller.userEmail.value,
+                                    style: TextStyle(
+                                        color: colors.white, fontSize: 11.sp),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -280,7 +284,6 @@ class HomeView extends GetView<HomeController> {
                     child: InkWell(
                       onTap: () {
                         Get.toNamed(Routes.VILLAGE);
-
                       },
                       child: _container(StringConstant.gamniyadi, Icons.home),
                     ),

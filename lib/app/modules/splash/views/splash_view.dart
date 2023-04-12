@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
             Container(
                 child: Image.asset(
               "assets/images/applogo.png",
-              height: 20.h,
+              height: 22.h,
             )),
             SizedBox(
               height: 5.h,
@@ -61,14 +61,10 @@ class _SplashScreenState extends State<SplashScreen>
             Text(
               StringConstant.bhalalaparivar,
               style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 20.sp,
                   color: colors.darkbrown,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(
-              height: 2.h,
-            ),
-            CircularProgressIndicator(color: colors.darkbrown,)
           ],
         ),
       ),

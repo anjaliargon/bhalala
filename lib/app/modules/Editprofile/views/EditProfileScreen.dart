@@ -104,13 +104,13 @@ class EditProfileView extends GetView<EditProfileController> {
                             )
                           ],
                         ),
-                        CustomeTextFields(
-                          iconfat: FontAwesomeIcons.solidCircleUser,
-                          keyboard: 0,
-                          hint: StringConstant.name,
-                          validation: true,
-                          fieldValue: controller.nameController,
-                        ),
+                        // CustomeTextFields(
+                        //   iconfat: FontAwesomeIcons.a,
+                        //   keyboard: 0,
+                        //   hint: StringConstant.name,
+                        //   validation: true,
+                        //   fieldValue: controller.nameController,
+                        // ),
                         customTextField(
                             hintText: StringConstant.name,
                             iconfat: FontAwesomeIcons.solidCircleUser,

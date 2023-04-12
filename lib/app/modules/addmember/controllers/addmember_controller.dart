@@ -1,26 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
+import '../../../data/Model/basicModel.dart';
 
-import '../../../routes/app_pages.dart';
-import '../model/signUp_model.dart';
+class AddmemberController extends GetxController {
+  //TODO: Implement AddmemberController
 
-class SignUpController extends GetxController {
-  //TODO: Implement HomeController
-  Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
-  final userRegistrationData = userRegistrationModel().obs;
+  final count = 0.obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
+  Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
   RxList<String> industriesData = <String>[].obs;
-  RxList<String> accountIndustryListData = <String>[].obs;
+  RxList<IndustrieslistBasic> accountIndustryListData =RxList<IndustrieslistBasic>([]);
   RxList<String> accountEducationListData = <String>[].obs;
   RxList<String> accountBloodListData = <String>[].obs;
   RxList<String> accountVillageListData = <String>[].obs;
@@ -40,8 +34,7 @@ class SignUpController extends GetxController {
   TextEditingController bloodController = TextEditingController();
   TextEditingController villageController = TextEditingController();
   TextEditingController currentCityController = TextEditingController();
-  TextEditingController statusController = TextEditingController();
-  RxString nameValid = ''.obs;
+  TextEditingController statusController = TextEditingController();RxString nameValid = ''.obs;
   RxString fatherValid = ''.obs;
   RxString addressValid = ''.obs;
   RxString emailValid = ''.obs;
@@ -53,20 +46,12 @@ class SignUpController extends GetxController {
   RxString selectedgender = "".obs;
   RxString selectedwork = "".obs;
   RxString dropdownfamilycount = StringConstant.parivar_membercount.obs;
-  Rx<File>? selectedImg;
-  RxList<String> dropdownListfamilycount =
-      <String>["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].obs;
-
   @override
   void onInit() {
-    getAccountIndustryList();
-    getAccountStausList();
-    getAccountCurentCityList();
-    getAccountVillageList();
     getAccountBloodList();
+    getAccountStausList();
     getAccountEducationList();
-    birthController.text =
-        DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
+    getAccountIndustryList();
     super.onInit();
   }
 
@@ -79,74 +64,6 @@ class SignUpController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  userRegistration(
-      user_name,
-      mname,
-      lname,
-      gender,
-      address,
-      birthdate,
-      user_email,
-      password,
-      mobile_no,
-      industry_id,
-      busi_type,
-      business,
-      no_of_member,
-      education_id,
-      b_name,
-      v_id,
-      home_id,
-      married_id) async {
-    var result = await ApiProvider().userRegistration(
-        user_name,
-        mname,
-        lname,
-        gender,
-        address,
-        birthdate,
-        user_email,
-        password,
-        mobile_no,
-        industry_id,
-        busi_type,
-        business,
-        no_of_member,
-        education_id,
-        b_name,
-        v_id,
-        home_id,
-        married_id);
-    switch (result.status) {
-      case 1:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        // Get.toNamed(Routes.HOME);
-        break;
-
-      case 2:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-
-      case 3:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-      default:
-        print(' invalid entry');
-    }
-
-    isLoading(false);
-  }
-
   onChnagedSurname(var surname) {
     selectedsurname.value = surname;
   }
@@ -158,31 +75,6 @@ class SignUpController extends GetxController {
   onChnagedWork(var work) {
     selectedwork.value = work;
   }
-
-  void pickImagefromGallary() async {
-    final image = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 75,
-    );
-    if (image != null) {
-      selectedImg = File(image.path).obs;
-      selectedImg!.refresh();
-      update();
-    }
-  }
-
-  void pickImagefromCamara() async {
-    final image = await ImagePicker().pickImage(
-      source: ImageSource.camera,
-      imageQuality: 75,
-    );
-    if (image != null) {
-      selectedImg = File(image.path).obs;
-      selectedImg!.refresh();
-      update();
-    }
-  }
-
   datePick({required BuildContext context}) async {
     DateTime? pickedDate = await showDatePicker(
         builder: (context, child) {
@@ -207,13 +99,9 @@ class SignUpController extends GetxController {
 
   Future<void> getAccountIndustryList() async {
     accountIndustryListData.clear();
-    accountIndustryListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      for (var element in result.industrieslist!) {
-        accountIndustryListData.add(element.name.toString());
-        isLoading(true);
-      }
+      accountIndustryListData.value = result.industrieslist !;
     } else {
       isLoading(false);
     }
@@ -249,36 +137,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  //.....village
-  Future<void> getAccountVillageList() async {
-    accountVillageListData.clear();
-    accountVillageListData.add(StringConstant.villagegroup);
-    var result = await ApiProvider().getBasicData();
-    if (result.status == 1) {
-      for (var element in result.village!) {
-        accountVillageListData.add(element.vName.toString());
-        isLoading(true);
-      }
-    } else {
-      isLoading(false);
-    }
-  }
-
-  //......current city
-  Future<void> getAccountCurentCityList() async {
-    accountCurrentCityListData.clear();
-    accountCurrentCityListData.add(StringConstant.currentcity);
-    var result = await ApiProvider().getBasicData();
-    if (result.status == 1) {
-      for (var element in result.home!) {
-        accountCurrentCityListData.add(element.homeName.toString());
-        isLoading(true);
-      }
-    } else {
-      isLoading(false);
-    }
-  }
-
   //.......Status
   Future<void> getAccountStausList() async {
     accountStatusListData.clear();
@@ -293,4 +151,5 @@ class SignUpController extends GetxController {
       isLoading(false);
     }
   }
+  void increment() => count.value++;
 }

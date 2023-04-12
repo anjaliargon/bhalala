@@ -8,15 +8,20 @@ import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../routes/app_pages.dart';
+import '../model/ForgotModel.dart';
 import '../model/login_model.dart';
+import 'forgot_controller_controller.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement HomeController
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
+  final ForgotControllerController forgotController =
+      Get.put(ForgotControllerController());
   final loginData = UserLogin().obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
+  Rx<TextEditingController> forgotemailController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
   var ispasswordvisible = true.obs;
   RxString emailValid = ''.obs;
@@ -42,17 +47,26 @@ class LoginController extends GetxController {
   }
 
   login(String email, password) async {
-    var result = await ApiProvider().login(email, password);
-    if (!result.loginData.isNull) {
-      Get.toNamed(Routes.HOME);
-      loginData.value = result;
-      isLoading(true);
-    } else {
-      Fluttertoast.showToast(
-          msg: "Enter correct UserName And Password",
+    try {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(
           backgroundColor: Colors.white,
-          textColor: Colors.black);
-      isLoading(false);
+        ),
+      ));
+      var result = await ApiProvider().login(email, password);
+      if (!result.loginData.isNull) {
+        Get.toNamed(Routes.HOME);
+        loginData.value = result;
+        isLoading(true);
+      } else {
+        Fluttertoast.showToast(
+            msg: "Enter correct UserName And Password",
+            backgroundColor: Colors.white,
+            textColor: Colors.black);
+        isLoading(false);
+      }
+    } catch (exception) {
+      Get.back();
     }
   }
 
@@ -85,6 +99,7 @@ class LoginController extends GetxController {
                   left: 25, right: 25, top: 8, bottom: 15),
               child: TextFormField(
                 decoration: const InputDecoration(hintText: "Edit"),
+                controller: forgotemailController.value,
               ),
             ),
             Row(
@@ -98,7 +113,11 @@ class LoginController extends GetxController {
                         backgroundColor:
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        forgotController
+                            .forgotpassword(forgotemailController.value.text);
+                        forgotemailController.value.clear();
+                      },
                       child: Text(
                         StringConstant.send,
                         style: TextStyle(fontSize: 12.sp),
@@ -255,7 +274,7 @@ class LoginController extends GetxController {
   }
 
   Future<bool> checkPermissions() async {
-    MyColor colors =MyColor();
+    MyColor colors = MyColor();
     PermissionStatus cameraStatus = await Permission.camera.status;
     PermissionStatus phoneStatus = await Permission.phone.status;
     PermissionStatus storageStatus = await Permission.storage.status;
@@ -263,7 +282,7 @@ class LoginController extends GetxController {
     if (cameraStatus != PermissionStatus.granted ||
         phoneStatus != PermissionStatus.granted ||
         storageStatus != PermissionStatus.granted) {
-     return false;
+      return false;
     }
 
     return true;

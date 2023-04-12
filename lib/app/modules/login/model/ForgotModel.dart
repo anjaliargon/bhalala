@@ -1,11 +1,11 @@
-class userRegistrationModel {
+class ForgotPassword {
   int? status;
   String? message;
   List<String>? data;
 
-  userRegistrationModel({this.status, this.message, this.data});
+  ForgotPassword({this.status, this.message, this.data});
 
-  userRegistrationModel.fromJson(Map<String, dynamic> json) {
+  ForgotPassword.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'].cast<String>();

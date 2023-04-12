@@ -55,8 +55,7 @@ Widget commonTextField({
   TextInputAction? textInputAction,
   double borderRadius = 10,
 }) {
-
-  MyColor  colors = MyColor();
+  MyColor colors = MyColor();
   return Padding(
     padding: EdgeInsets.symmetric(
       horizontal: horizontal ?? 0,
@@ -91,56 +90,56 @@ Widget commonTextField({
         fillColor: fillColor ? colors.darkbrown : Colors.transparent,
         focusedBorder: showBfBorder
             ? OutlineInputBorder(
-          borderSide: BorderSide(
-            color: fbColor ?? colors.darkbrown,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        )
+                borderSide: BorderSide(
+                  color: fbColor ?? colors.darkbrown,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
             : UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: fbColor ?? colors.darkbrown,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
+                borderSide: BorderSide(
+                  color: fbColor ?? colors.darkbrown,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
         enabledBorder: showBeBorder
             ? OutlineInputBorder(
-          borderSide: BorderSide(
-            color: fbColor ?? colors.darkbrown,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        )
+                borderSide: BorderSide(
+                  color: fbColor ?? colors.darkbrown,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
             : UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.transparent,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
         focusedErrorBorder: showBfBorder
             ? OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        )
+                borderSide: const BorderSide(
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
             : UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
+                borderSide: const BorderSide(
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
         errorBorder: showBeBorder
             ? OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        )
+                borderSide: const BorderSide(
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
             : UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
+                borderSide: const BorderSide(
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
         counterText: counterText == "" ? null : "",
         filled: true,
 
@@ -168,13 +167,18 @@ Widget commonTextField({
     ),
   );
 }
-customTextField({required String hintText, required IconData?iconfat,
-  TextInputType? keyboardType,
-  iconButton,
-  String? errorText,
-  bool obscureText=false,
-  FormFieldValidator? validator,required TextEditingController controller,Icon? icon}) {
-  MyColor  colors = MyColor();
+
+customTextField(
+    {required String hintText,
+    required IconData? iconfat,
+    TextInputType? keyboardType,
+    iconButton,
+    String? errorText,
+    bool obscureText = false,
+    FormFieldValidator? validator,
+    required TextEditingController controller,
+    Icon? icon}) {
+  MyColor colors = MyColor();
   return Row(
     children: [
       Expanded(
@@ -199,9 +203,10 @@ customTextField({required String hintText, required IconData?iconfat,
             children: [
               // const SizedBox(height: 8),
               Padding(
-                padding: const EdgeInsets.only(right:10),
+                padding: const EdgeInsets.only(right: 10),
                 child: TextFormField(
-                  style: TextStyle(color: colors.black,fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: colors.black, fontWeight: FontWeight.bold),
                   cursorColor: colors.darkbrown,
                   keyboardType: keyboardType ?? TextInputType.text,
                   obscureText: obscureText,
@@ -217,18 +222,14 @@ customTextField({required String hintText, required IconData?iconfat,
                     border: InputBorder.none,
                     suffixIcon: iconButton,
                     hintText: hintText,
-
-                    hintStyle:   TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.sp
-
-                    ),
+                    hintStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                   ),
                 ),
               ),
-              if( errorText != null && errorText.isNotEmpty)
+              if (errorText != null && errorText.isNotEmpty)
                 const SizedBox(height: 8),
-              if( errorText != null && errorText.isNotEmpty)
+              if (errorText != null && errorText.isNotEmpty)
                 Text(errorText, style: const TextStyle(color: Colors.redAccent))
             ],
           ),
@@ -237,14 +238,16 @@ customTextField({required String hintText, required IconData?iconfat,
     ],
   );
 }
+
 _customBorder() {
-  MyColor  colors = MyColor();
+  MyColor colors = MyColor();
   return UnderlineInputBorder(
-      borderSide: BorderSide(color: colors.darkbrown ),
+    borderSide: BorderSide(color: colors.darkbrown),
   );
 }
-customeDropDown({  IconData?iconfat,Widget ? dropdown}){
-  MyColor  colors = MyColor();
+
+customeDropDown({IconData? iconfat, Widget? dropdown}) {
+  MyColor colors = MyColor();
   return Row(
     children: [
       Expanded(
@@ -268,8 +271,9 @@ customeDropDown({  IconData?iconfat,Widget ? dropdown}){
     ],
   );
 }
-profiletext({required  IconData?icons, required String heading, String? text}){
-  MyColor  colors = MyColor();
+
+profiletext({required IconData? icons, required String heading, String? text}) {
+  MyColor colors = MyColor();
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -277,17 +281,29 @@ profiletext({required  IconData?icons, required String heading, String? text}){
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FaIcon(icons,size:18.sp,color: colors.darkbrown,),
+            child: FaIcon(
+              icons,
+              size: 18.sp,
+              color: colors.darkbrown,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(heading,style: TextStyle(color: colors.darkbrown,fontSize: 12.sp),),
+            child: Text(
+              heading,
+              style: TextStyle(color: colors.darkbrown, fontSize: 12.sp),
+            ),
           )
         ],
       ),
       Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Text("$text",style: TextStyle(fontSize: 12.sp,),),
+        child: Text(
+          "$text",
+          style: TextStyle(
+            fontSize: 12.sp,
+          ),
+        ),
       ),
       Divider(
         height: 1.h,

@@ -34,7 +34,7 @@ class ProfileView extends GetView<ProfileController> {
                       onPressed: () {
                         Get.toNamed(Routes.EditProfile,
                             arguments: {
-                              ArgumentConstant.editprofiledata:controller.userProfileData.value.data!.first
+                              ArgumentConstant.editprofiledata:controller.userProfileData.value.data
                             });
                       },
                       icon: Icon(Icons.edit)),
@@ -166,7 +166,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       InkWell(
                         onTap: () {
-                          // Get.to(AddNewmemberScreen());
+                          Get.toNamed(Routes.ADDMEMBER);
                         },
                         child: Center(
                           child: Container(

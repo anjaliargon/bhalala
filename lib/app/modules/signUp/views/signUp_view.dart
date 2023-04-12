@@ -1,11 +1,14 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
+import '../../../network/controller/network_controller.dart';
+import '../../../widget/temp2.dart';
 import '../controllers/signUp_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
@@ -14,6 +17,7 @@ class SignUpView extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) {
     final signupController = Get.put(SignUpController());
+    final NetworkController _networkController = Get.put(NetworkController());
     MyColor colors = MyColor();
     String? industry;
     String? education;
@@ -39,11 +43,18 @@ class SignUpView extends GetView<SignUpController> {
               ),
             ),
             body: SingleChildScrollView(
-              child: Obx(()=>
-                 Form(
+              child: Obx(
+                () => Form(
                   key: controller.formKey.value,
                   child: Column(
                     children: [
+                      CustomeTextFields(
+                        iconfat: FontAwesomeIcons.a,
+                        keyboard: 0,
+                        hint: StringConstant.name,
+                        validation: true,
+                        fieldValue: controller.nameController,
+                      ),
                       customTextField(
                           hintText: StringConstant.name,
                           iconfat: FontAwesomeIcons.solidCircleUser,
@@ -89,14 +100,15 @@ class SignUpView extends GetView<SignUpController> {
                                   ),
                                 ),
                                 Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child:   Radio(
-                                        value: StringConstant.bhalal,
-                                        groupValue: controller.selectedsurname.value,
-                                        activeColor: colors.darkbrown,
-                                        onChanged: (value) {
-                                          controller.onChnagedSurname(value);
-                                        }),
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Radio(
+                                      value: StringConstant.bhalal,
+                                      groupValue:
+                                          controller.selectedsurname.value,
+                                      activeColor: colors.darkbrown,
+                                      onChanged: (value) {
+                                        controller.onChnagedSurname(value);
+                                      }),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
@@ -106,13 +118,13 @@ class SignUpView extends GetView<SignUpController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: "bhalala",
-                                      groupValue:controller.selectedsurname.value,
+                                      groupValue:
+                                          controller.selectedsurname.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedSurname(value);
-
                                       }),
-                                  ),
+                                ),
                                 const Padding(
                                   padding: EdgeInsets.only(top: 5),
                                   child: Text("Bhalala"),
@@ -155,7 +167,8 @@ class SignUpView extends GetView<SignUpController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: StringConstant.women,
-                                      groupValue: controller.selectedgender.value,
+                                      groupValue:
+                                          controller.selectedgender.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedGender(value);
@@ -169,7 +182,8 @@ class SignUpView extends GetView<SignUpController> {
                                   padding: const EdgeInsets.only(top: 5),
                                   child: Radio(
                                       value: StringConstant.gentelmen,
-                                      groupValue: controller.selectedgender.value,
+                                      groupValue:
+                                          controller.selectedgender.value,
                                       activeColor: colors.darkbrown,
                                       onChanged: (value) {
                                         controller.onChnagedGender(value);
@@ -267,7 +281,8 @@ class SignUpView extends GetView<SignUpController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -368,14 +383,15 @@ class SignUpView extends GetView<SignUpController> {
                             controller.update();
                           },
                           value: membercount,
-                          items:
-                          controller.dropdownListfamilycount.map((selected) {
+                          items: controller.dropdownListfamilycount
+                              .map((selected) {
                             return DropdownMenuItem(
                               value: selected,
                               child: Text(
                                 selected,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -404,7 +420,8 @@ class SignUpView extends GetView<SignUpController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -426,14 +443,15 @@ class SignUpView extends GetView<SignUpController> {
                             controller.update();
                           },
                           value: bloodgroup,
-                          items:
-                          controller.accountBloodListData.map((String items) {
+                          items: controller.accountBloodListData
+                              .map((String items) {
                             return DropdownMenuItem(
                               value: items,
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -461,7 +479,8 @@ class SignUpView extends GetView<SignUpController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -489,7 +508,8 @@ class SignUpView extends GetView<SignUpController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -517,7 +537,8 @@ class SignUpView extends GetView<SignUpController> {
                               child: Text(
                                 items,
                                 style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             );
                           }).toList(),
@@ -556,15 +577,14 @@ class SignUpView extends GetView<SignUpController> {
                               child: Container(
                                 height: 10.h,
                                 width: 25.w,
-                                // color: colors.darkbrown,
                                 child: (controller.selectedImg != null)
                                     ? Image.file(controller.selectedImg!.value,
-                                    fit: BoxFit.cover)
+                                        fit: BoxFit.cover)
                                     : Icon(
-                                  Icons.photo_size_select_actual_outlined,
-                                  size: 60.sp,
-                                  color: colors.darkbrown,
-                                ),
+                                        Icons.photo_size_select_actual_outlined,
+                                        size: 60.sp,
+                                        color: colors.darkbrown,
+                                      ),
                               ),
                             ),
                           ),
@@ -574,7 +594,41 @@ class SignUpView extends GetView<SignUpController> {
                         height: 2.h,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          if (_networkController.connectionStatus.value == 1 ||
+                              _networkController.connectionStatus.value == 2) {
+                            if (controller.formKey.value.currentState!
+                                .validate()) {
+                              var isCreateTask =
+                                  await controller.userRegistration(
+                                controller.nameController.text,
+                                controller.fatherController.text,
+                                controller.selectedsurname.value,
+                                controller.selectedgender.value,
+                                controller.addressController.text,
+                                controller.birthController.text,
+                                controller.emailController.text,
+                                controller.passwordController.text,
+                                controller.mobileController.text,
+                                controller.industryController.text,
+                                controller.selectedwork.value,
+                                controller.workController.text,
+                                controller.memberController.text,
+                                controller.educationController.text,
+                                controller.bloodController.text,
+                                controller.villageController.text,
+                                controller.currentCityController.text,
+                                controller.statusController.text,
+                              );
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                textColor: colors.black,
+                                backgroundColor: colors.white);
+                          }
+                        },
                         child: Container(
                           height: 6.h,
                           width: 90.w,
@@ -583,12 +637,12 @@ class SignUpView extends GetView<SignUpController> {
                               borderRadius: BorderRadius.circular(10)),
                           child: Center(
                               child: Text(
-                                StringConstant.registration,
-                                style: TextStyle(
-                                    color: colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.sp),
-                              )),
+                            StringConstant.registration,
+                            style: TextStyle(
+                                color: colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13.sp),
+                          )),
                         ),
                       ),
                       SizedBox(

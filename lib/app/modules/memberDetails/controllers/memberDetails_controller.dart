@@ -4,12 +4,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/MemberCount.dart';
 import '../../../routes/app_pages.dart';
 import '../Model/MemberDetailsModel.dart';
+import 'delete_controller.dart';
 
 class MemberDetailsController extends GetxController {
   //TODO: Implement HomeController
@@ -17,6 +19,7 @@ class MemberDetailsController extends GetxController {
   var errorOccurred = false.obs;
   var villageId = Get.arguments;
   final getmemberDetailsData = MemberDetails().obs;
+  final deletcontroller = Get.put(DeleteController());
 
   @override
   void onInit() {
@@ -174,6 +177,7 @@ class MemberDetailsController extends GetxController {
 
   openDilogueDelete({required BuildContext context}) {
     MyColor colors = MyColor();
+    var ids =  box.read('userId');
     return Get.dialog(Dialog(
       child: Container(
         color: colors.lightgrey,
@@ -216,7 +220,7 @@ class MemberDetailsController extends GetxController {
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                        // Get.back();
+                      deletcontroller.DeleteDataList(ids);
                       },
                       child: Text(
                         "હા",

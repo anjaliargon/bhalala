@@ -18,6 +18,7 @@ class PhotoGallaryController extends GetxController {
   @override
   void onInit() {
     getYearData();
+    getFunctionData();
     super.onInit();
   }
 
@@ -43,7 +44,6 @@ class PhotoGallaryController extends GetxController {
   }
   Future<void> getYearData() async {
     yearListData.clear();
-    yearListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getAlbumData();
     if (result.status == 1) {
       for (var element in result.data!) {
@@ -56,11 +56,10 @@ class PhotoGallaryController extends GetxController {
   }
   Future<void> getFunctionData() async {
     functionListData.clear();
-    functionListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getAlbumData();
     if (result.status == 1) {
       for (var element in result.data!) {
-        yearListData.add(element.albumName.toString());
+        functionListData.add(element.albumName.toString());
         isLoading(true);
       }
     } else {
