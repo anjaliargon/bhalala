@@ -12,7 +12,8 @@ class GlobalData {
   static String noticeUrl = '${baseUrl}/get_notice_board_details.php';
   static String profileUrl = '${baseUrl}/getUserProfile.php';
   static String Familymember = '${baseUrl}/get_all_family_member.php';
-  static String AlbumData = '${baseUrl}/get_year_list.php';
+  static String AlbumData = '${baseUrl}/get_album_name_list.php';
+  static String AlbumDatayear = '${baseUrl}/get_year_list.php';
   static String editprofileUrl = '${baseUrl}/editProfile.php';
   static String removememberUrl = '${baseUrl}/removemember.php';
   static String forgotPasswordUrl = '${baseUrl}/forgotPassword.php';

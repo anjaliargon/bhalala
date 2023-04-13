@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
+import '../../../network/controller/network_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../model/ForgotModel.dart';
 import '../model/login_model.dart';
@@ -15,10 +17,12 @@ import 'forgot_controller_controller.dart';
 class LoginController extends GetxController {
   //TODO: Implement HomeController
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
+  Rx<GlobalKey<FormState>> forgotformKey = GlobalKey<FormState>().obs;
   final ForgotControllerController forgotController =
       Get.put(ForgotControllerController());
+  final NetworkController _networkController = Get.put(NetworkController());
   final loginData = UserLogin().obs;
-  var isLoading = false.obs;
+  RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> forgotemailController = TextEditingController().obs;
@@ -47,26 +51,20 @@ class LoginController extends GetxController {
   }
 
   login(String email, password) async {
-    try {
-      Get.dialog(const Center(
-        child: CircularProgressIndicator(
+    isLoading.value = false;
+    var result = await ApiProvider().login(email, password);
+    if (!result.loginData.isNull) {
+      Get.toNamed(Routes.HOME);
+      loginData.value = result;
+      isLoading(true);
+      return true;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Enter correct UserName And Password",
           backgroundColor: Colors.white,
-        ),
-      ));
-      var result = await ApiProvider().login(email, password);
-      if (!result.loginData.isNull) {
-        Get.toNamed(Routes.HOME);
-        loginData.value = result;
-        isLoading(true);
-      } else {
-        Fluttertoast.showToast(
-            msg: "Enter correct UserName And Password",
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        isLoading(false);
-      }
-    } catch (exception) {
-      Get.back();
+          textColor: Colors.black);
+      isLoading(false);
+      return true;
     }
   }
 
@@ -97,9 +95,12 @@ class LoginController extends GetxController {
             Padding(
               padding: const EdgeInsets.only(
                   left: 25, right: 25, top: 8, bottom: 15),
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: "Edit"),
-                controller: forgotemailController.value,
+              child: Form(
+                key: forgotformKey.value,
+                child: TextFormField(
+                  decoration: const InputDecoration(hintText: "Edit"),
+                  controller: forgotemailController.value,
+                ),
               ),
             ),
             Row(
@@ -113,10 +114,28 @@ class LoginController extends GetxController {
                         backgroundColor:
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
-                      onPressed: () {
-                        forgotController
-                            .forgotpassword(forgotemailController.value.text);
-                        forgotemailController.value.clear();
+                      onPressed: () async {
+                        if (_networkController.connectionStatus.value == 1 ||
+                            _networkController.connectionStatus.value == 2) {
+                          if (forgotformKey.value.currentState!.validate()) {
+                            if (forgotemailController.value.text.isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: "ઈમેલ આઈડી જરૂરી છે ");
+                            } else {
+                              context.loaderOverlay.show();
+                              isLoading.value =
+                                  await forgotController.forgotpassword(
+                                      forgotemailController.value.text);
+                              if (isLoading.value) {
+                                context.loaderOverlay.hide();
+                              } else {
+                                return;
+                              }
+                              Get.back();
+                              forgotemailController.value.clear();
+                            }
+                          }
+                        }
                       },
                       child: Text(
                         StringConstant.send,

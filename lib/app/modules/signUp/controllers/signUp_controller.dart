@@ -17,8 +17,9 @@ class SignUpController extends GetxController {
   //TODO: Implement HomeController
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
   final userRegistrationData = userRegistrationModel().obs;
-  var isLoading = false.obs;
+  RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
+  bool isLoaderVisible = false;
   RxList<String> industriesData = <String>[].obs;
   RxList<String> accountIndustryListData = <String>[].obs;
   RxList<String> accountEducationListData = <String>[].obs;
@@ -41,14 +42,6 @@ class SignUpController extends GetxController {
   TextEditingController villageController = TextEditingController();
   TextEditingController currentCityController = TextEditingController();
   TextEditingController statusController = TextEditingController();
-  RxString nameValid = ''.obs;
-  RxString fatherValid = ''.obs;
-  RxString addressValid = ''.obs;
-  RxString emailValid = ''.obs;
-  RxString passwordValid = ''.obs;
-  RxString mobileValid = ''.obs;
-  RxString workValid = ''.obs;
-  RxString birthValid = ''.obs;
   RxString selectedsurname = "".obs;
   RxString selectedgender = "".obs;
   RxString selectedwork = "".obs;
@@ -65,8 +58,6 @@ class SignUpController extends GetxController {
     getAccountVillageList();
     getAccountBloodList();
     getAccountEducationList();
-    birthController.text =
-        DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
     super.onInit();
   }
 
@@ -99,6 +90,7 @@ class SignUpController extends GetxController {
       v_id,
       home_id,
       married_id) async {
+    isLoading.value = false;
     var result = await ApiProvider().userRegistration(
         user_name,
         mname,
@@ -118,33 +110,25 @@ class SignUpController extends GetxController {
         v_id,
         home_id,
         married_id);
-    switch (result.status) {
-      case 1:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        // Get.toNamed(Routes.HOME);
-        break;
-
-      case 2:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-
-      case 3:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-      default:
-        print(' invalid entry');
+    if (result.status == 1) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+      // Get.toNamed(Routes.HOME);
+    } else if (result.status == 2) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else {
+      isLoading(false);
+      return true;
     }
-
-    isLoading(false);
   }
 
   onChnagedSurname(var surname) {
@@ -181,28 +165,6 @@ class SignUpController extends GetxController {
       selectedImg!.refresh();
       update();
     }
-  }
-
-  datePick({required BuildContext context}) async {
-    DateTime? pickedDate = await showDatePicker(
-        builder: (context, child) {
-          return Theme(
-            data: Theme.of(context).copyWith(
-              textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(),
-              ),
-            ),
-            child: child!,
-          );
-        },
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1950),
-        lastDate: DateTime(2033));
-    if (pickedDate != null) {
-      print(pickedDate);
-      birthController.text = DateFormat('dd/MM/yyyy').format(pickedDate);
-    } else {}
   }
 
   Future<void> getAccountIndustryList() async {

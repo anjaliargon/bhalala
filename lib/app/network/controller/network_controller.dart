@@ -33,6 +33,9 @@ class NetworkController extends GetxController {
       case ConnectivityResult.mobile:
         connectionStatus.value = 2;
         break;
+      case ConnectivityResult.other:
+        connectionStatus.value = 3;
+        break;
       case ConnectivityResult.none:
         connectionStatus.value = 0;
         break;

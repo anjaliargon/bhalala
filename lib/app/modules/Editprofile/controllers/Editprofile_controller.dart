@@ -19,7 +19,8 @@ class EditProfileController extends GetxController {
   var errorOccurred = false.obs;
   MemberData? profileData;
   RxList<String> industriesData = <String>[].obs;
-  RxList<IndustrieslistBasic> accountIndustryListData =RxList<IndustrieslistBasic>([]);
+  RxList<IndustrieslistBasic> accountIndustryListData =
+      RxList<IndustrieslistBasic>([]);
   RxList<String> accountEducationListData = <String>[].obs;
   RxList<String> accountBloodListData = <String>[].obs;
   RxList<String> accountVillageListData = <String>[].obs;
@@ -40,14 +41,6 @@ class EditProfileController extends GetxController {
   TextEditingController villageController = TextEditingController();
   TextEditingController currentCityController = TextEditingController();
   TextEditingController statusController = TextEditingController();
-  RxString nameValid = ''.obs;
-  RxString fatherValid = ''.obs;
-  RxString addressValid = ''.obs;
-  RxString emailValid = ''.obs;
-  RxString passwordValid = ''.obs;
-  RxString mobileValid = ''.obs;
-  RxString workValid = ''.obs;
-  RxString birthValid = ''.obs;
   RxString selectedsurname = "".obs;
   RxString selectedgender = "".obs;
   RxString selectedwork = "".obs;
@@ -79,83 +72,68 @@ class EditProfileController extends GetxController {
     assignProfileData();
     getAccountVillageList();
     getAccountCurentCityList();
-    birthController.text =
-        DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
   }
 
   userProfilePatchList(
-      user_name,
-      mname,
-      lname,
-      birthdate,
-      gender,
-      address,
-      user_email,
-      mobile,
-      inductries,
-      work,
-      work_details,
-      education_id,
-      blood,
-      village,
-      curent_city,
-      status,
-    ) async {
-    IndustrieslistBasic industrialData =  accountIndustryListData.where((p0) => p0.name == inductries).first;
+    user_name,
+    mname,
+    lname,
+    birthdate,
+    gender,
+    address,
+    user_email,
+    mobile,
+    inductries,
+    work,
+    work_details,
+    education_id,
+    blood,
+    village,
+    curent_city,
+    status,
+  ) async {
+    isLoading.value = false;
+    IndustrieslistBasic industrialData =
+        accountIndustryListData
+            .where((p0) => p0.name == inductries)
+            .first;
     var result = await ApiProvider().editprofile(
-      user_name,
-      mname,
-      lname,
-      birthdate,
-      gender,
-      address,
-      user_email,
-      mobile,
+        user_name,
+        mname,
+        lname,
+        birthdate,
+        gender,
+        address,
+        user_email,
+        mobile,
         industrialData.id.toString(),
-      work,
-      work_details,
-      education_id,
-      blood,
-      village,
-      curent_city,
-      status);
+        work,
+        work_details,
+        education_id,
+        blood,
+        village,
+        curent_city,
+        status);
     if (result.status == 1) {
       usereditProfile.value = result;
       Fluttertoast.showToast(msg: result.message ?? '');
       isLoading(true);
-    } else {
+      return true;
+    } else if (result.status == 2) {
       Fluttertoast.showToast(msg: result.message ?? '');
+      isLoading(true);
+      return true;
+    } else {
       isLoading(false);
+      return true;
     }
-  }
-
-  datePick({required BuildContext context}) async {
-    DateTime? pickedDate = await showDatePicker(
-        builder: (context, child) {
-          return Theme(
-            data: Theme.of(context).copyWith(
-              textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(),
-              ),
-            ),
-            child: child!,
-          );
-        },
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1950),
-        lastDate: DateTime(2033));
-    if (pickedDate != null) {
-      print(pickedDate);
-      birthController.text = DateFormat('dd/MM/yyyy').format(pickedDate);
-    } else {}
   }
 
   Future<void> getAccountIndustryList() async {
     accountIndustryListData.clear();
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      accountIndustryListData.value = result.industrieslist !;
+      accountIndustryListData.value = result.industrieslist!;
     } else {
       isLoadingDustry(false);
     }
@@ -261,6 +239,7 @@ class EditProfileController extends GetxController {
 
   void assignProfileData() {
     Future.delayed(const Duration(milliseconds: 2000), () {
+      isLoading(true);
       nameController.text = profileData?.name ?? '';
       fatherController.text = profileData?.middleName ?? '';
       birthController.text = profileData?.birthdate ?? '';
@@ -279,6 +258,7 @@ class EditProfileController extends GetxController {
       selectedwork.value = profileData?.business ?? '';
       industryController.text = profileData?.business ?? '';
       // industryController.text = profileData?.business ?? '';
+      isLoading(false);
     });
   }
 }

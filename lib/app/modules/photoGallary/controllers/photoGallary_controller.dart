@@ -1,7 +1,6 @@
 import 'package:bhalala/app/modules/photoGallary/model/photoGallary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 
 class PhotoGallaryController extends GetxController {
@@ -13,7 +12,7 @@ class PhotoGallaryController extends GetxController {
   TextEditingController functionController = TextEditingController();
   RxList<String> yearListData = <String>[].obs;
   RxList<String> functionListData = <String>[].obs;
-  final gallaryphotos = Gallary().obs;
+  final gallaryphotos = Gallary_year().obs;
 
   @override
   void onInit() {
@@ -31,21 +30,12 @@ class PhotoGallaryController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  Future<void>  getalbumlist() async {
-    isLoading(true);
-    errorOccurred(false);
-    try {
-      gallaryphotos.value = await ApiProvider().getAlbumData();
-    } catch (e) {
-      errorOccurred(true);
-    } finally {
-      isLoading(false);
-    }
-  }
   Future<void> getYearData() async {
     yearListData.clear();
-    var result = await ApiProvider().getAlbumData();
+    var result = await ApiProvider().getAlbumData_year();
     if (result.status == 1) {
+
+
       for (var element in result.data!) {
         yearListData.add(element.albumYear.toString());
         isLoading(true);
@@ -56,7 +46,7 @@ class PhotoGallaryController extends GetxController {
   }
   Future<void> getFunctionData() async {
     functionListData.clear();
-    var result = await ApiProvider().getAlbumData();
+    var result = await ApiProvider().getAlbumData_year();
     if (result.status == 1) {
       for (var element in result.data!) {
         functionListData.add(element.albumName.toString());

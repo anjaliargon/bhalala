@@ -11,6 +11,7 @@ class ForgotControllerController extends GetxController {
   var isLoading = false.obs;
   final forgotData = ForgotPassword().obs;
   final count = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -27,31 +28,34 @@ class ForgotControllerController extends GetxController {
   }
 
   void increment() => count.value++;
+
   forgotpassword(String email) async {
+    isLoading(false);
     var result = await ApiProvider().forgot(email);
-    switch (result.status) {
-      case 1:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-
-      case 2:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-
-      case 3:
-        Fluttertoast.showToast(
-            msg: result.message.toString(),
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
-        break;
-      default:
-        print(' invalid entry');
+    if (result.status == 1) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else if (result.status == 2) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else if (result.status == 3) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else {
+      isLoading(false);
+      return true;
     }
   }
 }

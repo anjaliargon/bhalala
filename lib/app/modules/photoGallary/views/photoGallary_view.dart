@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../controllers/photoGallary_controller.dart';
+import '../model/photoGallary_model.dart';
 
 class PhotoGallaryView extends GetView<PhotoGallaryController> {
   const PhotoGallaryView({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
           ),
         ),
         body: Obx(
-             () => Stack(
+          () => Stack(
             children: [
               Container(
                   height: 100.h,
@@ -59,6 +60,9 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                             ),
                             onChanged: (String? newvalue) {
                               year = newvalue!;
+                              int index = controller.gallaryphotos.value.data!
+                                  .indexWhere(
+                                      (element) => element.albumName == year);
                               // year != null ? year = null : null;
                               controller.yearController.text = newvalue;
                               controller.update();
@@ -121,31 +125,30 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                               }).toList(),
                             ),
                           ))),
-                  (function != null) ?
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 4,
-                              mainAxisSpacing: 4,
-                              crossAxisCount: 2),
-                          itemCount: controller.gallaryphotos.value.data?.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              child:  Image.network(
-                                "${controller.gallaryphotos.value.data?[index].imageUrl}",
-                                fit: BoxFit.cover,
-                                errorBuilder: (a, b, c) =>
-                                    Image.asset('assets/images/applogo.png'),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ) :
-                    Container(),
-
+                  // (function != null) ?
+                  //   Expanded(
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.all(8.0),
+                  //       child: GridView.builder(
+                  //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  //           crossAxisSpacing: 4,
+                  //             mainAxisSpacing: 4,
+                  //             crossAxisCount: 2),
+                  //         itemCount: controller.gallaryphotos.value.data?.length,
+                  //         itemBuilder: (context, index) {
+                  //           return Container(
+                  //             child:  Image.network(
+                  //               "${controller.gallaryphotos.value.data?[index].imageUrl}",
+                  //               fit: BoxFit.cover,
+                  //               errorBuilder: (a, b, c) =>
+                  //                   Image.asset('assets/images/applogo.png'),
+                  //             ),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ) :
+                  //   Container(),
                 ],
               ),
             ],

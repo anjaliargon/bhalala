@@ -1,15 +1,15 @@
-class Gallary_year {
+class Gallaryalbum {
   int? status;
-  List<gallaryData_year>? data;
+  List<Data>? data;
 
-  Gallary_year({this.status, this.data});
+  Gallaryalbum({this.status, this.data});
 
-  Gallary_year.fromJson(Map<String, dynamic> json) {
+  Gallaryalbum.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <gallaryData_year>[];
+      data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new gallaryData_year.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
@@ -24,33 +24,41 @@ class Gallary_year {
   }
 }
 
-class gallaryData_year {
-  String? albumName;
+class Data {
+  String? imageId;
   String? albumYear;
-  String? id;
+  String? albumName;
+  String? imageUrl;
+  String? imageName;
   Null? createdAt;
   Null? updatedAt;
 
-  gallaryData_year(
-      {this.albumName,
+  Data(
+      {this.imageId,
         this.albumYear,
-        this.id,
+        this.albumName,
+        this.imageUrl,
+        this.imageName,
         this.createdAt,
         this.updatedAt});
 
-  gallaryData_year.fromJson(Map<String, dynamic> json) {
-    albumName = json['album_name'];
+  Data.fromJson(Map<String, dynamic> json) {
+    imageId = json['image_id'];
     albumYear = json['album_year'];
-    id = json['id'];
+    albumName = json['album_name'];
+    imageUrl = json['image_url'];
+    imageName = json['image_name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['album_name'] = this.albumName;
+    data['image_id'] = this.imageId;
     data['album_year'] = this.albumYear;
-    data['id'] = this.id;
+    data['album_name'] = this.albumName;
+    data['image_url'] = this.imageUrl;
+    data['image_name'] = this.imageName;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     return data;

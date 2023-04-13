@@ -26,7 +26,7 @@ class CustomeTextFields extends StatefulWidget {
       {Key? key,
       required this.fieldValue,
       required this.hint,
-      required IconData? iconfat,
+      required this.iconfat,
       this.icon,
       this.number,
       required this.validation,
@@ -61,27 +61,31 @@ class _CustomeTextFieldsState extends State<CustomeTextFields> {
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Expanded(
           flex: 2,
-          child: FaIcon(
-            widget.iconfat,
-            color: colors.darkbrown,
-            size: 20.sp,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15, left: 15),
+            child: FaIcon(
+              widget.iconfat,
+              color: colors.darkbrown,
+              size: 20.sp,
+            ),
           ),
         ),
         Expanded(
-          flex: 8,
+          flex: 9,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 10, top: 15),
             child: TextFormField(
-                style:  TextStyle(color: colors.black,fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: colors.black, fontWeight: FontWeight.bold),
                 controller: widget.fieldValue,
-                // ignore: missing_return
                 validator: widget.validation
                     ? (fieldValue) {
                         if (fieldValue == null || fieldValue.isEmpty) {
-                          return '${widget.hint} is empty';
+                          return '${widget.hint}';
                         } else if (widget.keyboard == 1 &&
                             (fieldValue.length < 10)) {
                           return 'Incorrect Input';
@@ -109,17 +113,17 @@ class _CustomeTextFieldsState extends State<CustomeTextFields> {
                     ? TextInputType.phone
                     : TextInputType.text,
                 inputFormatters: widget.keyboard == 1 || widget.keyboard == 5
-                    ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
+                    ? <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ]
                     : null,
                 decoration: InputDecoration(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: colors.darkbrown),
                     ),
                     labelText: widget.label,
                     hintText: widget.hint,
-                    hintStyle: const TextStyle(color: Colors.grey),
+                    hintStyle:  TextStyle(color: colors.grey),
                     labelStyle: const TextStyle(color: Colors.green),
                     // errorBorder: const OutlineInputBorder(
                     //   // borderRadius: BorderRadius.circular(10),

@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
@@ -49,29 +51,18 @@ class SignUpView extends GetView<SignUpController> {
                   child: Column(
                     children: [
                       CustomeTextFields(
-                        iconfat: FontAwesomeIcons.a,
+                        iconfat: FontAwesomeIcons.solidCircleUser,
                         keyboard: 0,
                         hint: StringConstant.name,
                         validation: true,
                         fieldValue: controller.nameController,
                       ),
-                      customTextField(
-                          hintText: StringConstant.name,
-                          iconfat: FontAwesomeIcons.solidCircleUser,
-                          controller: controller.nameController),
-                      customTextField(
-                        hintText: StringConstant.fathername,
+                      CustomeTextFields(
                         iconfat: FontAwesomeIcons.solidCircleUser,
-                        controller: controller.fatherController,
-                        validator: (father) {
-                          controller.fatherValid.value = '';
-                          if (father!.isEmpty) {
-                            controller.fatherValid.value =
-                                StringConstant.errorfathername;
-                          }
-                          // loginController.update();
-                          return null;
-                        },
+                        keyboard: 0,
+                        hint: StringConstant.fathername,
+                        validation: true,
+                        fieldValue: controller.fatherController,
                       ),
                       Row(
                         children: [
@@ -201,62 +192,41 @@ class SignUpView extends GetView<SignUpController> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      customTextField(
-                        hintText: StringConstant.Address,
-                        iconfat: FontAwesomeIcons.home,
-                        controller: controller.addressController,
+                      CustomeTextFields(
+                        iconfat: FontAwesomeIcons.house,
+                        keyboard: 0,
+                        hint: StringConstant.Address,
+                        validation: true,
+                        fieldValue: controller.addressController,
                       ),
-                      customTextField(
-                        hintText: StringConstant.birthdaydate,
+                      CustomeTextFields(
                         iconfat: FontAwesomeIcons.cakeCandles,
-                        controller: controller.birthController,
-                        iconButton: IconButton(
-                            onPressed: () {
-                              controller.datePick(context: context);
-                            },
-                            icon: const Icon(Icons.calendar_month)),
+                        keyboard: 0,
+                        hint: StringConstant.birthdaydate,
+                        validation: true,
+                        fieldValue: controller.birthController,
+                        icon: Icons.calendar_today_rounded,
                       ),
-                      customTextField(
-                        hintText: StringConstant.emailId,
+                      CustomeTextFields(
                         iconfat: FontAwesomeIcons.solidEnvelope,
-                        controller: controller.emailController,
-                        validator: (email) {
-                          controller.emailValid.value = '';
-                          if (email!.isEmpty) {
-                            controller.emailValid.value =
-                                StringConstant.errorfathername;
-                          }
-                          // loginController.update();
-                          return null;
-                        },
+                        keyboard: 3,
+                        hint: StringConstant.emailId,
+                        validation: true,
+                        fieldValue: controller.emailController,
                       ),
-                      customTextField(
-                        hintText: StringConstant.password,
+                      CustomeTextFields(
                         iconfat: FontAwesomeIcons.lock,
-                        controller: controller.passwordController,
-                        validator: (password) {
-                          controller.passwordValid.value = '';
-                          if (password!.isEmpty) {
-                            controller.passwordValid.value =
-                                StringConstant.emailId;
-                          }
-                          // loginController.update();
-                          return null;
-                        },
+                        keyboard: 5,
+                        hint: StringConstant.password,
+                        validation: true,
+                        fieldValue: controller.passwordController,
                       ),
-                      customTextField(
-                        hintText: StringConstant.mobile,
+                      CustomeTextFields(
                         iconfat: FontAwesomeIcons.mobileScreen,
-                        controller: controller.mobileController,
-                        validator: (mobile) {
-                          controller.mobileValid.value = '';
-                          if (mobile!.isEmpty) {
-                            controller.mobileValid.value =
-                                StringConstant.errorfathername;
-                          }
-                          // loginController.update();
-                          return null;
-                        },
+                        keyboard: 1,
+                        hint: StringConstant.mobile,
+                        validation: true,
+                        fieldValue: controller.mobileController,
                       ),
                       //// Industrial
                       customeDropDown(
@@ -364,10 +334,13 @@ class SignUpView extends GetView<SignUpController> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      customTextField(
-                          hintText: StringConstant.work_details,
-                          iconfat: FontAwesomeIcons.shop,
-                          controller: controller.workController),
+                      CustomeTextFields(
+                        iconfat: FontAwesomeIcons.shop,
+                        keyboard: 0,
+                        hint: StringConstant.work_details,
+                        validation: true,
+                        fieldValue: controller.workController,
+                      ),
                       customeDropDown(
                         iconfat: FontAwesomeIcons.userGroup,
                         dropdown: DropdownButton(
@@ -599,27 +572,101 @@ class SignUpView extends GetView<SignUpController> {
                               _networkController.connectionStatus.value == 2) {
                             if (controller.formKey.value.currentState!
                                 .validate()) {
-                              var isCreateTask =
-                                  await controller.userRegistration(
-                                controller.nameController.text,
-                                controller.fatherController.text,
-                                controller.selectedsurname.value,
-                                controller.selectedgender.value,
-                                controller.addressController.text,
-                                controller.birthController.text,
-                                controller.emailController.text,
-                                controller.passwordController.text,
-                                controller.mobileController.text,
-                                controller.industryController.text,
-                                controller.selectedwork.value,
-                                controller.workController.text,
-                                controller.memberController.text,
-                                controller.educationController.text,
-                                controller.bloodController.text,
-                                controller.villageController.text,
-                                controller.currentCityController.text,
-                                controller.statusController.text,
-                              );
+                              if (controller.workController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.work_details);
+                              } else if (controller
+                                  .memberController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "ઘરના સભ્ય પસંદ કરો ");
+                              } else if (controller
+                                  .educationController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.education_chooes);
+                              } else if (controller
+                                  .bloodController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.blood_chooes);
+                              } else if (controller
+                                  .villageController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.village);
+                              } else if (controller
+                                  .currentCityController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.currentcity);
+                              } else if (controller.selectedImg == null) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
+                              } else if (controller.statusController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "controller.statusController.text");
+                              }  else if (controller.selectedgender.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી જાતિ પસંદ કરો");
+                              }else if (controller.selectedsurname.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી અટક  પસંદ કરો");
+                              }else if (controller.selectedwork.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
+                              }
+                              else {
+                                context.loaderOverlay.show();
+                                controller.isLoading.value =
+                                    await controller.userRegistration(
+                                  controller.nameController.text,
+                                  controller.fatherController.text,
+                                  controller.selectedsurname.value,
+                                  controller.selectedgender.value,
+                                  controller.addressController.text,
+                                  controller.birthController.text,
+                                  controller.emailController.text,
+                                  controller.passwordController.text,
+                                  controller.mobileController.text,
+                                  controller.industryController.text,
+                                  controller.selectedwork.value,
+                                  controller.workController.text,
+                                  controller.memberController.text,
+                                  controller.educationController.text,
+                                  controller.bloodController.text,
+                                  controller.villageController.text,
+                                  controller.currentCityController.text,
+                                  controller.statusController.text,
+                                );
+                                controller.nameController.clear();
+                                controller.fatherController.clear();
+                                controller.selectedsurname;
+                                controller.selectedgender;
+                                controller.addressController.clear();
+                                controller.birthController.clear();
+                                controller.emailController.clear();
+                                controller.passwordController.clear();
+                                controller.mobileController.clear();
+                                controller.industryController.clear();
+                                controller.selectedwork;
+                                controller.workController.clear();
+                                controller.memberController.clear();
+                                controller.educationController.clear();
+                                controller.bloodController.clear();
+                                controller.villageController.clear();
+                                controller.currentCityController.clear();
+                                controller.statusController.clear();
+                                controller.memberController.clear();
+                                controller.educationController.clear();
+                                controller.bloodController.clear();
+                                controller.villageController.clear();
+                                controller.currentCityController.clear();
+                                controller.statusController.clear();
+                                controller.selectedwork.close();
+                                controller.selectedsurname.close();
+                                controller.selectedgender.close();
+                                controller.selectedImg!.close();
+                                if (controller.isLoading.value) {
+                                  Get.back();
+                                  context.loaderOverlay.hide();
+                                }
+                              }
                             }
                           } else {
                             Fluttertoast.showToast(

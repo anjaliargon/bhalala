@@ -9,11 +9,14 @@ import '../../../constant/screens/loading_and_error_screen.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
 import '../../Memberprofile/controllers/Memberprofile_controller.dart';
+import '../../memberDetails/controllers/memberDetails_controller.dart';
 import '../controllers/Familymember_controller.dart';
 
 class FamilyMemberView extends GetView<FamilyMemberController> {
   FamilyMemberView({Key? key}) : super(key: key);
   final usercontroller = Get.put(MemberProfileController());
+  final familyusercontroller = Get.put(MemberDetailsController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,10 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                                 if (controller
                                     .familyMemberData.value.data?[index].rId ==
                                     box.read('userId')) {
-                                  Get.toNamed(Routes.EditProfile);
+                                  Get.toNamed(Routes.EditProfile,arguments: {
+                                    ArgumentConstant.editprofiledata: familyusercontroller
+                                        .getmemberDetailsData.value.data![index]
+                                  });
                                 } else {
                                   controller.openDilogueNotEdit(context: context);
                                 }
