@@ -27,7 +27,7 @@ class DeleteController extends GetxController {
   void increment() => count.value++;
   var isLoading = false.obs;
 
-  DeleteDataList(String ids) async {
+  DeleteDataList(String ids, var index) async {
     print(ids);
     try {
       var result =

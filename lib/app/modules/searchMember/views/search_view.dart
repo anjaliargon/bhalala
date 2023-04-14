@@ -1,15 +1,19 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
+import '../../../network/controller/network_controller.dart';
 import '../controllers/search_controller.dart';
 
 class SearchView extends GetView<SearchController> {
-  const SearchView({Key? key}) : super(key: key);
+  SearchView({Key? key}) : super(key: key);
+  final NetworkController _networkController = Get.put(NetworkController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +50,7 @@ class SearchView extends GetView<SearchController> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: colors.darkbrown),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Row(
                       children: [
@@ -60,7 +63,10 @@ class SearchView extends GetView<SearchController> {
                         Expanded(
                           flex: 6,
                           child: DropdownButton(
-                            hint: Text(StringConstant.search_village,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
+                            hint: Text(StringConstant.search_village,
+                                style: TextStyle(
+                                    color: colors.black,
+                                    fontWeight: FontWeight.w500)),
                             isExpanded: true,
                             elevation: 0,
                             underline: Container(
@@ -72,8 +78,8 @@ class SearchView extends GetView<SearchController> {
                               controller.update();
                             },
                             value: village,
-                            items: controller.accountVillageListData
-                                .map((items) {
+                            items:
+                                controller.accountVillageListData.map((items) {
                               return DropdownMenuItem(
                                 value: items.vName,
                                 child: Text(
@@ -95,8 +101,7 @@ class SearchView extends GetView<SearchController> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: colors.darkbrown),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Row(
                       children: [
@@ -109,7 +114,10 @@ class SearchView extends GetView<SearchController> {
                         Expanded(
                           flex: 6,
                           child: DropdownButton(
-                            hint: Text(StringConstant.search_home,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
+                            hint: Text(StringConstant.search_home,
+                                style: TextStyle(
+                                    color: colors.black,
+                                    fontWeight: FontWeight.w500)),
                             isExpanded: true,
                             elevation: 0,
                             underline: Container(
@@ -144,8 +152,7 @@ class SearchView extends GetView<SearchController> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: colors.darkbrown),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Row(
                       children: [
@@ -162,7 +169,10 @@ class SearchView extends GetView<SearchController> {
                         Expanded(
                           flex: 6,
                           child: DropdownButton(
-                            hint: Text(StringConstant.work_sectorchoice,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
+                            hint: Text(StringConstant.work_sectorchoice,
+                                style: TextStyle(
+                                    color: colors.black,
+                                    fontWeight: FontWeight.w500)),
                             isExpanded: true,
                             elevation: 0,
                             underline: Container(
@@ -174,8 +184,8 @@ class SearchView extends GetView<SearchController> {
                               controller.update();
                             },
                             value: industry,
-                            items: controller.accountIndustryListData
-                                .map((items) {
+                            items:
+                                controller.accountIndustryListData.map((items) {
                               return DropdownMenuItem(
                                 value: items.name,
                                 child: Text(
@@ -197,8 +207,7 @@ class SearchView extends GetView<SearchController> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: colors.darkbrown),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Row(
                       children: [
@@ -215,7 +224,10 @@ class SearchView extends GetView<SearchController> {
                         Expanded(
                           flex: 6,
                           child: DropdownButton(
-                            hint: Text(StringConstant.search_education,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
+                            hint: Text(StringConstant.search_education,
+                                style: TextStyle(
+                                    color: colors.black,
+                                    fontWeight: FontWeight.w500)),
                             isExpanded: true,
                             elevation: 0,
                             underline: Container(
@@ -250,8 +262,7 @@ class SearchView extends GetView<SearchController> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: colors.darkbrown),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Row(
                       children: [
@@ -268,7 +279,10 @@ class SearchView extends GetView<SearchController> {
                         Expanded(
                           flex: 6,
                           child: DropdownButton(
-                            hint: Text(StringConstant.blood_chooes,style: TextStyle(color: colors.black,fontWeight: FontWeight.w500)),
+                            hint: Text(StringConstant.blood_chooes,
+                                style: TextStyle(
+                                    color: colors.black,
+                                    fontWeight: FontWeight.w500)),
                             isExpanded: true,
                             elevation: 0,
                             underline: Container(
@@ -302,14 +316,38 @@ class SearchView extends GetView<SearchController> {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(colors.darkbrown)),
-                    onPressed: () {
-                      controller.search(
-                        controller.villageController.value.text,
-                        controller.homeController.value.text,
-                        controller.industryController.value.text,
-                        controller.educationController.value.text,
-                        controller.bloodController.value.text,
-                      );
+                    onPressed: () async {
+                      if (_networkController.connectionStatus.value == 1 ||
+                          _networkController.connectionStatus.value == 2) {
+                        if (controller.bloodController.text.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: StringConstant.blood_chooes);
+                        } else if (controller
+                            .educationController.text.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: StringConstant.education_chooes);
+                        } else if (controller.industryController.text.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: StringConstant.work_details);
+                        } else if (controller.villageController.text.isEmpty) {
+                          Fluttertoast.showToast(msg: StringConstant.village);
+                        } else if (controller.homeController.text.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: StringConstant.currentcity);
+                        } else {
+                          context.loaderOverlay.show();
+                          controller.isLoading.value = await controller.search(
+                            controller.villageController.value.text,
+                            controller.homeController.value.text,
+                            controller.industryController.value.text,
+                            controller.educationController.value.text,
+                            controller.bloodController.value.text,
+                          );
+                          if (controller.isLoading.value) {
+                            context.loaderOverlay.hide();
+                          }
+                        }
+                      }
                     },
                     child: Text("શોધો"))
               ],

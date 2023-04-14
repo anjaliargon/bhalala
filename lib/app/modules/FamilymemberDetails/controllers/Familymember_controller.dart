@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../constant/Color.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../routes/app_pages.dart';
 
+import '../../memberDetails/controllers/delete_controller.dart';
 import '../Model/FamilyMemberModel.dart';
 
 class FamilyMemberController extends GetxController {
@@ -16,7 +18,7 @@ class FamilyMemberController extends GetxController {
   var errorOccurred = false.obs;
   var memeberId = Get.arguments;
   final familyMemberData = FamilyMember().obs;
-
+  final deletcontroller = Get.put(DeleteController());
   @override
   void onInit() {
     getFamilymemberCount();
@@ -182,8 +184,9 @@ class FamilyMemberController extends GetxController {
     ));
   }
 
-  openDilogueDelete({required BuildContext context}) {
+  openDilogueDelete({required BuildContext context,required int index}) {
     MyColor colors = MyColor();
+    var ids =  familyMemberData.value.data?[index].fId;
     return Get.dialog(Dialog(
       child: Container(
         color: colors.lightgrey,
@@ -226,7 +229,7 @@ class FamilyMemberController extends GetxController {
                         MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                        // Get.back();
+                        deletcontroller.DeleteDataList(ids!,index);
                       },
                       child: Text(
                         "હા",

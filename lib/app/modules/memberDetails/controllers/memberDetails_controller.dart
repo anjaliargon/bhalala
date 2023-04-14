@@ -175,7 +175,7 @@ class MemberDetailsController extends GetxController {
     ));
   }
 
-  openDilogueDelete({required BuildContext context}) {
+  openDilogueDelete({required BuildContext context,required int index}) {
     MyColor colors = MyColor();
     var ids =  box.read('userId');
     return Get.dialog(Dialog(
@@ -220,7 +220,8 @@ class MemberDetailsController extends GetxController {
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                      deletcontroller.DeleteDataList(ids);
+                      deletcontroller.DeleteDataList(ids,index);
+                      Get.back();
                       },
                       child: Text(
                         "હા",

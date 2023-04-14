@@ -15,7 +15,8 @@ class SearchController extends GetxController {
   RxList<VillageBasic> accountVillageListData = RxList<VillageBasic>([]);
   RxList<String> accountBloodListData = <String>[].obs;
   RxList<String> accountEducationListData = <String>[].obs;
-  RxList<IndustrieslistBasic> accountIndustryListData =RxList<IndustrieslistBasic>([]);
+  RxList<IndustrieslistBasic> accountIndustryListData =
+      RxList<IndustrieslistBasic>([]);
   RxList<String> accountHomeListData = <String>[].obs;
   TextEditingController industryController = TextEditingController();
   TextEditingController educationController = TextEditingController();
@@ -43,43 +44,53 @@ class SearchController extends GetxController {
     super.onClose();
   }
 
-  Future<void> search(String village, String home, String industri,
-      String education, String blood) async {
-    VillageBasic villageData =  accountVillageListData.where((p0) => p0.vName == village).first;
-    IndustrieslistBasic industrialData =  accountIndustryListData.where((p0) => p0.name == industri).first;
-    var result =
-        await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
+  search(String village, String home, String industri, String education,
+      String blood) async {
+    VillageBasic villageData =
+        accountVillageListData.where((p0) => p0.vName == village).first;
+    IndustrieslistBasic industrialData =
+        accountIndustryListData.where((p0) => p0.name == industri).first;
+    isLoading.value = false;
+    var result = await ApiProvider().search(villageData.vId.toString(), home,
+        industrialData.id.toString(), education, blood);
     if (!result.data.isNull) {
       Get.toNamed(Routes.SEARCHMEMBER);
-      print(result.data?.length);
       searchData.value = result;
-    } else {
+      isLoading(true);
+      return true;
+    } else if (result.data.isNull) {
       Fluttertoast.showToast(
           msg: "કોઈ સભ્ય મળ્યું નથી",
           backgroundColor: Colors.white,
           textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else {
       isLoading(false);
+      return true;
     }
   }
 
-  Future<void> getAccountVillageList() async {
+  getAccountVillageList() async {
     accountVillageListData.clear();
-    // accountVillageListData.add(StringConstant.villagegroup);
+    isLoading.value = false;
     BasicModel result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       accountVillageListData.value = result.village!;
+      isLoading(true);
+      return true;
       // for (var element in result.village!) {
       //   accountVillageListData.add(element.vName.toString());
       //   isLoading(true);
       // }
     } else {
       isLoading(false);
+      return true;
     }
   }
 
   Future<void> getAccountBloodList() async {
     accountBloodListData.clear();
-    accountBloodListData.add(StringConstant.bloodgroup_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.bloodGroup!) {
@@ -93,7 +104,6 @@ class SearchController extends GetxController {
 
   Future<void> getAccountIndustryList() async {
     accountIndustryListData.clear();
-    // accountIndustryListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       accountIndustryListData.value = result.industrieslist!;
@@ -108,7 +118,6 @@ class SearchController extends GetxController {
 
   Future<void> getAccountEducationList() async {
     accountEducationListData.clear();
-    accountEducationListData.add(StringConstant.education_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.education!) {
@@ -122,7 +131,6 @@ class SearchController extends GetxController {
 
   Future<void> getHomeList() async {
     accountHomeListData.clear();
-    accountHomeListData.add(StringConstant.education_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.home!) {

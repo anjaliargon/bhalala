@@ -249,15 +249,15 @@ class EditProfileController extends GetxController {
       workController.text = profileData?.business ?? '';
       educationController.text = profileData?.educationId ?? '';
       bloodController.text = profileData?.bName ?? '';
-      villageController.text = profileData?.vId ?? '';
-      currentCityController.text = profileData?.homeId ?? '';
-      statusController.text = profileData?.marriedId ?? '';
-      statusController.text = profileData?.marriedId ?? '';
       selectedgender.value = profileData?.gender ?? '';
       selectedsurname.value = profileData?.lastName ?? '';
       selectedwork.value = profileData?.business ?? '';
       industryController.text = profileData?.business ?? '';
-      // industryController.text = profileData?.business ?? '';
+      educationController.text = profileData?.educationId ?? '';
+      bloodController.text = profileData?.bName ?? '';
+      villageController.text = profileData?.vId ?? '';
+      currentCityController.text = profileData?.homeId ?? '';
+      statusController.text = profileData?.marriedId ?? '';
       isLoading(false);
     });
   }

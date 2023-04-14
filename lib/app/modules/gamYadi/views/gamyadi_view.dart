@@ -28,74 +28,78 @@ class GamYadiView extends GetView<GamYadiController> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           elevation: 0),
-      body: Obx(
-        () => (_networkController.connectionStatus.value == 1 ||
-                _networkController.connectionStatus.value == 2 ||
-                _networkController.connectionStatus.value == 3)
-            ? GridView.builder(
-                itemCount: controller.getmemberData.value.data?.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.MEMBER,
-                            arguments: controller
-                                .getmemberData.value.data?[index].village?.vId);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: colors.lightgrey,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(6))),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              controller.getmemberData.value.data?[index]
-                                      .village?.vName ??
-                                  '',
-                              style: TextStyle(
-                                  color: colors.darkbrown,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            Text(
-                              "કુટુંબ ની સંખ્યા  - ${controller.getmemberData.value.data?[index].count}",
-                              style: TextStyle(
-                                  color: colors.darkbrown, fontSize: 12.sp),
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            Text(
-                              "જન  સંખ્યા  - ${controller.getmemberData.value.data?[index].allMemeber}",
-                              style: TextStyle(
-                                  color: colors.darkbrown, fontSize: 12.sp),
-                            ),
-                          ],
-                        ),
-                      ),
+      body: Obx(() => LoadingAndErrorScreen(
+            isLoading: controller.isLoading.value,
+            errorOccurred: controller.errorOccurred.value,
+            errorResolvingFunction: controller.getmemberData,
+            child: (_networkController.connectionStatus.value == 1 ||
+                    _networkController.connectionStatus.value == 2 ||
+                    _networkController.connectionStatus.value == 3)
+                ? GridView.builder(
+                    itemCount: controller.getmemberData.value.data?.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
                     ),
-                  );
-                },
-              )
-            : Center(
-                child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
-                  style: TextStyle(color: colors.white, fontSize: 14.sp),
-                ),
-              )),
-      ),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.MEMBER,
+                                arguments: controller.getmemberData.value
+                                    .data?[index].village?.vId);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: colors.lightgrey,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(6))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  controller.getmemberData.value.data?[index]
+                                          .village?.vName ??
+                                      '',
+                                  style: TextStyle(
+                                      color: colors.darkbrown,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(
+                                  height: 0.5.h,
+                                ),
+                                Text(
+                                  "કુટુંબ ની સંખ્યા  - ${controller.getmemberData.value.data?[index].count}",
+                                  style: TextStyle(
+                                      color: colors.darkbrown, fontSize: 12.sp),
+                                ),
+                                SizedBox(
+                                  height: 0.5.h,
+                                ),
+                                Text(
+                                  "જન  સંખ્યા  - ${controller.getmemberData.value.data?[index].allMemeber}",
+                                  style: TextStyle(
+                                      color: colors.darkbrown, fontSize: 12.sp),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                      style: TextStyle(color: colors.white, fontSize: 14.sp),
+                    ),
+                  )),
+          )),
     );
   }
 }

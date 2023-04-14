@@ -73,7 +73,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                             if (controller.getmemberDetailsData.value
                                     .data?[index].rId ==
                                 box.read('userId')) {
-                              controller.openDilogueDelete(context: context);
+                              controller.openDilogueDelete(context: context,index: index);
                             } else {
                               controller.openDilogueNotDelete(context: context);
                             }

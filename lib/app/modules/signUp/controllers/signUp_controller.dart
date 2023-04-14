@@ -10,24 +10,28 @@ import 'package:intl/intl.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 
+import '../../../data/Model/basicModel.dart';
 import '../../../routes/app_pages.dart';
 import '../model/signUp_model.dart';
 
 class SignUpController extends GetxController {
   //TODO: Implement HomeController
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
+  Rx<GlobalKey<FormState>> familyformKey = GlobalKey<FormState>().obs;
   final userRegistrationData = userRegistrationModel().obs;
   RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
   bool isLoaderVisible = false;
   RxList<String> industriesData = <String>[].obs;
-  RxList<String> accountIndustryListData = <String>[].obs;
+  RxList<IndustrieslistBasic> accountIndustryListData =
+  RxList<IndustrieslistBasic>([]);
   RxList<String> accountEducationListData = <String>[].obs;
   RxList<String> accountBloodListData = <String>[].obs;
-  RxList<String> accountVillageListData = <String>[].obs;
+  RxList<VillageBasic> accountVillageListData = RxList<VillageBasic>([]);
   RxList<String> accountCurrentCityListData = <String>[].obs;
   RxList<String> accountStatusListData = <String>[].obs;
   TextEditingController nameController = TextEditingController();
+  TextEditingController fnameController = TextEditingController();
   TextEditingController fatherController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -87,9 +91,14 @@ class SignUpController extends GetxController {
       no_of_member,
       education_id,
       b_name,
+      village_name,
       v_id,
       home_id,
       married_id) async {
+    VillageBasic villageData =
+        accountVillageListData.where((p0) => p0.vName == v_id).first;
+    IndustrieslistBasic industrialData =
+        accountIndustryListData.where((p0) => p0.name == industry_id).first;
     isLoading.value = false;
     var result = await ApiProvider().userRegistration(
         user_name,
@@ -101,13 +110,14 @@ class SignUpController extends GetxController {
         user_email,
         password,
         mobile_no,
-        industry_id,
+        industrialData.id.toString(),
         busi_type,
         business,
         no_of_member,
         education_id,
         b_name,
-        v_id,
+        village_name,
+        villageData.vId.toString(),
         home_id,
         married_id);
     if (result.status == 1) {
@@ -117,7 +127,6 @@ class SignUpController extends GetxController {
           textColor: Colors.black);
       isLoading(true);
       return true;
-      // Get.toNamed(Routes.HOME);
     } else if (result.status == 2) {
       Fluttertoast.showToast(
           msg: result.message.toString(),
@@ -169,13 +178,13 @@ class SignUpController extends GetxController {
 
   Future<void> getAccountIndustryList() async {
     accountIndustryListData.clear();
-    accountIndustryListData.add(StringConstant.workdetails);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      for (var element in result.industrieslist!) {
-        accountIndustryListData.add(element.name.toString());
-        isLoading(true);
-      }
+      accountIndustryListData.value = result.industrieslist!;
+      // for (var element in result.industrieslist!) {
+      //   accountIndustryListData.add(element.name.toString());
+      //   isLoading(true);
+      // }
     } else {
       isLoading(false);
     }
@@ -212,17 +221,21 @@ class SignUpController extends GetxController {
   }
 
   //.....village
-  Future<void> getAccountVillageList() async {
+  getAccountVillageList() async {
     accountVillageListData.clear();
-    accountVillageListData.add(StringConstant.villagegroup);
-    var result = await ApiProvider().getBasicData();
+    isLoading.value = false;
+    BasicModel result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      for (var element in result.village!) {
-        accountVillageListData.add(element.vName.toString());
-        isLoading(true);
-      }
+      accountVillageListData.value = result.village!;
+      isLoading(true);
+      return true;
+      // for (var element in result.village!) {
+      //   accountVillageListData.add(element.vName.toString());
+      //   isLoading(true);
+      // }
     } else {
       isLoading(false);
+      return true;
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/no_internet/check_network.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -71,7 +72,8 @@ class LoginView extends GetView<LoginController> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Please Enter Email";
-                            } else if (EmailValidator.validate(value.trim()) ==
+                            } else if (EmailValidator.validate(
+                                    value.trim()) ==
                                 false) {
                               return "Please Enter Valid Email";
                             }
@@ -227,9 +229,10 @@ class LoginView extends GetView<LoginController> {
                                 ],
                               ),
                             ));
-                            controller.isLoading.value = await controller.login(
-                                controller.emailController.value.text,
-                                controller.passwordController.value.text);
+                            controller.isLoading.value =
+                                await controller.login(
+                                    controller.emailController.value.text,
+                                    controller.passwordController.value.text);
                             if (controller.isLoading.value) {
                               context.loaderOverlay.hide();
                             }

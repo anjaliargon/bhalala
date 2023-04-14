@@ -60,9 +60,9 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                             ),
                             onChanged: (String? newvalue) {
                               year = newvalue!;
-                              int index = controller.gallaryphotos.value.data!
-                                  .indexWhere(
-                                      (element) => element.albumName == year);
+                              // int index = controller.gallaryphotos.value.data!
+                              //     .indexWhere(
+                              //         (element) => element.albumName == year);
                               // year != null ? year = null : null;
                               controller.yearController.text = newvalue;
                               controller.update();

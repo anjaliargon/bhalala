@@ -8,10 +8,10 @@ import '../../memberDetails/Model/MemberDetailsModel.dart';
 import '../model/profileModel.dart';
 
 class ProfileController extends GetxController {
-  final userProfileData = MemberDetails().obs;
+  final userProfileData = Profilemodel().obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
-
+  // ProfileData? userData;
   @override
   void onInit() {
     userProfile();
