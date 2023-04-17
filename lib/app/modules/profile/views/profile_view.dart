@@ -2,14 +2,11 @@ import 'package:bhalala/app/constant/Color.dart';
 import 'package:bhalala/app/no_internet/check_network.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-
 import '../../../routes/app_pages.dart';
-import '../../Memberprofile/controllers/Memberprofile_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
