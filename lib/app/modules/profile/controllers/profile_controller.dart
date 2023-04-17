@@ -12,6 +12,7 @@ class ProfileController extends GetxController {
   final userProfileData = Profilemodel().obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
+  final userid = "".obs;
 
   @override
   void onInit() {
@@ -47,5 +48,8 @@ class ProfileController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+  assigndata(){
+    userid.value  =  userProfileData.value.data?.first.rId ??'';
   }
 }

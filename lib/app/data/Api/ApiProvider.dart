@@ -50,6 +50,10 @@ class ApiProvider {
         box.write('userId', loginModel.loginData?.rId);
         box.write('emailid', loginModel.loginData?.emailed);
         box.write('age', loginModel.loginData?.age);
+        box.write('address', loginModel.loginData?.address);
+        box.write('v_id_int', loginModel.loginData?.vIdInt);
+        box.write('v_id', loginModel.loginData?.vId);
+        box.write('home_id', loginModel.loginData?.homeId);
         Fluttertoast.showToast(
             msg: StringConstant.suceesfullylogin,
             backgroundColor: Colors.white,
@@ -81,11 +85,30 @@ class ApiProvider {
     return profilemodel;
   }
 
-  Future<deleteRecords> deleteData(forgotemail) async {
+  Future<deleteRecords> deleteData(ids) async {
     deleteRecords deletemodel = deleteRecords();
     String query = GlobalData.removememberUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields.addAll({'user_id': forgotemail.toString()});
+    request.fields.addAll({'user_id': ids.toString(),'type': 'member'});
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+    Map<String, dynamic> data = jsonDecode(response1.body);
+    if (response1.statusCode == 200) {
+      deletemodel = deleteRecords.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return deletemodel;
+  }
+
+  Future<deleteRecords> deleteFamilyData(forgotemail) async {
+    deleteRecords deletemodel = deleteRecords();
+    String query = GlobalData.removememberUrl;
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+    request.fields
+        .addAll({'user_id': forgotemail.toString(), 'type': 'member'});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -239,7 +262,7 @@ class ApiProvider {
       box.write('emailid', editprofilemodel.data?.first.emailed);
       box.write('UserFirstname', editprofilemodel.data?.first.name);
       box.write('Userlastname', editprofilemodel.data?.first.lastName);
-      box.write('Usermiddlename',editprofilemodel.data?.first.middleName);
+      box.write('Usermiddlename', editprofilemodel.data?.first.middleName);
     } else {
       print(response.reasonPhrase);
     }
@@ -257,7 +280,6 @@ class ApiProvider {
     final result = jsonDecode(response1.body) as Map<String, dynamic>;
 
     if (response1.statusCode == 200) {
-
       basicmodel = BasicModel.fromJson(result);
     } else {
       print(response.reasonPhrase);
@@ -412,21 +434,13 @@ class ApiProvider {
       mname,
       lname,
       gender,
-      address,
       birthdate,
-      user_email,
-      password,
-      mobile_no,
       b_name,
       married_id,
       industry_id,
       busi_type,
       business,
-      v_name,
-      education_id,
-      v_id,
-      home_id,
-      no_of_member) async {
+      education_id) async {
     AddMember addmember = AddMember();
     String query = GlobalData.addMember;
     var request = http.MultipartRequest('POST', Uri.parse(query));
@@ -435,24 +449,24 @@ class ApiProvider {
       'user_name': user_name.toString(),
       'birthdate': birthdate.toString(),
       'gender': gender.toString(),
-      'address': 'surat',
+      'address': box.read("address"),
       'user_email': box.read("emailid"),
       'mobile_no': box.read("mobileno"),
-      'business': 'study',
-      'password': '1234567',
+      'business': business.toString(),
       'education_id': education_id.toString(),
       'age': box.read('age'),
       'married_id': married_id.toString(),
-      'v_id': 'રુપાવટી',
+      'v_id': box.read("v_id"),
       'B_name': b_name.toString(),
-      'home_id': 'સુરત',
+      'home_id': box.read("home_id"),
       'mname': mname.toString(),
       'lname': lname.toString(),
       'industry_id': industry_id.toString(),
       'busi_type': busi_type.toString(),
-      'user_profile': 'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB',
-      // 'user_id': box.read("userId"),
-      'v_id_int': '1'
+      'user_profile':
+          'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB',
+      'user_id': box.read("userId"),
+      'v_id_int': box.read("v_id_int")
     });
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);

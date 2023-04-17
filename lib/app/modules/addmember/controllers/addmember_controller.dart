@@ -88,22 +88,14 @@ class AddmemberController extends GetxController {
       mname,
       lname,
       gender,
-      address,
       birthdate,
-      user_email,
-      password,
-      mobile_no,
       industry_id,
       busi_type,
       business,
-      no_of_member,
       education_id,
       b_name,
-      village_name,
-      v_id,
-      home_id,
       married_id,
-      user_id) async {
+     ) async {
     // VillageBasic villageData =
     //     accountVillageListData.where((p0) => p0.vName == v_id).first;
     IndustrieslistBasic industrialData =
@@ -114,22 +106,14 @@ class AddmemberController extends GetxController {
         mname,
         lname,
         gender,
-        address,
         birthdate,
-        user_email,
-        password,
-        mobile_no,
         b_name,
         married_id,
         industrialData.id.toString(),
         busi_type,
         business,
-        no_of_member,
-        education_id,
-        village_name,
-        // villageData.vId.toString(),
-        home_id,
-        user_id);
+        education_id
+        );
     if (result.status == 1) {
       Fluttertoast.showToast(
           msg: result.message.toString(),

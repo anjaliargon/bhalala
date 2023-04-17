@@ -11,11 +11,13 @@ import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
 import '../../../network/controller/network_controller.dart';
+import '../../../widget/temp2.dart';
 import '../controllers/addmember_controller.dart';
 
 class AddmemberView extends GetView<AddmemberController> {
-   AddmemberView({Key? key}) : super(key: key);
+  AddmemberView({Key? key}) : super(key: key);
   final NetworkController _networkController = Get.put(NetworkController());
+
   @override
   Widget build(BuildContext context) {
     String? industry;
@@ -48,24 +50,19 @@ class AddmemberView extends GetView<AddmemberController> {
                   SizedBox(
                     height: 1.h,
                   ),
-                  customTextField(
-                      hintText: StringConstant.name,
-                      iconfat: FontAwesomeIcons.solidCircleUser,
-                      controller: controller.nameController),
-
-                  customTextField(
-                    hintText: StringConstant.fathername,
+                  CustomeTextFields(
                     iconfat: FontAwesomeIcons.solidCircleUser,
-                    controller: controller.fatherController,
-                    validator: (father) {
-                      controller.fatherValid.value = '';
-                      if (father!.isEmpty) {
-                        controller.fatherValid.value =
-                            StringConstant.errorfathername;
-                      }
-                      // loginController.update();
-                      return null;
-                    },
+                    keyboard: 0,
+                    hint: StringConstant.name,
+                    validation: true,
+                    fieldValue: controller.nameController,
+                  ),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.solidCircleUser,
+                    keyboard: 0,
+                    hint: StringConstant.fathername,
+                    validation: true,
+                    fieldValue: controller.fatherController,
                   ),
                   Row(
                     children: [
@@ -97,8 +94,7 @@ class AddmemberView extends GetView<AddmemberController> {
                               padding: const EdgeInsets.only(top: 5),
                               child: Radio(
                                   value: StringConstant.bhalal,
-                                  groupValue:
-                                      controller.selectedsurname.value,
+                                  groupValue: controller.selectedsurname.value,
                                   activeColor: colors.darkbrown,
                                   onChanged: (value) {
                                     controller.onChnagedSurname(value);
@@ -112,8 +108,7 @@ class AddmemberView extends GetView<AddmemberController> {
                               padding: const EdgeInsets.only(top: 5),
                               child: Radio(
                                   value: "Bhalala",
-                                  groupValue:
-                                      controller.selectedsurname.value,
+                                  groupValue: controller.selectedsurname.value,
                                   activeColor: colors.darkbrown,
                                   onChanged: (value) {
                                     controller.onChnagedSurname(value);
@@ -191,22 +186,20 @@ class AddmemberView extends GetView<AddmemberController> {
                       )
                     ],
                   ),
-                  customTextField(
-                    hintText: StringConstant.birthdaydate,
+                  CustomeTextFields(
                     iconfat: FontAwesomeIcons.cakeCandles,
-                    controller: controller.birthController,
-                    iconButton: IconButton(
-                        onPressed: () {
-                          controller.datePick(context: context);
-                        },
-                        icon: const Icon(Icons.calendar_month)),
+                    keyboard: 0,
+                    hint: StringConstant.birthdaydate,
+                    validation: true,
+                    fieldValue: controller.birthController,
+                    icon: Icons.calendar_today_rounded,
                   ),
                   //// Industrial
                   customeDropDown(
                     iconfat: FontAwesomeIcons.graduationCap,
                     dropdown: DropdownButton(
                       hint: Text(
-                       StringConstant.work_sectorchoice,
+                        StringConstant.work_sectorchoice,
                         style: TextStyle(
                             color: colors.black, fontWeight: FontWeight.bold),
                       ),
@@ -309,10 +302,13 @@ class AddmemberView extends GetView<AddmemberController> {
                       )
                     ],
                   ),
-                  customTextField(
-                      hintText: StringConstant.work_details,
-                      iconfat: FontAwesomeIcons.shop,
-                      controller: controller.workController),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.shop,
+                    keyboard: 0,
+                    hint: StringConstant.work_details,
+                    validation: true,
+                    fieldValue: controller.workController,
+                  ),
                   SizedBox(
                     height: 1.h,
                   ),
@@ -336,7 +332,7 @@ class AddmemberView extends GetView<AddmemberController> {
                         controller.update();
                       },
                       value: education,
-                      items:  controller.accountEducationListData
+                      items: controller.accountEducationListData
                           .map((String items) {
                         return DropdownMenuItem(
                           value: items,
@@ -401,8 +397,8 @@ class AddmemberView extends GetView<AddmemberController> {
                         controller.update();
                       },
                       value: status,
-                      items: controller.accountStatusListData
-                          .map((String items) {
+                      items:
+                          controller.accountStatusListData.map((String items) {
                         return DropdownMenuItem(
                           value: items,
                           child: Text(
@@ -421,63 +417,45 @@ class AddmemberView extends GetView<AddmemberController> {
                     onTap: () async {
                       if (_networkController.connectionStatus.value == 1 ||
                           _networkController.connectionStatus.value == 2) {
-                        if (controller.formKey.value.currentState!
-                            .validate()) {
+                        if (controller.formKey.value.currentState!.validate()) {
                           if (controller.workController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: StringConstant.work_details);
-                          }  else if (controller
-                              .bloodController.text.isEmpty) {
+                          } else if (controller.bloodController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: StringConstant.blood_chooes);
-                          } else if (controller
-                              .statusController.text.isEmpty) {
+                          } else if (controller.statusController.text.isEmpty) {
                             Fluttertoast.showToast(
-                                msg: "controller.statusController.text");
-                          } else if (controller
-                              .selectedgender.value.isEmpty) {
-                            Fluttertoast.showToast(
-                                msg: "તમારી જાતિ પસંદ કરો");
-                          } else if (controller
-                              .selectedsurname.value.isEmpty) {
-                            Fluttertoast.showToast(
-                                msg: "તમારી અટક  પસંદ કરો");
-                          } else if (controller
-                              .selectedwork.value.isEmpty) {
+                                msg: StringConstant.merrige_status);
+                          } else if (controller.selectedgender.value.isEmpty) {
+                            Fluttertoast.showToast(msg: "તમારી જાતિ પસંદ કરો");
+                          } else if (controller.selectedsurname.value.isEmpty) {
+                            Fluttertoast.showToast(msg: "તમારી અટક  પસંદ કરો");
+                          } else if (controller.selectedwork.value.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
-                          }
-                          else {
-                          context.loaderOverlay.show();
-                          controller.isLoading.value =
-                          await controller.addMember(
+                          } else {
+                            context.loaderOverlay.show();
+                            controller.isLoading.value =
+                                await controller.addMember(
                               controller.nameController.text,
                               controller.fatherController.text,
                               controller.selectedsurname.value,
                               controller.selectedgender.value,
-                              controller.addressController.text,
                               controller.birthController.text,
-                              controller.emailController.text,
-                              controller.passwordController.text,
-                              controller.mobileController.text,
                               controller.industryController.text,
                               controller.selectedwork.value,
                               controller.workController.text,
-                              controller.memberController.text,
                               controller.educationController.text,
                               controller.bloodController.text,
-                              controller.villageController.text,
-                              controller.villageController.text,
-                              controller.currentCityController.text,
                               controller.statusController.text,
-                              controller.memberController.text
-                          );
-                          if (controller.isLoading.value) {
-                            Get.back();
-                            context.loaderOverlay.hide();
+                            );
+                            if (controller.isLoading.value) {
+                              Get.back();
+                              context.loaderOverlay.hide();
+                            }
                           }
                         }
-                      }
                       } else {
                         Fluttertoast.showToast(
                             msg:
@@ -494,12 +472,12 @@ class AddmemberView extends GetView<AddmemberController> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                           child: Text(
-                            StringConstant.registration,
-                            style: TextStyle(
-                                color: colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13.sp),
-                          )),
+                        StringConstant.registration,
+                        style: TextStyle(
+                            color: colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13.sp),
+                      )),
                     ),
                   ),
                   SizedBox(

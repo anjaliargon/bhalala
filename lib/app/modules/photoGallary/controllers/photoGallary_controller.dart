@@ -1,6 +1,7 @@
 import 'package:bhalala/app/modules/photoGallary/model/photoGallary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../constant/sizeConstant.dart';
 import '../../../data/Api/ApiProvider.dart';
 
 class PhotoGallaryController extends GetxController {
@@ -30,12 +31,11 @@ class PhotoGallaryController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   Future<void> getYearData() async {
     yearListData.clear();
     var result = await ApiProvider().getAlbumData_year();
     if (result.status == 1) {
-
-
       for (var element in result.data!) {
         yearListData.add(element.albumYear.toString());
         isLoading(true);
@@ -44,6 +44,7 @@ class PhotoGallaryController extends GetxController {
       isLoading(false);
     }
   }
+
   Future<void> getFunctionData() async {
     functionListData.clear();
     var result = await ApiProvider().getAlbumData_year();
@@ -56,5 +57,4 @@ class PhotoGallaryController extends GetxController {
       isLoading(false);
     }
   }
-
 }

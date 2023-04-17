@@ -32,16 +32,16 @@ class MemberProfileView extends GetView<MemberProfileController> {
                     title: Text(StringConstant.bhalalaparivar),
                     actions: [
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: IconButton(
                             onPressed: () {
-                              Get.toNamed(Routes.EditProfile,
-                                  arguments: {
+                              Get.toNamed(Routes.EditProfile, arguments: {
                                 ArgumentConstant.editprofiledata:
-                                profileController.userProfileData.value.data?.first
+                                    profileController
+                                        .userProfileData.value.data?.first
                               });
                             },
-                            icon: Icon(Icons.edit)),
+                            icon: const Icon(Icons.edit)),
                       )
                     ],
                   ),
@@ -151,7 +151,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                             profiletext(
                                 icons: Icons.group,
                                 heading: StringConstant.member_count,
-                                text: controller.userData?.noOfMember),
+                                text:controller.userData?.noOfMember ?? ''),
                             SizedBox(
                               height: 3.h,
                             ),
@@ -168,12 +168,12 @@ class MemberProfileView extends GetView<MemberProfileController> {
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Center(
                                       child: Text(
-                                        "સભ્ય ઉમેરો ",
-                                        style: TextStyle(
-                                            color: colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp),
-                                      )),
+                                    "સભ્ય ઉમેરો ",
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13.sp),
+                                  )),
                                 ),
                               ),
                             ),

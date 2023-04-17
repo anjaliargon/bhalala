@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import 'app/no_internet/provider_setup.dart';
 import 'app/routes/app_pages.dart';
 
