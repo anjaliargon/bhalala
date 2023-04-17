@@ -17,7 +17,7 @@ class EditProfileController extends GetxController {
   var isLoadingDustry = false.obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
-  MemberData? profileData;
+  ProfileData? profileData;
   RxList<String> industriesData = <String>[].obs;
   RxList<IndustrieslistBasic> accountIndustryListData =
       RxList<IndustrieslistBasic>([]);
@@ -94,9 +94,7 @@ class EditProfileController extends GetxController {
   ) async {
     isLoading.value = false;
     IndustrieslistBasic industrialData =
-        accountIndustryListData
-            .where((p0) => p0.name == inductries)
-            .first;
+        accountIndustryListData.where((p0) => p0.name == inductries).first;
     var result = await ApiProvider().editprofile(
         user_name,
         mname,
@@ -134,6 +132,10 @@ class EditProfileController extends GetxController {
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       accountIndustryListData.value = result.industrieslist!;
+      for (var element in result.industrieslist!) {
+        accountEducationListData.add(element.name.toString());
+        isLoadingDustry(true);
+      }
     } else {
       isLoadingDustry(false);
     }
@@ -238,6 +240,8 @@ class EditProfileController extends GetxController {
   }
 
   void assignProfileData() {
+    // IndustrieslistBasic industrialData =
+    //     accountIndustryListData.where((p0) => p0.id == profileData?.industryId).first;
     Future.delayed(const Duration(milliseconds: 2000), () {
       isLoading(true);
       nameController.text = profileData?.name ?? '';
@@ -251,8 +255,8 @@ class EditProfileController extends GetxController {
       bloodController.text = profileData?.bName ?? '';
       selectedgender.value = profileData?.gender ?? '';
       selectedsurname.value = profileData?.lastName ?? '';
-      selectedwork.value = profileData?.business ?? '';
-      industryController.text = profileData?.business ?? '';
+      selectedwork.value = profileData?.busiType ?? '';
+      industryController.text = profileData?.industryId ?? '';
       educationController.text = profileData?.educationId ?? '';
       bloodController.text = profileData?.bName ?? '';
       villageController.text = profileData?.vId ?? '';

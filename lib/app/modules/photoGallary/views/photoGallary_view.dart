@@ -65,6 +65,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                               //         (element) => element.albumName == year);
                               // year != null ? year = null : null;
                               controller.yearController.text = newvalue;
+                              controller.functionController.text.isEmpty;
                               controller.update();
                             },
                             value: year,

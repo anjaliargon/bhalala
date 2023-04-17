@@ -44,4 +44,21 @@ class DeleteController extends GetxController {
 
     }
   }
+  DeletefamilyDataList(String ids, var index) async {
+    print(ids);
+    try {
+      var result =
+      await ApiProvider().deleteFamilyData(ids);
+      if (result.status == 1) {
+        Fluttertoast.showToast(msg: result.message.toString());
+      } else if (result.status == 2) {
+        isLoading(false);
+        Fluttertoast.showToast(msg:  result.message.toString());
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+
+    }
+  }
 }

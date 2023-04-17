@@ -2,10 +2,8 @@ import 'package:bhalala/app/constant/Color.dart';
 import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../routes/app_pages.dart';

@@ -229,7 +229,8 @@ class FamilyMemberController extends GetxController {
                         MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                        deletcontroller.DeleteDataList(ids!,index);
+                        deletcontroller.DeletefamilyDataList(ids!,index);
+                        Get.back();
                       },
                       child: Text(
                         "હા",

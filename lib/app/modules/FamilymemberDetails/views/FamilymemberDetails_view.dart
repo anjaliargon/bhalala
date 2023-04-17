@@ -15,7 +15,6 @@ import '../controllers/Familymember_controller.dart';
 class FamilyMemberView extends GetView<FamilyMemberController> {
   FamilyMemberView({Key? key}) : super(key: key);
   final usercontroller = Get.put(MemberProfileController());
-  final familyusercontroller = Get.put(MemberDetailsController());
   final familycontroller = Get.put(FamilyMemberController());
 
 

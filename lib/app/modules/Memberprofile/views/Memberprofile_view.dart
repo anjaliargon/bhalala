@@ -1,5 +1,6 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
+import 'package:bhalala/app/modules/profile/controllers/profile_controller.dart';
 import 'package:bhalala/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,11 +17,12 @@ class MemberProfileView extends GetView<MemberProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    final profileController = Get.put(MemberProfileController());
+    final memberprofileController = Get.put(MemberProfileController());
+    final profileController = Get.put(ProfileController());
 
     MyColor colors = MyColor();
     return GetBuilder<MemberProfileController>(
-        init: profileController,
+        init: memberprofileController,
         builder: (controller) {
           return (box.read('userId') == controller.userData?.rId)
               ? Scaffold(
@@ -30,15 +32,16 @@ class MemberProfileView extends GetView<MemberProfileController> {
                     title: Text(StringConstant.bhalalaparivar),
                     actions: [
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: IconButton(
                             onPressed: () {
                               Get.toNamed(Routes.EditProfile, arguments: {
                                 ArgumentConstant.editprofiledata:
-                                    controller.userData
+                                    profileController
+                                        .userProfileData.value.data?.first
                               });
                             },
-                            icon: Icon(Icons.edit)),
+                            icon: const Icon(Icons.edit)),
                       )
                     ],
                   ),
@@ -46,7 +49,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                     () => LoadingAndErrorScreen(
                       isLoading: controller.isLoading.value,
                       errorOccurred: controller.errorOccurred.value,
-                      errorResolvingFunction: profileController.isLoading,
+                      errorResolvingFunction: memberprofileController.isLoading,
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +151,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                             profiletext(
                                 icons: Icons.group,
                                 heading: StringConstant.member_count,
-                                text: controller.userData?.noOfMember),
+                                text:controller.userData?.noOfMember ?? ''),
                             SizedBox(
                               height: 3.h,
                             ),
@@ -165,12 +168,12 @@ class MemberProfileView extends GetView<MemberProfileController> {
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Center(
                                       child: Text(
-                                        "સભ્ય ઉમેરો ",
-                                        style: TextStyle(
-                                            color: colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp),
-                                      )),
+                                    "સભ્ય ઉમેરો ",
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13.sp),
+                                  )),
                                 ),
                               ),
                             ),
@@ -219,7 +222,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                     () => LoadingAndErrorScreen(
                       isLoading: controller.isLoading.value,
                       errorOccurred: controller.errorOccurred.value,
-                      errorResolvingFunction: profileController.isLoading,
+                      errorResolvingFunction: memberprofileController.isLoading,
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
