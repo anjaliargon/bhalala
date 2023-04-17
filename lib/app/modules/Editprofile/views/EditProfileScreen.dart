@@ -295,8 +295,7 @@ class EditProfileView extends GetView<EditProfileController> {
                               controller.update();
                             },
                             value: industry,
-                            items:
-                                controller.accountIndustryListData.map((items) {
+                            items: controller.accountIndustryListData.map((items) {
                               return DropdownMenuItem(
                                 value: items.name,
                                 child: Text(

@@ -145,7 +145,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADDMEMBER,
-      page: () => const AddmemberView(),
+      page: () =>  AddmemberView(),
       binding: AddmemberBinding(),
     ),
   ];

@@ -15,6 +15,7 @@ import '../../../main.dart';
 import '../../constant/String_constant.dart';
 import '../../constant/sizeConstant.dart';
 import '../../modules/Editprofile/model.dart';
+import '../../modules/addmember/model/AddmemberModel.dart';
 import '../../modules/login/model/ForgotModel.dart';
 import '../../modules/login/model/login_model.dart';
 import '../../modules/memberDetails/Model/MemberDetailsModel.dart';
@@ -84,7 +85,7 @@ class ApiProvider {
     deleteRecords deletemodel = deleteRecords();
     String query = GlobalData.removememberUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields.addAll({'user_Id':"10"});
+    request.fields.addAll({'user_id': forgotemail.toString()});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -160,8 +161,8 @@ class ApiProvider {
           'dRZ4QD4_zTE:APA91bFQW-3STJf3AZFga9cg0u6OcXy9sU0qbAR_dyxYOjC_P68HyG-8-U1o8SnFYA-YJHFEz5QPF3N9rzgCJvwTaExXXSftCfgc-f5-0i6-LCEVQn7TL_igAkYXL4cTapyNnr33YSzs',
       'home_id': home_id.toString(),
       'no_of_member': no_of_member.toString(),
-      'member_details':
-          ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
+      // 'member_details':
+      //     ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
       'mname': mname.toString(),
       'lname': lname.toString(),
       'industry_id': industry_id.toString(),
@@ -235,6 +236,10 @@ class ApiProvider {
 
     if (response.statusCode == 200) {
       editprofilemodel = Editmodel.fromJson(result);
+      box.write('emailid', editprofilemodel.data?.first.emailed);
+      box.write('UserFirstname', editprofilemodel.data?.first.name);
+      box.write('Userlastname', editprofilemodel.data?.first.lastName);
+      box.write('Usermiddlename',editprofilemodel.data?.first.middleName);
     } else {
       print(response.reasonPhrase);
     }
@@ -252,6 +257,7 @@ class ApiProvider {
     final result = jsonDecode(response1.body) as Map<String, dynamic>;
 
     if (response1.statusCode == 200) {
+
       basicmodel = BasicModel.fromJson(result);
     } else {
       print(response.reasonPhrase);
@@ -399,5 +405,66 @@ class ApiProvider {
       print("error ${response1.reasonPhrase}");
     }
     return searchmodel;
+  }
+
+  Future<AddMember> addFamilyMember(
+      user_name,
+      mname,
+      lname,
+      gender,
+      address,
+      birthdate,
+      user_email,
+      password,
+      mobile_no,
+      b_name,
+      married_id,
+      industry_id,
+      busi_type,
+      business,
+      v_name,
+      education_id,
+      v_id,
+      home_id,
+      no_of_member) async {
+    AddMember addmember = AddMember();
+    String query = GlobalData.addMember;
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+
+    request.fields.addAll({
+      'user_name': user_name.toString(),
+      'birthdate': birthdate.toString(),
+      'gender': gender.toString(),
+      'address': 'surat',
+      'user_email': box.read("emailid"),
+      'mobile_no': box.read("mobileno"),
+      'business': 'study',
+      'password': '1234567',
+      'education_id': education_id.toString(),
+      'age': box.read('age'),
+      'married_id': married_id.toString(),
+      'v_id': 'રુપાવટી',
+      'B_name': b_name.toString(),
+      'home_id': 'સુરત',
+      'mname': mname.toString(),
+      'lname': lname.toString(),
+      'industry_id': industry_id.toString(),
+      'busi_type': busi_type.toString(),
+      'user_profile': 'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB',
+      // 'user_id': box.read("userId"),
+      'v_id_int': '1'
+    });
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+    Map<String, dynamic> data = jsonDecode(response1.body);
+
+    if (response.statusCode == 200) {
+      addmember = AddMember.fromJson(result);
+      print(response1.body);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return addmember;
   }
 }

@@ -17,4 +17,5 @@ class GlobalData {
   static String editprofileUrl = '${baseUrl}/editProfile.php';
   static String removememberUrl = '${baseUrl}/removemember.php';
   static String forgotPasswordUrl = '${baseUrl}/forgotPassword.php';
+  static String addMember = '${baseUrl}/Addnewmember.php';
 }

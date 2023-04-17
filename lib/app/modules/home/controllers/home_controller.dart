@@ -30,12 +30,12 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+
   getUserData() async {
     userName.value = (await box.read("UserFirstname"));
     userid.value = (await box.read("userId"));
     usermiddle.value = (await box.read("Usermiddlename"));
     userLastName.value = (await box.read("Userlastname"));
     userEmail.value = (await box.read("emailid"));
-
   }
 }

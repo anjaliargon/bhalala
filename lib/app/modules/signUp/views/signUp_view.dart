@@ -356,7 +356,6 @@ class SignUpView extends GetView<SignUpController> {
                           onChanged: (String? newvalue) {
                             membercount = newvalue!;
                             controller.memberController.text = newvalue;
-                            controller.update();
                           },
                           value: membercount,
                           items: controller.dropdownListfamilycount
@@ -573,118 +572,118 @@ class SignUpView extends GetView<SignUpController> {
                       ),
                       InkWell(
                         onTap: () async {
-                          _showAllDialogs(context);
-                          // if (_networkController.connectionStatus.value == 1 ||
-                          //     _networkController.connectionStatus.value == 2) {
-                          //   if (controller.formKey.value.currentState!
-                          //       .validate()) {
-                          //     if (controller.workController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: StringConstant.work_details);
-                          //     } else if (controller
-                          //         .memberController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "ઘરના સભ્ય પસંદ કરો ");
-                          //     } else if (controller
-                          //         .educationController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: StringConstant.education_chooes);
-                          //     } else if (controller
-                          //         .bloodController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: StringConstant.blood_chooes);
-                          //     } else if (controller
-                          //         .villageController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: StringConstant.village);
-                          //     } else if (controller
-                          //         .currentCityController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: StringConstant.currentcity);
-                          //     } else if (controller.selectedImg == null) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
-                          //     } else if (controller
-                          //         .statusController.text.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "controller.statusController.text");
-                          //     } else if (controller
-                          //         .selectedgender.value.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "તમારી જાતિ પસંદ કરો");
-                          //     } else if (controller
-                          //         .selectedsurname.value.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "તમારી અટક  પસંદ કરો");
-                          //     } else if (controller
-                          //         .selectedwork.value.isEmpty) {
-                          //       Fluttertoast.showToast(
-                          //           msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
-                          //     } else {
-                          //       context.loaderOverlay.show();
-                          //       controller.isLoading.value =
-                          //           await controller.userRegistration(
-                          //         controller.nameController.text,
-                          //         controller.fatherController.text,
-                          //         controller.selectedsurname.value,
-                          //         controller.selectedgender.value,
-                          //         controller.addressController.text,
-                          //         controller.birthController.text,
-                          //         controller.emailController.text,
-                          //         controller.passwordController.text,
-                          //         controller.mobileController.text,
-                          //         controller.industryController.text,
-                          //         controller.selectedwork.value,
-                          //         controller.workController.text,
-                          //         controller.memberController.text,
-                          //         controller.educationController.text,
-                          //         controller.bloodController.text,
-                          //         controller.villageController.text,
-                          //         controller.villageController.text,
-                          //         controller.currentCityController.text,
-                          //         controller.statusController.text,
-                          //       );
-                          //       controller.nameController.clear();
-                          //       controller.fatherController.clear();
-                          //       controller.selectedsurname;
-                          //       controller.selectedgender;
-                          //       controller.addressController.clear();
-                          //       controller.birthController.clear();
-                          //       controller.emailController.clear();
-                          //       controller.passwordController.clear();
-                          //       controller.mobileController.clear();
-                          //       controller.industryController.clear();
-                          //       controller.selectedwork;
-                          //       controller.workController.clear();
-                          //       controller.memberController.clear();
-                          //       controller.educationController.clear();
-                          //       controller.bloodController.clear();
-                          //       controller.villageController.clear();
-                          //       controller.currentCityController.clear();
-                          //       controller.statusController.clear();
-                          //       controller.memberController.clear();
-                          //       controller.educationController.clear();
-                          //       controller.bloodController.clear();
-                          //       controller.villageController.clear();
-                          //       controller.currentCityController.clear();
-                          //       controller.statusController.clear();
-                          //       controller.selectedwork.close();
-                          //       controller.selectedsurname.close();
-                          //       controller.selectedgender.close();
-                          //       controller.selectedImg!.close();
-                          //       if (controller.isLoading.value) {
-                          //         Get.back();
-                          //         context.loaderOverlay.hide();
-                          //       }
-                          //     }
-                          //   }
-                          // } else {
-                          //   Fluttertoast.showToast(
-                          //       msg:
-                          //           "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
-                          //       textColor: colors.black,
-                          //       backgroundColor: colors.white);
-                          // }
+                          // _showAllDialogs(context);
+                          if (_networkController.connectionStatus.value == 1 ||
+                              _networkController.connectionStatus.value == 2) {
+                            if (controller.formKey.value.currentState!
+                                .validate()) {
+                              if (controller.workController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.work_details);
+                              } else if (controller
+                                  .memberController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "ઘરના સભ્ય પસંદ કરો ");
+                              } else if (controller
+                                  .educationController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.education_chooes);
+                              } else if (controller
+                                  .bloodController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.blood_chooes);
+                              } else if (controller
+                                  .villageController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.village);
+                              } else if (controller
+                                  .currentCityController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: StringConstant.currentcity);
+                              } else if (controller.selectedImg == null) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
+                              } else if (controller
+                                  .statusController.text.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "controller.statusController.text");
+                              } else if (controller
+                                  .selectedgender.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી જાતિ પસંદ કરો");
+                              } else if (controller
+                                  .selectedsurname.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી અટક  પસંદ કરો");
+                              } else if (controller
+                                  .selectedwork.value.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
+                              } else {
+                                context.loaderOverlay.show();
+                                controller.isLoading.value =
+                                    await controller.userRegistration(
+                                  controller.nameController.text,
+                                  controller.fatherController.text,
+                                  controller.selectedsurname.value,
+                                  controller.selectedgender.value,
+                                  controller.addressController.text,
+                                  controller.birthController.text,
+                                  controller.emailController.text,
+                                  controller.passwordController.text,
+                                  controller.mobileController.text,
+                                  controller.industryController.text,
+                                  controller.selectedwork.value,
+                                  controller.workController.text,
+                                  controller.memberController.text,
+                                  controller.educationController.text,
+                                  controller.bloodController.text,
+                                  controller.villageController.text,
+                                  controller.villageController.text,
+                                  controller.currentCityController.text,
+                                  controller.statusController.text,
+                                );
+                                controller.nameController.clear();
+                                controller.fatherController.clear();
+                                controller.selectedsurname;
+                                controller.selectedgender;
+                                controller.addressController.clear();
+                                controller.birthController.clear();
+                                controller.emailController.clear();
+                                controller.passwordController.clear();
+                                controller.mobileController.clear();
+                                controller.industryController.clear();
+                                controller.selectedwork;
+                                controller.workController.clear();
+                                controller.memberController.clear();
+                                controller.educationController.clear();
+                                controller.bloodController.clear();
+                                controller.villageController.clear();
+                                controller.currentCityController.clear();
+                                controller.statusController.clear();
+                                controller.memberController.clear();
+                                controller.educationController.clear();
+                                controller.bloodController.clear();
+                                controller.villageController.clear();
+                                controller.currentCityController.clear();
+                                controller.statusController.clear();
+                                controller.selectedwork.close();
+                                controller.selectedsurname.close();
+                                controller.selectedgender.close();
+                                controller.selectedImg!.close();
+                                if (controller.isLoading.value) {
+                                  Get.back();
+                                  context.loaderOverlay.hide();
+                                }
+                              }
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                textColor: colors.black,
+                                backgroundColor: colors.white);
+                          }
                         },
                         child: Container(
                           height: 6.h,
@@ -822,6 +821,7 @@ class SignUpView extends GetView<SignUpController> {
       ),
     ));
   }
+
   _showAllDialogs(BuildContext context) {
     for (int i = 0; i < int.parse(controller.memberController.text); i++) {
       _openDilogueAddMember(context: context);

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/basicModel.dart';
+import '../../signUp/controllers/signUp_controller.dart';
 
 class AddmemberController extends GetxController {
   //TODO: Implement AddmemberController
@@ -12,9 +14,11 @@ class AddmemberController extends GetxController {
   final count = 0.obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
+  final signupcotroller = Get.put(SignUpController());
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
   RxList<String> industriesData = <String>[].obs;
-  RxList<IndustrieslistBasic> accountIndustryListData =RxList<IndustrieslistBasic>([]);
+  RxList<IndustrieslistBasic> accountIndustryListData =
+      RxList<IndustrieslistBasic>([]);
   RxList<String> accountEducationListData = <String>[].obs;
   RxList<String> accountBloodListData = <String>[].obs;
   RxList<String> accountVillageListData = <String>[].obs;
@@ -34,7 +38,8 @@ class AddmemberController extends GetxController {
   TextEditingController bloodController = TextEditingController();
   TextEditingController villageController = TextEditingController();
   TextEditingController currentCityController = TextEditingController();
-  TextEditingController statusController = TextEditingController();RxString nameValid = ''.obs;
+  TextEditingController statusController = TextEditingController();
+  RxString nameValid = ''.obs;
   RxString fatherValid = ''.obs;
   RxString addressValid = ''.obs;
   RxString emailValid = ''.obs;
@@ -46,6 +51,7 @@ class AddmemberController extends GetxController {
   RxString selectedgender = "".obs;
   RxString selectedwork = "".obs;
   RxString dropdownfamilycount = StringConstant.parivar_membercount.obs;
+
   @override
   void onInit() {
     getAccountBloodList();
@@ -64,6 +70,7 @@ class AddmemberController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   onChnagedSurname(var surname) {
     selectedsurname.value = surname;
   }
@@ -75,6 +82,74 @@ class AddmemberController extends GetxController {
   onChnagedWork(var work) {
     selectedwork.value = work;
   }
+
+  addMember(
+      user_name,
+      mname,
+      lname,
+      gender,
+      address,
+      birthdate,
+      user_email,
+      password,
+      mobile_no,
+      industry_id,
+      busi_type,
+      business,
+      no_of_member,
+      education_id,
+      b_name,
+      village_name,
+      v_id,
+      home_id,
+      married_id,
+      user_id) async {
+    // VillageBasic villageData =
+    //     accountVillageListData.where((p0) => p0.vName == v_id).first;
+    IndustrieslistBasic industrialData =
+        accountIndustryListData.where((p0) => p0.name == industry_id).first;
+    isLoading.value = false;
+    var result = await ApiProvider().addFamilyMember(
+        user_name,
+        mname,
+        lname,
+        gender,
+        address,
+        birthdate,
+        user_email,
+        password,
+        mobile_no,
+        b_name,
+        married_id,
+        industrialData.id.toString(),
+        busi_type,
+        business,
+        no_of_member,
+        education_id,
+        village_name,
+        // villageData.vId.toString(),
+        home_id,
+        user_id);
+    if (result.status == 1) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else if (result.status == 2) {
+      Fluttertoast.showToast(
+          msg: result.message.toString(),
+          backgroundColor: Colors.white,
+          textColor: Colors.black);
+      isLoading(true);
+      return true;
+    } else {
+      isLoading(false);
+      return true;
+    }
+  }
+
   datePick({required BuildContext context}) async {
     DateTime? pickedDate = await showDatePicker(
         builder: (context, child) {
@@ -101,7 +176,7 @@ class AddmemberController extends GetxController {
     accountIndustryListData.clear();
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      accountIndustryListData.value = result.industrieslist !;
+      accountIndustryListData.value = result.industrieslist!;
     } else {
       isLoading(false);
     }
@@ -109,7 +184,6 @@ class AddmemberController extends GetxController {
 
   //.....Education
   Future<void> getAccountEducationList() async {
-    accountEducationListData.clear();
     accountEducationListData.add(StringConstant.education_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
@@ -151,5 +225,6 @@ class AddmemberController extends GetxController {
       isLoading(false);
     }
   }
+
   void increment() => count.value++;
 }

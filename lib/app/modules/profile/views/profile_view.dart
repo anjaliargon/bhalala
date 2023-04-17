@@ -1,4 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
+import 'package:bhalala/app/modules/Memberprofile/controllers/Memberprofile_controller.dart';
 import 'package:bhalala/app/no_internet/check_network.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +10,6 @@ import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../Memberprofile/controllers/Memberprofile_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -44,7 +44,8 @@ class ProfileView extends GetView<ProfileController> {
                 ],
               ),
               body: SingleChildScrollView(
-                child: Obx(()=> Column(
+                child: Obx(
+                  () => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
@@ -67,7 +68,8 @@ class ProfileView extends GetView<ProfileController> {
                                   child: CircleAvatar(
                                     radius: 50.0,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100.0),
+                                      borderRadius:
+                                          BorderRadius.circular(100.0),
                                       child: Image.asset(
                                           'assets/images/userprofile.png'),
                                     ),
@@ -83,10 +85,9 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       Center(
                         child: Text(
-                          // "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
                           "${controller.userProfileData.value.data?.first.name ?? ''} ${controller.userProfileData.value.data?.first.middleName ?? ''} ${controller.userProfileData.value.data?.first.lastName ?? ''}",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: colors.darkbrown),
+                          style: TextStyle(
+                              fontSize: 14.sp, color: colors.darkbrown),
                         ),
                       ),
                       SizedBox(
@@ -107,9 +108,9 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: Icons.location_on,
                           heading: StringConstant.village,
-                          text:
-                              controller.userProfileData.value.data?.first.vId ??
-                                  ''),
+                          text: controller
+                                  .userProfileData.value.data?.first.vId ??
+                              ''),
                       profiletext(
                           icons: FontAwesomeIcons.shop,
                           heading: StringConstant.workdetails,
@@ -125,8 +126,8 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: Icons.cake,
                           heading: StringConstant.birthdaydate,
-                          text: controller
-                                  .userProfileData.value.data?.first.birthdate ??
+                          text: controller.userProfileData.value.data?.first
+                                  .birthdate ??
                               ''),
                       profiletext(
                           icons: FontAwesomeIcons.graduationCap,
@@ -149,15 +150,15 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: FontAwesomeIcons.personCircleCheck,
                           heading: StringConstant.merrige_status,
-                          text: controller
-                                  .userProfileData.value.data?.first.marriedId ??
+                          text: controller.userProfileData.value.data?.first
+                                  .marriedId ??
                               ''),
                       profiletext(
                           icons: Icons.person,
                           heading: StringConstant.age,
-                          text:
-                              controller.userProfileData.value.data?.first.age ??
-                                  ''),
+                          text: controller
+                                  .userProfileData.value.data?.first.age ??
+                              ''),
                       profiletext(
                           icons: FontAwesomeIcons.person,
                           heading: StringConstant.bloodgroup,
@@ -167,8 +168,8 @@ class ProfileView extends GetView<ProfileController> {
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.member_count,
-                          text: controller
-                                  .userProfileData.value.data?.first.noOfMember ??
+                          text: controller.userProfileData.value.data?.first
+                                  .noOfMember ??
                               ''),
                       SizedBox(
                         height: 3.h,
@@ -176,8 +177,11 @@ class ProfileView extends GetView<ProfileController> {
                       InkWell(
                         onTap: () {
                           Get.toNamed(Routes.FAMILYMEMBER,
-                              // arguments: controller.userData?.rId
-                              arguments:  controller.userProfileData.value.data?.first.rId);
+                            //   arguments: {
+                            //   ArgumentConstant.userData:
+                            //       controller.userProfileData.value.rId
+                            // }
+                          );
                         },
                         child: Center(
                           child: Container(
