@@ -173,32 +173,30 @@ class ProfileView extends GetView<ProfileController> {
                       SizedBox(
                         height: 3.h,
                       ),
-                      // InkWell(
-                      //   onTap: () {
-                      //     Get.toNamed(Routes.FAMILYMEMBER,
-                      //         arguments: {
-                      //         ArgumentConstant.userData: controller.userid.value
-                      //       }
-                      //     );
-                      //   },
-                      //   child: Center(
-                      //     child: Container(
-                      //       height: 6.h,
-                      //       width: 95.w,
-                      //       decoration: BoxDecoration(
-                      //           color: colors.darkbrown,
-                      //           borderRadius: BorderRadius.circular(10)),
-                      //       child: Center(
-                      //           child: Text(
-                      //         "સભ્ય ની વિગત જોવો",
-                      //         style: TextStyle(
-                      //             color: colors.white,
-                      //             fontWeight: FontWeight.bold,
-                      //             fontSize: 13.sp),
-                      //       )),
-                      //     ),
-                      //   ),
-                      // ),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.FAMILYMEMBER, arguments:
+                                controller.userProfileData.value.data?.first.rId
+                          );
+                        },
+                        child: Center(
+                          child: Container(
+                            height: 6.h,
+                            width: 95.w,
+                            decoration: BoxDecoration(
+                                color: colors.darkbrown,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                                child: Text(
+                              "સભ્ય ની વિગત જોવો",
+                              style: TextStyle(
+                                  color: colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13.sp),
+                            )),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: 1.h,
                       ),
