@@ -143,7 +143,7 @@ class FamilyCommitte extends StatelessWidget {
                                   SlidableAction(
                                     onPressed: (context) {
                                       UrlLauncher.launch(
-                                          'tel:+${controller.getCommitteDataList[index].mobile}');
+                                          'tel:${controller.getCommitteDataList[index].mobile}');
                                     },
                                     backgroundColor: colors.green,
                                     icon: Icons.call,
@@ -251,7 +251,7 @@ class FamilyCommitte extends StatelessWidget {
                                   SlidableAction(
                                     onPressed: (context) {
                                       UrlLauncher.launch(
-                                          'tel:+${controller.getCommitteDataList[index + 15].mobile}');
+                                          'tel:${controller.getCommitteDataList[index + 15].mobile}');
                                     },
                                     backgroundColor: colors.green,
                                     icon: Icons.call,
@@ -365,7 +365,7 @@ class FamilyCommitte extends StatelessWidget {
                                   SlidableAction(
                                     onPressed: (context) {
                                       UrlLauncher.launch(
-                                          'tel:+${controller.getCommitteDataList[index + 29].mobile}');
+                                          'tel:${controller.getCommitteDataList[index + 29].mobile}');
                                     },
                                     backgroundColor: colors.green,
                                     icon: Icons.call,

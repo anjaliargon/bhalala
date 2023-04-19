@@ -196,8 +196,7 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ));
                         } else {
-                          if (controller.formKey.value.currentState!
-                              .validate()) {
+                          if (controller.formKey.value.currentState!.validate()) {
                             FocusScope.of(context).unfocus();
                             context.loaderOverlay.show(
                                 widget: Container(

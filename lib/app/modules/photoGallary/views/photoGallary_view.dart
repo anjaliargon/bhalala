@@ -139,7 +139,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                   //         itemBuilder: (context, index) {
                   //           return Container(
                   //             child:  Image.network(
-                  //               "${controller.gallaryphotos.value.data?[index].imageUrl}",
+                  //               "${controller.gallaryphotos.value.data?[index].}",
                   //               fit: BoxFit.cover,
                   //               errorBuilder: (a, b, c) =>
                   //                   Image.asset('assets/images/applogo.png'),
