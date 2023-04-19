@@ -43,16 +43,11 @@ class SearchController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  search(String village, String home, String industri, String education,
-      String blood) async {
-    VillageBasic villageData =
-        accountVillageListData.where((p0) => p0.vName == village).first;
-    IndustrieslistBasic industrialData =
-        accountIndustryListData.where((p0) => p0.name == industri).first;
+  search(String? village, String home, String industri, String education, String blood) async {
+    VillageBasic villageData = accountVillageListData.where((p0) => p0.vName == village).first;
+    IndustrieslistBasic industrialData = accountIndustryListData.where((p0) => p0.name == industri).first;
     isLoading.value = false;
-    var result = await ApiProvider().search(villageData.vId.toString(), home,
-        industrialData.id.toString(), education, blood);
+    var result = await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
     if (!result.data.isNull) {
       Get.toNamed(Routes.SEARCHMEMBER);
       searchData.value = result;

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -171,124 +173,22 @@ class LoginController extends GetxController {
 
   Future<void> check_permission() async {
     MyColor colors = MyColor();
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.camera,
-      Permission.storage,
-      Permission.phone,
-    ].request();
+    if (Platform.isAndroid) {
+      var androidVersion = Platform.operatingSystemVersion;
+      if (androidVersion.startsWith('12.')) {
+        print("12");
+      } else if (androidVersion.startsWith('13.')) {
+        Map<Permission, PermissionStatus> statuses = await [
+          Permission.camera,
+          Permission.storage,
+          Permission.phone,
+        ].request();
 
-    if (statuses[Permission.camera] != PermissionStatus.granted ||
-        statuses[Permission.storage] != PermissionStatus.granted ||
-        statuses[Permission.phone] != PermissionStatus.granted) {
-      Get.dialog(Dialog(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                  "Storage, CAMERA, PHONE,  Permission required for this app",
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                  )),
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () async {
-                      Map<Permission, PermissionStatus> statuses = await [
-                        Permission.camera,
-                        Permission.storage,
-                        Permission.phone,
-                      ].request();
-                      Get.back();
-                      if (statuses[Permission.camera] !=
-                              PermissionStatus.granted ||
-                          statuses[Permission.storage] !=
-                              PermissionStatus.granted ||
-                          statuses[Permission.phone] !=
-                              PermissionStatus.granted) {
-                        Get.dialog(Dialog(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text("Permission",
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 10, right: 10),
-                                child: Text(
-                                    "Allow Bhalala parivar to access  storage,CAMERA and PHONE permission for use some features \nTap Settings->Permission and turn all permission on.",
-                                    style: TextStyle(fontSize: 12.sp)),
-                              ),
-                              SizedBox(
-                                height: 1.h,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: Text(
-                                        "CANCEL",
-                                        style:
-                                            TextStyle(color: colors.darkbrown),
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 5, left: 5),
-                                    child: TextButton(
-                                        onPressed: () {
-                                          openAppSettings();
-                                          Get.back();
-                                        },
-                                        child: Text(
-                                          "SETTINGS",
-                                          style: TextStyle(
-                                              color: colors.darkbrown),
-                                        )),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ));
-                      }
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        "ALLOW",
-                        style: TextStyle(color: colors.darkbrown),
-                      ),
-                    )),
-                TextButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        "CANCEL",
-                        style: TextStyle(color: colors.darkbrown),
-                      ),
-                    ))
-              ],
-            )
-          ],
-        ),
-      ));
+        print('Android 12 or 13 OS');
+      }
+      else{
+        print("nothing");
+      }
     }
   }
 

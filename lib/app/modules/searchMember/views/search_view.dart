@@ -319,19 +319,7 @@ class SearchView extends GetView<SearchController> {
                     onPressed: () async {
                       if (_networkController.connectionStatus.value == 1 ||
                           _networkController.connectionStatus.value == 2) {
-                        if (controller.bloodController.text.isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: StringConstant.blood_chooes);
-                        } else if (controller
-                            .educationController.text.isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: StringConstant.education_chooes);
-                        } else if (controller.industryController.text.isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: StringConstant.work_details);
-                        } else if (controller.villageController.text.isEmpty) {
-                          Fluttertoast.showToast(msg: StringConstant.village);
-                        } else if (controller.homeController.text.isEmpty) {
+                        if (controller.homeController.text.isEmpty) {
                           Fluttertoast.showToast(
                               msg: StringConstant.currentcity);
                         } else {

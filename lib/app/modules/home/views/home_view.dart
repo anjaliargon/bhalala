@@ -19,7 +19,8 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder<HomeController>(
       init: homeController,
       builder: (controller) => Scaffold(
-        drawer: Drawer(
+        drawer: (box.read("userId")=="81")?
+        Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -36,7 +37,7 @@ class HomeView extends GetView<HomeController> {
                         },
                         child: const CircleAvatar(
                           backgroundImage:
-                              AssetImage("assets/images/userprofile.png"),
+                          AssetImage("assets/images/userprofile.png"),
                           radius: 35,
                         ),
                       ),
@@ -49,14 +50,245 @@ class HomeView extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Obx(
-                                () => Text(
+                                    () => Text(
                                   "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
                                   style: TextStyle(color: colors.white),
                                 ),
                               ),
                               SizedBox(height: 1.h),
                               Obx(
-                                () => Flexible(
+                                    () => Flexible(
+                                  child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    controller.userEmail.value,
+                                    style: TextStyle(
+                                        color: colors.white, fontSize: 11.sp),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
+              ListTile(
+                title: Text(
+                  StringConstant.parivarverifay,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.verified,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.FAMILY_ADD);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.gamniyadi,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.home,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.VILLAGE);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.parivarvise,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.group,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.ABOUT_FAMILY);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.parivar_karyalay1,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.watch_later_rounded,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Get.toNamed(Routes.PARIVARKARAYALAY);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.parivar_samiti1,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.groups,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.COMITEE);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.search_member,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.search,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Get.toNamed(Routes.SEARCH);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.photo_gallary,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.photo,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Get.toNamed(Routes.PHOTO);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.important_number1,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.phone,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.IMP_NUMBER);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.suchna_number,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.phone,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.NOTICE);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.applicationhlpline,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.home,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  // Get.toNamed(Routes.APP_HELPLINE);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  StringConstant.logout,
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.logout,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Fluttertoast.showToast(msg: "Logout Successfully!");
+                  box.erase();
+                  Get.offAllNamed(Routes.LOGIN);
+                },
+              ),
+            ],
+          ),
+        ):
+        Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: colors.darkbrown,
+                  ),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.PROFILE);
+                          // profileController.userProfile(box.read('userId'));
+                        },
+                        child: const CircleAvatar(
+                          backgroundImage:
+                          AssetImage("assets/images/userprofile.png"),
+                          radius: 35,
+                        ),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(
+                                    () => Text(
+                                  "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
+                                  style: TextStyle(color: colors.white),
+                                ),
+                              ),
+                              SizedBox(height: 1.h),
+                              Obx(
+                                    () => Flexible(
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
                                     controller.userEmail.value,
@@ -75,7 +307,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.gamniyadi,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.home,
@@ -90,7 +322,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.parivarvise,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.group,
@@ -105,7 +337,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.parivar_karyalay1,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.watch_later_rounded,
@@ -123,7 +355,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.parivar_samiti1,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.groups,
@@ -138,7 +370,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.search_member,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.search,
@@ -156,7 +388,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.photo_gallary,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.photo,
@@ -174,7 +406,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.important_number1,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.phone,
@@ -189,7 +421,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.suchna_number,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.phone,
@@ -204,7 +436,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.applicationhlpline,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.home,
@@ -219,7 +451,7 @@ class HomeView extends GetView<HomeController> {
                 title: Text(
                   StringConstant.logout,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
                   Icons.logout,

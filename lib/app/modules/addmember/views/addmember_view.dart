@@ -24,8 +24,6 @@ class AddmemberView extends GetView<AddmemberController> {
     String? education;
     String? bloodgroup;
     String? status;
-    String? village;
-    String? currentcity;
     MyColor colors = MyColor();
     return GetBuilder<AddmemberController>(builder: (controller) {
       return Scaffold(

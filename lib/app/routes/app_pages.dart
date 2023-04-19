@@ -7,6 +7,10 @@ import '../modules/Editprofile/bindings/Editprofile_binding.dart';
 import '../modules/Editprofile/views/EditProfileScreen.dart';
 import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
 import '../modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
+import '../modules/Family_add/bindings/family_add_binding.dart';
+import '../modules/Family_add/views/family_add_view.dart';
+import '../modules/Family_samiti/bindings/family_samiti_binding.dart';
+import '../modules/Family_samiti/views/family_samiti_view.dart';
 import '../modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import '../modules/FamilymemberDetails/bindings/Familymember_binding.dart';
 import '../modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
@@ -145,8 +149,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADDMEMBER,
-      page: () =>  AddmemberView(),
+      page: () => AddmemberView(),
       binding: AddmemberBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAMILY_SAMITI,
+      page: () => FamilySamitiView(),
+      binding: FamilySamitiBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAMILY_ADD,
+      page: () => const FamilyAddView(),
+      binding: FamilyAddBinding(),
     ),
   ];
 }

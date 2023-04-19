@@ -63,6 +63,7 @@ class StringConstant {
 
 //---------> Drawer
    static  String  gamniyadi  ="ગામની યાદી";
+   static  String  parivarverifay  ="પરિવાર વેરિફાય";
    static  String  parivarvise  ="પરિવાર વિશે";
    static  String  parivar_karyalay  ="પરિવાર\nકાર્યાલય";
    static  String  parivar_karyalay1  ="પરિવાર કાર્યાલય";

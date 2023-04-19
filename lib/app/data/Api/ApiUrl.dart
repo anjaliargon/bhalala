@@ -18,4 +18,8 @@ class GlobalData {
   static String removememberUrl = '${baseUrl}/removemember.php';
   static String forgotPasswordUrl = '${baseUrl}/forgotPassword.php';
   static String addMember = '${baseUrl}/Addnewmember.php';
+  static String parivarsamity = '${baseUrl}/getParivarSamity.php';
+  static String parivarsahyog = '${baseUrl}/getParivarSahyog.php';
+  static String checkuserStatus = '${baseUrl}/get_all_member.php?status=0';
+
 }

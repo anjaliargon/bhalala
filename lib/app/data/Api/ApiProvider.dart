@@ -8,13 +8,15 @@ import 'package:bhalala/app/modules/profile/model/profileModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
 import '../../../main.dart';
-import '../../constant/String_constant.dart';
 import '../../constant/sizeConstant.dart';
+import '../../constant/String_constant.dart';
 import '../../modules/Editprofile/model.dart';
+import '../../modules/Family_samiti/model/samitiModel.dart';
 import '../../modules/addmember/model/AddmemberModel.dart';
 import '../../modules/login/model/ForgotModel.dart';
 import '../../modules/login/model/login_model.dart';
@@ -54,6 +56,7 @@ class ApiProvider {
         box.write('v_id_int', loginModel.loginData?.vIdInt);
         box.write('v_id', loginModel.loginData?.vId);
         box.write('home_id', loginModel.loginData?.homeId);
+        // box.write('isAdmin', loginModel.loginData?.);
         Fluttertoast.showToast(
             msg: StringConstant.suceesfullylogin,
             backgroundColor: Colors.white,
@@ -89,7 +92,7 @@ class ApiProvider {
     deleteRecords deletemodel = deleteRecords();
     String query = GlobalData.removememberUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields.addAll({'user_id': ids.toString(),'type': 'member'});
+    request.fields.addAll({'user_id': ids.toString(), 'type': 'member'});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -103,12 +106,11 @@ class ApiProvider {
     return deletemodel;
   }
 
-  Future<deleteRecords> deleteFamilyData(forgotemail) async {
+  Future<deleteRecords> deleteFamilyData(ids) async {
     deleteRecords deletemodel = deleteRecords();
     String query = GlobalData.removememberUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
-    request.fields
-        .addAll({'user_id': forgotemail.toString(), 'type': 'member'});
+    request.fields.addAll({'user_id': ids.toString(), 'type': 'member'});
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -160,6 +162,29 @@ class ApiProvider {
       v_id,
       home_id,
       married_id) async {
+    Map<String, dynamic> formDataMap = {
+      "map": {
+        "user_name": "ડેમો",
+        "lname": "ભાલાળા",
+        "mname": "ડેમો",
+        "birthdate": "16-5-2018",
+        "gender": "Male",
+        "address": "ddemod",
+        "education_id": "M.ed",
+        "age": "0",
+        "mobile_no": "1236547890",
+        "business": "ડેમો",
+        "married_id": "Single",
+        "home_id": "સુરત",
+        "v_id": "મોણપર ",
+        "b_name": "B-",
+        "v_id_int": "2",
+        "user_profile": "",
+        "industry_id": "2",
+        "busi_type": "નોકરી"
+      }
+    };
+    FormData formData = FormData(formDataMap);
     userRegistrationModel userSignupmodel = userRegistrationModel();
     String query = GlobalData.signupUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
@@ -184,6 +209,7 @@ class ApiProvider {
           'dRZ4QD4_zTE:APA91bFQW-3STJf3AZFga9cg0u6OcXy9sU0qbAR_dyxYOjC_P68HyG-8-U1o8SnFYA-YJHFEz5QPF3N9rzgCJvwTaExXXSftCfgc-f5-0i6-LCEVQn7TL_igAkYXL4cTapyNnr33YSzs',
       'home_id': home_id.toString(),
       'no_of_member': no_of_member.toString(),
+      'member_details': formData.toString(),
       // 'member_details':
       //     ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
       'mname': mname.toString(),
@@ -285,6 +311,24 @@ class ApiProvider {
       print(response.reasonPhrase);
     }
     return basicmodel;
+  }
+
+  Future<Parivarsamiti> familySamiti() async {
+    Parivarsamiti samitiModel = Parivarsamiti();
+    String query = GlobalData.parivarsamity;
+
+    var request = http.MultipartRequest('GET', Uri.parse(query));
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    if (response1.statusCode == 200) {
+      samitiModel = Parivarsamiti.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return samitiModel;
   }
 
   Future<Gallaryalbum> getAlbumData(selectedYear) async {
@@ -401,20 +445,36 @@ class ApiProvider {
     return noticeModel;
   }
 
+  Future<Notice> checkUserStatus() async {
+    Notice noticeModel = Notice();
+    String query = GlobalData.checkuserStatus;
+    var request = http.MultipartRequest('GET', Uri.parse(query));
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+    final result = jsonDecode(response1.body) as Map<String, dynamic>;
+
+    if (response1.statusCode == 200) {
+      noticeModel = Notice.fromJson(result);
+    } else {
+      print(response.reasonPhrase);
+    }
+    return noticeModel;
+  }
+
   Future<SearchModel> search(String village, String home, String industri,
-      String eeducation, String blood) async {
+      String eeducation, String? blood) async {
     SearchModel searchmodel = SearchModel();
     String query = GlobalData.searchUrl;
 
     var request = http.MultipartRequest('POST', Uri.parse(query));
+
     request.fields.addAll({
-      'village_id': village.toString(),
       'home_name': home.toString(),
       'edu_name': eeducation.toString(),
       'blood_name': blood.toString(),
       'busi_id': industri.toString()
     });
-
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
 

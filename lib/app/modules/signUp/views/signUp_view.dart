@@ -12,6 +12,7 @@ import '../../../constant/Widget.dart';
 import '../../../network/controller/network_controller.dart';
 import '../../../widget/temp2.dart';
 import '../controllers/signUp_controller.dart';
+import '../controllers/signup_add_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
   const SignUpView({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class SignUpView extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     final signupController = Get.put(SignUpController());
     final NetworkController _networkController = Get.put(NetworkController());
+    final SignupAddController signupadd = Get.put(SignupAddController());
     MyColor colors = MyColor();
     String? industry;
     String? education;
@@ -572,117 +574,124 @@ class SignUpView extends GetView<SignUpController> {
                       ),
                       InkWell(
                         onTap: () async {
-                          // _showAllDialogs(context);
-                          if (_networkController.connectionStatus.value == 1 ||
-                              _networkController.connectionStatus.value == 2) {
-                            if (controller.formKey.value.currentState!
-                                .validate()) {
-                              if (controller.workController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: StringConstant.work_details);
-                              } else if (controller
-                                  .memberController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "ઘરના સભ્ય પસંદ કરો ");
-                              } else if (controller
-                                  .educationController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: StringConstant.education_chooes);
-                              } else if (controller
-                                  .bloodController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: StringConstant.blood_chooes);
-                              } else if (controller
-                                  .villageController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: StringConstant.village);
-                              } else if (controller
-                                  .currentCityController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: StringConstant.currentcity);
-                              } else if (controller.selectedImg == null) {
-                                Fluttertoast.showToast(
-                                    msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
-                              } else if (controller
-                                  .statusController.text.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "controller.statusController.text");
-                              } else if (controller
-                                  .selectedgender.value.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "તમારી જાતિ પસંદ કરો");
-                              } else if (controller
-                                  .selectedsurname.value.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "તમારી અટક  પસંદ કરો");
-                              } else if (controller
-                                  .selectedwork.value.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
-                              } else {
-                                context.loaderOverlay.show();
-                                controller.isLoading.value =
-                                    await controller.userRegistration(
-                                  controller.nameController.text,
-                                  controller.fatherController.text,
-                                  controller.selectedsurname.value,
-                                  controller.selectedgender.value,
-                                  controller.addressController.text,
-                                  controller.birthController.text,
-                                  controller.emailController.text,
-                                  controller.passwordController.text,
-                                  controller.mobileController.text,
-                                  controller.industryController.text,
-                                  controller.selectedwork.value,
-                                  controller.workController.text,
-                                  controller.memberController.text,
-                                  controller.educationController.text,
-                                  controller.bloodController.text,
-                                  controller.villageController.text,
-                                  controller.villageController.text,
-                                  controller.currentCityController.text,
-                                  controller.statusController.text,
-                                );
-                                controller.nameController.clear();
-                                controller.fatherController.clear();
-                                controller.selectedsurname;
-                                controller.selectedgender;
-                                controller.addressController.clear();
-                                controller.birthController.clear();
-                                controller.emailController.clear();
-                                controller.passwordController.clear();
-                                controller.mobileController.clear();
-                                controller.industryController.clear();
-                                controller.selectedwork;
-                                controller.workController.clear();
-                                controller.memberController.clear();
-                                controller.educationController.clear();
-                                controller.bloodController.clear();
-                                controller.villageController.clear();
-                                controller.currentCityController.clear();
-                                controller.statusController.clear();
-                                controller.memberController.clear();
-                                controller.educationController.clear();
-                                controller.bloodController.clear();
-                                controller.villageController.clear();
-                                controller.currentCityController.clear();
-                                controller.statusController.clear();
-                                controller.selectedwork.close();
-                                controller.selectedsurname.close();
-                                controller.selectedgender.close();
-                                controller.selectedImg!.close();
-                                if (controller.isLoading.value) {
-                                  Get.back();
-                                  context.loaderOverlay.hide();
+                          if (int.parse(controller.memberController.text) >=
+                              2) {
+                           // signupadd.openDilogueAddMember(context: context);
+                          }
+                          else {
+                            if (_networkController.connectionStatus.value ==
+                                    1 ||
+                                _networkController.connectionStatus.value ==
+                                    2) {
+                              if (controller.formKey.value.currentState!
+                                  .validate()) {
+                                if (controller.workController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConstant.work_details);
+                                } else if (controller
+                                    .memberController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: "ઘરના સભ્ય પસંદ કરો ");
+                                } else if (controller
+                                    .educationController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConstant.education_chooes);
+                                } else if (controller
+                                    .bloodController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConstant.blood_chooes);
+                                } else if (controller
+                                    .villageController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConstant.village);
+                                } else if (controller
+                                    .currentCityController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConstant.currentcity);
+                                } else if (controller.selectedImg == null) {
+                                  Fluttertoast.showToast(
+                                      msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
+                                } else if (controller
+                                    .statusController.text.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: "controller.statusController.text");
+                                } else if (controller
+                                    .selectedgender.value.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: "તમારી જાતિ પસંદ કરો");
+                                } else if (controller
+                                    .selectedsurname.value.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: "તમારી અટક  પસંદ કરો");
+                                } else if (controller
+                                    .selectedwork.value.isEmpty) {
+                                  Fluttertoast.showToast(
+                                      msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
+                                } else {
+                                  context.loaderOverlay.show();
+                                  controller.isLoading.value =
+                                      await controller.userRegistration(
+                                    controller.nameController.text,
+                                    controller.fatherController.text,
+                                    controller.selectedsurname.value,
+                                    controller.selectedgender.value,
+                                    controller.addressController.text,
+                                    controller.birthController.text,
+                                    controller.emailController.text,
+                                    controller.passwordController.text,
+                                    controller.mobileController.text,
+                                    controller.industryController.text,
+                                    controller.selectedwork.value,
+                                    controller.workController.text,
+                                    controller.memberController.text,
+                                    controller.educationController.text,
+                                    controller.bloodController.text,
+                                    controller.villageController.text,
+                                    controller.villageController.text,
+                                    controller.currentCityController.text,
+                                    controller.statusController.text,
+                                  );
+                                  controller.nameController.clear();
+                                  controller.fatherController.clear();
+                                  controller.selectedsurname;
+                                  controller.selectedgender;
+                                  controller.addressController.clear();
+                                  controller.birthController.clear();
+                                  controller.emailController.clear();
+                                  controller.passwordController.clear();
+                                  controller.mobileController.clear();
+                                  controller.industryController.clear();
+                                  controller.selectedwork;
+                                  controller.workController.clear();
+                                  controller.memberController.clear();
+                                  controller.educationController.clear();
+                                  controller.bloodController.clear();
+                                  controller.villageController.clear();
+                                  controller.currentCityController.clear();
+                                  controller.statusController.clear();
+                                  controller.memberController.clear();
+                                  controller.educationController.clear();
+                                  controller.bloodController.clear();
+                                  controller.villageController.clear();
+                                  controller.currentCityController.clear();
+                                  controller.statusController.clear();
+                                  controller.selectedwork.close();
+                                  controller.selectedsurname.close();
+                                  controller.selectedgender.close();
+                                  controller.selectedImg!.close();
+                                  if (controller.isLoading.value) {
+                                    Get.back();
+                                    context.loaderOverlay.hide();
+                                  }
                                 }
                               }
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                  textColor: colors.black,
+                                  backgroundColor: colors.white);
                             }
-                          } else {
-                            Fluttertoast.showToast(
-                                msg:
-                                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
-                                textColor: colors.black,
-                                backgroundColor: colors.white);
                           }
                         },
                         child: Container(
@@ -782,49 +791,460 @@ class SignUpView extends GetView<SignUpController> {
   }
 
   _openDilogueAddMember({required BuildContext context}) {
+    String? industry;
+    String? education;
+    String? bloodgroup;
+    String? status;
+    String? village;
+    String? currentcity;
     MyColor colors = MyColor();
     Get.dialog(Dialog(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Form(
-            key: controller.familyformKey.value,
-            child: Column(
-              children: [
-                CustomeTextFields(
-                  iconfat: FontAwesomeIcons.solidCircleUser,
-                  validation: true,
-                  keyboard: 0,
-                  fieldValue: controller.fnameController,
-                  hint: StringConstant.name,
-                ),
-                Container(
-                  height: 6.h,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                      color: colors.darkbrown,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Text(
-                    StringConstant.registration,
-                    style: TextStyle(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Form(
+              key: controller.formKey.value,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 1.h,
+                  ),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.solidCircleUser,
+                    keyboard: 0,
+                    hint: StringConstant.name,
+                    validation: true,
+                    fieldValue: controller.nameController,
+                  ),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.solidCircleUser,
+                    keyboard: 0,
+                    hint: StringConstant.fathername,
+                    validation: true,
+                    fieldValue: controller.fatherController,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15, left: 15),
+                          child: FaIcon(FontAwesomeIcons.solidCircleUser,
+                              size: 20.sp, color: colors.darkbrown),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 8,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10,
+                              ),
+                              child: Text(
+                                StringConstant.surname,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.sp,
+                                    color: colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: StringConstant.bhalal,
+                                  groupValue: controller.selectedsurname.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedSurname(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.bhalal),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: "Bhalala",
+                                  groupValue: controller.selectedsurname.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedSurname(value);
+                                  }),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text("Bhalala"),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 1.h,
+                  ),
+
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15, left: 15),
+                          child: FaIcon(FontAwesomeIcons.venusMars,
+                              size: 20.sp, color: colors.darkbrown),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 8,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10,
+                              ),
+                              child: Text(
+                                StringConstant.gender,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.sp,
+                                    color: colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: "Women",
+                                  groupValue: controller.selectedgender.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedGender(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.women),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: "Male",
+                                  groupValue: controller.selectedgender.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedGender(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.gentelmen),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.cakeCandles,
+                    keyboard: 0,
+                    hint: StringConstant.birthdaydate,
+                    validation: true,
+                    fieldValue: controller.birthController,
+                    icon: Icons.calendar_today_rounded,
+                  ),
+                  //// Industrial
+                  customeDropDown(
+                    iconfat: FontAwesomeIcons.graduationCap,
+                    dropdown: DropdownButton(
+                      hint: Text(
+                        StringConstant.work_sectorchoice,
+                        style: TextStyle(
+                            color: colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      isExpanded: true,
+                      elevation: 0,
+                      underline: Container(
                         color: colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp),
-                  )),
-                ),
-              ],
-            ),
-          ),
-        ],
+                      ),
+                      onChanged: (String? newvalue) {
+                        industry = newvalue!;
+                        controller.industryController.text = newvalue;
+                        controller.update();
+                      },
+                      value: industry,
+                      items: controller.accountIndustryListData.map((items) {
+                        return DropdownMenuItem(
+                          value: items.name,
+                          child: Text(
+                            items.name.toString(),
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15, left: 15),
+                          child: FaIcon(FontAwesomeIcons.solidCircleUser,
+                              size: 20.sp, color: colors.darkbrown),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 8,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10,
+                              ),
+                              child: Text(
+                                StringConstant.work_details,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10.sp,
+                                    color: colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: StringConstant.job,
+                                  groupValue: controller.selectedwork.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedWork(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.job,
+                                  style: TextStyle(fontSize: 10.sp)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: StringConstant.buissness,
+                                  groupValue: controller.selectedwork.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedWork(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.buissness,
+                                  style: TextStyle(fontSize: 10.sp)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Radio(
+                                  value: StringConstant.other,
+                                  groupValue: controller.selectedwork.value,
+                                  activeColor: colors.darkbrown,
+                                  onChanged: (value) {
+                                    controller.onChnagedWork(value);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(StringConstant.other,
+                                  style: TextStyle(fontSize: 10.sp)),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  CustomeTextFields(
+                    iconfat: FontAwesomeIcons.shop,
+                    keyboard: 0,
+                    hint: StringConstant.work_details,
+                    validation: true,
+                    fieldValue: controller.workController,
+                  ),
+                  SizedBox(
+                    height: 1.h,
+                  ),
+                  // Education..........
+                  customeDropDown(
+                    iconfat: FontAwesomeIcons.graduationCap,
+                    dropdown: DropdownButton(
+                      hint: Text(
+                        StringConstant.education_chooes,
+                        style: TextStyle(
+                            color: colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      isExpanded: true,
+                      elevation: 0,
+                      underline: Container(
+                        color: colors.white,
+                      ),
+                      onChanged: (String? newvalue) {
+                        education = newvalue!;
+                        controller.educationController.text = newvalue;
+                        controller.update();
+                      },
+                      value: education,
+                      items: controller.accountEducationListData
+                          .map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  //........Blood Group
+                  customeDropDown(
+                    iconfat: FontAwesomeIcons.person,
+                    dropdown: DropdownButton(
+                      hint: Text(
+                        StringConstant.blood_chooes,
+                        style: TextStyle(
+                            color: colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      isExpanded: true,
+                      elevation: 0,
+                      underline: Container(
+                        color: colors.white,
+                      ),
+                      onChanged: (String? newvalue) {
+                        bloodgroup = newvalue!;
+                        controller.bloodController.text = newvalue;
+                        controller.update();
+                      },
+                      value: bloodgroup,
+                      items:
+                          controller.accountBloodListData.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  customeDropDown(
+                    iconfat: FontAwesomeIcons.userGroup,
+                    dropdown: DropdownButton(
+                      hint: Text(
+                        StringConstant.merriage,
+                        style: TextStyle(
+                            color: colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      isExpanded: true,
+                      elevation: 0,
+                      underline: Container(
+                        color: colors.white,
+                      ),
+                      onChanged: (String? newvalue) {
+                        status = newvalue!;
+                        controller.statusController.text = newvalue;
+                        controller.update();
+                      },
+                      value: status,
+                      items:
+                          controller.accountStatusListData.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      // if (controller.formKey.value.currentState!.validate()) {
+                      //   if (controller.workController.text.isEmpty) {
+                      //     Fluttertoast.showToast(
+                      //         msg: StringConstant.work_details);
+                      //   } else if (controller.bloodController.text.isEmpty) {
+                      //     Fluttertoast.showToast(
+                      //         msg: StringConstant.blood_chooes);
+                      //   } else if (controller.statusController.text.isEmpty) {
+                      //     Fluttertoast.showToast(
+                      //         msg: StringConstant.merrige_status);
+                      //   } else if (controller.selectedgender.value.isEmpty) {
+                      //     Fluttertoast.showToast(msg: "તમારી જાતિ પસંદ કરો");
+                      //   } else if (controller.selectedsurname.value.isEmpty) {
+                      //     Fluttertoast.showToast(msg: "તમારી અટક  પસંદ કરો");
+                      //   } else if (controller.selectedwork.value.isEmpty) {
+                      //     Fluttertoast.showToast(
+                      //         msg: "તમારી વ્યવસાય વિગત પસંદ કરો");
+                      //   } else {
+                      //     context.loaderOverlay.show();
+                      //     controller.isLoading.value =
+                      //     await controller.addMember(
+                      //       controller.nameController.text,
+                      //       controller.fatherController.text,
+                      //       controller.selectedsurname.value,
+                      //       controller.selectedgender.value,
+                      //       controller.birthController.text,
+                      //       controller.industryController.text,
+                      //       controller.selectedwork.value,
+                      //       controller.workController.text,
+                      //       controller.educationController.text,
+                      //       controller.bloodController.text,
+                      //       controller.statusController.text,
+                      //     );
+                      //     if (controller.isLoading.value) {
+                      //       Get.back();
+                      //       context.loaderOverlay.hide();
+                      //     }
+                      //   }
+                      // }
+                    },
+                    child: Container(
+                      height: 6.h,
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                          color: colors.darkbrown,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Center(
+                          child: Text(
+                        StringConstant.registration,
+                        style: TextStyle(
+                            color: colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13.sp),
+                      )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     ));
   }
 
   _showAllDialogs(BuildContext context) {
-    for (int i = 0; i < int.parse(controller.memberController.text); i++) {
-      _openDilogueAddMember(context: context);
-    }
+    _openDilogueAddMember(context: context);
   }
 }
