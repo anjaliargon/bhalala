@@ -30,7 +30,9 @@ class smitiData {
   String? name;
   String? role;
   String? samityType;
+  String? samityTypeName;
   String? phone;
+  String? villageName;
 
   smitiData(
       {this.id,
@@ -38,7 +40,9 @@ class smitiData {
         this.name,
         this.role,
         this.samityType,
-        this.phone});
+        this.samityTypeName,
+        this.phone,
+        this.villageName});
 
   smitiData.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -46,7 +50,9 @@ class smitiData {
     name = json['Name'];
     role = json['Role'];
     samityType = json['samity_type'];
+    samityTypeName = json['samity_type_name'];
     phone = json['Phone'];
+    villageName = json['village_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -56,7 +62,9 @@ class smitiData {
     data['Name'] = this.name;
     data['Role'] = this.role;
     data['samity_type'] = this.samityType;
+    data['samity_type_name'] = this.samityTypeName;
     data['Phone'] = this.phone;
+    data['village_name'] = this.villageName;
     return data;
   }
 }

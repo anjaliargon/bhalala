@@ -16,7 +16,7 @@ import '../../../main.dart';
 import '../../constant/sizeConstant.dart';
 import '../../constant/String_constant.dart';
 import '../../modules/Editprofile/model.dart';
-import '../../modules/Family_samiti/model/samitiModel.dart';
+import '../../modules/Family_samiti/samitiModel.dart';
 import '../../modules/addmember/model/AddmemberModel.dart';
 import '../../modules/login/model/ForgotModel.dart';
 import '../../modules/login/model/login_model.dart';
@@ -56,7 +56,7 @@ class ApiProvider {
         box.write('v_id_int', loginModel.loginData?.vIdInt);
         box.write('v_id', loginModel.loginData?.vId);
         box.write('home_id', loginModel.loginData?.homeId);
-        // box.write('isAdmin', loginModel.loginData?.);
+        box.write('isAdmin', loginModel.loginData?.isAdmin);
         Fluttertoast.showToast(
             msg: StringConstant.suceesfullylogin,
             backgroundColor: Colors.white,
@@ -325,6 +325,7 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       samitiModel = Parivarsamiti.fromJson(result);
+      print(response1.body);
     } else {
       print(response.reasonPhrase);
     }
@@ -468,13 +469,20 @@ class ApiProvider {
     String query = GlobalData.searchUrl;
 
     var request = http.MultipartRequest('POST', Uri.parse(query));
+    if (isNullEmptyOrFalse(village) ||
+        !isNullEmptyOrFalse(home) ||
+        !isNullEmptyOrFalse(industri) ||
+        !isNullEmptyOrFalse(blood) ||
+        !isNullEmptyOrFalse(eeducation)) {
+      request.fields.addAll({
+        'home_name': home.toString(),
+        'busi_id': industri.toString(),
+        'edu_name': eeducation.toString(),
+        'blood_name': blood.toString(),
+        'busi_id': industri.toString(),
+      });
+    }
 
-    request.fields.addAll({
-      'home_name': home.toString(),
-      'edu_name': eeducation.toString(),
-      'blood_name': blood.toString(),
-      'busi_id': industri.toString()
-    });
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
 

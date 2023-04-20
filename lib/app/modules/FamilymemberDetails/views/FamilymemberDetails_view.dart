@@ -80,7 +80,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                                 onPressed: (context) {
                                   if (controller
                                       .familyMemberData.value.data?[index].rId ==
-                                      box.read('userId')) {
+                                      box.read('userId')|| box.read('isAdmin') =="1") {
                                     controller.openDilogueDelete(context: context,index: index);
                                   } else {
                                     controller.openDilogueNotDelete(context: context);

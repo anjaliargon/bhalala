@@ -1,11 +1,14 @@
+import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/basicModel.dart';
+import 'dart:convert';
+
 import '../../../routes/app_pages.dart';
 
 class SearchController extends GetxController {
@@ -43,28 +46,134 @@ class SearchController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  search(String? village, String home, String industri, String education, String blood) async {
-    VillageBasic villageData = accountVillageListData.where((p0) => p0.vName == village).first;
-    IndustrieslistBasic industrialData = accountIndustryListData.where((p0) => p0.name == industri).first;
-    isLoading.value = false;
-    var result = await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
-    if (!result.data.isNull) {
-      Get.toNamed(Routes.SEARCHMEMBER);
-      searchData.value = result;
-      isLoading(true);
-      return true;
-    } else if (result.data.isNull) {
-      Fluttertoast.showToast(
-          msg: "કોઈ સભ્ય મળ્યું નથી",
-          backgroundColor: Colors.white,
-          textColor: Colors.black);
-      isLoading(true);
-      return true;
+
+  search() async {
+    SearchModel searchmodel = SearchModel();
+    String query = "http://3.111.29.34/webservice/search_member_all.php";
+    IndustrieslistBasic? industrialData;
+    VillageBasic? villageData;
+    if (!isNullEmptyOrFalse(industryController.text)) {
+      industrialData = accountIndustryListData
+          .where((p0) => p0.name == industryController.text)
+          .first;
+    }
+    if (!isNullEmptyOrFalse(villageController.text)) {
+      villageData = accountVillageListData
+          .where((p0) => p0.vName == villageController.text)
+          .first;
+    }
+    var request = http.MultipartRequest('POST', Uri.parse(query));
+    if (!isNullEmptyOrFalse(villageData?.vId ?? '') &&
+        !isNullEmptyOrFalse(homeController.text) &&
+        !isNullEmptyOrFalse(bloodController.text)) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    } else if (!isNullEmptyOrFalse(villageData?.vId ?? '') &&
+        !isNullEmptyOrFalse(homeController.text) &&
+        !isNullEmptyOrFalse(bloodController.text)) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    } else if (isNullEmptyOrFalse(bloodController.text)) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    } else if (isNullEmptyOrFalse(industrialData?.id.toString() ?? "")) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    } else if (isNullEmptyOrFalse(educationController.text)) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    } else if (isNullEmptyOrFalse(educationController.text) ||
+        isNullEmptyOrFalse(industrialData?.id.toString() ?? "")) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }
+    else if (!isNullEmptyOrFalse(bloodController.text) &&
+        !isNullEmptyOrFalse(homeController.text) &&
+        !isNullEmptyOrFalse(industrialData?.id.toString()) &&
+        !isNullEmptyOrFalse(villageData?.vId.toString()) &&
+        !isNullEmptyOrFalse(educationController.text)) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }
+
+    var response = await request.send();
+    var response1 = await http.Response.fromStream(response);
+
+    Map<String, dynamic> data = jsonDecode(response1.body);
+    if (response1.statusCode == 200) {
+      if (data['status'] == 1) {
+        searchData.value = SearchModel.fromJson(data);
+        Get.toNamed(Routes.SEARCHMEMBER);
+        print(searchmodel.data?.length);
+      } else {
+        Fluttertoast.showToast(
+            msg: "કોઈ સભ્ય મળ્યું નથી",
+            backgroundColor: Colors.white,
+            textColor: Colors.black);
+      }
     } else {
-      isLoading(false);
-      return true;
+      print("error ${response1.reasonPhrase}");
     }
   }
+
+  // search(String? village, String home, String industri, String education, String blood) async {
+  //   VillageBasic villageData = accountVillageListData.where((p0) => p0.vName == village).first;
+  //   IndustrieslistBasic industrialData = accountIndustryListData.where((p0) => p0.name == industri).first;
+  //   isLoading.value = false;
+  //   var result = await ApiProvider().search(villageData.vId.toString(), home, industrialData.id.toString(), education, blood);
+  //   if (!result.data.isNull) {
+  //     Get.toNamed(Routes.SEARCHMEMBER);
+  //     searchData.value = result;
+  //     isLoading(true);
+  //     return true;
+  //   } else if (result.data.isNull) {
+  //     Fluttertoast.showToast(
+  //         msg: "કોઈ સભ્ય મળ્યું નથી",
+  //         backgroundColor: Colors.white,
+  //         textColor: Colors.black);
+  //     isLoading(true);
+  //     return true;
+  //   } else {
+  //     isLoading(false);
+  //     return true;
+  //   }
+  // }
+  conditioncheck() {}
 
   getAccountVillageList() async {
     accountVillageListData.clear();

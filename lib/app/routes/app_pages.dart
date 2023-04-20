@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../main.dart';
-import '../constant/sizeConstant.dart';
 import '../modules/About_family/About_familyscreen.dart';
 import '../modules/Editprofile/bindings/Editprofile_binding.dart';
 import '../modules/Editprofile/views/EditProfileScreen.dart';
@@ -11,7 +9,6 @@ import '../modules/Family_add/bindings/family_add_binding.dart';
 import '../modules/Family_add/views/family_add_view.dart';
 import '../modules/Family_samiti/bindings/family_samiti_binding.dart';
 import '../modules/Family_samiti/views/family_samiti_view.dart';
-import '../modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import '../modules/FamilymemberDetails/bindings/Familymember_binding.dart';
 import '../modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
 import '../modules/Important_numbers/Important_numberScreen.dart';
@@ -153,14 +150,14 @@ class AppPages {
       binding: AddmemberBinding(),
     ),
     GetPage(
-      name: _Paths.FAMILY_SAMITI,
-      page: () => FamilySamitiView(),
-      binding: FamilySamitiBinding(),
+      name: _Paths.FAMILY_ADD,
+      page: () => FamilyAddView(),
+      binding: FamilyAddBinding(),
     ),
     GetPage(
-      name: _Paths.FAMILY_ADD,
-      page: () => const FamilyAddView(),
-      binding: FamilyAddBinding(),
+      name: _Paths.FAMILY_SAMITI,
+      page: () => const FamilySamitiView(),
+      binding: FamilySamitiBinding(),
     ),
   ];
 }

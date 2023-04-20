@@ -28,6 +28,7 @@ abstract class Routes {
   static const ADDMEMBER = _Paths.ADDMEMBER;
   static const FAMILY_SAMITI = _Paths.FAMILY_SAMITI;
   static const FAMILY_ADD = _Paths.FAMILY_ADD;
+
 }
 
 abstract class _Paths {
@@ -55,6 +56,7 @@ abstract class _Paths {
   static const FAMILYMEMBER = '/familymembe';
   static const FAMILYMEMBERPROFILE = '/familymemberprofile';
   static const ADDMEMBER = '/addmember';
-  static const FAMILY_SAMITI = '/family-samiti';
+  static const FAMILY_SAMITI = '/familysamiti';
   static const FAMILY_ADD = '/family-add';
+
 }

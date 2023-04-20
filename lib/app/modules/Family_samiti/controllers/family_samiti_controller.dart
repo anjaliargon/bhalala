@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
 import '../../../data/Api/ApiProvider.dart';
-import '../model/samitiModel.dart';
+import '../samitiModel.dart';
 
 class FamilySamitiController extends GetxController {
+  //TODO: Implement FamilySamitiController
+
   RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
   final samitiData = Parivarsamiti().obs;
@@ -25,19 +27,16 @@ class FamilySamitiController extends GetxController {
     super.onClose();
   }
 
-  Future<void> getSamitiData() async {
-    isLoading(false);
-    errorOccurred(false);
-    try {
-      var result = await ApiProvider().familySamiti();
-      if (result.status == 1) {
-        samitiData.value = result;
-        isLoading(true);
-      }else{}
-    } catch (e) {
-      errorOccurred(true);
-    } finally {
+  getSamitiData() async {
+    isLoading.value = false;
+    var result = await ApiProvider().familySamiti();
+    if (result.status == 1) {
+      samitiData.value = result;
+      isLoading(true);
+      return true;
+    } else {
       isLoading(false);
+      return true;
     }
   }
 }

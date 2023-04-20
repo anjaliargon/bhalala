@@ -147,7 +147,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Get.toNamed(Routes.COMITEE);
+                  Get.toNamed(Routes.FAMILY_SAMITI);
                 },
               ),
               ListTile(
@@ -363,7 +363,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Get.toNamed(Routes.COMITEE);
+                  Get.toNamed(Routes.FAMILY_SAMITI);
                 },
               ),
               ListTile(
