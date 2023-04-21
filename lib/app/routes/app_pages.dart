@@ -43,6 +43,8 @@ import '../modules/signUp/bindings/signUp_binding.dart';
 import '../modules/signUp/views/signUp_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/verifyUserProfile/bindings/verify_user_profile_binding.dart';
+import '../modules/verifyUserProfile/views/verify_user_profile_view.dart';
 
 part 'app_routes.dart';
 
@@ -158,6 +160,11 @@ class AppPages {
       name: _Paths.FAMILY_SAMITI,
       page: () => const FamilySamitiView(),
       binding: FamilySamitiBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFY_USER_PROFILE,
+      page: () =>  VerifyUserProfileView(),
+      binding: VerifyUserProfileBinding(),
     ),
   ];
 }

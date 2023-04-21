@@ -75,6 +75,7 @@ class EditProfileController extends GetxController {
   }
 
   userProfilePatchList(
+      user_profile,
     user_name,
     mname,
     lname,
@@ -96,6 +97,7 @@ class EditProfileController extends GetxController {
     IndustrieslistBasic industrialData =
         accountIndustryListData.where((p0) => p0.name == inductries).first;
     var result = await ApiProvider().editprofile(
+        user_profile.path,
         user_name,
         mname,
         lname,

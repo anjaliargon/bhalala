@@ -70,18 +70,17 @@ class SearchController extends GetxController {
         'home_name': homeController.text,
         'village_id': villageData?.vId.toString() ?? "",
         'blood_name': bloodController.text,
-        'edu_name': educationController.text,
-        'busi_id': industrialData?.id.toString() ?? ""
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
       });
     } else if (!isNullEmptyOrFalse(villageData?.vId ?? '') &&
-        !isNullEmptyOrFalse(homeController.text) &&
-        !isNullEmptyOrFalse(bloodController.text)) {
+        !isNullEmptyOrFalse(homeController.text)) {
       request.fields.addAll({
-        // 'home_name': homeController.text,
+        'home_name': homeController.text,
         'village_id': villageData?.vId.toString() ?? "",
-        'blood_name': bloodController.text,
-        'edu_name': educationController.text,
-        'busi_id': industrialData?.id.toString() ?? ""
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
       });
     } else if (isNullEmptyOrFalse(bloodController.text)) {
       request.fields.addAll({

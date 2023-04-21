@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
 import '../../../../main.dart';
+import '../../../data/Api/ApiUrl.dart';
 import '../../../data/Api/ApiProvider.dart';
-
-import '../../memberDetails/Model/MemberDetailsModel.dart';
+import 'dart:convert';
 import '../model/profileModel.dart';
-
+import 'package:http/http.dart' as http;
 class ProfileController extends GetxController {
   final userProfileData = Profilemodel().obs;
   var isLoading = false.obs;
   var errorOccurred = false.obs;
   final userid = "".obs;
-
+  RxList<Profilemodel> profiledata = <Profilemodel>[].obs;
   @override
   void onInit() {
     userProfile();
@@ -29,14 +28,13 @@ class ProfileController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  userProfile() async {
+  Future<Profilemodel> userProfile() async {
+    await Future.delayed(Duration(seconds: 5));
     isLoading(true);
     try {
       var result = await ApiProvider().Userprofile();
       if (result.status == 1) {
         userProfileData.value = result;
-        isLoading(true);
       } else {
         Fluttertoast.showToast(
             msg: "Wrong credential",
@@ -44,10 +42,10 @@ class ProfileController extends GetxController {
             textColor: Colors.black);
         isLoading(false);
       }
-    } catch (e) {
     } finally {
       isLoading(false);
     }
+    return userProfileData.value;
   }
   assigndata(){
     userid.value  =  userProfileData.value.data?.first.rId ??'';

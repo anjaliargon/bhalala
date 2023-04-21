@@ -19,6 +19,7 @@ class FamilyMemberController extends GetxController {
   var memeberId = Get.arguments;
   final familyMemberData = FamilyMember().obs;
   final deletcontroller = Get.put(DeleteController());
+
   @override
   void onInit() {
     getFamilymemberCount();
@@ -35,9 +36,8 @@ class FamilyMemberController extends GetxController {
     super.onClose();
   }
 
-  void makeUrlRequest() {
+  void makeUrlRequest() {}
 
-  }
   Future<void> getFamilymemberCount() async {
     isLoading(true);
     errorOccurred(false);
@@ -70,6 +70,7 @@ class FamilyMemberController extends GetxController {
       isLoading(false);
     }
   }
+
   openDilogueNotEdit({required BuildContext context}) {
     MyColor colors = MyColor();
     return Get.dialog(Dialog(
@@ -83,9 +84,9 @@ class FamilyMemberController extends GetxController {
               color: colors.darkbrown,
               child: Center(
                   child: Text(
-                    "નોંધ",
-                    style: TextStyle(color: colors.white, fontSize: 14.sp),
-                  )),
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
             ),
             SizedBox(
               height: 2.h,
@@ -108,7 +109,7 @@ class FamilyMemberController extends GetxController {
               child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(colors.darkbrown),
+                        MaterialStateProperty.all(colors.darkbrown),
                   ),
                   onPressed: () {
                     Get.back();
@@ -140,9 +141,9 @@ class FamilyMemberController extends GetxController {
               color: colors.darkbrown,
               child: Center(
                   child: Text(
-                    "નોંધ",
-                    style: TextStyle(color: colors.white, fontSize: 14.sp),
-                  )),
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
             ),
             SizedBox(
               height: 2.h,
@@ -165,7 +166,7 @@ class FamilyMemberController extends GetxController {
               child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(colors.darkbrown),
+                        MaterialStateProperty.all(colors.darkbrown),
                   ),
                   onPressed: () {
                     Get.back();
@@ -184,9 +185,9 @@ class FamilyMemberController extends GetxController {
     ));
   }
 
-  openDilogueDelete({required BuildContext context,required int index}) {
+  openDilogueDelete({required BuildContext context, required int index}) {
     MyColor colors = MyColor();
-    var ids =  familyMemberData.value.data?[index].fId;
+    var ids = familyMemberData.value.data?[index].fId;
     return Get.dialog(Dialog(
       child: Container(
         color: colors.lightgrey,
@@ -198,9 +199,9 @@ class FamilyMemberController extends GetxController {
               color: colors.darkbrown,
               child: Center(
                   child: Text(
-                    "નોંધ",
-                    style: TextStyle(color: colors.white, fontSize: 14.sp),
-                  )),
+                "નોંધ",
+                style: TextStyle(color: colors.white, fontSize: 14.sp),
+              )),
             ),
             SizedBox(
               height: 2.h,
@@ -226,10 +227,10 @@ class FamilyMemberController extends GetxController {
                   child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all(colors.darkbrown),
+                            MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                        deletcontroller.DeletefamilyDataList(ids!,index);
+                        deletcontroller.DeletefamilyDataList(ids!, index);
                         Get.back();
                       },
                       child: Text(
@@ -243,7 +244,7 @@ class FamilyMemberController extends GetxController {
                   child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all(colors.darkbrown),
+                            MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
                         Get.back();

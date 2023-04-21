@@ -32,6 +32,7 @@ class FamilySamitiController extends GetxController {
     var result = await ApiProvider().familySamiti();
     if (result.status == 1) {
       samitiData.value = result;
+      print(samitiData.value.data?.length);
       isLoading(true);
       return true;
     } else {

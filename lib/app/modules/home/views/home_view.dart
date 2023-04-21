@@ -530,7 +530,7 @@ class HomeView extends GetView<HomeController> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.COMITEE);
+                        Get.toNamed(Routes.FAMILY_SAMITI);
                       },
                       child: _container(
                           StringConstant.parivar_samiti, Icons.groups),

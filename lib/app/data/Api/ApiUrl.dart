@@ -21,5 +21,6 @@ class GlobalData {
   static String parivarsamity = '${baseUrl}/getParivarSamity.php';
   static String parivarsahyog = '${baseUrl}/getParivarSahyog.php';
   static String checkuserStatus = '${baseUrl}/get_all_member.php?status=0';
+  static String user_verify_decline = '${baseUrl}/user_verify_decline.php';
 
 }

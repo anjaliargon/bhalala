@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/family_add_controller.dart';
 
 class FamilyAddView extends GetView<FamilyAddController> {
@@ -27,9 +28,9 @@ class FamilyAddView extends GetView<FamilyAddController> {
         () => LoadingAndErrorScreen(
           isLoading: controller.isLoading.value,
           errorOccurred: controller.errorOccurred.value,
-          errorResolvingFunction: controller.isLoading,
+          errorResolvingFunction: controller.users,
           child: ListView.builder(
-            itemCount: 1,
+            itemCount: controller.checkstatus.value.data?.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(3.0),
@@ -39,24 +40,16 @@ class FamilyAddView extends GetView<FamilyAddController> {
                     children: [
                       SlidableAction(
                         onPressed: (context) {
-                          // if (controller.getmemberDetailsData.value
-                          //     .data?[index].rId ==
-                          //     box.read('userId')) {
-                          //   Get.toNamed(Routes.EditProfile, arguments: {
-                          //     ArgumentConstant.editprofiledata: controller
-                          //         .getmemberDetailsData.value.data![index]
-                          //   });
-                          // } else {
-                          //   controller.openDilogueNotEdit(context: context);
-                          // }
+                          var ids =  controller.checkstatus.value.data?[index].rId;
+                          controller.verifyAccount(ids!,1);
                         },
                         backgroundColor: colors.green,
                         icon: Icons.verified,
                       ),
                       SlidableAction(
                         onPressed: (context) async {
-                          // UrlLauncher.launch(
-                          //     'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                          var ids =  controller.checkstatus.value.data?[index].rId;
+                          controller.verifyAccount(ids!,0);
                         },
                         backgroundColor: colors.red,
                         icon: Icons.cancel,
@@ -68,10 +61,10 @@ class FamilyAddView extends GetView<FamilyAddController> {
                     padding: const EdgeInsets.all(4.0),
                     child: GestureDetector(
                       onTap: () {
-                        // Get.toNamed(Routes.MEMBERPROFILE, arguments: {
-                        //   ArgumentConstant.userData: controller
-                        //       .getmemberDetailsData.value.data?[index]
-                        // });
+                        // Get.toNamed(Routes.VERIFY_USER_PROFILE,
+                        //     arguments: {
+                        //       ArgumentConstant.searchuserData : searchMemberController.searchData.value.data?[index]
+                        //     });
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -99,7 +92,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                                       height: 1.h,
                                     ),
                                     Text(
-                                      "navadiya chirag bhurabhai",
+                                      "${controller.checkstatus.value.data?[index].name}",
                                       style: TextStyle(
                                           overflow: TextOverflow.ellipsis,
                                           color: colors.darkbrown,
@@ -110,7 +103,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                                       height: 1.h,
                                     ),
                                     Text(
-                                      "${StringConstant.mobile} : 9898399156",
+                                      "${StringConstant.mobile} :${controller.checkstatus.value.data?[index].mobileNo}",
                                       style: TextStyle(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
@@ -120,7 +113,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                                       height: 0.5.h,
                                     ),
                                     Text(
-                                      "${StringConstant.address} : Amroli",
+                                      "${StringConstant.address} :${controller.checkstatus.value.data?[index].address}",
                                       style: TextStyle(
                                           fontSize: 12.5.sp,
                                           overflow: TextOverflow.ellipsis,
@@ -130,7 +123,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                                       height: 0.5.h,
                                     ),
                                     Text(
-                                      "${StringConstant.workdetails} : work",
+                                      "${StringConstant.workdetails} : ${controller.checkstatus.value.data?[index].business}",
                                       style: TextStyle(
                                           fontSize: 12.5.sp,
                                           overflow: TextOverflow.ellipsis,

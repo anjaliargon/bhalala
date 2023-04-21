@@ -28,7 +28,7 @@ abstract class Routes {
   static const ADDMEMBER = _Paths.ADDMEMBER;
   static const FAMILY_SAMITI = _Paths.FAMILY_SAMITI;
   static const FAMILY_ADD = _Paths.FAMILY_ADD;
-
+  static const VERIFY_USER_PROFILE = _Paths.VERIFY_USER_PROFILE;
 }
 
 abstract class _Paths {
@@ -58,5 +58,5 @@ abstract class _Paths {
   static const ADDMEMBER = '/addmember';
   static const FAMILY_SAMITI = '/familysamiti';
   static const FAMILY_ADD = '/family-add';
-
+  static const VERIFY_USER_PROFILE = '/verify-user-profile';
 }
