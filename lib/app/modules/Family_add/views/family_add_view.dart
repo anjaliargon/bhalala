@@ -24,8 +24,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
         title: const Text('Add Members'),
         centerTitle: true,
       ),
-      body: Obx(
-        () => LoadingAndErrorScreen(
+      body: Obx(()=> LoadingAndErrorScreen(
           isLoading: controller.isLoading.value,
           errorOccurred: controller.errorOccurred.value,
           errorResolvingFunction: controller.users,
@@ -40,16 +39,16 @@ class FamilyAddView extends GetView<FamilyAddController> {
                     children: [
                       SlidableAction(
                         onPressed: (context) {
-                          var ids =  controller.checkstatus.value.data?[index].rId;
-                          controller.verifyAccount(ids!,1);
+                          var ids = controller.checkstatus.value.data?[index].rId;
+                          controller.verifyAccount(ids!, 1);
                         },
                         backgroundColor: colors.green,
                         icon: Icons.verified,
                       ),
                       SlidableAction(
                         onPressed: (context) async {
-                          var ids =  controller.checkstatus.value.data?[index].rId;
-                          controller.verifyAccount(ids!,0);
+                          var ids = controller.checkstatus.value.data?[index].rId;
+                          controller.verifyAccount(ids!, 0);
                         },
                         backgroundColor: colors.red,
                         icon: Icons.cancel,
@@ -61,10 +60,10 @@ class FamilyAddView extends GetView<FamilyAddController> {
                     padding: const EdgeInsets.all(4.0),
                     child: GestureDetector(
                       onTap: () {
-                        // Get.toNamed(Routes.VERIFY_USER_PROFILE,
-                        //     arguments: {
-                        //       ArgumentConstant.searchuserData : searchMemberController.searchData.value.data?[index]
-                        //     });
+                        Get.toNamed(Routes.VERIFY_USER_PROFILE, arguments: {
+                          ArgumentConstant.familyadd:
+                              controller.checkstatus.value.data?[index]
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(

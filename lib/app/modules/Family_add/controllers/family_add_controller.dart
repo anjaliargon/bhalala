@@ -10,9 +10,8 @@ class FamilyAddController extends GetxController {
   var isLoading = false.obs;
   var errorOccurred = false.obs;
   final count = 0.obs;
-  final checkstatus = statusCheck().obs;
+  Rx<statusCheck>  checkstatus = statusCheck().obs;
   final verify = verifyUser().obs;
-
   @override
   void onInit() {
     users();
@@ -33,6 +32,7 @@ class FamilyAddController extends GetxController {
     var result = await ApiProvider().verifyUserfamily(ids,status);
     if (result.status == 1) {
       verify.value = result;
+      users();
       Fluttertoast.showToast(
           msg: result.data.toString(),
           backgroundColor: Colors.white,

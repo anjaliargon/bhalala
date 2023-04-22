@@ -8,12 +8,15 @@ class FamilySamitiController extends GetxController {
 
   RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
-  final samitiData = Parivarsamiti().obs;
+  Rx<Parivarsamiti> samitiData = Parivarsamiti().obs;
+  RxList<smitiData> dataList =  RxList<smitiData>([]);
+  RxList<smitiData> sthapakList =  RxList<smitiData>([]);
+  RxList<smitiData> karobariList =  RxList<smitiData>([]);
   final count = 0.obs;
 
   @override
-  void onInit() {
-    getSamitiData();
+  Future<void> onInit() async {
+   await getSamitiData();
     super.onInit();
   }
 
@@ -26,18 +29,28 @@ class FamilySamitiController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  Future<Parivarsamiti> getSamitiData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    dataList.clear();
+    karobariList.clear();
+    sthapakList.clear();
+    isLoading(true);
+    try {
+      var result = await ApiProvider().familySamiti();
+      if (result.status == 1) {
+        samitiData.value = result;
+        samitiData.value.data!.forEach((element) {
+          dataList.add(element);
+        });
 
-  getSamitiData() async {
-    isLoading.value = false;
-    var result = await ApiProvider().familySamiti();
-    if (result.status == 1) {
-      samitiData.value = result;
-      print(samitiData.value.data?.length);
-      isLoading(true);
-      return true;
-    } else {
+        karobariList.value =dataList.where((p0) => p0.samityType =="3").toList();
+        sthapakList.value =dataList.where((p0) => p0.samityType =="2").toList();
+      } else {
+        isLoading(false);
+      }
+    } finally {
       isLoading(false);
-      return true;
     }
+    return samitiData.value;
   }
 }

@@ -29,6 +29,7 @@ abstract class Routes {
   static const FAMILY_SAMITI = _Paths.FAMILY_SAMITI;
   static const FAMILY_ADD = _Paths.FAMILY_ADD;
   static const VERIFY_USER_PROFILE = _Paths.VERIFY_USER_PROFILE;
+  static const PARIVAR_SAHYOG = _Paths.PARIVAR_SAHYOG;
 }
 
 abstract class _Paths {
@@ -59,4 +60,5 @@ abstract class _Paths {
   static const FAMILY_SAMITI = '/familysamiti';
   static const FAMILY_ADD = '/family-add';
   static const VERIFY_USER_PROFILE = '/verify-user-profile';
+  static const PARIVAR_SAHYOG = '/parivar-sahyog';
 }
