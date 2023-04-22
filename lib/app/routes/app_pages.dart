@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../modules/About_family/About_familyscreen.dart';
 import '../modules/Editprofile/bindings/Editprofile_binding.dart';
 import '../modules/Editprofile/views/EditProfileScreen.dart';
-import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
 import '../modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
 import '../modules/Family_add/bindings/family_add_binding.dart';
 import '../modules/Family_add/views/family_add_view.dart';
@@ -28,7 +27,8 @@ import '../modules/memberDetails/views/memberDetails_view.dart';
 import '../modules/noticeBoard/bindings/noticeBoard_binding.dart';
 import '../modules/noticeBoard/views/Details_noticeboard.dart';
 import '../modules/noticeBoard/views/noticeBoard_view.dart';
-import '../modules/parivar_sahyog/parivarSahyogView.dart';
+import '../modules/parivar_sahyog/bindings/parivar_sahyog_binding.dart';
+import '../modules/parivar_sahyog/views/parivar_sahyog_view.dart';
 import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -143,10 +143,6 @@ class AppPages {
         page: () => MemberDetailsView(),
         binding: MemberDetailsBinding()),
     GetPage(
-      name: _Paths.COMITEE,
-      page: () => FamilyCommitte(),
-    ),
-    GetPage(
       name: _Paths.ADDMEMBER,
       page: () => AddmemberView(),
       binding: AddmemberBinding(),
@@ -163,8 +159,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VERIFY_USER_PROFILE,
-      page: () =>  VerifyUserProfileView(),
+      page: () => VerifyUserProfileView(),
       binding: VerifyUserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PARIVAR_SAHYOG,
+      page: () => const ParivarSahyogView(),
+      binding: ParivarSahyogBinding(),
     ),
   ];
 }

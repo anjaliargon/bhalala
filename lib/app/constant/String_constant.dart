@@ -128,4 +128,6 @@ class ArgumentConstant{
   static const searchuserData = "searchuserData";
   static const editprofiledata = "editprofiledata";
   static const familyprofiledata = "familyprofiledata";
+  static const familyadd = "familyadd";
+  static const newsEvent = "news";
 }

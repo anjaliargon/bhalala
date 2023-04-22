@@ -62,20 +62,22 @@ class EditProfileController extends GetxController {
   }
 
   void onInit() {
-    if (Get.arguments != null) {
-      profileData = Get.arguments[ArgumentConstant.editprofiledata];
-    }
-    getAccountIndustryList();
-    getAccountEducationList();
-    getAccountStausList();
-    getAccountBloodList();
-    assignProfileData();
-    getAccountVillageList();
-    getAccountCurentCityList();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (Get.arguments != null) {
+        profileData = Get.arguments[ArgumentConstant.editprofiledata];
+      }
+      getAccountIndustryList();
+      getAccountEducationList();
+      getAccountStausList();
+      getAccountBloodList();
+      assignProfileData();
+      getAccountVillageList();
+      getAccountCurentCityList();
+    });
   }
 
   userProfilePatchList(
-      user_profile,
+    user_profile,
     user_name,
     mname,
     lname,
@@ -94,8 +96,7 @@ class EditProfileController extends GetxController {
     status,
   ) async {
     isLoading.value = false;
-    IndustrieslistBasic industrialData =
-        accountIndustryListData.where((p0) => p0.name == inductries).first;
+    IndustrieslistBasic industrialData = accountIndustryListData.where((p0) => p0.name == inductries).first;
     var result = await ApiProvider().editprofile(
         user_profile.path,
         user_name,
@@ -241,10 +242,8 @@ class EditProfileController extends GetxController {
     }
   }
 
-  void assignProfileData() {
-    // IndustrieslistBasic industrialData =
-    //     accountIndustryListData.where((p0) => p0.id == profileData?.industryId).first;
-    Future.delayed(const Duration(milliseconds: 2000), () {
+  void assignProfileData() async {
+    await Future.delayed(const Duration(milliseconds: 2000), () {
       isLoading(true);
       nameController.text = profileData?.name ?? '';
       fatherController.text = profileData?.middleName ?? '';

@@ -1,11 +1,9 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/modules/Memberprofile/controllers/Memberprofile_controller.dart';
 import 'package:bhalala/app/no_internet/check_network.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../routes/app_pages.dart';
@@ -51,21 +49,15 @@ class ProfileView extends GetView<ProfileController> {
                         return  Column(
                           children: [
                             SizedBox(height: 15.h,),
-                            Container(
-                              height: 5.h,
-                              width: 100.w,
-                              color: colors.white,
-                              alignment: Alignment(0, 0),
-                              child:  Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CircularProgressIndicator(
-                                    color: colors.darkbrown,
-                                  ),
-                                  SizedBox(width: 10.w,),
-                                  Text("મેહરબાની કરી ને રાહ જોવો",style: TextStyle(fontSize: 14.sp),)
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  color: colors.darkbrown,
+                                ),
+                                SizedBox(width: 10.w,),
+                                Text("મેહરબાની કરી ને રાહ જોવો",style: TextStyle(fontSize: 14.sp),)
+                              ],
                             ),
                           ],
                         );
@@ -179,30 +171,30 @@ class ProfileView extends GetView<ProfileController> {
                             SizedBox(
                               height: 3.h,
                             ),
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed(Routes.FAMILYMEMBER,
-                                    arguments: controller
-                                        .userProfileData.value.data?.first.rId);
-                              },
-                              child: Center(
-                                child: Container(
-                                  height: 6.h,
-                                  width: 95.w,
-                                  decoration: BoxDecoration(
-                                      color: colors.darkbrown,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Center(
-                                      child: Text(
-                                        "સભ્ય ની વિગત જોવો",
-                                        style: TextStyle(
-                                            color: colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp),
-                                      )),
-                                ),
-                              ),
-                            ),
+                            // InkWell(
+                            //   onTap: () {
+                            //     Get.toNamed(Routes.FAMILYMEMBER,
+                            //         arguments: controller
+                            //             .userProfileData.value.data?.first.rId);
+                            //   },
+                            //   child: Center(
+                            //     child: Container(
+                            //       height: 6.h,
+                            //       width: 95.w,
+                            //       decoration: BoxDecoration(
+                            //           color: colors.darkbrown,
+                            //           borderRadius: BorderRadius.circular(10)),
+                            //       child: Center(
+                            //           child: Text(
+                            //             "સભ્ય ની વિગત જોવો",
+                            //             style: TextStyle(
+                            //                 color: colors.white,
+                            //                 fontWeight: FontWeight.bold,
+                            //                 fontSize: 13.sp),
+                            //           )),
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 1.h,
                             ),

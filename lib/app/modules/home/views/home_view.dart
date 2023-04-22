@@ -574,7 +574,7 @@ class HomeView extends GetView<HomeController> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.SAHYOG);
+                        Get.toNamed(Routes.PARIVAR_SAHYOG);
                       },
                       child: _container(
                           StringConstant.parivarsahyoug, Icons.group),

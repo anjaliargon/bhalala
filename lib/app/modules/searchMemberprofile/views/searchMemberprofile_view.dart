@@ -8,7 +8,6 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
 import '../../../routes/app_pages.dart';
-import '../../Memberprofile/controllers/Memberprofile_controller.dart';
 import '../controllers/searchMemberprofile_controller.dart';
 
 class SearchProfileView extends GetView<SearchProfileController> {
@@ -17,7 +16,6 @@ class SearchProfileView extends GetView<SearchProfileController> {
   @override
   Widget build(BuildContext context) {
     final profileController = Get.put(SearchProfileController());
-    final familyController = Get.put(MemberProfileController());
 
     MyColor colors = MyColor();
     return GetBuilder<SearchProfileController>(

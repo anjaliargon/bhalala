@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
   var errorOccurred = false.obs;
   final userid = "".obs;
   RxList<Profilemodel> profiledata = <Profilemodel>[].obs;
+  RxList<ProfileData> userData = <ProfileData>[].obs;
   @override
   void onInit() {
     userProfile();
@@ -29,12 +30,15 @@ class ProfileController extends GetxController {
     super.onClose();
   }
   Future<Profilemodel> userProfile() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 3));
     isLoading(true);
     try {
       var result = await ApiProvider().Userprofile();
       if (result.status == 1) {
         userProfileData.value = result;
+        userProfileData.value.data!.forEach((element) {
+          userData.add(element);
+        });
       } else {
         Fluttertoast.showToast(
             msg: "Wrong credential",

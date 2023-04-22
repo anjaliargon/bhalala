@@ -1,5 +1,4 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:bhalala/app/no_internet/check_network.dart';
 
 import 'package:flutter/material.dart';
@@ -29,11 +28,10 @@ class EditProfileView extends GetView<EditProfileController> {
     String? status;
     String? village;
     String? currentcity;
-    final EditprofileController = Get.put(EditProfileController());
 
     MyColor colors = MyColor();
     return GetBuilder<EditProfileController>(
-        init: EditprofileController,
+        init: EditProfileController(),
         builder: (controller) {
           return CheckNetwork(
             child: Scaffold(
@@ -631,7 +629,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                   context.loaderOverlay.show();
                                   controller.isLoading.value =
                                       await controller.userProfilePatchList(
-                                        controller.selectedImg!.value,
+                                    controller.selectedImg!.value,
                                     controller.nameController.text,
                                     controller.fatherController.text,
                                     controller.selectedsurname.value,
