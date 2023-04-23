@@ -176,8 +176,9 @@ class ProfileView extends GetView<ProfileController> {
                       InkWell(
                         onTap: () {
                           Get.toNamed(Routes.FAMILYMEMBER, arguments:
-                                controller.userProfileData.value.data?.first.rId
-                          );
+                          {ArgumentConstant.userData:
+                            controller.userProfileData.value.data?.first.rId
+                          });
                         },
                         child: Center(
                           child: Container(
