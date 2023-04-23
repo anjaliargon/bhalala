@@ -1,17 +1,13 @@
 import 'package:get/get.dart';
 
-import '../../main.dart';
-import '../constant/sizeConstant.dart';
 import '../modules/About_family/About_familyscreen.dart';
 import '../modules/Editprofile/bindings/Editprofile_binding.dart';
 import '../modules/Editprofile/views/EditProfileScreen.dart';
-import '../modules/FamilyCommitee/Familycommittee_Screen.dart';
 import '../modules/FamilyMemberprofile/views/FamilyMemberprofile_view.dart';
 import '../modules/Family_add/bindings/family_add_binding.dart';
 import '../modules/Family_add/views/family_add_view.dart';
 import '../modules/Family_samiti/bindings/family_samiti_binding.dart';
 import '../modules/Family_samiti/views/family_samiti_view.dart';
-import '../modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import '../modules/FamilymemberDetails/bindings/Familymember_binding.dart';
 import '../modules/FamilymemberDetails/views/FamilymemberDetails_view.dart';
 import '../modules/Important_numbers/Important_numberScreen.dart';
@@ -31,7 +27,8 @@ import '../modules/memberDetails/views/memberDetails_view.dart';
 import '../modules/noticeBoard/bindings/noticeBoard_binding.dart';
 import '../modules/noticeBoard/views/Details_noticeboard.dart';
 import '../modules/noticeBoard/views/noticeBoard_view.dart';
-import '../modules/parivar_sahyog/parivarSahyogView.dart';
+import '../modules/parivar_sahyog/bindings/parivar_sahyog_binding.dart';
+import '../modules/parivar_sahyog/views/parivar_sahyog_view.dart';
 import '../modules/photoGallary/bindings/photoGallary_binding.dart';
 import '../modules/photoGallary/views/photoGallary_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -46,6 +43,8 @@ import '../modules/signUp/bindings/signUp_binding.dart';
 import '../modules/signUp/views/signUp_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/verifyUserProfile/bindings/verify_user_profile_binding.dart';
+import '../modules/verifyUserProfile/views/verify_user_profile_view.dart';
 
 part 'app_routes.dart';
 
@@ -144,23 +143,29 @@ class AppPages {
         page: () => MemberDetailsView(),
         binding: MemberDetailsBinding()),
     GetPage(
-      name: _Paths.COMITEE,
-      page: () => FamilyCommitte(),
-    ),
-    GetPage(
       name: _Paths.ADDMEMBER,
       page: () => AddmemberView(),
       binding: AddmemberBinding(),
     ),
     GetPage(
+      name: _Paths.FAMILY_ADD,
+      page: () => FamilyAddView(),
+      binding: FamilyAddBinding(),
+    ),
+    GetPage(
       name: _Paths.FAMILY_SAMITI,
-      page: () => FamilySamitiView(),
+      page: () => const FamilySamitiView(),
       binding: FamilySamitiBinding(),
     ),
     GetPage(
-      name: _Paths.FAMILY_ADD,
-      page: () => const FamilyAddView(),
-      binding: FamilyAddBinding(),
+      name: _Paths.VERIFY_USER_PROFILE,
+      page: () => VerifyUserProfileView(),
+      binding: VerifyUserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PARIVAR_SAHYOG,
+      page: () => const ParivarSahyogView(),
+      binding: ParivarSahyogBinding(),
     ),
   ];
 }

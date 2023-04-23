@@ -147,7 +147,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Get.toNamed(Routes.COMITEE);
+                  Get.toNamed(Routes.FAMILY_SAMITI);
                 },
               ),
               ListTile(
@@ -363,7 +363,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Get.toNamed(Routes.COMITEE);
+                  Get.toNamed(Routes.FAMILY_SAMITI);
                 },
               ),
               ListTile(
@@ -530,7 +530,7 @@ class HomeView extends GetView<HomeController> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.COMITEE);
+                        Get.toNamed(Routes.FAMILY_SAMITI);
                       },
                       child: _container(
                           StringConstant.parivar_samiti, Icons.groups),
@@ -574,7 +574,7 @@ class HomeView extends GetView<HomeController> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.SAHYOG);
+                        Get.toNamed(Routes.PARIVAR_SAHYOG);
                       },
                       child: _container(
                           StringConstant.parivarsahyoug, Icons.group),

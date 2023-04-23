@@ -177,15 +177,15 @@ class LoginController extends GetxController {
     MyColor colors = MyColor();
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
-      box.write('deviceId', androidInfo.version.release);
-      if (box.read("deviceId") == "13") {
+      box.write('deviceId', androidInfo.version.sdkInt);
+      if (box.read("deviceId") <= 33) {
         Map<Permission, PermissionStatus> statuses = await [
           Permission.camera,
           Permission.photos,
           Permission.phone,
         ].request();
          if (statuses[Permission.camera] != PermissionStatus.granted ||
-            statuses[Permission.storage] != PermissionStatus.granted ||
+            statuses[Permission.photos] != PermissionStatus.granted ||
             statuses[Permission.phone] != PermissionStatus.granted) {
           Get.dialog(Dialog(
             child: Column(
@@ -209,13 +209,13 @@ class LoginController extends GetxController {
                         onPressed: () async {
                           Map<Permission, PermissionStatus> statuses = await [
                             Permission.camera,
-                            Permission.storage,
+                            Permission.photos,
                             Permission.phone,
                           ].request();
                           Get.back();
                           if (statuses[Permission.camera] !=
                                   PermissionStatus.granted ||
-                              statuses[Permission.storage] !=
+                              statuses[Permission.photos] !=
                                   PermissionStatus.granted ||
                               statuses[Permission.phone] !=
                                   PermissionStatus.granted) {
@@ -420,5 +420,22 @@ class LoginController extends GetxController {
         }
       }
     }
+  }
+
+
+  Future<bool> checkPermissions() async {
+    final androidInfo = await DeviceInfoPlugin().androidInfo;
+    late final Map<Permission, PermissionStatus> statusess;
+    PermissionStatus cameraStatus = await Permission.camera.status;
+    PermissionStatus microphoneStatus = await Permission.microphone.status;
+    PermissionStatus storageStatus = await Permission.storage.status;
+
+    if (cameraStatus != PermissionStatus.granted ||
+        microphoneStatus != PermissionStatus.granted ||
+        storageStatus != PermissionStatus.granted) {
+      openAppSettings();
+    }
+
+    return true;
   }
 }

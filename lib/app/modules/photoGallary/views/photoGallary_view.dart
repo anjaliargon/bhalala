@@ -126,30 +126,35 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                               }).toList(),
                             ),
                           ))),
-                  // (function != null) ?
-                  //   Expanded(
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: GridView.builder(
-                  //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  //           crossAxisSpacing: 4,
-                  //             mainAxisSpacing: 4,
-                  //             crossAxisCount: 2),
-                  //         itemCount: controller.gallaryphotos.value.data?.length,
-                  //         itemBuilder: (context, index) {
-                  //           return Container(
-                  //             child:  Image.network(
-                  //               "${controller.gallaryphotos.value.data?[index].}",
-                  //               fit: BoxFit.cover,
-                  //               errorBuilder: (a, b, c) =>
-                  //                   Image.asset('assets/images/applogo.png'),
-                  //             ),
-                  //           );
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ) :
-                  //   Container(),
+                  (function != null)
+                      ? Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisSpacing: 4,
+                                      mainAxisSpacing: 4,
+                                      crossAxisCount: 2),
+                              itemCount: controller.yearData.value.data?.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Image.network(
+                                    "${controller.yearData.value.data?[index].imageUrl}",
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (a, b, c) => Image.asset(
+                                        'assets/images/applogo.png'),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             ],

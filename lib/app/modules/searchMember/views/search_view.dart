@@ -319,17 +319,16 @@ class SearchView extends GetView<SearchController> {
                     onPressed: () async {
                       if (_networkController.connectionStatus.value == 1 ||
                           _networkController.connectionStatus.value == 2) {
-                        if (controller.homeController.text.isEmpty) {
+                        if (controller.villageController.text.isEmpty) {
                           Fluttertoast.showToast(
                               msg: StringConstant.currentcity);
                         } else {
-                          context.loaderOverlay.show();
-                          controller.isLoading.value = await controller.search(
-                            controller.villageController.value.text,
-                            controller.homeController.value.text,
-                            controller.industryController.value.text,
-                            controller.educationController.value.text,
-                            controller.bloodController.value.text,
+                           controller.search(
+                            // controller.villageController.value.text,
+                            // controller.homeController.value.text,
+                            // controller.industryController.value.text,
+                            // controller.educationController.value.text,
+                            // controller.bloodController.value.text,
                           );
                           if (controller.isLoading.value) {
                             context.loaderOverlay.hide();

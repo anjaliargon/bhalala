@@ -72,7 +72,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                           onPressed: (context) {
                             if (controller.getmemberDetailsData.value
                                     .data?[index].rId ==
-                                box.read('userId')) {
+                                box.read('userId')|| box.read('isAdmin') =="1") {
                               controller.openDilogueDelete(context: context,index: index);
                             } else {
                               controller.openDilogueNotDelete(context: context);

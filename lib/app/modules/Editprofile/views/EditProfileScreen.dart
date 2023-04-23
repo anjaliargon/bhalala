@@ -1,5 +1,4 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:bhalala/app/no_internet/check_network.dart';
 
 import 'package:flutter/material.dart';
@@ -29,11 +28,10 @@ class EditProfileView extends GetView<EditProfileController> {
     String? status;
     String? village;
     String? currentcity;
-    final EditprofileController = Get.put(EditProfileController());
 
     MyColor colors = MyColor();
     return GetBuilder<EditProfileController>(
-        init: EditprofileController,
+        init: EditProfileController(),
         builder: (controller) {
           return CheckNetwork(
             child: Scaffold(
@@ -79,15 +77,18 @@ class EditProfileView extends GetView<EditProfileController> {
                                 height: 100,
                                 width: 100,
                                 child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(200),
-                                    child: (controller.selectedImg != null)
-                                        ? Image.file(
-                                            controller.selectedImg!.value,
-                                            fit: BoxFit.cover)
-                                        : Image.asset(
-                                            "assets/images/userprofile.png",
-                                            fit: BoxFit.fill,
-                                          )),
+                                  borderRadius: BorderRadius.circular(200),
+                                  child: (controller.selectedImg != null)
+                                      ? Image.file(
+                                          controller.selectedImg!.value,
+                                          fit: BoxFit.cover)
+                                      : Image.network(
+                                          "${controller.profileData?.userProfile}",
+                                          fit: BoxFit.fill,
+                                          errorBuilder: (a, b, c) => Image.asset(
+                                              'assets/images/userprofile.png'),
+                                        ),
+                                ),
                               ),
                             ),
                             Positioned(
@@ -295,7 +296,8 @@ class EditProfileView extends GetView<EditProfileController> {
                               controller.update();
                             },
                             value: industry,
-                            items: controller.accountIndustryListData.map((items) {
+                            items:
+                                controller.accountIndustryListData.map((items) {
                               return DropdownMenuItem(
                                 value: items.name,
                                 child: Text(
@@ -627,6 +629,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                   context.loaderOverlay.show();
                                   controller.isLoading.value =
                                       await controller.userProfilePatchList(
+                                    controller.selectedImg!.value,
                                     controller.nameController.text,
                                     controller.fatherController.text,
                                     controller.selectedsurname.value,

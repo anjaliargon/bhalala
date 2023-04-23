@@ -36,7 +36,10 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: (){
-                    Get.toNamed(Routes.NOTICEBOARD,);
+                    Get.toNamed(Routes.NOTICEBOARD,arguments: {
+                     ArgumentConstant.newsEvent:controller.noticedata.value.newsEvents?[index]
+                    });
+                    print(index);
                   },
                   child: Container(
                     decoration: BoxDecoration(
