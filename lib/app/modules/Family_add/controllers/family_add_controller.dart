@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../model/familyAddmodel.dart';
 import '../model/verifyUserModel.dart';
@@ -33,10 +33,7 @@ class FamilyAddController extends GetxController {
     if (result.status == 1) {
       verify.value = result;
       users();
-      Fluttertoast.showToast(
-          msg: result.data.toString(),
-          backgroundColor: Colors.white,
-          textColor: Colors.black);
+      showBottomLongToast(result.data.toString());
     } else {
       print("NotFound");
     }

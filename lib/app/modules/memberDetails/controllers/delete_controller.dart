@@ -1,7 +1,5 @@
-import 'package:bhalala/app/modules/memberDetails/Model/Deletemodel.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-
+import 'package:bhalala/app/modules/memberDetails/Model/Deletemodel.dart';import 'package:get/get.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import '../../../data/Api/ApiProvider.dart';
 
 class DeleteController extends GetxController {
@@ -33,10 +31,10 @@ class DeleteController extends GetxController {
       var result =
       await ApiProvider().deleteData(ids);
       if (result.status == 1) {
-       Fluttertoast.showToast(msg: result.message.toString());
+        showBottomLongToast(result.message.toString());
       } else if (result.status == 2) {
         isLoading(false);
-        Fluttertoast.showToast(msg:  result.message.toString());
+        showBottomLongToast(result.message.toString());
       }
     } catch (e) {
       print(e);
@@ -50,10 +48,10 @@ class DeleteController extends GetxController {
       var result =
       await ApiProvider().deleteFamilyData(ids);
       if (result.status == 1) {
-        Fluttertoast.showToast(msg: result.message.toString());
+        showBottomLongToast(result.message.toString());
       } else if (result.status == 2) {
         isLoading(false);
-        Fluttertoast.showToast(msg:  result.message.toString());
+        showBottomLongToast(result.message.toString());
       }
     } catch (e) {
       print(e);

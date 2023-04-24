@@ -1,7 +1,7 @@
 import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../../constant/String_constant.dart';
@@ -199,10 +199,7 @@ class SearchController extends GetxController {
         Get.toNamed(Routes.SEARCHMEMBER);
         print(searchmodel.data?.length);
       } else {
-        Fluttertoast.showToast(
-            msg: "કોઈ સભ્ય મળ્યું નથી",
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
+        showBottomLongToast("કોઈ સભ્ય મળ્યું નથી");
       }
     } else {
       print("error ${response1.reasonPhrase}");

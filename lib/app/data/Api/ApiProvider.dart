@@ -7,7 +7,7 @@ import 'package:bhalala/app/modules/photoGallary/model/Gallaryalbum.dart';
 import 'package:bhalala/app/modules/profile/model/profileModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
@@ -60,11 +60,7 @@ class ApiProvider {
         box.write('v_id', loginModel.loginData?.vId);
         box.write('home_id', loginModel.loginData?.homeId);
         box.write('isAdmin', loginModel.loginData?.isAdmin);
-        Fluttertoast.showToast(
-            msg: StringConstant.suceesfullylogin,
-            backgroundColor: Colors.white,
-            fontSize: 14.sp,
-            textColor: Colors.black);
+        showBottomLongToast(StringConstant.suceesfullylogin);
       }
     } else {
       print("error ${response1.reasonPhrase}");

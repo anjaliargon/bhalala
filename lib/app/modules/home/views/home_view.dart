@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../main.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import '../../../constant/String_constant.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
@@ -243,7 +244,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Fluttertoast.showToast(msg: "Logout Successfully!");
+                  showBottomLongToast("Logout Successfully!");
                   box.erase();
                   Get.offAllNamed(Routes.LOGIN);
                 },
@@ -459,7 +460,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Fluttertoast.showToast(msg: "Logout Successfully!");
+                  showBottomLongToast("Logout Successfully!");
                   box.erase();
                   Get.offAllNamed(Routes.LOGIN);
                 },
