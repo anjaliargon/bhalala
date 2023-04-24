@@ -14,7 +14,6 @@ class PhotoGallaryController extends GetxController {
   RxList<String> yearListData = <String>[].obs;
   RxList<String> functionListData = <String>[].obs;
   final yearData = Gallaryalbum().obs;
-  // final gallaryphotos = Gallaryalbum().obs;
 
   @override
   void onInit() {
@@ -32,19 +31,6 @@ class PhotoGallaryController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  // getSamitiData() async {
-  //   isLoading.value = false;
-  //   var result = await ApiProvider().getAlbumData_year();
-  //   if (result.status == 1) {
-  //     yearData.value = result;
-  //     print(samitiData.value.data?.length);
-  //     isLoading(true);
-  //     return true;
-  //   } else {
-  //     isLoading(false);
-  //     return true;
-  //   }
-  // }
   Future<void> getYearData() async {
     yearListData.clear();
     var result = await ApiProvider().getAlbumData_year();

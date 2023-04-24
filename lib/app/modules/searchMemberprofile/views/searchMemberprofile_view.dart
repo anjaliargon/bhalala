@@ -132,7 +132,7 @@ class SearchProfileView extends GetView<SearchProfileController> {
                       profiletext(
                           icons: Icons.group,
                           heading: StringConstant.member_count,
-                          text: controller.searchuserData?.noOfMember),
+                          text: controller.searchuserData?.noOfMember??''),
                       SizedBox(
                         height: 3.h,
                       ),

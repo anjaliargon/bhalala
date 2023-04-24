@@ -576,7 +576,7 @@ class SignUpView extends GetView<SignUpController> {
                         onTap: () async {
                           if (int.parse(controller.memberController.text) >=
                               2) {
-                           // signupadd.openDilogueAddMember(context: context);
+                           signupadd.openDilogueAddMember(context: context);
                           }
                           else {
                             if (_networkController.connectionStatus.value ==
@@ -795,8 +795,6 @@ class SignUpView extends GetView<SignUpController> {
     String? education;
     String? bloodgroup;
     String? status;
-    String? village;
-    String? currentcity;
     MyColor colors = MyColor();
     Get.dialog(Dialog(
       child: SingleChildScrollView(

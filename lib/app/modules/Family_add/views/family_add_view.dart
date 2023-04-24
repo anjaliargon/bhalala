@@ -91,7 +91,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                                       height: 1.h,
                                     ),
                                     Text(
-                                      "${controller.checkstatus.value.data?[index].name}",
+                                      "${controller.checkstatus.value.data?[index].name} ${controller.checkstatus.value.data?[index].middleName} ${controller.checkstatus.value.data?[index].lastName}",
                                       style: TextStyle(
                                           overflow: TextOverflow.ellipsis,
                                           color: colors.darkbrown,

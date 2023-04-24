@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../constant/String_constant.dart';
+import '../../../no_internet/check_network.dart';
 import '../controllers/family_samiti_controller.dart';
 import '../samitiModel.dart';
 
@@ -14,7 +15,8 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
   @override
   Widget build(BuildContext context) {
     MyColor colors = MyColor();
-    return Scaffold(
+    return CheckNetwork(
+      child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: colors.darkbrown,
@@ -24,30 +26,36 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
             future: controller.getSamitiData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          color: colors.darkbrown,
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          "મેહરબાની કરી ને રાહ જોવો",
-                          style: TextStyle(fontSize: 14.sp),
-                        )
-                      ],
-                    ),
-                  ],
+                return Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        color: colors.darkbrown,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Text(
+                        "મેહરબાની કરી ને રાહ જોવો",
+                        style: TextStyle(fontSize: 14.sp),
+                      )
+                    ],
+                  ),
                 );
               } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
+                return Center(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Flexible(
+                    child: Text(
+                      "Error: ${snapshot.error}",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(color: colors.darkbrown, fontSize: 14.sp),
+                    ),
+                  ),
+                ));
               } else {
                 return Column(
                   children: [
@@ -289,6 +297,7 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
                 );
               }
             }),
+      ),
     );
   }
 }

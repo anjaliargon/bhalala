@@ -1,15 +1,15 @@
 class Gallaryalbum {
   int? status;
-  List<Data>? data;
+  List<GallaryData>? data;
 
   Gallaryalbum({this.status, this.data});
 
   Gallaryalbum.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <GallaryData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new GallaryData.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class Gallaryalbum {
   }
 }
 
-class Data {
+class GallaryData {
   String? imageId;
   String? albumYear;
   String? albumName;
@@ -33,7 +33,7 @@ class Data {
   Null? createdAt;
   Null? updatedAt;
 
-  Data(
+  GallaryData(
       {this.imageId,
         this.albumYear,
         this.albumName,
@@ -42,7 +42,7 @@ class Data {
         this.createdAt,
         this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  GallaryData.fromJson(Map<String, dynamic> json) {
     imageId = json['image_id'];
     albumYear = json['album_year'];
     albumName = json['album_name'];

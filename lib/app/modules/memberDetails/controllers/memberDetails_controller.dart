@@ -50,8 +50,12 @@ class MemberDetailsController extends GetxController {
         Get.back();
         Fluttertoast.showToast(
             msg: "કોઈ સભ્ય મળ્યું નથી",
-            backgroundColor: Colors.white,
-            textColor: Colors.black);
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         isLoading(false);
       }
     } catch (e) {
@@ -177,7 +181,7 @@ class MemberDetailsController extends GetxController {
 
   openDilogueDelete({required BuildContext context,required int index}) {
     MyColor colors = MyColor();
-    var ids =  box.read('userId');
+    var ids =  getmemberDetailsData.value.data?[index].rId;
     return Get.dialog(Dialog(
       child: Container(
         color: colors.lightgrey,
@@ -220,7 +224,7 @@ class MemberDetailsController extends GetxController {
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                      deletcontroller.DeleteDataList(ids,index);
+                      deletcontroller.DeleteDataList(ids!,index);
                       Get.back();
                       },
                       child: Text(

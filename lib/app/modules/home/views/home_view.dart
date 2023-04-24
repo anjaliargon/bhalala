@@ -564,7 +564,7 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(Routes.NOTICE);
                       },
                       child:
-                          _container(StringConstant.suchna_number, Icons.home),
+                          _container(StringConstant.suchna_number, Icons.developer_board),
                     ),
                   ),
                 ],

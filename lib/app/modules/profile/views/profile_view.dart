@@ -34,190 +34,51 @@ class ProfileView extends GetView<ProfileController> {
                         onPressed: () {
                           Get.toNamed(Routes.EditProfile, arguments: {
                             ArgumentConstant.editprofiledata:
-                            controller.userProfileData.value.data?.first
+                                controller.userProfileData.value.data?.first
                           });
                         },
                         icon: Icon(Icons.edit)),
                   )
                 ],
-              ),
+              ), ////
               body: SingleChildScrollView(
                 child: FutureBuilder<Profilemodel>(
                     future: controller.userProfile(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return  Column(
-                          children: [
-                            SizedBox(height: 15.h,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircularProgressIndicator(
-                                  color: colors.darkbrown,
-                                ),
-                                SizedBox(width: 10.w,),
-                                Text("મેહરબાની કરી ને રાહ જોવો",style: TextStyle(fontSize: 14.sp),)
-                              ],
-                            ),
-                          ],
-<<<<<<< HEAD
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Center(
-                        child: Text(
-                          "${controller.userProfileData.value.data?.first.name ?? ''} ${controller.userProfileData.value.data?.first.middleName ?? ''} ${controller.userProfileData.value.data?.first.lastName ?? ''}",
-                          style: TextStyle(
-                              fontSize: 14.sp, color: colors.darkbrown),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      profiletext(
-                          icons: Icons.location_on,
-                          heading: StringConstant.address,
-                          text: controller
-                                  .userProfileData.value.data?.first.address ??
-                              ''),
-                      profiletext(
-                          icons: FontAwesomeIcons.mobileScreen,
-                          heading: StringConstant.mobile,
-                          text: controller
-                                  .userProfileData.value.data?.first.mobileNo ??
-                              ''),
-                      profiletext(
-                          icons: Icons.location_on,
-                          heading: StringConstant.village,
-                          text: controller
-                                  .userProfileData.value.data?.first.vId ??
-                              ''),
-                      profiletext(
-                          icons: FontAwesomeIcons.shop,
-                          heading: StringConstant.workdetails,
-                          text: controller
-                                  .userProfileData.value.data?.first.business ??
-                              ''),
-                      profiletext(
-                          icons: Icons.email,
-                          heading: StringConstant.emailId,
-                          text: controller
-                                  .userProfileData.value.data?.first.emailed ??
-                              ''),
-                      profiletext(
-                          icons: Icons.cake,
-                          heading: StringConstant.birthdaydate,
-                          text: controller.userProfileData.value.data?.first
-                                  .birthdate ??
-                              ''),
-                      profiletext(
-                          icons: FontAwesomeIcons.graduationCap,
-                          heading: StringConstant.education,
-                          text: controller.userProfileData.value.data?.first
-                                  .educationId ??
-                              ''),
-                      profiletext(
-                          icons: Icons.group,
-                          heading: StringConstant.gender,
-                          text: controller
-                                  .userProfileData.value.data?.first.gender ??
-                              ''),
-                      profiletext(
-                          icons: Icons.location_on,
-                          heading: StringConstant.home,
-                          text: controller
-                                  .userProfileData.value.data?.first.homeId ??
-                              ''),
-                      profiletext(
-                          icons: FontAwesomeIcons.personCircleCheck,
-                          heading: StringConstant.merrige_status,
-                          text: controller.userProfileData.value.data?.first
-                                  .marriedId ??
-                              ''),
-                      profiletext(
-                          icons: Icons.person,
-                          heading: StringConstant.age,
-                          text: controller
-                                  .userProfileData.value.data?.first.age ??
-                              ''),
-                      profiletext(
-                          icons: FontAwesomeIcons.person,
-                          heading: StringConstant.bloodgroup,
-                          text: controller
-                                  .userProfileData.value.data?.first.bName ??
-                              ''),
-                      profiletext(
-                          icons: Icons.group,
-                          heading: StringConstant.member_count,
-                          text: controller.userProfileData.value.data?.first
-                                  .noOfMember ??
-                              ''),
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.FAMILYMEMBER, arguments:
-                          {ArgumentConstant.userData:
-                            controller.userProfileData.value.data?.first.rId
-                          });
-                        },
-                        child: Center(
-                          child: Container(
-                            height: 6.h,
-                            width: 95.w,
-                            decoration: BoxDecoration(
-                                color: colors.darkbrown,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                                child: Text(
-                              "સભ્ય ની વિગત જોવો",
-                              style: TextStyle(
-                                  color: colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13.sp),
-                            )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.ADDMEMBER);
-                        },
-                        child: Center(
-                          child: Container(
-                            height: 6.h,
-                            width: 95.w,
-                            decoration: BoxDecoration(
-                                color: colors.darkbrown,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                                child: Text(
-                              StringConstant.addnew_member,
-                              style: TextStyle(
-                                  color: colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13.sp),
-                            )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                    ],
-                  ),
-=======
-                        );
+                        return Center(
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircularProgressIndicator(
+                                      color: colors.darkbrown,
+                                    ),
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    Text(
+                                      "મેહરબાની કરી ને રાહ જોવો",
+                                      style: TextStyle(fontSize: 14.sp),
+                                    )
+                                  ],
+                                )
+                            ));
                       } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
+                        return Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Flexible(
+                                child: Text(
+                                  "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: colors.darkbrown, fontSize: 14.sp),
+                                ),
+                              ),
+                            ));
                       } else {
-                        return  Column(
+                        return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
@@ -241,12 +102,13 @@ class ProfileView extends GetView<ProfileController> {
                                           radius: 50.0,
                                           child: ClipRRect(
                                             borderRadius:
-                                            BorderRadius.circular(100.0),
+                                                BorderRadius.circular(100.0),
                                             child: Image.network(
                                               "${snapshot.data?.data?.first.userProfile}",
                                               fit: BoxFit.fill,
-                                              errorBuilder: (a, b, c) => Image.asset(
-                                                  'assets/images/userprofile.png'),
+                                              errorBuilder: (a, b, c) =>
+                                                  Image.asset(
+                                                      'assets/images/userprofile.png'),
                                             ),
                                           ),
                                         ),
@@ -364,12 +226,12 @@ class ProfileView extends GetView<ProfileController> {
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Center(
                                       child: Text(
-                                        StringConstant.addnew_member,
-                                        style: TextStyle(
-                                            color: colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp),
-                                      )),
+                                    StringConstant.addnew_member,
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13.sp),
+                                  )),
                                 ),
                               ),
                             ),
@@ -377,11 +239,10 @@ class ProfileView extends GetView<ProfileController> {
                               height: 3.h,
                             ),
                           ],
-                        );;
+                        );
+                        ;
                       }
-                    }
->>>>>>> 7c06b26458855d2a5dc713300c9288d1ebdb9460
-                ),
+                    }),
               ),
             ),
           );

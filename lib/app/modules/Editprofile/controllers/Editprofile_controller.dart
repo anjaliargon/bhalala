@@ -118,6 +118,7 @@ class EditProfileController extends GetxController {
     if (result.status == 1) {
       usereditProfile.value = result;
       Fluttertoast.showToast(msg: result.message ?? '');
+      // Get.back();
       isLoading(true);
       return true;
     } else if (result.status == 2) {
@@ -242,7 +243,7 @@ class EditProfileController extends GetxController {
     }
   }
 
-  void assignProfileData() async {
+  Future<void> assignProfileData() async {
     await Future.delayed(const Duration(milliseconds: 2000), () {
       isLoading(true);
       nameController.text = profileData?.name ?? '';

@@ -110,10 +110,10 @@ class AppPages {
       name: _Paths.IMP_NUMBER,
       page: () => ImportantNumber_Screen(),
     ),
-    GetPage(
-      name: _Paths.SAHYOG,
-      page: () => ParivarSahyogView(),
-    ),
+    // GetPage(
+    //   name: _Paths.SAHYOG,
+    //   page: () => ParivarSahyogView(),
+    // ),
     GetPage(
         name: _Paths.VILLAGE,
         page: () => GamYadiView(),

@@ -1,5 +1,5 @@
+
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/no_internet/check_network.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,9 +10,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 import 'package:email_validator/email_validator.dart';
 
+import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-import '../../../constant/screens/loading_and_error_screen.dart';
 import '../../../network/controller/network_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
@@ -72,8 +72,7 @@ class LoginView extends GetView<LoginController> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Please Enter Email";
-                            } else if (EmailValidator.validate(
-                                    value.trim()) ==
+                            } else if (EmailValidator.validate(value.trim()) ==
                                 false) {
                               return "Please Enter Valid Email";
                             }
@@ -127,17 +126,138 @@ class LoginView extends GetView<LoginController> {
                     height: 10.h,
                   ),
                   InkWell(
-                    onTap: () async {
-                      Map<Permission, PermissionStatus> statuses = await [
-                        Permission.camera,
-                        Permission.storage,
-                        Permission.phone,
+                    onTap: () async{
+                      if (box.read("sdkVersion") >= 33){
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.camera,
+                          Permission.photos,
+                          Permission.phone,
+                        ].request();
+                        if (_networkController.connectionStatus.value == 1 ||
+                            _networkController.connectionStatus.value == 2 ||
+                            _networkController.connectionStatus.value == 3) {
+                          if (statuses[Permission.camera] !=
+                              PermissionStatus.granted ||
+                              statuses[Permission.photos] !=
+                                  PermissionStatus.granted ||
+                              statuses[Permission.phone] !=
+                                  PermissionStatus.granted) {
+                            Get.dialog(Dialog(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Permission",
+                                        style: TextStyle(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: Text(
+                                        "Allow Bhalala parivar to access  storage,CAMERA and PHONE permission for use some features \nTap Settings->Permission and turn all permission on.",
+                                        style: TextStyle(fontSize: 12.sp)),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: Text(
+                                            "CANCEL",
+                                            style: TextStyle(
+                                                color: colors.darkbrown),
+                                          )),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 5, left: 5),
+                                        child: TextButton(
+                                            onPressed: () {
+                                              openAppSettings();
+                                              Get.back();
+                                            },
+                                            child: Text(
+                                              "SETTINGS",
+                                              style: TextStyle(
+                                                  color: colors.darkbrown),
+                                            )),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ));
+                          } else {
+                            if (controller.formKey.value.currentState!
+                                .validate()) {
+                              FocusScope.of(context).unfocus();
+                              context.loaderOverlay.show(
+                                  widget: Container(
+                                    height: 5.h,
+                                    decoration: const BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 1.0),
+                                          //(x,y)
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: CircularProgressIndicator(
+                                              color: colors.darkbrown),
+                                        ),
+                                        Text(
+                                          "કૃપા કરી ને રાહ જોવો",
+                                          style: TextStyle(color: colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                              controller.isLoading.value = await controller.login(
+                                  controller.emailController.value.text,
+                                  controller.passwordController.value.text);
+                              if (controller.isLoading.value) {
+                                context.loaderOverlay.hide();
+                              }
+                            } else {
+                              return;
+                            }
+                          }
+                        } else {
+                          Fluttertoast.showToast(
+                              msg:
+                              "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                              textColor: colors.black,
+                              backgroundColor: colors.white);
+                        }
+                      }else{
+                      Map<Permission, PermissionStatus> statuses = await
+                      [
+                      Permission.camera,
+                      Permission.storage,
+                      Permission.phone,
                       ].request();
                       if (_networkController.connectionStatus.value == 1 ||
                           _networkController.connectionStatus.value == 2 ||
                           _networkController.connectionStatus.value == 3) {
                         if (statuses[Permission.camera] !=
-                                PermissionStatus.granted ||
+                            PermissionStatus.granted ||
                             statuses[Permission.storage] !=
                                 PermissionStatus.granted ||
                             statuses[Permission.phone] !=
@@ -196,42 +316,42 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ));
                         } else {
-                          if (controller.formKey.value.currentState!.validate()) {
+                          if (controller.formKey.value.currentState!
+                              .validate()) {
                             FocusScope.of(context).unfocus();
                             context.loaderOverlay.show(
                                 widget: Container(
-                              height: 5.h,
-                              decoration: const BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(0.0, 1.0),
-                                    //(x,y)
-                                    blurRadius: 6.0,
+                                  height: 5.h,
+                                  decoration: const BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey,
+                                        offset: Offset(0.0, 1.0),
+                                        //(x,y)
+                                        blurRadius: 6.0,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: CircularProgressIndicator(
-                                        color: colors.darkbrown),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircularProgressIndicator(
+                                            color: colors.darkbrown),
+                                      ),
+                                      Text(
+                                        "કૃપા કરી ને રાહ જોવો",
+                                        style: TextStyle(color: colors.black),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    "કૃપા કરી ને રાહ જોવો",
-                                    style: TextStyle(color: colors.black),
-                                  ),
-                                ],
-                              ),
-                            ));
-                            controller.isLoading.value =
-                                await controller.login(
-                                    controller.emailController.value.text,
-                                    controller.passwordController.value.text);
+                                ));
+                            controller.isLoading.value = await controller.login(
+                                controller.emailController.value.text,
+                                controller.passwordController.value.text);
                             if (controller.isLoading.value) {
                               context.loaderOverlay.hide();
                             }
@@ -242,11 +362,13 @@ class LoginView extends GetView<LoginController> {
                       } else {
                         Fluttertoast.showToast(
                             msg:
-                                "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                            "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
                             textColor: colors.black,
                             backgroundColor: colors.white);
                       }
-                    },
+                      }
+
+                   } ,
                     child: Container(
                       height: 6.h,
                       width: 90.w,

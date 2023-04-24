@@ -47,7 +47,7 @@ class SearchController extends GetxController {
     super.onClose();
   }
 
-  search() async {
+  Future<SearchModel>  search() async {
     SearchModel searchmodel = SearchModel();
     String query = "http://3.111.29.34/webservice/search_member_all.php";
     IndustrieslistBasic? industrialData;
@@ -73,7 +73,66 @@ class SearchController extends GetxController {
         // 'edu_name': educationController.text,
         // 'busi_id': industrialData?.id.toString() ?? ""
       });
-    } else if (!isNullEmptyOrFalse(villageData?.vId ?? '') &&
+    } else if (!isNullEmptyOrFalse(villageData?.vId ?? '')) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }else if (!isNullEmptyOrFalse(homeController.text)) {
+      request.fields.addAll({
+        'home_name': homeController.text,
+        // 'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }
+    else if (!isNullEmptyOrFalse(villageData?.vId ?? '')) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }else if (!isNullEmptyOrFalse(bloodController.text)) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        // 'village_id': villageData?.vId.toString() ?? "",
+        'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }else if (!isNullEmptyOrFalse(educationController.text)) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        // 'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }else if (!isNullEmptyOrFalse(industrialData?.id.toString() ?? "")) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        // 'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }
+    else if (!isNullEmptyOrFalse(villageData?.vId ?? '')) {
+      request.fields.addAll({
+        // 'home_name': homeController.text,
+        'village_id': villageData?.vId.toString() ?? "",
+        // 'blood_name': bloodController.text,
+        // 'edu_name': educationController.text,
+        // 'busi_id': industrialData?.id.toString() ?? ""
+      });
+    }
+    else if (!isNullEmptyOrFalse(villageData?.vId ?? '') &&
         !isNullEmptyOrFalse(homeController.text)) {
       request.fields.addAll({
         'home_name': homeController.text,
@@ -148,6 +207,7 @@ class SearchController extends GetxController {
     } else {
       print("error ${response1.reasonPhrase}");
     }
+    return searchmodel;
   }
 
   // search(String? village, String home, String industri, String education, String blood) async {

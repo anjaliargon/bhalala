@@ -58,7 +58,7 @@ class LoginController extends GetxController {
     isLoading.value = false;
     var result = await ApiProvider().login(email, password);
     if (!result.loginData.isNull) {
-      Get.toNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME);
       loginData.value = result;
       isLoading(true);
       return true;
@@ -176,15 +176,16 @@ class LoginController extends GetxController {
   Future<void> check_permission() async {
     MyColor colors = MyColor();
     if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
-      box.write('deviceId', androidInfo.version.sdkInt);
-      if (box.read("deviceId") <= 33) {
+      final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+      final AndroidDeviceInfo info = await deviceInfoPlugin.androidInfo;
+      box.write("sdkVersion", info.version.sdkInt ?? 0);
+      if ((info.version.sdkInt ?? 0) >= 33) {
         Map<Permission, PermissionStatus> statuses = await [
           Permission.camera,
           Permission.photos,
           Permission.phone,
         ].request();
-         if (statuses[Permission.camera] != PermissionStatus.granted ||
+        if (statuses[Permission.camera] != PermissionStatus.granted ||
             statuses[Permission.photos] != PermissionStatus.granted ||
             statuses[Permission.phone] != PermissionStatus.granted) {
           Get.dialog(Dialog(
@@ -298,7 +299,8 @@ class LoginController extends GetxController {
             ),
           ));
         }
-      } else {
+      }
+      else {
         Map<Permission, PermissionStatus> statuses = await [
           Permission.camera,
           Permission.storage,
@@ -421,21 +423,19 @@ class LoginController extends GetxController {
       }
     }
   }
-
-
-  Future<bool> checkPermissions() async {
-    final androidInfo = await DeviceInfoPlugin().androidInfo;
-    late final Map<Permission, PermissionStatus> statusess;
-    PermissionStatus cameraStatus = await Permission.camera.status;
-    PermissionStatus microphoneStatus = await Permission.microphone.status;
-    PermissionStatus storageStatus = await Permission.storage.status;
-
-    if (cameraStatus != PermissionStatus.granted ||
-        microphoneStatus != PermissionStatus.granted ||
-        storageStatus != PermissionStatus.granted) {
-      openAppSettings();
-    }
-
-    return true;
-  }
+  //
+  // Future<bool> checkStoragePermission(BuildContext context) async {
+  //   // No need to ask this permission on Android 13 (API 33)
+  //   if (Platform.isAndroid) {
+  //     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  //     final AndroidDeviceInfo info = await deviceInfoPlugin.androidInfo;
+  //     if ((info.version.sdkInt ?? 0) >= 33) return true;
+  //   }
+  //   if (!await requestPermission(<Permission>[Permission.storage])) {
+  //     // pop up to redirect user to phone settings
+  //     // ...
+  //     return false;
+  //   }
+  //   return true;
+  // }
 }
