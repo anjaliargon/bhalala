@@ -166,7 +166,7 @@ class SignupAddController extends GetxController {
                       keyboard: 0,
                       hint: StringConstant.name,
                       validation: true,
-                      fieldValue: nameController,
+                      fieldValue: fnameController,
                     ),
                     CustomeTextFields(
                       iconfat: FontAwesomeIcons.solidCircleUser,

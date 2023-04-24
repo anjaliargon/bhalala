@@ -1,10 +1,7 @@
 import 'dart:io';
-
-import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:bhalala/main.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,7 +12,7 @@ import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../network/controller/network_controller.dart';
 import '../../../routes/app_pages.dart';
-import '../model/ForgotModel.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import '../model/login_model.dart';
 import 'forgot_controller_controller.dart';
 
@@ -28,7 +25,6 @@ class LoginController extends GetxController {
   final NetworkController _networkController = Get.put(NetworkController());
   final loginData = UserLogin().obs;
   RxBool isLoading = false.obs;
-  var errorOccurred = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> forgotemailController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
@@ -63,10 +59,7 @@ class LoginController extends GetxController {
       isLoading(true);
       return true;
     } else {
-      Fluttertoast.showToast(
-          msg: "Enter correct UserName And Password",
-          backgroundColor: Colors.white,
-          textColor: Colors.black);
+      showBottomLongToast("Enter correct UserName And Password");
       isLoading(false);
       return true;
     }
@@ -123,8 +116,7 @@ class LoginController extends GetxController {
                             _networkController.connectionStatus.value == 2) {
                           if (forgotformKey.value.currentState!.validate()) {
                             if (forgotemailController.value.text.isEmpty) {
-                              Fluttertoast.showToast(
-                                  msg: "ઈમેલ આઈડી જરૂરી છે ");
+                              showBottomLongToast("ઈમેલ આઈડી જરૂરી છે ");
                             } else {
                               context.loaderOverlay.show();
                               isLoading.value =

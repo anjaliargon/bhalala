@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
+import 'package:bhalala/app/constant/toast.dart';
 import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 import '../../../data/Model/basicModel.dart';
@@ -115,17 +115,11 @@ class AddmemberController extends GetxController {
         education_id
         );
     if (result.status == 1) {
-      Fluttertoast.showToast(
-          msg: result.message.toString(),
-          backgroundColor: Colors.white,
-          textColor: Colors.black);
+      showBottomLongToast(result.message.toString());
       isLoading(true);
       return true;
     } else if (result.status == 2) {
-      Fluttertoast.showToast(
-          msg: result.message.toString(),
-          backgroundColor: Colors.white,
-          textColor: Colors.black);
+      showBottomLongToast(result.message.toString());
       isLoading(true);
       return true;
     } else {

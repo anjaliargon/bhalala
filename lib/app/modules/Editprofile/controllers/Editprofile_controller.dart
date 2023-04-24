@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:bhalala/app/constant/toast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -117,12 +117,12 @@ class EditProfileController extends GetxController {
         status);
     if (result.status == 1) {
       usereditProfile.value = result;
-      Fluttertoast.showToast(msg: result.message ?? '');
+      showBottomLongToast(result.message.toString());
       // Get.back();
       isLoading(true);
       return true;
     } else if (result.status == 2) {
-      Fluttertoast.showToast(msg: result.message ?? '');
+      showBottomLongToast(result.message.toString());
       isLoading(true);
       return true;
     } else {
