@@ -47,7 +47,7 @@ class SearchMemberDetailsView extends GetView<SearchMemberDetailsController> {
                     SlidableAction(
                       onPressed: (context) {
                         UrlLauncher.launch(
-                            'tel:+${searchMemberController.searchData.value.data?[index].mobileNo}');
+                            'tel:${searchMemberController.searchData.value.data?[index].mobileNo}');
                       },
                       backgroundColor: colors.white,
                       icon: Icons.call,

@@ -258,7 +258,7 @@ class EditProfileController extends GetxController {
       selectedgender.value = profileData?.gender ?? '';
       selectedsurname.value = profileData?.lastName ?? '';
       selectedwork.value = profileData?.busiType ?? '';
-      industryController.text = profileData?.industryId ?? '';
+      industryController.text = profileData?.industryName ?? '';
       educationController.text = profileData?.educationId ?? '';
       bloodController.text = profileData?.bName ?? '';
       villageController.text = profileData?.vId ?? '';

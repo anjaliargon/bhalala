@@ -138,7 +138,9 @@ class SearchProfileView extends GetView<SearchProfileController> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.FAMILYMEMBER,arguments: controller.searchuserData?.rId);
+                          Get.toNamed(Routes.FAMILYMEMBER,arguments: {
+                            ArgumentConstant.memberId:controller.searchuserData?.rId,
+                          });
                         },
                         child: Center(
                           child: Container(

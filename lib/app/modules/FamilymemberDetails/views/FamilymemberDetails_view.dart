@@ -1,17 +1,14 @@
 import 'package:bhalala/app/constant/Color.dart';
-import 'package:bhalala/app/constant/sizeConstant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
-import '../../../constant/screens/loading_and_error_screen.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
 import '../../Memberprofile/controllers/Memberprofile_controller.dart';
-import '../../memberDetails/controllers/memberDetails_controller.dart';
-import '../../searchMemberprofile/controllers/searchMemberprofile_controller.dart';
+import '../Model/FamilyMemberModel.dart';
 import '../controllers/Familymember_controller.dart';
 
 class FamilyMemberView extends GetView<FamilyMemberController> {
@@ -26,165 +23,198 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
       appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "${usercontroller.userData?.name?.toUpperCase()}",
+            "${StringConstant.bhalalaparivar}",
             style: const TextStyle(),
           ),
           backgroundColor: colors.darkbrown,
           elevation: 0),
       body: GetBuilder<FamilyMemberController>(
         init: familycontroller,
-        builder: (controller) => Obx(
-          () => LoadingAndErrorScreen(
-              isLoading: controller.isLoading.value,
-              errorOccurred: controller.errorOccurred.value,
-              errorResolvingFunction: controller.familyMemberData,
-              child: ListView.builder(
-                itemCount: controller.familyMemberData.value.data?.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Slidable(
-                      endActionPane: ActionPane(
-                        motion: ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (context) {
-                              if (controller.familyMemberData.value.data?[index]
-                                      .rId ==
-                                  box.read('userId')) {
-                                Get.toNamed(Routes.EditProfile, arguments: {
-                                  ArgumentConstant.editprofiledata: controller
-                                      .familyMemberData.value.data?[index]
-                                });
-                              } else {
-                                controller.openDilogueNotEdit(context: context);
-                              }
-                            },
-                            backgroundColor: colors.green,
-                            icon: Icons.edit,
-                          ),
-                          SlidableAction(
-                            onPressed: (context) {
-                              if (controller.familyMemberData.value.data?[index]
-                                      .gender ==
-                                  "Male") {
-                                UrlLauncher.launch(
-                                    'tel:+${controller.familyMemberData.value.data?[index].mobileNo}');
-                              } else {
-                                openDilogue(context: context);
-                              }
-                            },
-                            backgroundColor: colors.white,
-                            icon: Icons.call,
-                            foregroundColor: colors.darkbrown,
-                          ),
-                          SlidableAction(
-                            onPressed: (context) {
-                              if (controller.familyMemberData.value.data?[index]
-                                          .rId ==
-                                      box.read('userId') ||
-                                  box.read('isAdmin') == "1") {
-                                controller.openDilogueDelete(
-                                    context: context, index: index);
-                              } else {
-                                controller.openDilogueNotDelete(
-                                    context: context);
-                              }
-                            },
-                            backgroundColor: Color(0xFFFE4A49),
-                            icon: Icons.delete,
-                          ),
-                        ],
+        builder: (controller) =>  FutureBuilder<FamilyMember>(
+            future: controller.getFamilymemberCount(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              color: colors.darkbrown,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "મેહરબાની કરી ને રાહ જોવો",
+                              style: TextStyle(fontSize: 14.sp),
+                            )
+                          ],
+                        )
+                    ));
+              } else if (snapshot.hasError) {
+                return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Flexible(
+                        child: Text(
+                          "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: colors.darkbrown, fontSize: 14.sp),
+                        ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.FAMILYMEMBERPROFILE, arguments: {
-                              ArgumentConstant.familyprofiledata:
-                                  controller.familyMemberData.value.data?[index]
-                            });
-                          },
-                          child: Container(
-                            // height: 120.sp,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: colors.lightgrey),
-                            child: Row(
-                              children: [
-                                const Expanded(
-                                  flex: 2,
-                                  child: CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                        "assets/images/userprofile.png"),
-                                    radius: 35,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 6,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "${controller.familyMemberData.value.data?[index].name} "
-                                          "${controller.familyMemberData.value.data?[index].middleName} "
-                                          "${controller.familyMemberData.value.data?[index].lastName}",
-                                          style: TextStyle(
-                                              overflow: TextOverflow.ellipsis,
-                                              color: colors.darkbrown,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          "${StringConstant.mobile} : ${controller.familyMemberData.value.data?[index].mobileNo}",
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold,
-                                              overflow: TextOverflow.ellipsis),
-                                        ),
-                                        SizedBox(
-                                          height: 0.5.h,
-                                        ),
-                                        Text(
-                                          "${StringConstant.address} : ${controller.familyMemberData.value.data?[index].address}",
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              overflow: TextOverflow.ellipsis,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 0.5.h,
-                                        ),
-                                        Text(
-                                          "${StringConstant.workdetails} : ${controller.familyMemberData.value.data?[index].business}",
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              overflow: TextOverflow.ellipsis,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
+                    ));
+              }else{
+                return ListView.builder(
+                  itemCount: controller.familyMemberData.value.data?.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Slidable(
+                        endActionPane: ActionPane(
+                          motion: ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                if (controller.familyMemberData.value.data?[index]
+                                    .rId ==
+                                    box.read('userId')) {
+                                  Get.toNamed(Routes.EditProfile, arguments: {
+                                    ArgumentConstant.editprofiledata: controller
+                                        .familyMemberData.value.data?[index]
+                                  });
+                                } else {
+                                  controller.openDilogueNotEdit(context: context);
+                                }
+                              },
+                              backgroundColor: colors.green,
+                              icon: Icons.edit,
+                            ),
+                            SlidableAction(
+                              onPressed: (context) {
+                                if (controller.familyMemberData.value.data?[index]
+                                    .gender ==
+                                    "Male") {
+                                  UrlLauncher.launch(
+                                      'tel:${controller.familyMemberData.value.data?[index].mobileNo}');
+                                } else {
+                                  openDilogue(context: context);
+                                }
+                              },
+                              backgroundColor: colors.white,
+                              icon: Icons.call,
+                              foregroundColor: colors.darkbrown,
+                            ),
+                            SlidableAction(
+                              onPressed: (context) {
+                                if (controller.familyMemberData.value.data?[index]
+                                    .rId ==
+                                    box.read('userId') ||
+                                    box.read('isAdmin') == "1") {
+                                  controller.openDilogueDelete(
+                                      context: context, index: index);
+                                } else {
+                                  controller.openDilogueNotDelete(
+                                      context: context);
+                                }
+                              },
+                              backgroundColor: Color(0xFFFE4A49),
+                              icon: Icons.delete,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.FAMILYMEMBERPROFILE, arguments: {
+                                ArgumentConstant.familyprofiledata:
+                                controller.familyMemberData.value.data?[index]
+                              });
+                            },
+                            child: Container(
+                              // height: 120.sp,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: colors.lightgrey),
+                              child: Row(
+                                children: [
+                                  const Expanded(
+                                    flex: 2,
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          "assets/images/userprofile.png"),
+                                      radius: 35,
                                     ),
                                   ),
-                                )
-                              ],
+                                  Expanded(
+                                    flex: 6,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${controller.familyMemberData.value.data?[index].name} "
+                                                "${controller.familyMemberData.value.data?[index].middleName} "
+                                                "${controller.familyMemberData.value.data?[index].lastName}",
+                                            style: TextStyle(
+                                                overflow: TextOverflow.ellipsis,
+                                                color: colors.darkbrown,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 1.h,
+                                          ),
+                                          Text(
+                                            "${StringConstant.mobile} : ${controller.familyMemberData.value.data?[index].mobileNo}",
+                                            style: TextStyle(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                                overflow: TextOverflow.ellipsis),
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          Text(
+                                            "${StringConstant.address} : ${controller.familyMemberData.value.data?[index].address}",
+                                            style: TextStyle(
+                                                fontSize: 12.sp,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          Text(
+                                            "${StringConstant.workdetails} : ${controller.familyMemberData.value.data?[index].business}",
+                                            style: TextStyle(
+                                                fontSize: 12.sp,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              )),
+                    );
+                  },
+                );
+              }
+            }
+          ),
         ),
-      ),
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:bhalala/app/constant/String_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -16,13 +17,19 @@ class FamilyMemberController extends GetxController {
   //TODO: Implement HomeController
   var isLoading = false.obs;
   var errorOccurred = false.obs;
-  var memeberId = Get.arguments;
+  // var memeberId = Get.arguments;
+  RxString memeberId = "".obs;
   final familyMemberData = FamilyMember().obs;
   final deletcontroller = Get.put(DeleteController());
 
   @override
   void onInit() {
-    getFamilymemberCount();
+
+    if(Get.arguments != null){
+      memeberId.value = Get.arguments[ArgumentConstant.memberId];
+      getFamilymemberCount();
+    }
+
     super.onInit();
   }
 
@@ -38,14 +45,16 @@ class FamilyMemberController extends GetxController {
 
   void makeUrlRequest() {}
 
-  Future<void> getFamilymemberCount() async {
+  Future<FamilyMember> getFamilymemberCount() async {
+    await Future.delayed(const Duration(seconds: 3));
     isLoading(true);
     errorOccurred(false);
     try {
-      var result = await ApiProvider().FamilymemberDetails(memeberId);
+      var result = await ApiProvider().FamilymemberDetails(memeberId.value);
       if (!result.data.isNull) {
-        Get.toNamed(Routes.FAMILYMEMBER);
+        // Get.toNamed(Routes.FAMILYMEMBER);
         familyMemberData.value = result;
+        print(familyMemberData.value.data!.last.lastName);
         isLoading(true);
       } else {
         Get.back();
@@ -55,20 +64,12 @@ class FamilyMemberController extends GetxController {
             textColor: Colors.black);
         isLoading(false);
       }
-      // if (getmemberDetailsData.value.status == 1) {
-      //   var result =  getmemberDetailsData.value;
-      // } else {
-      //   Fluttertoast.showToast(
-      //       msg: "Wrong credential",
-      //       backgroundColor: Colors.white,
-      //       textColor: Colors.black);
-      //   isLoading(false);
-      // }
     } catch (e) {
       errorOccurred(true);
     } finally {
       isLoading(false);
     }
+    return familyMemberData.value;
   }
 
   openDilogueNotEdit({required BuildContext context}) {
@@ -188,6 +189,7 @@ class FamilyMemberController extends GetxController {
   openDilogueDelete({required BuildContext context, required int index}) {
     MyColor colors = MyColor();
     var ids = familyMemberData.value.data?[index].fId;
+    var mainids = familyMemberData.value.data?[index].rId;
     return Get.dialog(Dialog(
       child: Container(
         color: colors.lightgrey,
@@ -230,7 +232,8 @@ class FamilyMemberController extends GetxController {
                             MaterialStateProperty.all(colors.darkbrown),
                       ),
                       onPressed: () {
-                        deletcontroller.DeletefamilyDataList(ids!, index);
+                        deletcontroller.DeletefamilyDataList(ids!, index,mainids!);
+
                         Get.back();
                       },
                       child: Text(
