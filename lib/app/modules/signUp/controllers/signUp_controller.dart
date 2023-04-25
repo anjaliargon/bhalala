@@ -11,7 +11,6 @@ import '../../../constant/String_constant.dart';
 import '../../../data/Api/ApiProvider.dart';
 
 import '../../../data/Model/basicModel.dart';
-import '../../../routes/app_pages.dart';
 import '../model/signUp_model.dart';
 
 class SignUpController extends GetxController {
@@ -139,7 +138,13 @@ class SignUpController extends GetxController {
       return true;
     }
   }
+  DateTime currentDate = DateTime.now();
+  userAge(DateTime currentDate, DateTime birthController) {
 
+    Duration parse = currentDate.difference(birthController).abs();
+    var age= "${parse.inDays~/360} Years ${((parse.inDays%360)~/30)} Month ${(parse.inDays%360)%30} Days";
+    print(age);
+  }
   onChnagedSurname(var surname) {
     selectedsurname.value = surname;
   }

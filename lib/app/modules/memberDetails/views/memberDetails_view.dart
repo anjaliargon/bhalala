@@ -64,7 +64,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                           SlidableAction(
                             onPressed: (context) async {
                               UrlLauncher.launch(
-                                  'tel:+${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                                  'tel:${controller.getmemberDetailsData.value.data?[index].mobileNo}');
                             },
                             backgroundColor: colors.white,
                             icon: Icons.call,

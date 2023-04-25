@@ -26,6 +26,7 @@ class Profilemodel {
 
 class ProfileData {
   String? rId;
+  String? isAdmin;
   String? name;
   String? middleName;
   String? lastName;
@@ -53,9 +54,11 @@ class ProfileData {
   String? vIdInt;
   String? industryId;
   String? busiType;
+  String? industryName;
 
   ProfileData(
       {this.rId,
+        this.isAdmin,
         this.name,
         this.middleName,
         this.lastName,
@@ -82,10 +85,12 @@ class ProfileData {
         this.deviceToken,
         this.vIdInt,
         this.industryId,
-        this.busiType});
+        this.busiType,
+        this.industryName});
 
   ProfileData.fromJson(Map<String, dynamic> json) {
     rId = json['R_id'];
+    isAdmin = json['isAdmin'];
     name = json['Name'];
     middleName = json['middle_name'];
     lastName = json['last_name'];
@@ -113,11 +118,13 @@ class ProfileData {
     vIdInt = json['v_id_int'];
     industryId = json['industry_id'];
     busiType = json['busi_type'];
+    industryName = json['industry_name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['R_id'] = this.rId;
+    data['isAdmin'] = this.isAdmin;
     data['Name'] = this.name;
     data['middle_name'] = this.middleName;
     data['last_name'] = this.lastName;
@@ -145,6 +152,7 @@ class ProfileData {
     data['v_id_int'] = this.vIdInt;
     data['industry_id'] = this.industryId;
     data['busi_type'] = this.busiType;
+    data['industry_name'] = this.industryName;
     return data;
   }
 }
