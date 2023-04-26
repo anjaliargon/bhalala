@@ -358,6 +358,7 @@ class SignUpView extends GetView<SignUpController> {
                           onChanged: (String? newvalue) {
                             membercount = newvalue!;
                             controller.memberController.text = newvalue;
+                            controller.update();
                           },
                           value: membercount,
                           items: controller.dropdownListfamilycount
