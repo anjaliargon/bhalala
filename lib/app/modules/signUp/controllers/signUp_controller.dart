@@ -126,24 +126,24 @@ class SignUpController extends GetxController {
       v_id,
       home_id,
       married_id,
-      // String?f_name,
-      // String?f_fathername,
-      // String?f_surname,
-      // String?f_gender,
-      // String?f_birthdate,
-      // String?f_industrial,
-      // String?f_busynesstype,
-      // String?f_bussiness,
-      // String?f_education,
-      // String?f_blood,
-      // String?f_status
+      String?f_name,
+      String?f_fathername,
+      String?f_surname,
+      String?f_gender,
+      String?f_birthdate,
+      String?f_industrial,
+      String?f_busynesstype,
+      String?f_bussiness,
+      String?f_education,
+      String?f_blood,
+      String?f_status
       ) async {
     VillageBasic villageData =
         accountVillageListData.where((p0) => p0.vName == v_id).first;
     IndustrieslistBasic industrialData =
         accountIndustryListData.where((p0) => p0.name == industry_id).first;
-    // IndustrieslistBasic f_industrialData =
-    //     accountIndustryListData.where((p0) => p0.name == industry_id).first;
+    IndustrieslistBasic f_industrialData =
+        accountIndustryListData.where((p0) => p0.name == industry_id).first;
     isLoading.value = false;
     var result = await ApiProvider().userRegistration(
         user_name,
@@ -165,17 +165,17 @@ class SignUpController extends GetxController {
         villageData.vId.toString(),
         home_id,
         married_id,
-        // f_name,
-        // f_fathername,
-        // f_surname,
-        // f_gender,
-        // f_birthdate,
-        // f_industrialData.id.toString(),
-        // f_busynesstype,
-        // f_bussiness,
-        // f_education,
-        // f_blood,
-        // f_status
+        f_name,
+        f_fathername,
+        f_surname,
+        f_gender,
+        f_birthdate,
+        f_industrialData.id.toString(),
+        f_busynesstype,
+        f_bussiness,
+        f_education,
+        f_blood,
+        f_status
     );
     if (result.status == 1) {
       Fluttertoast.showToast(
@@ -214,453 +214,453 @@ class SignUpController extends GetxController {
   onChnagedWork(var work) {
     selectedwork.value = work;
   }
-  openDilogueAddMember({required BuildContext context}) {
-    String? f_industry;
-    String? f_education;
-    String? f_bloodgroup;
-    String? f_status;
-    MyColor colors = MyColor();
-    Get.dialog(Dialog(
-      child: SingleChildScrollView(
-        child: Obx(()=>
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Form(
-                  key: familyformKey.value,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      CustomeTextFields(
-                        iconfat: FontAwesomeIcons.solidCircleUser,
-                        keyboard: 0,
-                        hint: StringConstant.name,
-                        validation: true,
-                        fieldValue: f_nameController,
-                      ),
-                      CustomeTextFields(
-                        iconfat: FontAwesomeIcons.solidCircleUser,
-                        keyboard: 0,
-                        hint: StringConstant.fathername,
-                        validation: true,
-                        fieldValue: f_fatherController,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 15),
-                              child: FaIcon(FontAwesomeIcons.solidCircleUser,
-                                  size: 20.sp, color: colors.darkbrown),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 8,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 10,
-                                  ),
-                                  child: Text(
-                                    StringConstant.surname,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.sp,
-                                        color: colors.grey),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: StringConstant.bhalal,
-                                      groupValue: f_selectedsurname.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedSurname(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.bhalal),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: "Bhalala",
-                                      groupValue: f_selectedsurname.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedSurname(value);
-                                      }),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: Text("Bhalala"),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 15),
-                              child: FaIcon(FontAwesomeIcons.venusMars,
-                                  size: 20.sp, color: colors.darkbrown),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 8,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 10,
-                                  ),
-                                  child: Text(
-                                    StringConstant.gender,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.sp,
-                                        color: colors.grey),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: "Women",
-                                      groupValue: f_selectedgender.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedGender(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.women),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: "Male",
-                                      groupValue: f_selectedgender.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedGender(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.gentelmen),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      CustomeTextFields(
-                        iconfat: FontAwesomeIcons.cakeCandles,
-                        keyboard: 0,
-                        hint: StringConstant.birthdaydate,
-                        validation: true,
-                        fieldValue: f_birthController,
-                        icon: Icons.calendar_today_rounded,
-                      ),
-                      //// Industrial
-                      Obx(
-                            () => customeDropDown(
-                          iconfat: FontAwesomeIcons.graduationCap,
-                          dropdown: DropdownButton(
-                            hint: Text(
-                              StringConstant.work_sectorchoice,
-                              style: TextStyle(
-                                  color: colors.black, fontWeight: FontWeight.bold),
-                            ),
-                            isExpanded: true,
-                            elevation: 0,
-                            underline: Container(
-                              color: colors.white,
-                            ),
-                            onChanged: (String? newvalue) {
-                              f_industry = newvalue!;
-                              f_industryController.text = newvalue;
-                              update();
-                            },
-                            value: f_industry,
-                            items: f_accountIndustryListData.map((items) {
-                              return DropdownMenuItem(
-                                value: items.name,
-                                child: Text(
-                                  items.name.toString(),
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontWeight: FontWeight.bold),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 15),
-                              child: FaIcon(FontAwesomeIcons.solidCircleUser,
-                                  size: 20.sp, color: colors.darkbrown),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 8,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 10,
-                                  ),
-                                  child: Text(
-                                    StringConstant.work_details,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 2.sp,
-                                        color: colors.grey),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: StringConstant.job,
-                                      groupValue: f_selectedwork.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedWork(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.job,
-                                      style: TextStyle(fontSize: 4.sp)),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: StringConstant.buissness,
-                                      groupValue: f_selectedwork.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedWork(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.buissness,
-                                      style: TextStyle(fontSize: 4.sp)),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Radio(
-                                      value: StringConstant.other,
-                                      groupValue: f_selectedwork.value,
-                                      activeColor: colors.darkbrown,
-                                      onChanged: (value) {
-                                        onChnagedWork(value);
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.other,
-                                      style: TextStyle(fontSize: 10.sp)),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      CustomeTextFields(
-                        iconfat: FontAwesomeIcons.shop,
-                        keyboard: 0,
-                        hint: StringConstant.work_details,
-                        validation: true,
-                        fieldValue: f_workController,
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      // Education..........
-                      customeDropDown(
-                        iconfat: FontAwesomeIcons.graduationCap,
-                        dropdown: DropdownButton(
-                          hint: Text(
-                            StringConstant.education_chooes,
-                            style: TextStyle(
-                                color: colors.black, fontWeight: FontWeight.bold),
-                          ),
-                          isExpanded: true,
-                          elevation: 0,
-                          underline: Container(
-                            color: colors.white,
-                          ),
-                          onChanged: (String? newvalue) {
-                            f_education = newvalue!;
-                            f_educationController.text = newvalue;
-                            update();
-                          },
-                          value: f_education,
-                          items: f_accountEducationListData.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(
-                                items,
-                                style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      //........Blood Group
-                      customeDropDown(
-                        iconfat: FontAwesomeIcons.person,
-                        dropdown: DropdownButton(
-                          hint: Text(
-                            StringConstant.blood_chooes,
-                            style: TextStyle(
-                                color: colors.black, fontWeight: FontWeight.bold),
-                          ),
-                          isExpanded: true,
-                          elevation: 0,
-                          underline: Container(
-                            color: colors.white,
-                          ),
-                          onChanged: (String? newvalue) {
-                            f_bloodgroup = newvalue!;
-                            f_bloodController.text = newvalue;
-                            update();
-                          },
-                          value: f_bloodgroup,
-                          items: f_accountBloodListData.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(
-                                items,
-                                style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      customeDropDown(
-                        iconfat: FontAwesomeIcons.userGroup,
-                        dropdown: DropdownButton(
-                          hint: Text(
-                            StringConstant.merriage,
-                            style: TextStyle(
-                                color: colors.black, fontWeight: FontWeight.bold),
-                          ),
-                          isExpanded: true,
-                          elevation: 0,
-                          underline: Container(
-                            color: colors.white,
-                          ),
-                          onChanged: (String? newvalue) {
-                            f_status = newvalue!;
-                            f_statusController.text = newvalue;
-                            update();
-                          },
-                          value: f_status,
-                          items: f_accountStatusListData.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(
-                                items,
-                                style: TextStyle(
-                                    fontSize: 10.sp, fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          await  userRegistration(
-                            nameController.text,
-                            fatherController.text,
-                            selectedsurname.value,
-                            selectedgender.value,
-                            addressController.text,
-                            birthController.text,
-                            emailController.text,
-                            passwordController.text,
-                            mobileController.text,
-                            industryController.text,
-                            selectedwork.value,
-                            workController.text,
-                            memberController.text,
-                            educationController.text,
-                            bloodController.text,
-                            villageController.text,
-                            villageController.text,
-                            currentCityController.text,
-                            statusController.text,
-                            // f_nameController.text,
-                            // f_fatherController.text,
-                            // f_selectedsurname,
-                            // f_selectedgender,
-                            // f_birthController.text,
-                            // f_industryController.text,
-                            // f_selectedwork,
-                            // f_workController.text,
-                            // f_educationController.text,
-                            // f_bloodController.text,
-                            // f_statusController.text
-
-
-                          );
-                        },
-                        child: Container(
-                          height: 6.h,
-                          width: 90.w,
-                          decoration: BoxDecoration(
-                              color: colors.darkbrown,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                                StringConstant.registration,
-                                style: TextStyle(
-                                    color: colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.sp),
-                              )),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
-        ),
-      ),
-    ));
-  }
+  // openDilogueAddMember({required BuildContext context}) {
+  //   String? f_industry;
+  //   String? f_education;
+  //   String? f_bloodgroup;
+  //   String? f_status;
+  //   MyColor colors = MyColor();
+  //   Get.dialog(Dialog(
+  //     child: SingleChildScrollView(
+  //       child: Obx(()=>
+  //           Column(
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Form(
+  //                 key: familyformKey.value,
+  //                 child: Column(
+  //                   children: [
+  //                     SizedBox(
+  //                       height: 1.h,
+  //                     ),
+  //                     CustomeTextFields(
+  //                       iconfat: FontAwesomeIcons.solidCircleUser,
+  //                       keyboard: 0,
+  //                       hint: StringConstant.name,
+  //                       validation: true,
+  //                       fieldValue: f_nameController,
+  //                     ),
+  //                     CustomeTextFields(
+  //                       iconfat: FontAwesomeIcons.solidCircleUser,
+  //                       keyboard: 0,
+  //                       hint: StringConstant.fathername,
+  //                       validation: true,
+  //                       fieldValue: f_fatherController,
+  //                     ),
+  //                     Row(
+  //                       children: [
+  //                         Expanded(
+  //                           flex: 2,
+  //                           child: Padding(
+  //                             padding: const EdgeInsets.only(top: 15, left: 15),
+  //                             child: FaIcon(FontAwesomeIcons.solidCircleUser,
+  //                                 size: 20.sp, color: colors.darkbrown),
+  //                           ),
+  //                         ),
+  //                         Expanded(
+  //                           flex: 8,
+  //                           child: Row(
+  //                             children: [
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(
+  //                                   top: 10,
+  //                                 ),
+  //                                 child: Text(
+  //                                   StringConstant.surname,
+  //                                   style: TextStyle(
+  //                                       fontWeight: FontWeight.bold,
+  //                                       fontSize: 12.sp,
+  //                                       color: colors.grey),
+  //                                 ),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: StringConstant.bhalal,
+  //                                     groupValue: f_selectedsurname.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedSurname(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.bhalal),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: "Bhalala",
+  //                                     groupValue: f_selectedsurname.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedSurname(value);
+  //                                     }),
+  //                               ),
+  //                               const Padding(
+  //                                 padding: EdgeInsets.only(top: 5),
+  //                                 child: Text("Bhalala"),
+  //                               ),
+  //                             ],
+  //                           ),
+  //                         )
+  //                       ],
+  //                     ),
+  //                     SizedBox(
+  //                       height: 1.h,
+  //                     ),
+  //
+  //                     Row(
+  //                       children: [
+  //                         Expanded(
+  //                           flex: 2,
+  //                           child: Padding(
+  //                             padding: const EdgeInsets.only(top: 15, left: 15),
+  //                             child: FaIcon(FontAwesomeIcons.venusMars,
+  //                                 size: 20.sp, color: colors.darkbrown),
+  //                           ),
+  //                         ),
+  //                         Expanded(
+  //                           flex: 8,
+  //                           child: Row(
+  //                             children: [
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(
+  //                                   top: 10,
+  //                                 ),
+  //                                 child: Text(
+  //                                   StringConstant.gender,
+  //                                   style: TextStyle(
+  //                                       fontWeight: FontWeight.bold,
+  //                                       fontSize: 12.sp,
+  //                                       color: colors.grey),
+  //                                 ),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: "Women",
+  //                                     groupValue: f_selectedgender.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedGender(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.women),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: "Male",
+  //                                     groupValue: f_selectedgender.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedGender(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.gentelmen),
+  //                               ),
+  //                             ],
+  //                           ),
+  //                         )
+  //                       ],
+  //                     ),
+  //                     CustomeTextFields(
+  //                       iconfat: FontAwesomeIcons.cakeCandles,
+  //                       keyboard: 0,
+  //                       hint: StringConstant.birthdaydate,
+  //                       validation: true,
+  //                       fieldValue: f_birthController,
+  //                       icon: Icons.calendar_today_rounded,
+  //                     ),
+  //                     //// Industrial
+  //                     Obx(
+  //                           () => customeDropDown(
+  //                         iconfat: FontAwesomeIcons.graduationCap,
+  //                         dropdown: DropdownButton(
+  //                           hint: Text(
+  //                             StringConstant.work_sectorchoice,
+  //                             style: TextStyle(
+  //                                 color: colors.black, fontWeight: FontWeight.bold),
+  //                           ),
+  //                           isExpanded: true,
+  //                           elevation: 0,
+  //                           underline: Container(
+  //                             color: colors.white,
+  //                           ),
+  //                           onChanged: (String? newvalue) {
+  //                             f_industry = newvalue!;
+  //                             f_industryController.text = newvalue;
+  //                             update();
+  //                           },
+  //                           value: f_industry,
+  //                           items: f_accountIndustryListData.map((items) {
+  //                             return DropdownMenuItem(
+  //                               value: items.name,
+  //                               child: Text(
+  //                                 items.name.toString(),
+  //                                 style: TextStyle(
+  //                                     fontSize: 10.sp, fontWeight: FontWeight.bold),
+  //                               ),
+  //                             );
+  //                           }).toList(),
+  //                         ),
+  //                       ),
+  //                     ),
+  //                     Row(
+  //                       children: [
+  //                         Expanded(
+  //                           flex: 2,
+  //                           child: Padding(
+  //                             padding: const EdgeInsets.only(top: 15, left: 15),
+  //                             child: FaIcon(FontAwesomeIcons.solidCircleUser,
+  //                                 size: 20.sp, color: colors.darkbrown),
+  //                           ),
+  //                         ),
+  //                         Expanded(
+  //                           flex: 8,
+  //                           child: Row(
+  //                             children: [
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(
+  //                                   top: 10,
+  //                                 ),
+  //                                 child: Text(
+  //                                   StringConstant.work_details,
+  //                                   style: TextStyle(
+  //                                       fontWeight: FontWeight.bold,
+  //                                       fontSize: 2.sp,
+  //                                       color: colors.grey),
+  //                                 ),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: StringConstant.job,
+  //                                     groupValue: f_selectedwork.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedWork(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.job,
+  //                                     style: TextStyle(fontSize: 4.sp)),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: StringConstant.buissness,
+  //                                     groupValue: f_selectedwork.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedWork(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.buissness,
+  //                                     style: TextStyle(fontSize: 4.sp)),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Radio(
+  //                                     value: StringConstant.other,
+  //                                     groupValue: f_selectedwork.value,
+  //                                     activeColor: colors.darkbrown,
+  //                                     onChanged: (value) {
+  //                                       onChnagedWork(value);
+  //                                     }),
+  //                               ),
+  //                               Padding(
+  //                                 padding: const EdgeInsets.only(top: 5),
+  //                                 child: Text(StringConstant.other,
+  //                                     style: TextStyle(fontSize: 10.sp)),
+  //                               ),
+  //                             ],
+  //                           ),
+  //                         )
+  //                       ],
+  //                     ),
+  //                     CustomeTextFields(
+  //                       iconfat: FontAwesomeIcons.shop,
+  //                       keyboard: 0,
+  //                       hint: StringConstant.work_details,
+  //                       validation: true,
+  //                       fieldValue: f_workController,
+  //                     ),
+  //                     SizedBox(
+  //                       height: 1.h,
+  //                     ),
+  //                     // Education..........
+  //                     customeDropDown(
+  //                       iconfat: FontAwesomeIcons.graduationCap,
+  //                       dropdown: DropdownButton(
+  //                         hint: Text(
+  //                           StringConstant.education_chooes,
+  //                           style: TextStyle(
+  //                               color: colors.black, fontWeight: FontWeight.bold),
+  //                         ),
+  //                         isExpanded: true,
+  //                         elevation: 0,
+  //                         underline: Container(
+  //                           color: colors.white,
+  //                         ),
+  //                         onChanged: (String? newvalue) {
+  //                           f_education = newvalue!;
+  //                           f_educationController.text = newvalue;
+  //                           update();
+  //                         },
+  //                         value: f_education,
+  //                         items: f_accountEducationListData.map((String items) {
+  //                           return DropdownMenuItem(
+  //                             value: items,
+  //                             child: Text(
+  //                               items,
+  //                               style: TextStyle(
+  //                                   fontSize: 10.sp, fontWeight: FontWeight.bold),
+  //                             ),
+  //                           );
+  //                         }).toList(),
+  //                       ),
+  //                     ),
+  //                     //........Blood Group
+  //                     customeDropDown(
+  //                       iconfat: FontAwesomeIcons.person,
+  //                       dropdown: DropdownButton(
+  //                         hint: Text(
+  //                           StringConstant.blood_chooes,
+  //                           style: TextStyle(
+  //                               color: colors.black, fontWeight: FontWeight.bold),
+  //                         ),
+  //                         isExpanded: true,
+  //                         elevation: 0,
+  //                         underline: Container(
+  //                           color: colors.white,
+  //                         ),
+  //                         onChanged: (String? newvalue) {
+  //                           f_bloodgroup = newvalue!;
+  //                           f_bloodController.text = newvalue;
+  //                           update();
+  //                         },
+  //                         value: f_bloodgroup,
+  //                         items: f_accountBloodListData.map((String items) {
+  //                           return DropdownMenuItem(
+  //                             value: items,
+  //                             child: Text(
+  //                               items,
+  //                               style: TextStyle(
+  //                                   fontSize: 10.sp, fontWeight: FontWeight.bold),
+  //                             ),
+  //                           );
+  //                         }).toList(),
+  //                       ),
+  //                     ),
+  //                     customeDropDown(
+  //                       iconfat: FontAwesomeIcons.userGroup,
+  //                       dropdown: DropdownButton(
+  //                         hint: Text(
+  //                           StringConstant.merriage,
+  //                           style: TextStyle(
+  //                               color: colors.black, fontWeight: FontWeight.bold),
+  //                         ),
+  //                         isExpanded: true,
+  //                         elevation: 0,
+  //                         underline: Container(
+  //                           color: colors.white,
+  //                         ),
+  //                         onChanged: (String? newvalue) {
+  //                           f_status = newvalue!;
+  //                           f_statusController.text = newvalue;
+  //                           update();
+  //                         },
+  //                         value: f_status,
+  //                         items: f_accountStatusListData.map((String items) {
+  //                           return DropdownMenuItem(
+  //                             value: items,
+  //                             child: Text(
+  //                               items,
+  //                               style: TextStyle(
+  //                                   fontSize: 10.sp, fontWeight: FontWeight.bold),
+  //                             ),
+  //                           );
+  //                         }).toList(),
+  //                       ),
+  //                     ),
+  //                     SizedBox(
+  //                       height: 2.h,
+  //                     ),
+  //                     InkWell(
+  //                       onTap: () async {
+  //                         await  userRegistration(
+  //                           nameController.text,
+  //                           fatherController.text,
+  //                           selectedsurname.value,
+  //                           selectedgender.value,
+  //                           addressController.text,
+  //                           birthController.text,
+  //                           emailController.text,
+  //                           passwordController.text,
+  //                           mobileController.text,
+  //                           industryController.text,
+  //                           selectedwork.value,
+  //                           workController.text,
+  //                           memberController.text,
+  //                           educationController.text,
+  //                           bloodController.text,
+  //                           villageController.text,
+  //                           villageController.text,
+  //                           currentCityController.text,
+  //                           statusController.text,
+  //                           f_nameController.text,
+  //                           f_fatherController.text,
+  //                           f_selectedsurname.value,
+  //                           f_selectedgender.value,
+  //                           f_birthController.text,
+  //                           f_industryController.text,
+  //                           f_selectedwork.value,
+  //                           f_workController.text,
+  //                           f_educationController.text,
+  //                           f_bloodController.text,
+  //                           f_statusController.text
+  //
+  //
+  //                         );
+  //                       },
+  //                       child: Container(
+  //                         height: 6.h,
+  //                         width: 90.w,
+  //                         decoration: BoxDecoration(
+  //                             color: colors.darkbrown,
+  //                             borderRadius: BorderRadius.circular(10)),
+  //                         child: Center(
+  //                             child: Text(
+  //                               StringConstant.registration,
+  //                               style: TextStyle(
+  //                                   color: colors.white,
+  //                                   fontWeight: FontWeight.bold,
+  //                                   fontSize: 13.sp),
+  //                             )),
+  //                       ),
+  //                     ),
+  //                     SizedBox(
+  //                       height: 2.h,
+  //                     ),
+  //                   ],
+  //                 ),
+  //               )
+  //             ],
+  //           )
+  //       ),
+  //     ),
+  //   ));
+  // }
   void pickImagefromGallary() async {
     final image = await ImagePicker().pickImage(
       source: ImageSource.gallery,

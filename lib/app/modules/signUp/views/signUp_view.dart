@@ -577,7 +577,26 @@ class SignUpView extends GetView<SignUpController> {
                         onTap: () async {
                           if (int.parse(controller.memberController.text) >=
                               2) {
-                           signupadd.openDilogueAddMember(context: context);
+                           signupadd.openDilogueAddMember(context:context,
+                             user_name: controller.nameController.text,
+                             mname: controller.fatherController.text,
+                             lname:  controller.selectedsurname.value,
+                             gender: controller.selectedgender.value,
+                             address: controller.addressController.text,
+                             birthdate: controller.birthController.text,
+                             user_email: controller.emailController.text,
+                             password: controller.passwordController.text,
+                             mobile_no: controller.mobileController.text,
+                             industry_id: controller.industryController.text,
+                             busi_type: controller.selectedwork.value,
+                             business: controller.workController.text,
+                             no_of_member: controller.memberController.text,
+                            education_id:  controller.educationController.text,
+                             b_name: controller.bloodController.text,
+                             v_name: controller.villageController.text,
+                             v_id: controller.villageController.text,
+                             home_id: controller.currentCityController.text,
+                             married_id: controller.statusController.text,);
                           }
                           else {
                             if (_networkController.connectionStatus.value ==
@@ -651,6 +670,18 @@ class SignUpView extends GetView<SignUpController> {
                                     controller.villageController.text,
                                     controller.currentCityController.text,
                                     controller.statusController.text,
+
+                                        controller.emailController.text,
+                                        controller.passwordController.text,
+                                        controller.mobileController.text,
+                                        controller.industryController.text,
+                                        controller.selectedwork.value,
+                                        controller.workController.text,
+                                        controller.memberController.text,
+                                        controller.educationController.text,
+                                        controller.bloodController.text,
+                                        controller.villageController.text,
+                                        controller.villageController.text,
                                   );
                                   controller.nameController.clear();
                                   controller.fatherController.clear();

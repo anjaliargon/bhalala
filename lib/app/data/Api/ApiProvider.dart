@@ -202,18 +202,40 @@ class ApiProvider {
       v_id,
       home_id,
       married_id,
-      // f_name,
-      // f_fathername,
-      // f_surname,
-      // f_gender,
-      // f_birthdate,
-      // f_industrial,
-      // f_busynesstype,
-      // f_bussiness,
-      // f_education,
-      // f_blood,
-      // f_status
+      f_name,
+      f_fathername,
+      f_surname,
+      f_gender,
+      f_birthdate,
+      f_industrial,
+      f_busynesstype,
+      f_bussiness,
+      f_education,
+      f_blood,
+      f_status
       ) async {
+    final List<Map<String, String>> formDataList = [
+      {
+        "user_name": f_name.toString(),
+        "lname": f_surname.toString(),
+        "mname": f_fathername.toString(),
+        "birthdate": f_birthdate.toString(),
+        "gender": f_gender.toString(),
+        "address":  address.toString(),
+        "education_id": f_education.toString(),
+        "age": "0",
+        "mobile_no": mobile_no.toString(),
+        "business": f_bussiness.toString(),
+        "married_id": f_status.toString(),
+        "home_id":home_id.toString(),
+        "v_id": v_name.toString(),
+        "b_name": f_blood.toString(),
+        "v_id_int":v_id.toString(),
+        "user_profile": "",
+        "industry_id": f_industrial.toString(),
+        "busi_type": f_busynesstype.toString()
+      },
+    ];
     Map<String, dynamic> formDataMap = {
       "map": {
         // "user_name": f_name.toString(),
@@ -261,7 +283,7 @@ class ApiProvider {
           'dRZ4QD4_zTE:APA91bFQW-3STJf3AZFga9cg0u6OcXy9sU0qbAR_dyxYOjC_P68HyG-8-U1o8SnFYA-YJHFEz5QPF3N9rzgCJvwTaExXXSftCfgc-f5-0i6-LCEVQn7TL_igAkYXL4cTapyNnr33YSzs',
       'home_id': home_id.toString(),
       'no_of_member': no_of_member.toString(),
-      'member_details': formData.toString(),
+      'member_details': jsonEncode(formDataList),
       // 'member_details':
       //     ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
       'mname': mname.toString(),
