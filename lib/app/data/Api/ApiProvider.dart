@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import 'package:bhalala/app/modules/memberDetails/Model/Deletemodel.dart';
 import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
@@ -200,27 +201,39 @@ class ApiProvider {
       v_name,
       v_id,
       home_id,
-      married_id) async {
+      married_id,
+      // f_name,
+      // f_fathername,
+      // f_surname,
+      // f_gender,
+      // f_birthdate,
+      // f_industrial,
+      // f_busynesstype,
+      // f_bussiness,
+      // f_education,
+      // f_blood,
+      // f_status
+      ) async {
     Map<String, dynamic> formDataMap = {
       "map": {
-        "user_name": "ડેમો",
-        "lname": "ભાલાળા",
-        "mname": "ડેમો",
-        "birthdate": "16-5-2018",
-        "gender": "Male",
-        "address": "ddemod",
-        "education_id": "M.ed",
-        "age": "0",
-        "mobile_no": "1236547890",
-        "business": "ડેમો",
-        "married_id": "Single",
-        "home_id": "સુરત",
-        "v_id": "મોણપર ",
-        "b_name": "B-",
-        "v_id_int": "2",
-        "user_profile": "",
-        "industry_id": "2",
-        "busi_type": "નોકરી"
+        // "user_name": f_name.toString(),
+        // "lname": f_surname.toString(),
+        // "mname": f_fathername.toString(),
+        // "birthdate": f_birthdate.toString(),
+        // "gender": f_gender.toString(),
+        // "address":  address.toString(),
+        // "education_id": f_education.toString(),
+        // "age": "0",
+        // "mobile_no": mobile_no.toString(),
+        // "business": f_bussiness.toString(),
+        // "married_id": f_status.toString(),
+        // "home_id":home_id.toString(),
+        // "v_id": v_name.toString(),
+        // "b_name": f_blood.toString(),
+        // "v_id_int":v_id.toString(),
+        // "user_profile": "",
+        // "industry_id": f_industrial.toString(),
+        // "busi_type": f_busynesstype.toString()
       }
     };
     FormData formData = FormData(formDataMap);

@@ -18,38 +18,33 @@ import '../../../widget/temp2.dart';
 class SignupAddController extends GetxController {
   //TODO: Implement SignupAddController
   bool isLoaderVisible = false;
-  RxList<String> industriesData = <String>[].obs;
-  RxList<IndustrieslistBasic> accountIndustryListData =
+  RxList<String> f_industriesData = <String>[].obs;
+  RxList<IndustrieslistBasic> f_accountIndustryListData =
       RxList<IndustrieslistBasic>([]);
-  RxList<String> accountEducationListData = <String>[].obs;
-  RxList<String> accountBloodListData = <String>[].obs;
-  RxList<VillageBasic> accountVillageListData = RxList<VillageBasic>([]);
-  RxList<String> accountCurrentCityListData = <String>[].obs;
-  RxList<String> accountStatusListData = <String>[].obs;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController fatherController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController mobileController = TextEditingController();
-  TextEditingController workController = TextEditingController();
-  TextEditingController birthController = TextEditingController();
-  TextEditingController industryController = TextEditingController();
-  TextEditingController educationController = TextEditingController();
-  TextEditingController memberController = TextEditingController();
-  TextEditingController bloodController = TextEditingController();
-  TextEditingController villageController = TextEditingController();
-  TextEditingController currentCityController = TextEditingController();
-  TextEditingController statusController = TextEditingController();
+  RxList<String> f_accountEducationListData = <String>[].obs;
+  RxList<String> f_accountBloodListData = <String>[].obs;
+  RxList<VillageBasic> f_accountVillageListData = RxList<VillageBasic>([]);
+  RxList<String> f_accountCurrentCityListData = <String>[].obs;
+  RxList<String> f_accountStatusListData = <String>[].obs;
+  TextEditingController f_nameController = TextEditingController();
+  TextEditingController f_fatherController = TextEditingController();
+  TextEditingController f_addressController = TextEditingController();
+  TextEditingController f_emailController = TextEditingController();
+  TextEditingController f_passwordController = TextEditingController();
+  TextEditingController f_mobileController = TextEditingController();
+  TextEditingController f_workController = TextEditingController();
+  TextEditingController f_birthController = TextEditingController();
+  TextEditingController f_industryController = TextEditingController();
+  TextEditingController f_educationController = TextEditingController();
+  TextEditingController f_memberController = TextEditingController();
+  TextEditingController f_bloodController = TextEditingController();
+  TextEditingController f_villageController = TextEditingController();
+  TextEditingController f_currentCityController = TextEditingController();
+  TextEditingController f_statusController = TextEditingController();
   final signucontroller = SignUpController();
-  RxString selectedsurname = "".obs;
-  RxString selectedgender = "".obs;
-  RxString selectedwork = "".obs;
-  RxString dropdownfamilycount = StringConstant.parivar_membercount.obs;
-  Rx<File>? selectedImg;
-  RxList<String> dropdownListfamilycount =
-      <String>["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].obs;
+  RxString f_selectedsurname = "".obs;
+  RxString f_selectedgender = "".obs;
+  RxString f_selectedwork = "".obs;
   Rx<GlobalKey<FormState>> familyformKey = GlobalKey<FormState>().obs;
   RxBool isLoading = false.obs;
   var errorOccurred = false.obs;
@@ -77,21 +72,21 @@ class SignupAddController extends GetxController {
   }
 
   onChnagedSurname(var surname) {
-    selectedsurname.value = surname;
+    f_selectedsurname.value = surname;
   }
 
   onChnagedGender(var gender) {
-    selectedgender.value = gender;
+    f_selectedgender.value = gender;
   }
 
   onChnagedWork(var work) {
-    selectedwork.value = work;
+    f_selectedwork.value = work;
   }
   Future<void> getAccountIndustryList() async {
-    accountIndustryListData.clear();
+    f_accountIndustryListData.clear();
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
-      accountIndustryListData.value = result.industrieslist!;
+      f_accountIndustryListData.value = result.industrieslist!;
     } else {
       isLoading(false);
     }
@@ -99,12 +94,12 @@ class SignupAddController extends GetxController {
 
   //.....Education
   Future<void> getAccountEducationList() async {
-    accountEducationListData.clear();
-    accountEducationListData.add(StringConstant.education_chooes);
+    f_accountEducationListData.clear();
+    f_accountEducationListData.add(StringConstant.education_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.education!) {
-        accountEducationListData.add(element.educationName.toString());
+        f_accountEducationListData.add(element.educationName.toString());
         isLoading(true);
       }
     } else {
@@ -114,12 +109,12 @@ class SignupAddController extends GetxController {
 
   //.......Blood
   Future<void> getAccountBloodList() async {
-    accountBloodListData.clear();
-    accountBloodListData.add(StringConstant.bloodgroup_chooes);
+    f_accountBloodListData.clear();
+    f_accountBloodListData.add(StringConstant.bloodgroup_chooes);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.bloodGroup!) {
-        accountBloodListData.add(element.bName.toString());
+        f_accountBloodListData.add(element.bName.toString());
         isLoading(true);
       }
     } else {
@@ -129,12 +124,12 @@ class SignupAddController extends GetxController {
 
   //.......Status
   Future<void> getAccountStausList() async {
-    accountStatusListData.clear();
-    accountStatusListData.add(StringConstant.merriage);
+    f_accountStatusListData.clear();
+    f_accountStatusListData.add(StringConstant.merriage);
     var result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       for (var element in result.married!) {
-        accountStatusListData.add(element.marriedName.toString());
+        f_accountStatusListData.add(element.marriedName.toString());
         isLoading(true);
       }
     } else {
@@ -142,10 +137,10 @@ class SignupAddController extends GetxController {
     }
   }
   openDilogueAddMember({required BuildContext context}) {
-    String? industry;
-    String? education;
-    String? bloodgroup;
-    String? status;
+    String? f_industry;
+    String? f_education;
+    String? f_bloodgroup;
+    String? f_status;
     MyColor colors = MyColor();
     Get.dialog(Dialog(
       child: SingleChildScrollView(
@@ -166,14 +161,14 @@ class SignupAddController extends GetxController {
                       keyboard: 0,
                       hint: StringConstant.name,
                       validation: true,
-                      fieldValue: fnameController,
+                      fieldValue: f_nameController,
                     ),
                     CustomeTextFields(
                       iconfat: FontAwesomeIcons.solidCircleUser,
                       keyboard: 0,
                       hint: StringConstant.fathername,
                       validation: true,
-                      fieldValue: fatherController,
+                      fieldValue: f_fatherController,
                     ),
                     Row(
                       children: [
@@ -205,7 +200,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: StringConstant.bhalal,
-                                    groupValue: selectedsurname.value,
+                                    groupValue: f_selectedsurname.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedSurname(value);
@@ -219,7 +214,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: "Bhalala",
-                                    groupValue: selectedsurname.value,
+                                    groupValue: f_selectedsurname.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedSurname(value);
@@ -268,7 +263,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: "Women",
-                                    groupValue: selectedgender.value,
+                                    groupValue: f_selectedgender.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedGender(value);
@@ -282,7 +277,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: "Male",
-                                    groupValue: selectedgender.value,
+                                    groupValue: f_selectedgender.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedGender(value);
@@ -302,40 +297,42 @@ class SignupAddController extends GetxController {
                       keyboard: 0,
                       hint: StringConstant.birthdaydate,
                       validation: true,
-                      fieldValue: birthController,
+                      fieldValue: f_birthController,
                       icon: Icons.calendar_today_rounded,
                     ),
                     //// Industrial
-                    customeDropDown(
-                      iconfat: FontAwesomeIcons.graduationCap,
-                      dropdown: DropdownButton(
-                        hint: Text(
-                          StringConstant.work_sectorchoice,
-                          style: TextStyle(
-                              color: colors.black, fontWeight: FontWeight.bold),
-                        ),
-                        isExpanded: true,
-                        elevation: 0,
-                        underline: Container(
-                          color: colors.white,
-                        ),
-                        onChanged: (String? newvalue) {
-                          industry = newvalue!;
-                          industryController.text = newvalue;
-                          update();
-                        },
-                        value: industry,
-                        items: accountIndustryListData.map((items) {
-                          return DropdownMenuItem(
-                            value: items.name,
-                            child: Text(
-                              items.name.toString(),
+                    Obx(
+                      () => customeDropDown(
+                          iconfat: FontAwesomeIcons.graduationCap,
+                          dropdown: DropdownButton(
+                            hint: Text(
+                              StringConstant.work_sectorchoice,
                               style: TextStyle(
-                                  fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                  color: colors.black, fontWeight: FontWeight.bold),
                             ),
-                          );
-                        }).toList(),
-                      ),
+                            isExpanded: true,
+                            elevation: 0,
+                            underline: Container(
+                              color: colors.white,
+                            ),
+                            onChanged: (String? newvalue) {
+                              f_industry = newvalue!;
+                              f_industryController.text = newvalue;
+                              update();
+                            },
+                            value: f_industry,
+                            items: f_accountIndustryListData.map((items) {
+                              return DropdownMenuItem(
+                                value: items.name,
+                                child: Text(
+                                  items.name.toString(),
+                                  style: TextStyle(
+                                      fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                    ),
                     ),
                     Row(
                       children: [
@@ -367,7 +364,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: StringConstant.job,
-                                    groupValue: selectedwork.value,
+                                    groupValue: f_selectedwork.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedWork(value);
@@ -382,7 +379,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: StringConstant.buissness,
-                                    groupValue: selectedwork.value,
+                                    groupValue: f_selectedwork.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedWork(value);
@@ -397,7 +394,7 @@ class SignupAddController extends GetxController {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Radio(
                                     value: StringConstant.other,
-                                    groupValue: selectedwork.value,
+                                    groupValue: f_selectedwork.value,
                                     activeColor: colors.darkbrown,
                                     onChanged: (value) {
                                       onChnagedWork(value);
@@ -418,7 +415,7 @@ class SignupAddController extends GetxController {
                       keyboard: 0,
                       hint: StringConstant.work_details,
                       validation: true,
-                      fieldValue: workController,
+                      fieldValue: f_workController,
                     ),
                     SizedBox(
                       height: 1.h,
@@ -438,12 +435,12 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          education = newvalue!;
-                          educationController.text = newvalue;
+                          f_education = newvalue!;
+                          f_educationController.text = newvalue;
                           update();
                         },
-                        value: education,
-                        items: accountEducationListData.map((String items) {
+                        value: f_education,
+                        items: f_accountEducationListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(
@@ -470,12 +467,12 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          bloodgroup = newvalue!;
-                          bloodController.text = newvalue;
+                          f_bloodgroup = newvalue!;
+                          f_bloodController.text = newvalue;
                           update();
                         },
-                        value: bloodgroup,
-                        items: accountBloodListData.map((String items) {
+                        value: f_bloodgroup,
+                        items: f_accountBloodListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(
@@ -501,12 +498,12 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          status = newvalue!;
-                          statusController.text = newvalue;
+                          f_status = newvalue!;
+                          f_statusController.text = newvalue;
                           update();
                         },
-                        value: status,
-                        items: accountStatusListData.map((String items) {
+                        value: f_status,
+                        items: f_accountStatusListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(
@@ -543,6 +540,19 @@ class SignupAddController extends GetxController {
                           signucontroller.villageController.text,
                           signucontroller.currentCityController.text,
                           signucontroller.statusController.text,
+                          // f_nameController.text,
+                          // f_fatherController.text,
+                          // f_selectedsurname,
+                          // f_selectedgender,
+                          // f_birthController.text,
+                          // f_industryController.text,
+                          // f_selectedwork,
+                          // f_workController.text,
+                          // f_educationController.text,
+                          // f_bloodController.text,
+                          // f_statusController.text
+
+
                         );
                       },
                       child: Container(
@@ -568,8 +578,8 @@ class SignupAddController extends GetxController {
                 ),
               )
             ],
-          ),
-        ),
+          )
+      ),
       ),
     ));
   }

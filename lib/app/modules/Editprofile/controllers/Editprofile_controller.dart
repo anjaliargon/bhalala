@@ -244,8 +244,7 @@ class EditProfileController extends GetxController {
   }
 
   Future<void> assignProfileData() async {
-    await Future.delayed(const Duration(milliseconds: 2000), () {
-      isLoading(true);
+    await Future.delayed(const Duration(milliseconds: 2), () {
       nameController.text = profileData?.name ?? '';
       fatherController.text = profileData?.middleName ?? '';
       birthController.text = profileData?.birthdate ?? '';
