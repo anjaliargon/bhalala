@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../no_internet/check_network.dart';
 import '../controllers/photoGallary_controller.dart';
-import '../model/photoGallary_model.dart';
 
 class PhotoGallaryView extends GetView<PhotoGallaryController> {
   const PhotoGallaryView({Key? key}) : super(key: key);
@@ -14,6 +13,8 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
   Widget build(BuildContext context) {
     String? year;
     String? function;
+    bool isyearSelected = false;
+    bool isfunctionSelected = false;
     final loginController = Get.put(PhotoGallaryController());
     MyColor colors = MyColor();
     return GetBuilder<PhotoGallaryController>(
@@ -60,12 +61,14 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                               underline: Container(
                                 color: colors.white,
                               ),
-                              onChanged: (String? newvalue) {
+                                onChanged: (String? newvalue) async {
                                 year = newvalue!;
 
                                 controller.yearController.text = newvalue;
                                 controller.functionController.text.isEmpty;
                                 controller.update();
+                                await controller.getFunctionData(date: newvalue);
+                                isyearSelected = true;
                               },
                               value: year,
                               items: controller.yearListData
@@ -107,11 +110,12 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 onChanged: (String? newvalue) {
                                   function = newvalue!;
                                   controller.functionController.text = newvalue;
+                                  controller.getImageData(date: newvalue);
                                   controller.update();
                                 },
                                 value: function,
                                 items: controller.functionListData
-                                    .toSet().where((element) => element.startsWith(controller.functionController.text))
+                                    .toSet()
                                     .map((String items) {
                                   return DropdownMenuItem(
                                     value: items,
@@ -135,8 +139,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                         crossAxisSpacing: 4,
                                         mainAxisSpacing: 4,
                                         crossAxisCount: 2),
-                                itemCount:
-                                    controller.yearData.value.data?.length,
+                                itemCount: controller.imageList.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     decoration: const BoxDecoration(
@@ -144,7 +147,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))),
                                     child: Image.network(
-                                      "${controller.yearData.value.data?[index].imageUrl}",
+                                      "${controller.imageList[index].imageUrl}",
                                       fit: BoxFit.cover,
                                       errorBuilder: (a, b, c) => Image.asset(
                                           'assets/images/applogo.png'),

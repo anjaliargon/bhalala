@@ -126,17 +126,18 @@ class SignUpController extends GetxController {
       v_id,
       home_id,
       married_id,
-      String?f_name,
-      String?f_fathername,
-      String?f_surname,
-      String?f_gender,
-      String?f_birthdate,
-      String?f_industrial,
-      String?f_busynesstype,
-      String?f_bussiness,
-      String?f_education,
-      String?f_blood,
-      String?f_status
+      profilepic,
+      // String?f_name,
+      // String?f_fathername,
+      // String?f_surname,
+      // String?f_gender,
+      // String?f_birthdate,
+      // String?f_industrial,
+      // String?f_busynesstype,
+      // String?f_bussiness,
+      // String?f_education,
+      // String?f_blood,
+      // String?f_status
       ) async {
     VillageBasic villageData =
         accountVillageListData.where((p0) => p0.vName == v_id).first;
@@ -145,13 +146,14 @@ class SignUpController extends GetxController {
     IndustrieslistBasic f_industrialData =
         accountIndustryListData.where((p0) => p0.name == industry_id).first;
     isLoading.value = false;
+    // final  ageUser =("${DateTime.now().year}");
     var result = await ApiProvider().userRegistration(
         user_name,
         mname,
         lname,
         gender,
         address,
-        birthdate,
+       birthdate,
         user_email,
         password,
         mobile_no,
@@ -165,17 +167,18 @@ class SignUpController extends GetxController {
         villageData.vId.toString(),
         home_id,
         married_id,
-        f_name,
-        f_fathername,
-        f_surname,
-        f_gender,
-        f_birthdate,
-        f_industrialData.id.toString(),
-        f_busynesstype,
-        f_bussiness,
-        f_education,
-        f_blood,
-        f_status
+        profilepic,
+        // f_name,
+        // f_fathername,
+        // f_surname,
+        // f_gender,
+        // f_birthdate,
+        // f_industrialData.id.toString(),
+        // f_busynesstype,
+        // f_bussiness,
+        // f_education,
+        // f_blood,
+        // f_status
     );
     if (result.status == 1) {
       Fluttertoast.showToast(

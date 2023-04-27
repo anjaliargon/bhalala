@@ -155,11 +155,11 @@ class SignupAddController extends GetxController {
     v_name,
     v_id,
     home_id,
-    married_id,}) {
-    String? f_industry;
-    String? f_education;
-    String? f_bloodgroup;
-    String? f_status;
+    married_id,profilepic}) {
+    String? fIndustry;
+    String? fEducation;
+    String? fBloodgroup;
+    String? fStatus;
     MyColor colors = MyColor();
     Get.dialog(Dialog(
       child: SingleChildScrollView(
@@ -335,11 +335,11 @@ class SignupAddController extends GetxController {
                               color: colors.white,
                             ),
                             onChanged: (String? newvalue) {
-                              f_industry = newvalue!;
+                              fIndustry = newvalue!;
                               f_industryController.text = newvalue;
                               update();
                             },
-                            value: f_industry,
+                            value: fIndustry,
                             items: f_accountIndustryListData.map((items) {
                               return DropdownMenuItem(
                                 value: items.name,
@@ -454,11 +454,11 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          f_education = newvalue!;
+                          fEducation = newvalue!;
                           f_educationController.text = newvalue;
                           update();
                         },
-                        value: f_education,
+                        value: fEducation,
                         items: f_accountEducationListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -486,11 +486,11 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          f_bloodgroup = newvalue!;
+                          fBloodgroup = newvalue!;
                           f_bloodController.text = newvalue;
                           update();
                         },
-                        value: f_bloodgroup,
+                        value: fBloodgroup,
                         items: f_accountBloodListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -517,11 +517,11 @@ class SignupAddController extends GetxController {
                           color: colors.white,
                         ),
                         onChanged: (String? newvalue) {
-                          f_status = newvalue!;
+                          fStatus = newvalue!;
                           f_statusController.text = newvalue;
                           update();
                         },
-                        value: f_status,
+                        value: fStatus,
                         items: f_accountStatusListData.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -559,17 +559,18 @@ class SignupAddController extends GetxController {
                             v_id,
                             home_id,
                             married_id,
-                          f_nameController.text,
-                          f_fatherController.text,
-                          f_selectedsurname.value,
-                          f_selectedgender.value,
-                          f_birthController.text,
-                          f_industryController.text,
-                          f_selectedwork.value,
-                          f_workController.text,
-                          f_educationController.text,
-                          f_bloodController.text,
-                          f_statusController.text
+                          profilepic,
+                          // f_nameController.text,
+                          // f_fatherController.text,
+                          // f_selectedsurname.value,
+                          // f_selectedgender.value,
+                          // f_birthController.text,
+                          // f_industryController.text,
+                          // f_selectedwork.value,
+                          // f_workController.text,
+                          // f_educationController.text,
+                          // f_bloodController.text,
+                          // f_statusController.text
 
 
                         );

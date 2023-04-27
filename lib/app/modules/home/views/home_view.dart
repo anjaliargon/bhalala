@@ -36,11 +36,19 @@ class HomeView extends GetView<HomeController> {
                           Get.toNamed(Routes.PROFILE);
                           // profileController.userProfile(box.read('userId'));
                         },
-                        child: const CircleAvatar(
-                          backgroundImage:
-                          AssetImage("assets/images/userprofile.png"),
-                          radius: 35,
-                        ),
+                        child:  Container(
+                          height:80,
+                          width: 80,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(200),
+                            child:  Image.network(
+                              box.read("profile_pic"),
+                              fit: BoxFit.cover,
+                              errorBuilder: (a, b, c) => Image.asset(
+                                  'assets/images/userprofile.png'),
+                            ),
+                          ),
+                        )
                       ),
                       Flexible(
                         flex: 2,
@@ -50,11 +58,11 @@ class HomeView extends GetView<HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Obx(
-                                    () => Text(
-                                  "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
-                                  style: TextStyle(color: colors.white),
-                                ),
+                              Obx(()=>
+                                 Text(
+                                    "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
+                                    style: TextStyle(color: colors.white),
+                                  ),
                               ),
                               SizedBox(height: 1.h),
                               Obx(
@@ -267,11 +275,19 @@ class HomeView extends GetView<HomeController> {
                           Get.toNamed(Routes.PROFILE);
                           // profileController.userProfile(box.read('userId'));
                         },
-                        child: const CircleAvatar(
-                          backgroundImage:
-                          AssetImage("assets/images/userprofile.png"),
-                          radius: 35,
-                        ),
+                        child: Container(
+                            height:80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child:  Image.network(
+                                box.read("profile_pic"),
+                                fit: BoxFit.cover,
+                                errorBuilder: (a, b, c) => Image.asset(
+                                    'assets/images/userprofile.png'),
+                              ),
+                            ),
+                          )
                       ),
                       Flexible(
                         flex: 2,
@@ -281,11 +297,11 @@ class HomeView extends GetView<HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Obx(
-                                    () => Text(
-                                  "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
-                                  style: TextStyle(color: colors.white),
-                                ),
+                              Obx(()=>
+                                Text(
+                                    "${controller.userName.value.toUpperCase()} ${controller.usermiddle.value.toUpperCase()} ${controller.userLastName.value.toUpperCase()}",
+                                    style: TextStyle(color: colors.white),
+                                  ),
                               ),
                               SizedBox(height: 1.h),
                               Obx(

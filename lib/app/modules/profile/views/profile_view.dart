@@ -98,17 +98,16 @@ class ProfileView extends GetView<ProfileController> {
                                       const SizedBox(),
                                       Align(
                                         alignment: Alignment.bottomCenter,
-                                        child: CircleAvatar(
-                                          radius: 50.0,
+                                        child:  Container(
+                                          height: 100,
+                                          width: 100,
                                           child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(100.0),
+                                            borderRadius: BorderRadius.circular(200),
                                             child: Image.network(
                                               "${snapshot.data?.data?.first.userProfile}",
-                                              fit: BoxFit.fill,
-                                              errorBuilder: (a, b, c) =>
-                                                  Image.asset(
-                                                      'assets/images/userprofile.png'),
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (a, b, c) => Image.asset(
+                                                  'assets/images/userprofile.png'),
                                             ),
                                           ),
                                         ),

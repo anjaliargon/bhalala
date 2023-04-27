@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import '../../../constant/sizeConstant.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
@@ -50,14 +50,13 @@ class EditProfileView extends GetView<EditProfileController> {
                 ),
               ),
               body: SingleChildScrollView(
-                child: Obx(
-                  () => Form(
-                    key: controller.formKey.value,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 1.h,
-                        ),
+                child: Obx(() => Form(
+                      key: controller.formKey.value,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 1.h,
+                          ),
 
                           Text(
                             StringConstant.registration,
@@ -80,17 +79,16 @@ class EditProfileView extends GetView<EditProfileController> {
                                   width: 100,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(200),
-                                    child: (controller.selectedImg != null)
+                                    child: (controller.selectedImg!= null)
                                         ? Image.file(
-                                        controller.selectedImg!.value,
-                                        fit: BoxFit.cover)
+                                            controller.selectedImg!.value,
+                                            fit: BoxFit.cover)
                                         : Image.network(
-                                      "${controller.profileData?.userProfile}",
-                                      fit: BoxFit.fill,
-                                      errorBuilder: (a, b, c) =>
-                                          Image.asset(
-                                              'assets/images/userprofile.png'),
-                                    ),
+                                            "${controller.profileData?.userProfile}",
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (a, b, c) => Image.asset(
+                                                'assets/images/userprofile.png'),
+                                          ),
                                   ),
                                 ),
                               ),
@@ -131,10 +129,11 @@ class EditProfileView extends GetView<EditProfileController> {
                                 flex: 2,
                                 child: Padding(
                                   padding:
-                                  const EdgeInsets.only(top: 15, left: 15),
+                                      const EdgeInsets.only(top: 15, left: 15),
                                   child: FaIcon(
                                       FontAwesomeIcons.solidCircleUser,
-                                      size: 20.sp, color: colors.darkbrown),
+                                      size: 20.sp,
+                                      color: colors.darkbrown),
                                 ),
                               ),
                               Expanded(
@@ -158,7 +157,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: StringConstant.bhalal,
                                           groupValue:
-                                          controller.selectedsurname.value,
+                                              controller.selectedsurname.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedSurname(value);
@@ -173,7 +172,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: "Bhalala",
                                           groupValue:
-                                          controller.selectedsurname.value,
+                                              controller.selectedsurname.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedSurname(value);
@@ -202,7 +201,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                 flex: 2,
                                 child: Padding(
                                   padding:
-                                  const EdgeInsets.only(top: 15, left: 15),
+                                      const EdgeInsets.only(top: 15, left: 15),
                                   child: FaIcon(FontAwesomeIcons.venusMars,
                                       size: 20.sp, color: colors.darkbrown),
                                 ),
@@ -228,7 +227,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: "Women",
                                           groupValue:
-                                          controller.selectedgender.value,
+                                              controller.selectedgender.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedGender(value);
@@ -243,7 +242,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: "Male",
                                           groupValue:
-                                          controller.selectedgender.value,
+                                              controller.selectedgender.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedGender(value);
@@ -300,8 +299,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                 controller.update();
                               },
                               value: industry,
-                              items:
-                              controller.accountIndustryListData.map((items) {
+                              items: controller.accountIndustryListData
+                                  .map((items) {
                                 return DropdownMenuItem(
                                   value: items.name,
                                   child: Text(
@@ -320,10 +319,11 @@ class EditProfileView extends GetView<EditProfileController> {
                                 flex: 2,
                                 child: Padding(
                                   padding:
-                                  const EdgeInsets.only(top: 15, left: 15),
+                                      const EdgeInsets.only(top: 15, left: 15),
                                   child: FaIcon(
                                       FontAwesomeIcons.solidCircleUser,
-                                      size: 20.sp, color: colors.darkbrown),
+                                      size: 20.sp,
+                                      color: colors.darkbrown),
                                 ),
                               ),
                               Expanded(
@@ -347,7 +347,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: StringConstant.job,
                                           groupValue:
-                                          controller.selectedwork.value,
+                                              controller.selectedwork.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedWork(value);
@@ -363,7 +363,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: StringConstant.buissness,
                                           groupValue:
-                                          controller.selectedwork.value,
+                                              controller.selectedwork.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedWork(value);
@@ -379,7 +379,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                       child: Radio(
                                           value: StringConstant.other,
                                           groupValue:
-                                          controller.selectedwork.value,
+                                              controller.selectedwork.value,
                                           activeColor: colors.darkbrown,
                                           onChanged: (value) {
                                             controller.onChnagedWork(value);
@@ -584,7 +584,7 @@ class EditProfileView extends GetView<EditProfileController> {
                           InkWell(
                             onTap: () async {
                               if (_networkController.connectionStatus.value ==
-                                  1 ||
+                                      1 ||
                                   _networkController.connectionStatus.value ==
                                       2) {
                                 if (controller.formKey.value.currentState!
@@ -612,13 +612,10 @@ class EditProfileView extends GetView<EditProfileController> {
                                       .currentCityController.text.isEmpty) {
                                     Fluttertoast.showToast(
                                         msg: StringConstant.currentcity);
-                                  } else if (controller.selectedImg == null) {
-                                    Fluttertoast.showToast(
-                                        msg: "તમારું આઈડી પ્રૂફ અપલોડ કરો");
                                   } else if (controller
                                       .statusController.text.isEmpty) {
                                     Fluttertoast.showToast(
-                                        msg: " controller.statusController.text");
+                                        msg: "controller.statusController.text");
                                   } else if (controller
                                       .selectedgender.value.isEmpty) {
                                     Fluttertoast.showToast(
@@ -634,8 +631,8 @@ class EditProfileView extends GetView<EditProfileController> {
                                   } else {
                                     context.loaderOverlay.show();
                                     controller.isLoading.value =
-                                    await controller.userProfilePatchList(
-                                      controller.selectedImg!.value,
+                                        await controller.userProfilePatchList(
+                                      controller.selectedImg?.value,
                                       controller.nameController.text,
                                       controller.fatherController.text,
                                       controller.selectedsurname.value,
@@ -661,7 +658,7 @@ class EditProfileView extends GetView<EditProfileController> {
                               } else {
                                 Fluttertoast.showToast(
                                     msg:
-                                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                        "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
                                     textColor: colors.black,
                                     backgroundColor: colors.white);
                               }
@@ -674,12 +671,12 @@ class EditProfileView extends GetView<EditProfileController> {
                                   borderRadius: BorderRadius.circular(10)),
                               child: Center(
                                   child: Text(
-                                    StringConstant.registration,
-                                    style: TextStyle(
-                                        color: colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13.sp),
-                                  )),
+                                StringConstant.registration,
+                                style: TextStyle(
+                                    color: colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13.sp),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -687,8 +684,7 @@ class EditProfileView extends GetView<EditProfileController> {
                           ),
                         ],
                       ),
-                  )
-                ),
+                    )),
               ),
             ),
           );

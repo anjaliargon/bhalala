@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 
 import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
@@ -50,6 +51,7 @@ class ApiProvider {
         loginModel = UserLogin.fromJson(data);
         box.write('login', true);
         box.write('mobileno', loginModel.loginData?.mobileNo);
+        box.write('profile_pic', loginModel.loginData?.userProfile);
         box.write('UserFirstname', loginModel.loginData?.name);
         box.write('Userlastname', loginModel.loginData?.lastName);
         box.write('Usermiddlename', loginModel.loginData?.middleName);
@@ -202,40 +204,41 @@ class ApiProvider {
       v_id,
       home_id,
       married_id,
-      f_name,
-      f_fathername,
-      f_surname,
-      f_gender,
-      f_birthdate,
-      f_industrial,
-      f_busynesstype,
-      f_bussiness,
-      f_education,
-      f_blood,
-      f_status
+      profile_pic,
+      // f_name,
+      // f_fathername,
+      // f_surname,
+      // f_gender,
+      // f_birthdate,
+      // f_industrial,
+      // f_busynesstype,
+      // f_bussiness,
+      // f_education,
+      // f_blood,
+      // f_status
       ) async {
-    final List<Map<String, String>> formDataList = [
-      {
-        "user_name": f_name.toString(),
-        "lname": f_surname.toString(),
-        "mname": f_fathername.toString(),
-        "birthdate": f_birthdate.toString(),
-        "gender": f_gender.toString(),
-        "address":  address.toString(),
-        "education_id": f_education.toString(),
-        "age": "0",
-        "mobile_no": mobile_no.toString(),
-        "business": f_bussiness.toString(),
-        "married_id": f_status.toString(),
-        "home_id":home_id.toString(),
-        "v_id": v_name.toString(),
-        "b_name": f_blood.toString(),
-        "v_id_int":v_id.toString(),
-        "user_profile": "",
-        "industry_id": f_industrial.toString(),
-        "busi_type": f_busynesstype.toString()
-      },
-    ];
+    // final List<Map<String, String>> formDataList = [
+    //   {
+    //     "user_name": f_name.toString(),
+    //     "lname": f_surname.toString(),
+    //     "mname": f_fathername.toString(),
+    //     "birthdate": f_birthdate.toString(),
+    //     "gender": f_gender.toString(),
+    //     "address":  address.toString(),
+    //     "education_id": f_education.toString(),
+    //     "age": "0",
+    //     "mobile_no": mobile_no.toString(),
+    //     "business": f_bussiness.toString(),
+    //     "married_id": f_status.toString(),
+    //     "home_id":home_id.toString(),
+    //     "v_id": v_name.toString(),
+    //     "b_name": f_blood.toString(),
+    //     "v_id_int":v_id.toString(),
+    //     "user_profile": "",
+    //     "industry_id": f_industrial.toString(),
+    //     "busi_type": f_busynesstype.toString()
+    //   },
+    // ];
     Map<String, dynamic> formDataMap = {
       "map": {
         // "user_name": f_name.toString(),
@@ -262,7 +265,8 @@ class ApiProvider {
     userRegistrationModel userSignupmodel = userRegistrationModel();
     String query = GlobalData.signupUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
-
+    final bytes = File(profile_pic.path).readAsBytesSync();
+    String img64 = base64Encode(bytes);
     request.fields.addAll({
       'user_name': user_name.toString(),
       'birthdate': birthdate.toString(),
@@ -283,15 +287,14 @@ class ApiProvider {
           'dRZ4QD4_zTE:APA91bFQW-3STJf3AZFga9cg0u6OcXy9sU0qbAR_dyxYOjC_P68HyG-8-U1o8SnFYA-YJHFEz5QPF3N9rzgCJvwTaExXXSftCfgc-f5-0i6-LCEVQn7TL_igAkYXL4cTapyNnr33YSzs',
       'home_id': home_id.toString(),
       'no_of_member': no_of_member.toString(),
-      'member_details': jsonEncode(formDataList),
-      // 'member_details':
-      //     ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
+      // 'member_details': jsonEncode(formDataList),
+      'member_details':
+          ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
       'mname': mname.toString(),
       'lname': lname.toString(),
       'industry_id': industry_id.toString(),
       'busi_type': busi_type.toString(),
-      'user_profile':
-          'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB'
+      'user_profile':img64.toString(),
     });
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
@@ -308,7 +311,7 @@ class ApiProvider {
   }
 
   Future<Editmodel> editprofile(
-    user_profile,
+    File?user_profile,
     user_name,
     mname,
     lname,
@@ -329,42 +332,71 @@ class ApiProvider {
     Editmodel editprofilemodel = Editmodel();
     String query = GlobalData.editprofileUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
+   if(user_profile != null){
+     final bytes = File(user_profile?.path??'').readAsBytesSync();
+     String img64 = base64Encode(bytes);
+     request.fields.addAll({
+       'user_name': user_name.toString(),
+       'mname': mname.toString(),
+       'lname': lname.toString(),
+       'birthdate': birthdate.toString(),
+       'gender': gender.toString(),
+       'address': address.toString(),
+       'user_email': user_email.toString(),
+       'mobile_no': mobile.toString(),
+       'industry_id': inductries.toString(),
+       'busi_type': work.toString(),
+       'business': work_details.toString(),
+       'education_id': education_id.toString(),
+       'b_name': blood.toString(),
+       'v_id': village.toString(),
+       'home_id': curent_city.toString(),
+       'married_id': status.toString(),
+       'age': box.read('age'),
+       'user_id': box.read('userId'),
+       'user_profile':img64
+       // 'user_profile':
+       //     'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB'
+     });
+   }else{
+     request.fields.addAll({
+       'user_name': user_name.toString(),
+       'mname': mname.toString(),
+       'lname': lname.toString(),
+       'birthdate': birthdate.toString(),
+       'gender': gender.toString(),
+       'address': address.toString(),
+       'user_email': user_email.toString(),
+       'mobile_no': mobile.toString(),
+       'industry_id': inductries.toString(),
+       'busi_type': work.toString(),
+       'business': work_details.toString(),
+       'education_id': education_id.toString(),
+       'b_name': blood.toString(),
+       'v_id': village.toString(),
+       'home_id': curent_city.toString(),
+       'married_id': status.toString(),
+       'age': box.read('age'),
+       'user_id': box.read('userId'),
+       // 'user_profile':img64
+       // 'user_profile':
+       //     'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB'
+     });
+   }
 
-    request.fields.addAll({
-      'user_name': user_name.toString(),
-      'mname': mname.toString(),
-      'lname': lname.toString(),
-      'birthdate': birthdate.toString(),
-      'gender': gender.toString(),
-      'address': address.toString(),
-      'user_email': user_email.toString(),
-      'mobile_no': mobile.toString(),
-      'industry_id': inductries.toString(),
-      'busi_type': work.toString(),
-      'business': work_details.toString(),
-      'education_id': education_id.toString(),
-      'b_name': blood.toString(),
-      'v_id': village.toString(),
-      'home_id': curent_city.toString(),
-      'married_id': status.toString(),
-      'age': box.read('age'),
-      'user_id': box.read('userId'),
-      'user_profile':user_profile
-      // 'user_profile':
-      //     'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4\\nnOy9y3IsubIltpYjkrvqnD7X+qqlgUwzmT5U36mhNJDaNNDt2/dUFZkBXxo4EIGIyEwmyWS+iGXb\\nuJPBSMDhcLwc/uD//j//Jmnw17///W+/vf4h4X/52y7n/J9tAKA0/POff/z16xfJ//vPv4Zh+Iu/\\ncs5ZDmC0BOCfpLv/t+G3f/u3f/u33/4B4P/8Y8w5v+5+//PPP33nJN0h6T9x99tvv/0XfwXwv/6u\\nlNJ/8Tcz+80piTQAw2509//k2O12f5ckJTCl9N/h4zj+dzDn/Ga/ADgGSX+88N///d///dc/3P3/\\n+Kfv9/s/f/v99fXV6QBe6Gb2wkRSSu7ugwf97i7uAEiUZGaSkpzkkEQyOST952Fw9999/Nd//dd/\\nvP01juP/9Nvv7s40vL29/Tm8/PHHH/827FJK/+/rm7vnlP744w+8vLj7CJnZbj/+4x//+Je3nHP+\\n3/7x97e3t//xb8ndk/ZmNjgAEAAAEYBoAF6zA9hTkvYkAAdI/lOS9Jpe/uM//uOv4TeS//WPP1NK\\nf0kAnCCZNAIgHMDIARWSJDmC23T3LAAgSTJeMLP9fv8//O13Sb+/7f/lX/7lt7wH8C9mAHYSSWr+\\nSsYbyWy7P/74Y7/bkfx//uNPM3ulSDogySEAiUZyl8e//e1vu4yc838aBpLKY0rJ6ZIMNLPdmCX9\\nzezl5eU3/ydJS7thGEa3t7e3VwfJ/7Z3Sa8pAXgl3f1Vyjn/X+MrABfdXaAkwKKNZuZ5D+C3YXB3\\nyn///fd/3f/x97///e9Okv+ZZmYYs5n9RXf3V2V3FwYAEiQpDVPP7oVxHN9oJP99/0byzTiO414w\\ns0zmnCELxgIAHQAJAOZ5t9ulLAB/3+0AMI+73W4IjhGSPGokJMEGSSOiB'
-    });
 
     var response = await request.send();
     var response1 = await http.Response.fromStream(response);
     final result = jsonDecode(response1.body) as Map<String, dynamic>;
     Map<String, dynamic> data = jsonDecode(response1.body);
-
+    print(data);
     if (response.statusCode == 200) {
       editprofilemodel = Editmodel.fromJson(result);
       box.write('emailid', editprofilemodel.data?.first.emailed);
       box.write('UserFirstname', editprofilemodel.data?.first.name);
       box.write('Userlastname', editprofilemodel.data?.first.lastName);
       box.write('Usermiddlename', editprofilemodel.data?.first.middleName);
+      box.write('profile_pic', editprofilemodel.data?.first.userProfile);
     } else {
       print(response.reasonPhrase);
     }
@@ -445,8 +477,8 @@ class ApiProvider {
     return gallaryphotomodel;
   }
 
-  Future<Gallary_year> getAlbumData_year() async {
-    Gallary_year gallaryphotomodel = Gallary_year();
+  Future<Gallaryalbum> getAlbumData_year() async {
+    Gallaryalbum gallaryphotomodel = Gallaryalbum();
     String query = GlobalData.AlbumDatayear;
 
     var request = http.MultipartRequest('GET', Uri.parse(query));
@@ -456,7 +488,7 @@ class ApiProvider {
     final result = jsonDecode(response1.body) as Map<String, dynamic>;
 
     if (response1.statusCode == 200) {
-      gallaryphotomodel = Gallary_year.fromJson(result);
+      gallaryphotomodel = Gallaryalbum.fromJson(result);
     } else {
       print(response.reasonPhrase);
     }
