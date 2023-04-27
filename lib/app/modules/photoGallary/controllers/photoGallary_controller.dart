@@ -52,7 +52,7 @@ class PhotoGallaryController extends GetxController {
     var result = await ApiProvider().getAlbumData_year();
     if (result.status == 1) {
       for (var element in result.data!) {
-        if(element.albumName!.toLowerCase().contains(date)){
+        if(element.albumName!.toString().contains(date)){
         functionListData.add(element.albumName.toString());
         }
         isLoading(true);

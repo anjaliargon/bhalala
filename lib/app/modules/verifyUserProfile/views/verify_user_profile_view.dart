@@ -128,6 +128,24 @@ class VerifyUserProfileView extends GetView<VerifyUserProfileController> {
                         SizedBox(
                           height: 3.h,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("User Documents",style: TextStyle(color:colors.darkbrown,fontSize: 14.sp),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            // alignment: Alignment.center,
+                            height: 20.h,
+                            width: 30.h,
+                            child: Image.network(
+                              "${controller.statusData?.userProfile}",
+                              fit: BoxFit.cover,
+                              errorBuilder: (a, b, c) => Image.asset(
+                                  'assets/images/userprofile.png'),
+                            ),
+                          ),
+                        ),
                         // InkWell(
                         //   onTap: () {
                         //     // Get.toNamed(Routes.FAMILYMEMBER,arguments: controller.searchuserData?.rId);
