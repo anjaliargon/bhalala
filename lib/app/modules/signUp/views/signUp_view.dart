@@ -276,7 +276,7 @@ class SignUpView extends GetView<SignUpController> {
                             ),
                           ),
                           Expanded(
-                            flex: 8,
+                            flex: 9,
                             child: Row(
                               children: [
                                 Padding(
@@ -317,7 +317,7 @@ class SignUpView extends GetView<SignUpController> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.buissness),
+                                  child: Text(StringConstant.buissness,),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),

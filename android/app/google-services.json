@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "325859453673",
+    "project_id": "bhalalaparivar-a0ce9",
+    "storage_bucket": "bhalalaparivar-a0ce9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325859453673:android:e2ea87783fa7f714435e78",
+        "android_client_info": {
+          "package_name": "com.example.bhalala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325859453673-p9doiafu859d805abbcognu9hbjekbf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeSW2S9huUmKksfLMyjg90iL7r_N1HNDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325859453673-p9doiafu859d805abbcognu9hbjekbf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

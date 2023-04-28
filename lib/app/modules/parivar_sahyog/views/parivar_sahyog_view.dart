@@ -91,7 +91,6 @@ class ParivarSahyogView extends GetView<ParivarSahyogController> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                     "${controller.SahyogData.value.data?[index].title}",
-                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: colors.darkbrown,
                                         fontWeight: FontWeight.bold)),
@@ -110,6 +109,11 @@ class ParivarSahyogView extends GetView<ParivarSahyogController> {
                                   color: colors.darkbrown,
                                   fontWeight: FontWeight.bold)),
                         ),
+                        Divider(
+                          thickness: 2,
+                          height: 1,
+                          color: colors.darkbrown,
+                        )
                       ],
                     );
                   },

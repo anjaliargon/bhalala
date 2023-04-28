@@ -1,11 +1,13 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../no_internet/check_network.dart';
 import '../controllers/photoGallary_controller.dart';
-
+import 'package:bhalala/app/modules/photoGallary/views/photoViewimage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 class PhotoGallaryView extends GetView<PhotoGallaryController> {
   const PhotoGallaryView({Key? key}) : super(key: key);
 
@@ -65,8 +67,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 year = newvalue!;
 
                                 controller.yearController.text = newvalue;
-                                controller.functionController.text.isEmpty;
-                                controller.update();
+                                controller.functionController.clear();
                                 await controller.getFunctionData(date: newvalue);
                                 isyearSelected = true;
                               },
@@ -111,9 +112,8 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                   function = newvalue!;
                                   controller.functionController.text = newvalue;
                                   controller.getImageData(date: newvalue);
-                                  controller.update();
                                 },
-                                value: function,
+                                value: (controller.functionController.text.isEmpty)?null:controller.functionController.text,
                                 items: controller.functionListData
                                     .toSet()
                                     .map((String items) {
@@ -129,35 +129,46 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 }).toList(),
                               ),
                             ))),
-                    (function != null)
-                        ? Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GridView.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisSpacing: 4,
-                                        mainAxisSpacing: 4,
-                                        crossAxisCount: 2),
-                                itemCount: controller.imageList.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    child: Image.network(
-                                      "${controller.imageList[index].imageUrl}",
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (a, b, c) => Image.asset(
-                                          'assets/images/applogo.png'),
-                                    ),
-                                  );
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GridView.builder(
+                          physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()
+                          ),
+                          gridDelegate:
+                           const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                          itemCount: controller.imageList.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              padding: const EdgeInsets.all(0.5),
+                              child: InkWell(
+                                onTap: (){
+                                  Get.to(PhotoViewPage(index:index,photos: controller.imageList,));
                                 },
+                                child: PhotoViewGallery.builder(
+                                  itemCount: controller.imageList.length,
+                                  builder: (BuildContext context, int index) => PhotoViewGalleryPageOptions.customChild(
+                                    child:  CachedNetworkImage(
+                                      imageUrl:controller.imageList[index].imageUrl.toString(),
+                                      fit: BoxFit.cover,
+                                      placeholder: (context,url)=>Container(color:Colors.white,child: Padding(
+                                        padding: const EdgeInsets.all(25.0),
+                                        child: CircularProgressIndicator(color: colors.darkbrown,backgroundColor: Colors.transparent),
+                                      )),
+                                      errorWidget: (context,url,error)=>Image.asset("assets/images/applogo.png")
+                                    ),
+                                  ),
+                                  enableRotation: true,
+                                  pageController: PageController(initialPage: index),
+                                ),
                               ),
-                            ),
-                          )
-                        : Container(),
+                            );
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],

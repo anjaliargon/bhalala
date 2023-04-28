@@ -45,10 +45,8 @@ class FamilySamitiController extends GetxController {
         samitiData.value.data!.forEach((element) {
           dataList.add(element);
         });
-        karobariList.value =
-            dataList.where((p0) => p0.samityType == "3").toList();
-        sthapakList.value =
-            dataList.where((p0) => p0.samityType == "2").toList();
+        karobariList.value = dataList.where((p0) => p0.samityType == "3").toList();
+        sthapakList.value = dataList.where((p0) => p0.samityType == "2").toList();
       } else {
         isLoading(false);
       }

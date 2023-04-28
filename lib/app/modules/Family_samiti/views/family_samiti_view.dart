@@ -69,7 +69,7 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
                               color: colors.darkbrown,
                               child: Center(
                                   child: Text(
-                                "સ્થાપક સમિતિ",
+                                    controller.sthapakList.first.samityTypeName.toString(),
                                 style: TextStyle(
                                     color: colors.white,
                                     fontWeight: FontWeight.bold,
@@ -182,7 +182,7 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
                               color: colors.darkbrown,
                               child: Center(
                                   child: Text(
-                                "કારોબારી સમિતિ",
+                                    controller.karobariList.first.samityTypeName.toString(),
                                 style: TextStyle(
                                     color: colors.white,
                                     fontWeight: FontWeight.bold,
