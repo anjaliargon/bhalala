@@ -39,6 +39,8 @@ import '../modules/searchMemberprofile/bindings/searchMemberprofile_binding.dart
 import '../modules/searchMemberprofile/views/searchMemberprofile_view.dart';
 import '../modules/searchmemberDetails/bindings/searchmemberDetails_binding.dart';
 import '../modules/searchmemberDetails/views/searchmemberDetails_view.dart';
+import '../modules/send_notification/bindings/send_notification_binding.dart';
+import '../modules/send_notification/views/send_notification_view.dart';
 import '../modules/signUp/bindings/signUp_binding.dart';
 import '../modules/signUp/views/signUp_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -166,6 +168,11 @@ class AppPages {
       name: _Paths.PARIVAR_SAHYOG,
       page: () => const ParivarSahyogView(),
       binding: ParivarSahyogBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEND_NOTIFICATION,
+      page: () => const SendNotificationView(),
+      binding: SendNotificationBinding(),
     ),
   ];
 }

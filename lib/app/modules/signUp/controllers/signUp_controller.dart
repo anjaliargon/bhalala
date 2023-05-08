@@ -139,6 +139,7 @@ class SignUpController extends GetxController {
       // String?f_blood,
       // String?f_status
       ) async {
+
     VillageBasic villageData =
         accountVillageListData.where((p0) => p0.vName == v_id).first;
     IndustrieslistBasic industrialData =

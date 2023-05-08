@@ -8,11 +8,9 @@ import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
 import 'package:bhalala/app/modules/photoGallary/model/Gallaryalbum.dart';
 import 'package:bhalala/app/modules/profile/model/profileModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
-import 'package:flutter/material.dart';
 import 'package:bhalala/app/constant/toast.dart';
 import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:http/http.dart' as http;
-import 'package:sizer/sizer.dart';
 
 import '../../../main.dart';
 import '../../constant/sizeConstant.dart';
@@ -26,7 +24,6 @@ import '../../modules/login/model/ForgotModel.dart';
 import '../../modules/login/model/login_model.dart';
 import '../../modules/memberDetails/Model/MemberDetailsModel.dart';
 import '../../modules/parivar_sahyog/model/sahyogmodel.dart';
-import '../../modules/photoGallary/model/photoGallary_model.dart';
 import '../../modules/signUp/model/signUp_model.dart';
 import '../Model/MemberCount.dart';
 import '../Model/basicModel.dart';
@@ -277,7 +274,7 @@ class ApiProvider {
       'business': business.toString(),
       'password': password.toString(),
       'education_id': education_id.toString(),
-      'age': "24",
+      'age':"24",
       'married_id': married_id.toString(),
       'v_id': v_name.toString(),
       'b_name': b_name.toString(),
@@ -289,7 +286,7 @@ class ApiProvider {
       'no_of_member': no_of_member.toString(),
       // 'member_details': jsonEncode(formDataList),
       'member_details':
-          ' [{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"M.ed","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"2","busi_type":"નોકરી"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},\n{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"},{"user_name":"ડેમો","lname":"ભાલાળા","mname":"ડેમો","birthdate":"16-5-2018","gender":"Male","address":"ddemod","education_id":"B.sc","age":"0","mobile_no":"1236547890","business":"ડેમો","married_id":"Single","user_email":"demo6@gmail.com","home_id":"સુરત","v_id":"મોણપર ","b_name":"B-","v_id_int":"2","user_profile":"","industry_id":"3","busi_type":"ધંધો"}]',
+          ' [{"user_name":"${user_name.toString()}","lname":"${lname.toString()}","mname":"${mname.toString()}","birthdate":"${birthdate.toString()}","gender":"${gender.toString()}","address":"${address.toString()}","education_id":"${education_id.toString()}","age":"0","mobile_no":"${mobile_no.toString()}","business":"${business.toString()}","married_id":"${married_id.toString()}","user_email":""${user_email.toString()}"","home_id":"${home_id.toString()}","v_id":""${v_name.toString()}" ","b_name":""${b_name.toString()}"","v_id_int":""${v_id.toString()}"","user_profile":"","industry_id":""${industry_id.toString()}"","busi_type":""${busi_type.toString()}""}]',
       'mname': mname.toString(),
       'lname': lname.toString(),
       'industry_id': industry_id.toString(),

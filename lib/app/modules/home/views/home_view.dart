@@ -20,7 +20,7 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder<HomeController>(
       init: homeController,
       builder: (controller) => Scaffold(
-        drawer: (box.read("userId")=="81")?
+        drawer: (box.read("isAdmin")=="1")?
         Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -94,6 +94,21 @@ class HomeView extends GetView<HomeController> {
                 ),
                 onTap: () {
                   Get.toNamed(Routes.FAMILY_ADD);
+                },
+              ),
+              ListTile(
+                title: Text(
+                 "મેસેજ મોકલો",
+                  style:
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(
+                  Icons.verified,
+                  color: colors.darkbrown,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(Routes.SEND_NOTIFICATION);
                 },
               ),
               ListTile(

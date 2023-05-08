@@ -12,6 +12,11 @@ class FamilySamitiController extends GetxController {
   RxList<smitiData> dataList = RxList<smitiData>([]);
   RxList<smitiData> sthapakList = RxList<smitiData>([]);
   RxList<smitiData> karobariList = RxList<smitiData>([]);
+  RxList<smitiData> samiti4 = RxList<smitiData>([]);
+  RxList<smitiData> samiti5 = RxList<smitiData>([]);
+  RxList<smitiData> samiti6 = RxList<smitiData>([]);
+  RxList<smitiData> samiti7 = RxList<smitiData>([]);
+  RxList<smitiData> samiti8 = RxList<smitiData>([]);
   final count = 0.obs;
 
   @override
@@ -47,6 +52,11 @@ class FamilySamitiController extends GetxController {
         });
         karobariList.value = dataList.where((p0) => p0.samityType == "3").toList();
         sthapakList.value = dataList.where((p0) => p0.samityType == "2").toList();
+        samiti4.value = dataList.where((p0) => p0.samityType == "4").toList();
+        samiti5.value = dataList.where((p0) => p0.samityType == "5").toList();
+        samiti6.value = dataList.where((p0) => p0.samityType == "6").toList();
+        samiti7.value = dataList.where((p0) => p0.samityType == "7").toList();
+        samiti8.value = dataList.where((p0) => p0.samityType == "8").toList();
       } else {
         isLoading(false);
       }

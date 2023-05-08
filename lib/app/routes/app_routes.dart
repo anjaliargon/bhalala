@@ -30,6 +30,7 @@ abstract class Routes {
   static const FAMILY_ADD = _Paths.FAMILY_ADD;
   static const VERIFY_USER_PROFILE = _Paths.VERIFY_USER_PROFILE;
   static const PARIVAR_SAHYOG = _Paths.PARIVAR_SAHYOG;
+  static const SEND_NOTIFICATION = _Paths.SEND_NOTIFICATION;
 }
 
 abstract class _Paths {
@@ -61,4 +62,5 @@ abstract class _Paths {
   static const FAMILY_ADD = '/family-add';
   static const VERIFY_USER_PROFILE = '/verify-user-profile';
   static const PARIVAR_SAHYOG = '/parivar-sahyog';
+  static const SEND_NOTIFICATION = '/send-notification';
 }

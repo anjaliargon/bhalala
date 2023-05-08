@@ -289,6 +289,572 @@ class FamilySamitiView extends GetWidget<FamilySamitiController> {
                                 },
                               ),
                             ),
+                            Container(
+                              height: 5.h,
+                              width: double.infinity,
+                              color: colors.darkbrown,
+                              child: Center(
+                                  child: Text(
+                                    controller.samiti4.first.samityTypeName.toString(),
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.sp),
+                                  )),
+                            ),
+                            Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.samiti4.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Slidable(
+                                      endActionPane: ActionPane(
+                                        extentRatio: 0.2,
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              UrlLauncher.launch(
+                                                  'tel:${controller.samiti4[index].phone}');
+                                            },
+                                            backgroundColor: colors.green,
+                                            icon: Icons.call,
+                                            foregroundColor: colors.darkbrown,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10.h,
+                                                      width: 20.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: colors
+                                                                  .darkbrown)),
+                                                      child: Image.network(
+                                                        "${controller.samiti4[index].picture}",
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder: (a, b,
+                                                            c) =>
+                                                            Image.asset(
+                                                                'assets/images/userprofile.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "${controller.samiti4[index].villageName}",
+                                                        style: TextStyle(
+                                                            color: colors
+                                                                .darkbrown,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold)),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${controller.samiti4[index].name}",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color:
+                                                          colors.darkbrown,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "મોબાઇલ નંબર :${controller.samiti4[index].phone}",
+                                                        style:
+                                                        const TextStyle()),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            thickness: 2,
+                                            height: 1,
+                                            color: colors.darkbrown,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 5.h,
+                              width: double.infinity,
+                              color: colors.darkbrown,
+                              child: Center(
+                                  child: Text(
+                                    controller.samiti5.first.samityTypeName.toString(),
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.sp),
+                                  )),
+                            ),
+                            Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.samiti5.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Slidable(
+                                      endActionPane: ActionPane(
+                                        extentRatio: 0.2,
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              UrlLauncher.launch(
+                                                  'tel:${controller.samiti5[index].phone}');
+                                            },
+                                            backgroundColor: colors.green,
+                                            icon: Icons.call,
+                                            foregroundColor: colors.darkbrown,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10.h,
+                                                      width: 20.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: colors
+                                                                  .darkbrown)),
+                                                      child: Image.network(
+                                                        "${controller.samiti5[index].picture}",
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder: (a, b,
+                                                            c) =>
+                                                            Image.asset(
+                                                                'assets/images/userprofile.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "${controller.samiti5[index].villageName}",
+                                                        style: TextStyle(
+                                                            color: colors
+                                                                .darkbrown,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold)),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${controller.samiti5[index].name}",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color:
+                                                          colors.darkbrown,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "મોબાઇલ નંબર :${controller.samiti5[index].phone}",
+                                                        style:
+                                                        const TextStyle()),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            thickness: 2,
+                                            height: 1,
+                                            color: colors.darkbrown,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 5.h,
+                              width: double.infinity,
+                              color: colors.darkbrown,
+                              child: Center(
+                                  child: Text(
+                                    controller.samiti6.first.samityTypeName.toString(),
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.sp),
+                                  )),
+                            ),
+                            Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.samiti6.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Slidable(
+                                      endActionPane: ActionPane(
+                                        extentRatio: 0.2,
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              UrlLauncher.launch(
+                                                  'tel:${controller.samiti6[index].phone}');
+                                            },
+                                            backgroundColor: colors.green,
+                                            icon: Icons.call,
+                                            foregroundColor: colors.darkbrown,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10.h,
+                                                      width: 20.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: colors
+                                                                  .darkbrown)),
+                                                      child: Image.network(
+                                                        "${controller.samiti6[index].picture}",
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder: (a, b,
+                                                            c) =>
+                                                            Image.asset(
+                                                                'assets/images/userprofile.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "${controller.samiti6[index].villageName}",
+                                                        style: TextStyle(
+                                                            color: colors
+                                                                .darkbrown,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold)),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${controller.samiti6[index].name}",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color:
+                                                          colors.darkbrown,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "મોબાઇલ નંબર :${controller.samiti6[index].phone}",
+                                                        style:
+                                                        const TextStyle()),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            thickness: 2,
+                                            height: 1,
+                                            color: colors.darkbrown,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 5.h,
+                              width: double.infinity,
+                              color: colors.darkbrown,
+                              child: Center(
+                                  child: Text(
+                                    controller.samiti7.first.samityTypeName.toString(),
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.sp),
+                                  )),
+                            ),
+                            Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.samiti6.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Slidable(
+                                      endActionPane: ActionPane(
+                                        extentRatio: 0.2,
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              UrlLauncher.launch(
+                                                  'tel:${controller.samiti7[index].phone}');
+                                            },
+                                            backgroundColor: colors.green,
+                                            icon: Icons.call,
+                                            foregroundColor: colors.darkbrown,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10.h,
+                                                      width: 20.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: colors
+                                                                  .darkbrown)),
+                                                      child: Image.network(
+                                                        "${controller.samiti7[index].picture}",
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder: (a, b,
+                                                            c) =>
+                                                            Image.asset(
+                                                                'assets/images/userprofile.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "${controller.samiti7[index].villageName}",
+                                                        style: TextStyle(
+                                                            color: colors
+                                                                .darkbrown,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold)),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${controller.samiti7[index].name}",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color:
+                                                          colors.darkbrown,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "મોબાઇલ નંબર :${controller.samiti7[index].phone}",
+                                                        style:
+                                                        const TextStyle()),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            thickness: 2,
+                                            height: 1,
+                                            color: colors.darkbrown,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 5.h,
+                              width: double.infinity,
+                              color: colors.darkbrown,
+                              child: Center(
+                                  child: Text(
+                                    controller.samiti8.first.samityTypeName.toString(),
+                                    style: TextStyle(
+                                        color: colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.sp),
+                                  )),
+                            ),
+                            Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.samiti8.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Slidable(
+                                      endActionPane: ActionPane(
+                                        extentRatio: 0.2,
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              UrlLauncher.launch(
+                                                  'tel:${controller.samiti8[index].phone}');
+                                            },
+                                            backgroundColor: colors.green,
+                                            icon: Icons.call,
+                                            foregroundColor: colors.darkbrown,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10.h,
+                                                      width: 20.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: colors
+                                                                  .darkbrown)),
+                                                      child: Image.network(
+                                                        "${controller.samiti8[index].picture}",
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder: (a, b,
+                                                            c) =>
+                                                            Image.asset(
+                                                                'assets/images/userprofile.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "${controller.samiti8[index].villageName}",
+                                                        style: TextStyle(
+                                                            color: colors
+                                                                .darkbrown,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold)),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${controller.samiti8[index].name}",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color:
+                                                          colors.darkbrown,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                        "મોબાઇલ નંબર :${controller.samiti8[index].phone}",
+                                                        style:
+                                                        const TextStyle()),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            thickness: 2,
+                                            height: 1,
+                                            color: colors.darkbrown,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+
                           ],
                         ),
                       ),
