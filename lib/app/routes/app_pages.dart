@@ -171,7 +171,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SEND_NOTIFICATION,
-      page: () => const SendNotificationView(),
+      page: () =>  SendNotificationView(),
       binding: SendNotificationBinding(),
     ),
   ];

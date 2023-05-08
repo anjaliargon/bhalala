@@ -1,14 +1,18 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/String_constant.dart';
+import '../../../network/controller/network_controller.dart';
 import '../controllers/send_notification_controller.dart';
 
 class SendNotificationView extends GetView<SendNotificationController> {
-  const SendNotificationView({Key? key}) : super(key: key);
+  SendNotificationView({Key? key}) : super(key: key);
+  final NetworkController _networkController = Get.put(NetworkController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +42,11 @@ class SendNotificationView extends GetView<SendNotificationController> {
                           controller: controller.titleController.value,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: colors.darkbrown)),
+                                borderSide:
+                                    BorderSide(color: colors.darkbrown)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: colors.darkbrown)),
+                                borderSide:
+                                    BorderSide(color: colors.darkbrown)),
                             labelText: 'Title',
                             labelStyle: TextStyle(color: colors.darkbrown),
                             hintText: 'Enter Title',
@@ -55,9 +61,11 @@ class SendNotificationView extends GetView<SendNotificationController> {
                           maxLines: 6,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: colors.darkbrown)),
+                                borderSide:
+                                    BorderSide(color: colors.darkbrown)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: colors.darkbrown)),
+                                borderSide:
+                                    BorderSide(color: colors.darkbrown)),
                             labelText: 'વિગત લખો ',
                             labelStyle: TextStyle(
                               color: colors.darkbrown,
@@ -70,11 +78,33 @@ class SendNotificationView extends GetView<SendNotificationController> {
                         height: 5.h,
                       ),
                       InkWell(
-                        onTap: () {
-                          controller.sendNotification(
-                            controller.titleController.value.text,
-                            controller.discriptionController.value.text,
-                          );
+                        onTap: () async {
+                          if (_networkController.connectionStatus.value == 1 ||
+                              _networkController.connectionStatus.value == 2) {
+                            if (controller.formKey.value.currentState!
+                                .validate()) {
+                              if (controller
+                                  .titleController.value.text.isEmpty) {
+                                Fluttertoast.showToast(msg: "type title");
+                              } else if (controller
+                                  .discriptionController.value.text.isEmpty) {
+                                Fluttertoast.showToast(msg: "type Disctiption");
+                              } else {
+                                controller.sendNotification(
+                                    controller.titleController.value.text,
+                                    controller
+                                        .discriptionController.value.text);
+                                controller.titleController.value.clear();
+                                controller.discriptionController.value.clear();
+                              }
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "કોઈ ઈન્ટરનેટ કનેકશન મળ્યું નથી.તમારું ઈન્ટરનેટ કનેકશન તપાસો અને ફરીથી પ્રયાસ કરો",
+                                textColor: colors.black,
+                                backgroundColor: colors.white);
+                          }
                         },
                         child: Container(
                           height: 7.h,
