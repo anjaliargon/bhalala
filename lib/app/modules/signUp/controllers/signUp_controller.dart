@@ -147,7 +147,6 @@ class SignUpController extends GetxController {
     IndustrieslistBasic f_industrialData =
         accountIndustryListData.where((p0) => p0.name == industry_id).first;
     isLoading.value = false;
-    // final  ageUser =("${DateTime.now().year}");
     var result = await ApiProvider().userRegistration(
         user_name,
         mname,

@@ -416,7 +416,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                   InkWell(
                     onTap: () {
-                      // Get.toNamed(Routes.APP_HELPLINE);
+                      Get.toNamed(Routes.HELPLINE);
                     },
                     child: Container(
                       height: 6.h,

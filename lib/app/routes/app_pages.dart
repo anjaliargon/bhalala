@@ -18,6 +18,8 @@ import '../modules/addmember/bindings/addmember_binding.dart';
 import '../modules/addmember/views/addmember_view.dart';
 import '../modules/gamYadi/bindings/gamYadi_binding.dart';
 import '../modules/gamYadi/views/gamyadi_view.dart';
+import '../modules/helpline/bindings/helpline_binding.dart';
+import '../modules/helpline/views/helpline_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -171,8 +173,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SEND_NOTIFICATION,
-      page: () =>  SendNotificationView(),
+      page: () => SendNotificationView(),
       binding: SendNotificationBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELPLINE,
+      page: () => const HelplineView(),
+      binding: HelplineBinding(),
     ),
   ];
 }

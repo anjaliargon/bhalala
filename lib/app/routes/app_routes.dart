@@ -31,6 +31,7 @@ abstract class Routes {
   static const VERIFY_USER_PROFILE = _Paths.VERIFY_USER_PROFILE;
   static const PARIVAR_SAHYOG = _Paths.PARIVAR_SAHYOG;
   static const SEND_NOTIFICATION = _Paths.SEND_NOTIFICATION;
+  static const HELPLINE = _Paths.HELPLINE;
 }
 
 abstract class _Paths {
@@ -63,4 +64,5 @@ abstract class _Paths {
   static const VERIFY_USER_PROFILE = '/verify-user-profile';
   static const PARIVAR_SAHYOG = '/parivar-sahyog';
   static const SEND_NOTIFICATION = '/send-notification';
+  static const HELPLINE = '/helpline';
 }

@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-
 import 'package:bhalala/app/modules/FamilymemberDetails/Model/FamilyMemberModel.dart';
 import 'package:bhalala/app/modules/memberDetails/Model/Deletemodel.dart';
 import 'package:bhalala/app/modules/noticeBoard/model/noticeModel.dart';
@@ -11,6 +9,7 @@ import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:bhalala/app/constant/toast.dart';
 import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../../../main.dart';
 import '../../constant/sizeConstant.dart';
@@ -258,12 +257,18 @@ class ApiProvider {
         // "busi_type": f_busynesstype.toString()
       }
     };
+    // String datePattern = "dd/MM/yyyy";
+    // DateTime birthDate = DateFormat(datePattern).parse(birthdate);
+    // DateTime today = DateTime.now();
+    // int dayDiff = today.day - birthDate.day;
     FormData formData = FormData(formDataMap);
     userRegistrationModel userSignupmodel = userRegistrationModel();
     String query = GlobalData.signupUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
     final bytes = File(profile_pic.path).readAsBytesSync();
     String img64 = base64Encode(bytes);
+    DateTime currentDate = DateTime.now();
+    var age = currentDate.year - birthdate.year;
     request.fields.addAll({
       'user_name': user_name.toString(),
       'birthdate': birthdate.toString(),
@@ -330,7 +335,7 @@ class ApiProvider {
     String query = GlobalData.editprofileUrl;
     var request = http.MultipartRequest('POST', Uri.parse(query));
    if(user_profile != null){
-     final bytes = File(user_profile?.path??'').readAsBytesSync();
+     final bytes = File(user_profile.path).readAsBytesSync();
      String img64 = base64Encode(bytes);
      request.fields.addAll({
        'user_name': user_name.toString(),
