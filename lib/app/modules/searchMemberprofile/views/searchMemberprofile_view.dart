@@ -40,7 +40,7 @@ class SearchProfileView extends GetView<SearchProfileController> {
                         height: MediaQuery.of(context).size.width / 3,
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                                 height: 10.h,
                                 width: 100.w,
                                 child: Image.asset(

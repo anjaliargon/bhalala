@@ -9,7 +9,7 @@ class Editmodel {
     if (json['data'] != null) {
       data = <EditData>[];
       json['data'].forEach((v) {
-        data!.add(new EditData.fromJson(v));
+        data!.add(EditData.fromJson(v));
       });
     }
     status = json['status'];
@@ -17,12 +17,12 @@ class Editmodel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['status'] = this.status;
-    data['message'] = this.message;
+    data['status'] = status;
+    data['message'] = message;
     return data;
   }
 }
@@ -119,35 +119,35 @@ class EditData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['R_id'] = this.rId;
-    data['Name'] = this.name;
-    data['middle_name'] = this.middleName;
-    data['last_name'] = this.lastName;
-    data['Birthdate'] = this.birthdate;
-    data['Gender'] = this.gender;
-    data['Address'] = this.address;
-    data['Emailed'] = this.emailed;
-    data['Mobile_no'] = this.mobileNo;
-    data['Business'] = this.business;
-    data['Username'] = this.username;
-    data['Password'] = this.password;
-    data['V_id'] = this.vId;
-    data['Education_id'] = this.educationId;
-    data['No_of_member'] = this.noOfMember;
-    data['User_profile'] = this.userProfile;
-    data['Home_id'] = this.homeId;
-    data['Activation_id'] = this.activationId;
-    data['Created_date'] = this.createdDate;
-    data['Updated_date'] = this.updatedDate;
-    data['married_id'] = this.marriedId;
-    data['age'] = this.age;
-    data['B_name'] = this.bName;
-    data['device_type'] = this.deviceType;
-    data['device_token'] = this.deviceToken;
-    data['v_id_int'] = this.vIdInt;
-    data['industry_id'] = this.industryId;
-    data['busi_type'] = this.busiType;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['R_id'] = rId;
+    data['Name'] = name;
+    data['middle_name'] = middleName;
+    data['last_name'] = lastName;
+    data['Birthdate'] = birthdate;
+    data['Gender'] = gender;
+    data['Address'] = address;
+    data['Emailed'] = emailed;
+    data['Mobile_no'] = mobileNo;
+    data['Business'] = business;
+    data['Username'] = username;
+    data['Password'] = password;
+    data['V_id'] = vId;
+    data['Education_id'] = educationId;
+    data['No_of_member'] = noOfMember;
+    data['User_profile'] = userProfile;
+    data['Home_id'] = homeId;
+    data['Activation_id'] = activationId;
+    data['Created_date'] = createdDate;
+    data['Updated_date'] = updatedDate;
+    data['married_id'] = marriedId;
+    data['age'] = age;
+    data['B_name'] = bName;
+    data['device_type'] = deviceType;
+    data['device_token'] = deviceToken;
+    data['v_id_int'] = vIdInt;
+    data['industry_id'] = industryId;
+    data['busi_type'] = busiType;
     return data;
   }
 }

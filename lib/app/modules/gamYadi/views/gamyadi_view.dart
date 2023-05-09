@@ -8,14 +8,12 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
 
-import '../../../network/controller/network_controller.dart';
 import '../../../no_internet/check_network.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/gamYadi_controller.dart';
 
-class GamYadiView extends GetView<GamYadiController> {
-  GamYadiView({Key? key}) : super(key: key);
-  final NetworkController _networkController = Get.put(NetworkController());
+class GamyadiView extends GetView<GamYadiController> {
+  const GamyadiView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

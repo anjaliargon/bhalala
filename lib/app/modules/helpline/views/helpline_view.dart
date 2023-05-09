@@ -1,11 +1,8 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../controllers/helpline_controller.dart';
 
 class HelplineView extends GetView<HelplineController> {
@@ -68,8 +65,8 @@ class HelplineView extends GetView<HelplineController> {
 
   void launchMap(String address) async {
     final url = 'https://www.google.com/maps/search/?api=1&query=$address';
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await  launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }

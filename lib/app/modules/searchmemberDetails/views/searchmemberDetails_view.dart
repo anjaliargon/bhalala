@@ -5,10 +5,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constant/String_constant.dart';
 
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
 import '../../searchMember/controllers/search_controller.dart';
 import '../controllers/searchmemberDetails_controller.dart';
@@ -37,7 +37,7 @@ class SearchMemberDetailsView extends GetView<SearchMemberDetailsController> {
               padding: const EdgeInsets.all(3.0),
               child: Slidable(
                 endActionPane: ActionPane(
-                  motion: ScrollMotion(),
+                  motion: const ScrollMotion(),
                   children: [
                     SlidableAction(
                       onPressed: (context) {},
@@ -46,8 +46,7 @@ class SearchMemberDetailsView extends GetView<SearchMemberDetailsController> {
                     ),
                     SlidableAction(
                       onPressed: (context) {
-                        UrlLauncher.launch(
-                            'tel:${searchMemberController.searchData.value.data?[index].mobileNo}');
+                        launchUrl(Uri.parse("${searchMemberController.searchData.value.data?[index].mobileNo}"));
                       },
                       backgroundColor: colors.white,
                       icon: Icons.call,
@@ -55,7 +54,7 @@ class SearchMemberDetailsView extends GetView<SearchMemberDetailsController> {
                     ),
                     SlidableAction(
                       onPressed: (context) {},
-                      backgroundColor: Color(0xFFFE4A49),
+                      backgroundColor: const Color(0xFFFE4A49),
                       icon: Icons.delete,
                     ),
                   ],

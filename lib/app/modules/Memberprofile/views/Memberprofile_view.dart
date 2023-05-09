@@ -53,7 +53,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                             height: MediaQuery.of(context).size.width / 3,
                             child: Stack(
                               children: [
-                                Container(
+                                SizedBox(
                                     height: 10.h,
                                     width: 100.w,
                                     child: Image.asset(
@@ -227,7 +227,7 @@ class MemberProfileView extends GetView<MemberProfileController> {
                               height: MediaQuery.of(context).size.width / 3,
                               child: Stack(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       height: 10.h,
                                       width: 100.w,
                                       child: Image.asset(

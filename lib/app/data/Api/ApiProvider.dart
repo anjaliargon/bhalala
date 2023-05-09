@@ -267,8 +267,6 @@ class ApiProvider {
     var request = http.MultipartRequest('POST', Uri.parse(query));
     final bytes = File(profile_pic.path).readAsBytesSync();
     String img64 = base64Encode(bytes);
-    DateTime currentDate = DateTime.now();
-    var age = currentDate.year - birthdate.year;
     request.fields.addAll({
       'user_name': user_name.toString(),
       'birthdate': birthdate.toString(),

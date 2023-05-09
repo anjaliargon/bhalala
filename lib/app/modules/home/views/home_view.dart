@@ -1,7 +1,6 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../main.dart';
@@ -36,7 +35,7 @@ class HomeView extends GetView<HomeController> {
                           Get.toNamed(Routes.PROFILE);
                           // profileController.userProfile(box.read('userId'));
                         },
-                        child:  Container(
+                        child:  SizedBox(
                           height:80,
                           width: 80,
                           child: ClipRRect(
@@ -290,7 +289,7 @@ class HomeView extends GetView<HomeController> {
                           Get.toNamed(Routes.PROFILE);
                           // profileController.userProfile(box.read('userId'));
                         },
-                        child: Container(
+                        child: SizedBox(
                             height:80,
                             width: 80,
                             child: ClipRRect(
@@ -456,7 +455,7 @@ class HomeView extends GetView<HomeController> {
                   TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
-                  Icons.phone,
+                  Icons.developer_board,
                   color: colors.darkbrown,
                   size: 20.sp,
                 ),

@@ -5,12 +5,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/screens/loading_and_error_screen.dart';
-
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../no_internet/check_network.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/memberDetails_controller.dart';
@@ -43,7 +42,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                     padding: const EdgeInsets.all(3.0),
                     child: Slidable(
                       endActionPane: ActionPane(
-                        motion: ScrollMotion(),
+                        motion: const ScrollMotion(),
                         children: [
                           SlidableAction(
                             onPressed: (context) {
@@ -63,8 +62,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                           ),
                           SlidableAction(
                             onPressed: (context) async {
-                              UrlLauncher.launch(
-                                  'tel:${controller.getmemberDetailsData.value.data?[index].mobileNo}');
+                              launchUrl(Uri.parse("${controller.getmemberDetailsData.value.data?[index].mobileNo}"));
                             },
                             backgroundColor: colors.white,
                             icon: Icons.call,
@@ -80,7 +78,7 @@ class MemberDetailsView extends GetView<MemberDetailsController> {
                                 controller.openDilogueNotDelete(context: context);
                               }
                             },
-                            backgroundColor: Color(0xFFFE4A49),
+                            backgroundColor: const Color(0xFFFE4A49),
                             icon: Icons.delete,
                           ),
                         ],

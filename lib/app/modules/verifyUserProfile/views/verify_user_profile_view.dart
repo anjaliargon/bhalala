@@ -35,7 +35,7 @@ class VerifyUserProfileView extends GetView<VerifyUserProfileController> {
                     height: MediaQuery.of(context).size.width / 3,
                     child: Stack(
                       children: [
-                        Container(
+                        SizedBox(
                             height: 10.h,
                             width: 100.w,
                             child: Image.asset(
@@ -206,7 +206,7 @@ class VerifyUserProfileView extends GetView<VerifyUserProfileController> {
   _ImageDialogue({required context}){
     return  Get.dialog(Dialog(
       backgroundColor: Colors.transparent,
-      child: Container(
+      child: SizedBox(
         height: 50.h,
         width: 100.w,
         child: Column(

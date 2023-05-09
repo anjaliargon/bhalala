@@ -35,7 +35,7 @@ class FamilyAddView extends GetView<FamilyAddController> {
                 padding: const EdgeInsets.all(3.0),
                 child: Slidable(
                   endActionPane: ActionPane(
-                    motion: ScrollMotion(),
+                    motion: const ScrollMotion(),
                     children: [
                       SlidableAction(
                         onPressed: (context) {

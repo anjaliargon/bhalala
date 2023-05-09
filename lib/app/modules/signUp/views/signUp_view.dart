@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
@@ -12,7 +11,6 @@ import '../../../constant/Widget.dart';
 import '../../../network/controller/network_controller.dart';
 import '../../../widget/temp2.dart';
 import '../controllers/signUp_controller.dart';
-import '../controllers/signup_add_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
   const SignUpView({Key? key}) : super(key: key);
@@ -21,7 +19,6 @@ class SignUpView extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     final signupController = Get.put(SignUpController());
     final NetworkController _networkController = Get.put(NetworkController());
-    final SignupAddController signupadd = Get.put(SignupAddController());
     MyColor colors = MyColor();
     String? industry;
     String? education;
@@ -561,7 +558,7 @@ class SignUpView extends GetView<SignUpController> {
                               onTap: () {
                                 _openDilogue(context: context);
                               },
-                              child: Container(
+                              child: SizedBox(
                                 height: 10.h,
                                 width: 25.w,
                                 child: (controller.selectedImg != null)
