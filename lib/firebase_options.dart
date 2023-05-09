@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBJXgJ6ZQ5GjFftmyJxYQVJja-nznPBlvQ',
-    appId: '1:325859453673:web:c3d808798e59d51e435e78',
-    messagingSenderId: '325859453673',
-    projectId: 'bhalalaparivar-a0ce9',
-    authDomain: 'bhalalaparivar-a0ce9.firebaseapp.com',
-    storageBucket: 'bhalalaparivar-a0ce9.appspot.com',
-    measurementId: 'G-CWTGYN9750',
+    apiKey: 'AIzaSyATCabCgzVVS5qsrDptygw0sPnoqsgk-eI',
+    appId: '1:334859371080:web:7263e1294604bf0e320e7d',
+    messagingSenderId: '334859371080',
+    projectId: 'bhalalaparivar-b564d',
+    authDomain: 'bhalalaparivar-b564d.firebaseapp.com',
+    storageBucket: 'bhalalaparivar-b564d.appspot.com',
+    measurementId: 'G-5EVXWE580K',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDeSW2S9huUmKksfLMyjg90iL7r_N1HNDg',
-    appId: '1:325859453673:android:e2ea87783fa7f714435e78',
-    messagingSenderId: '325859453673',
-    projectId: 'bhalalaparivar-a0ce9',
-    storageBucket: 'bhalalaparivar-a0ce9.appspot.com',
+    apiKey: 'AIzaSyD1sBOQf_qxTeNxx1DtWY_PACyjunhAZcQ',
+    appId: '1:334859371080:android:9bc070069079d445320e7d',
+    messagingSenderId: '334859371080',
+    projectId: 'bhalalaparivar-b564d',
+    storageBucket: 'bhalalaparivar-b564d.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBr_3bymal06GbtKnegf4QQlnxCXCB2jdI',
-    appId: '1:325859453673:ios:ae5f1099e0d07478435e78',
-    messagingSenderId: '325859453673',
-    projectId: 'bhalalaparivar-a0ce9',
-    storageBucket: 'bhalalaparivar-a0ce9.appspot.com',
-    iosClientId: '325859453673-kespmka89qbtafqgji99qtlg4gvv9hd3.apps.googleusercontent.com',
-    iosBundleId: 'com.example.bhalala',
+    apiKey: 'AIzaSyDk5Qbr6ruwq0qYkLD9ZHjay88T81kF8Q4',
+    appId: '1:334859371080:ios:94abf5bd1f364e94320e7d',
+    messagingSenderId: '334859371080',
+    projectId: 'bhalalaparivar-b564d',
+    storageBucket: 'bhalalaparivar-b564d.appspot.com',
+    iosClientId: '334859371080-qd7l91skhu0q7b2ha7v3oibhovkjdd8h.apps.googleusercontent.com',
+    iosBundleId: 'com.argon.bhalala.parivar',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBr_3bymal06GbtKnegf4QQlnxCXCB2jdI',
-    appId: '1:325859453673:ios:ae5f1099e0d07478435e78',
-    messagingSenderId: '325859453673',
-    projectId: 'bhalalaparivar-a0ce9',
-    storageBucket: 'bhalalaparivar-a0ce9.appspot.com',
-    iosClientId: '325859453673-kespmka89qbtafqgji99qtlg4gvv9hd3.apps.googleusercontent.com',
-    iosBundleId: 'com.example.bhalala',
+    apiKey: 'AIzaSyDk5Qbr6ruwq0qYkLD9ZHjay88T81kF8Q4',
+    appId: '1:334859371080:ios:94abf5bd1f364e94320e7d',
+    messagingSenderId: '334859371080',
+    projectId: 'bhalalaparivar-b564d',
+    storageBucket: 'bhalalaparivar-b564d.appspot.com',
+    iosClientId: '334859371080-qd7l91skhu0q7b2ha7v3oibhovkjdd8h.apps.googleusercontent.com',
+    iosBundleId: 'com.argon.bhalala.parivar',
   );
 }

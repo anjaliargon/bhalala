@@ -18,7 +18,7 @@ class AboutFamily_Details extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Container(
+          SizedBox(
               height: 305.h,
               child: Image.asset(
                 "assets/images/bg.png",
@@ -99,14 +99,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/moviya_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -128,14 +128,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/nana_liliya_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -156,14 +156,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/bhuvagam_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -184,14 +184,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/mota_liliya_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -213,14 +213,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/shivrajgadh_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -238,7 +238,7 @@ class AboutFamily_Details extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 1.h),
-                      Container(
+                      SizedBox(
                           height: 20.h,
                           width: 50.h,
                           child: Image.asset(
@@ -257,14 +257,14 @@ class AboutFamily_Details extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
                                 "assets/images/thavi_one.png",
                                 fit: BoxFit.fill,
                               )),
-                          Container(
+                          SizedBox(
                               height: 16.h,
                               width: 20.h,
                               child: Image.asset(
@@ -281,7 +281,7 @@ class AboutFamily_Details extends StatelessWidget {
           ),
           Stack(
             children: [
-              Container(
+              SizedBox(
                 height: 21.h,
                 width: 100.w,
                 child: Image.asset(

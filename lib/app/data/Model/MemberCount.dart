@@ -9,14 +9,14 @@ class MemberCount {
     if (json['data'] != null) {
       data = <memberData>[];
       json['data'].forEach((v) {
-        data!.add(new memberData.fromJson(v));
+        data!.add(memberData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -35,15 +35,15 @@ class memberData {
     count = json['count'];
     allMemeber = json['all_memeber'];
     village =
-    json['village'] != null ? new Village.fromJson(json['village']) : null;
+    json['village'] != null ? Village.fromJson(json['village']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['count'] = this.count;
-    data['all_memeber'] = this.allMemeber;
-    if (this.village != null) {
-      data['village'] = this.village!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['count'] = count;
+    data['all_memeber'] = allMemeber;
+    if (village != null) {
+      data['village'] = village!.toJson();
     }
     return data;
   }
@@ -65,11 +65,11 @@ class Village {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['V_id'] = this.vId;
-    data['V_name'] = this.vName;
-    data['V_state'] = this.vState;
-    data['V_district'] = this.vDistrict;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['V_id'] = vId;
+    data['V_name'] = vName;
+    data['V_state'] = vState;
+    data['V_district'] = vDistrict;
     return data;
   }
 }

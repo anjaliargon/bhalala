@@ -11,7 +11,7 @@ import '../controllers/profile_controller.dart';
 import '../model/profileModel.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  ProfileView({Key? key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ProfileView extends GetView<ProfileController> {
                 title: Text(StringConstant.bhalalaparivar),
                 actions: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: IconButton(
                         onPressed: () {
                           Get.toNamed(Routes.EditProfile, arguments: {
@@ -37,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
                                 controller.userProfileData.value.data?.first
                           });
                         },
-                        icon: Icon(Icons.edit)),
+                        icon: const Icon(Icons.edit)),
                   )
                 ],
               ), ////
@@ -85,7 +85,7 @@ class ProfileView extends GetView<ProfileController> {
                               height: MediaQuery.of(context).size.width / 3,
                               child: Stack(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       height: 10.h,
                                       width: 100.w,
                                       child: Image.asset(
@@ -98,7 +98,7 @@ class ProfileView extends GetView<ProfileController> {
                                       const SizedBox(),
                                       Align(
                                         alignment: Alignment.bottomCenter,
-                                        child:  Container(
+                                        child:  SizedBox(
                                           height: 100,
                                           width: 100,
                                           child: ClipRRect(
@@ -245,7 +245,6 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                           ],
                         );
-                        ;
                       }
                     }),
               ),

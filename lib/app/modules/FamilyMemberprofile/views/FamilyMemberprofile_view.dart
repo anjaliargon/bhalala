@@ -1,6 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:bhalala/app/constant/screens/loading_and_error_screen.dart';
-import 'package:bhalala/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -40,7 +39,7 @@ class FamilyMemberProfileView extends GetView<FamilyMemberProfileController> {
                         height: MediaQuery.of(context).size.width / 3,
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                                 height: 10.h,
                                 width: 100.w,
                                 child: Image.asset(

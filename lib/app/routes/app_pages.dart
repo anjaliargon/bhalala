@@ -120,7 +120,7 @@ class AppPages {
     // ),
     GetPage(
         name: _Paths.VILLAGE,
-        page: () => GamYadiView(),
+        page: () => GamyadiView(),
         binding: GamYadiBinding()),
     GetPage(
         name: _Paths.SEARCH,

@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../constant/String_constant.dart';
 import '../../../network/controller/network_controller.dart';
 import '../controllers/send_notification_controller.dart';
 
@@ -30,14 +28,14 @@ class SendNotificationView extends GetView<SendNotificationController> {
           init: SendNotificationController(),
           builder: (controller) => Scaffold(
             body: Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Form(
                 key: controller.formKey.value,
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: TextFormField(
                           controller: controller.titleController.value,
                           decoration: InputDecoration(
@@ -54,7 +52,7 @@ class SendNotificationView extends GetView<SendNotificationController> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: TextFormField(
                           controller: controller.discriptionController.value,
                           keyboardType: TextInputType.multiline,

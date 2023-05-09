@@ -15,8 +15,6 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
   Widget build(BuildContext context) {
     String? year;
     String? function;
-    bool isyearSelected = false;
-    bool isfunctionSelected = false;
     final loginController = Get.put(PhotoGallaryController());
     MyColor colors = MyColor();
     return GetBuilder<PhotoGallaryController>(
@@ -35,7 +33,7 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
           body: Obx(
             () => Stack(
               children: [
-                Container(
+                SizedBox(
                     height: 100.h,
                     child: Image.asset(
                       "assets/images/bg.png",
@@ -69,7 +67,6 @@ class PhotoGallaryView extends GetView<PhotoGallaryController> {
                                 controller.yearController.text = newvalue;
                                 controller.functionController.clear();
                                 await controller.getFunctionData(date: newvalue);
-                                isyearSelected = true;
                               },
                               value: year,
                               items: controller.yearListData

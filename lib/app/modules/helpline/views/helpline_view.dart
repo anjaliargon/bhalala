@@ -1,11 +1,8 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../controllers/helpline_controller.dart';
 
 class HelplineView extends GetView<HelplineController> {
@@ -22,43 +19,76 @@ class HelplineView extends GetView<HelplineController> {
       ),
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            child: Image.asset("assets/images/company.png"),
+          SizedBox(height: 5.h,),
+          GestureDetector(
+            onTap: () {
+              _launchURLargon();
+            },
+            child: Container(
+              child: Image.asset("assets/images/company.png"),
+            ),
           ),
           Flexible(
-              child: TextButton(
-                  onPressed: () {
-                    launchMap(
-                        'Argon Infotech, Dhanmora Rd, Katargam, Surat, Gujarat 395004');
-                  },
                   child: Text(
-                    "Argon Infotech™\n304,3rd Floor,Oasis Corner,\nDhanmora Char Rasta,Katargam,\nSurat,Gujarat-395004",
+                    "જીગ્નેશ ભાલાળા  - શક્તિનગર",
                     style: TextStyle(
                         fontSize: 14.sp,
                         color: colors.black,
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
-                  ))),
+                  )),
           Flexible(
-              child: TextButton(
-            child: Text(
-              "https://www.argoninfotech.com/",
-              style: TextStyle(fontSize: 12.sp),
+              child: Text(
+                "મોબાઈલ નંબર : +91 99787 79471",
+                style: TextStyle(fontSize: 12.sp),
+              )),
+          SizedBox(height: 12.h,),
+          Divider(color: colors.darkbrown,height: 1,thickness: 0.5,),
+          SizedBox(height: 5.h,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                _launchURLaser();
+              },
+              child: Container(
+                child: Image.asset("assets/images/jwalin.png"),
+              ),
             ),
-            onPressed: () {
-              _launchURL();
-            },
-          ))
+          ),
+          SizedBox(height: 4.h,),
+          Flexible(
+              child: Text(
+                "હર્ષભાઈ ભાલાળા  - ભુવા",
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    color: colors.black,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              )),
+          Flexible(
+              child: Text(
+                "મોબાઈલ નંબર : +91 95588 12094",
+                style: TextStyle(fontSize: 12.sp),
+              )),
         ],
       )),
     );
   }
 
-  _launchURL() async {
+  _launchURLargon() async {
     const url = 'https://www.argoninfotech.com/';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchURLaser() async {
+    const url = 'http://www.jwalinlaser.com/';
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {
@@ -68,8 +98,8 @@ class HelplineView extends GetView<HelplineController> {
 
   void launchMap(String address) async {
     final url = 'https://www.google.com/maps/search/?api=1&query=$address';
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }

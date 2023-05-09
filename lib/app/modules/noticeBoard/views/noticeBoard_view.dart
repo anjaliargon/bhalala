@@ -39,10 +39,9 @@ class NoticeBoardView extends GetView<NoticeBoardController> {
                     Get.toNamed(Routes.NOTICEBOARD,arguments: {
                      ArgumentConstant.newsEvent:controller.noticedata.value.newsEvents?[index]
                     });
-                    print(index);
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Column(

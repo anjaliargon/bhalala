@@ -26,7 +26,7 @@ class NoticeBoardDetailsView extends GetView<DeatailNoticeController> {
           child: Container(
             decoration: BoxDecoration(
               color: colors.lightgrey,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

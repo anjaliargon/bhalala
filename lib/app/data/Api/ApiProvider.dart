@@ -267,8 +267,17 @@ class ApiProvider {
     var request = http.MultipartRequest('POST', Uri.parse(query));
     final bytes = File(profile_pic.path).readAsBytesSync();
     String img64 = base64Encode(bytes);
-    DateTime currentDate = DateTime.now();
-    var age = currentDate.year - birthdate.year;
+    // int _calculateAge(DateTime dateOfBirth) {
+    //   DateTime currentDate = DateTime.now();
+    //   int age = currentDate.year - dateOfBirth.year;
+    //   int monthDiff = currentDate.month - dateOfBirth.month;
+    //   int dayDiff = currentDate.day - dateOfBirth.day;
+    //
+    //   if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
+    //     age--;
+    //   }
+    //   return age;
+    // }
     request.fields.addAll({
       'user_name': user_name.toString(),
       'birthdate': birthdate.toString(),

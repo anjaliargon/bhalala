@@ -57,7 +57,7 @@ class BasicModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     if (education != null) {
       data['Education'] = education!.map((v) => v.toJson()).toList();
@@ -94,7 +94,7 @@ class Education {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['education_id'] = educationId;
     data['education_name'] = educationName;
     return data;
@@ -117,7 +117,7 @@ class VillageBasic {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['V_id'] = vId;
     data['V_name'] = vName;
     data['V_state'] = vState;
@@ -138,7 +138,7 @@ class Married {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['married_id'] = marriedId;
     data['married_name'] = marriedName;
     return data;
@@ -157,7 +157,7 @@ class Home {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['home_id'] = homeId;
     data['home_name'] = homeName;
     return data;
@@ -176,7 +176,7 @@ class BloodGroup {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['b_id'] = bId;
     data['b_name'] = bName;
     return data;
@@ -195,7 +195,7 @@ class IndustrieslistBasic {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     return data;

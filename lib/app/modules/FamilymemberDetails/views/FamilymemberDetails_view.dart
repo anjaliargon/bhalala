@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../main.dart';
 import '../../../constant/String_constant.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../routes/app_pages.dart';
 import '../../Memberprofile/controllers/Memberprofile_controller.dart';
 import '../Model/FamilyMemberModel.dart';
@@ -23,7 +23,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
       appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "${StringConstant.bhalalaparivar}",
+            StringConstant.bhalalaparivar,
             style: const TextStyle(),
           ),
           backgroundColor: colors.darkbrown,
@@ -73,7 +73,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                       padding: const EdgeInsets.all(3.0),
                       child: Slidable(
                         endActionPane: ActionPane(
-                          motion: ScrollMotion(),
+                          motion: const ScrollMotion(),
                           children: [
                             SlidableAction(
                               onPressed: (context) {
@@ -96,8 +96,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                                 if (controller.familyMemberData.value.data?[index]
                                     .gender ==
                                     "Male") {
-                                  UrlLauncher.launch(
-                                      'tel:${controller.familyMemberData.value.data?[index].mobileNo}');
+                                  launchUrl(Uri.parse("${controller.familyMemberData.value.data?[index].mobileNo}"));
                                 } else {
                                   openDilogue(context: context);
                                 }
@@ -119,7 +118,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
                                       context: context);
                                 }
                               },
-                              backgroundColor: Color(0xFFFE4A49),
+                              backgroundColor: const Color(0xFFFE4A49),
                               icon: Icons.delete,
                             ),
                           ],
@@ -221,7 +220,7 @@ class FamilyMemberView extends GetView<FamilyMemberController> {
   openDilogue({required BuildContext context}) {
     MyColor colors = MyColor();
     return Get.dialog(Dialog(
-      child: Container(
+      child: SizedBox(
         width: 20.w,
         child: Column(
           mainAxisSize: MainAxisSize.min,

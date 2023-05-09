@@ -1,6 +1,5 @@
 import 'package:bhalala/app/constant/Color.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
@@ -339,7 +338,7 @@ class SearchView extends GetView<SearchController> {
                           }
                         }
                       },
-                      child: Text("શોધો"))
+                      child: const Text("શોધો"))
                 ],
               ),
             ),

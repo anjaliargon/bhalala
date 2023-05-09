@@ -6,9 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/Color.dart';
 import '../../../constant/String_constant.dart';
 import '../../../constant/Widget.dart';
-import '../../../network/controller/network_controller.dart';
 import '../../../widget/temp2.dart';
-import '../controllers/signUp_controller.dart';
 import '../controllers/signup_add_controller.dart';
 
 class SignUpView extends GetView<SignupAddController> {
@@ -16,16 +14,11 @@ class SignUpView extends GetView<SignupAddController> {
 
   @override
   Widget build(BuildContext context) {
-    final signupController = Get.put(SignUpController());
-    final NetworkController _networkController = Get.put(NetworkController());
     MyColor colors = MyColor();
     String? industry;
     String? education;
     String? bloodgroup;
-    String? village;
-    String? currentcity;
     String? status;
-    String? membercount;
     return  Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
