@@ -29,6 +29,7 @@ dependencies:
   cached_network_image: ^3.2.3
   firebase_core: ^2.10.0
   onesignal_flutter: ^3.5.1
+  map_launcher: ^2.5.0+1
 
 
   flutter: 

@@ -252,7 +252,7 @@ class HomeView extends GetView<HomeController> {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  // Get.toNamed(Routes.APP_HELPLINE);
+                  Get.toNamed(Routes.HELPLINE);
                 },
               ),
               ListTile(
