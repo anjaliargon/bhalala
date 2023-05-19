@@ -187,6 +187,7 @@ class ApiProvider {
       gender,
       address,
       birthdate,
+      age,
       user_email,
       password,
       mobile_no,
@@ -288,7 +289,7 @@ class ApiProvider {
       'business': business.toString(),
       'password': password.toString(),
       'education_id': education_id.toString(),
-      'age':"24",
+      'age': age.toString(),
       'married_id': married_id.toString(),
       'v_id': v_name.toString(),
       'b_name': b_name.toString(),
@@ -320,7 +321,17 @@ class ApiProvider {
     }
     return userSignupmodel;
   }
+   _calculateAge(DateTime dateOfBirth) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - dateOfBirth.year;
+    int monthDiff = currentDate.month - dateOfBirth.month;
+    int dayDiff = currentDate.day - dateOfBirth.day;
 
+    if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
+      age--;
+    }
+    return age;
+  }
   Future<Editmodel> editprofile(
     File?user_profile,
     user_name,

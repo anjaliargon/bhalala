@@ -11,7 +11,7 @@ import 'dart:convert';
 
 import '../../../routes/app_pages.dart';
 
-class SearchController extends GetxController {
+class searchController extends GetxController {
   var isLoading = false.obs;
   var errorOccurred = false.obs;
   final searchData = SearchModel().obs;

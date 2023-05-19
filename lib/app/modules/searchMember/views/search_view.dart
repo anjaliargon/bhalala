@@ -9,9 +9,9 @@ import 'package:sizer/sizer.dart';
 import '../../../constant/String_constant.dart';
 import '../../../network/controller/network_controller.dart';
 import '../../../no_internet/check_network.dart';
-import '../controllers/search_controller.dart';
+import 'package:bhalala/app/modules/searchMember/controllers/search_controller.dart';
 
-class SearchView extends GetView<SearchController> {
+class SearchView extends GetView<searchController> {
   SearchView({Key? key}) : super(key: key);
   final NetworkController _networkController = Get.put(NetworkController());
 
@@ -22,10 +22,10 @@ class SearchView extends GetView<SearchController> {
     String? village;
     String? blood;
     String? home;
-    final loginController = Get.put(SearchController());
+    final Controller = Get.put(searchController());
     MyColor colors = MyColor();
-    return GetBuilder<SearchController>(
-      init: loginController,
+    return GetBuilder<searchController>(
+      init: Controller,
       builder: (controller) => CheckNetwork(
         child: Scaffold(
           appBar: AppBar(

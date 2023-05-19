@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -43,6 +43,7 @@ class SignUpController extends GetxController {
   TextEditingController mobileController = TextEditingController();
   TextEditingController workController = TextEditingController();
   TextEditingController birthController = TextEditingController();
+  TextEditingController agecontroller = TextEditingController();
   TextEditingController industryController = TextEditingController();
   TextEditingController educationController = TextEditingController();
   TextEditingController memberController = TextEditingController();
@@ -83,7 +84,7 @@ class SignUpController extends GetxController {
   RxString f_selectedsurname = "".obs;
   RxString f_selectedgender = "".obs;
   RxString f_selectedwork = "".obs;
-
+  DateTime? _selectedDate;
 
   @override
   void onInit() {
@@ -105,7 +106,57 @@ class SignUpController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime now = DateTime.now();
+    final DateTime? selectedDate = await showDatePicker(
 
+        currentDate: _selectedDate ?? now,
+        context: context,
+        initialDate: DateTime.now(), //get today's date
+        firstDate:DateTime(2000), //DateTime.now() - not to allow to choose before today.
+        lastDate: DateTime(2101),
+    );
+    if (selectedDate != null) {
+      _selectedDate = selectedDate;
+      int age = _calculateAge(_selectedDate!);
+      birthController.text =
+          DateFormat('yyyy-MM-dd').format(_selectedDate!);
+      agecontroller.text = age.toString();
+      // await save(_dateOfBirthController.text);
+      // await FieldName.age == EditingState.edit;
+      // await saveAge(birthController.text, agecontroller.text);
+    }
+  }
+  // Future<void> selectDate(BuildContext context) async {
+  //   final DateTime now = DateTime.now();
+  //   final DateTime? selectedDate = await DatePicker.showDatePicker(
+  //     context,
+  //     // minTime: now.subtract(Duration(days: 365)), // Today - 1 year
+  //     maxTime: now,
+  //     currentTime: _selectedDate ?? now,
+  //   );
+  //   if (selectedDate != null) {
+  //       _selectedDate = selectedDate;
+  //       int age = _calculateAge(_selectedDate!);
+  //       birthController.text =
+  //           DateFormat('yyyy-MM-dd').format(_selectedDate!);
+  //       agecontroller.text = age.toString();
+  //       // await save(_dateOfBirthController.text);
+  //       // await FieldName.age == EditingState.edit;
+  //       // await saveAge(birthController.text, agecontroller.text);
+  //   }
+  // }
+  int _calculateAge(DateTime dateOfBirth) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - dateOfBirth.year;
+    int monthDiff = currentDate.month - dateOfBirth.month;
+    int dayDiff = currentDate.day - dateOfBirth.day;
+
+    if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
+      age--;
+    }
+    return age;
+  }
   userRegistration(
       user_name,
       mname,
@@ -113,6 +164,7 @@ class SignUpController extends GetxController {
       gender,
       address,
       birthdate,
+      age,
       user_email,
       password,
       mobile_no,
@@ -153,7 +205,8 @@ class SignUpController extends GetxController {
         lname,
         gender,
         address,
-       birthdate,
+        birthdate,
+        age,
         user_email,
         password,
         mobile_no,

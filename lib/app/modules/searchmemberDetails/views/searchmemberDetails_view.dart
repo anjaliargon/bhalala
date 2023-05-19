@@ -15,7 +15,7 @@ import '../controllers/searchmemberDetails_controller.dart';
 
 class SearchMemberDetailsView extends GetView<SearchMemberDetailsController> {
   SearchMemberDetailsView({Key? key}) : super(key: key);
-  final searchMemberController = Get.put(SearchController());
+  final searchMemberController = Get.put(searchController());
 
   @override
   Widget build(BuildContext context) {

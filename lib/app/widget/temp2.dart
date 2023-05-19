@@ -86,6 +86,8 @@ class _CustomeTextFieldsState extends State<CustomeTextFields> {
                     ? (fieldValue) {
                         if (fieldValue == null || fieldValue.isEmpty) {
                           return '${widget.hint}';
+
+
                         } else if (widget.keyboard == 1 &&
                             (fieldValue.length < 10)) {
                           return 'Incorrect Input';
@@ -139,16 +141,16 @@ class _CustomeTextFieldsState extends State<CustomeTextFields> {
                     //   borderSide:
                     //   BorderSide(color: Colors.brown, width: 1.5,),
                     // ),
-                    // suffixIcon: Icon(widget.icon))),
-                    suffixIcon: widget.icon != null &&
-                            widget.icon == Icons.calendar_today_rounded
-                        ? GestureDetector(
-                            onTap: () {
-                              _selectDate(context);
-                            },
-                            child: Icon(widget.icon),
-                          )
-                        : Icon(widget.icon))),
+                    suffixIcon: Icon(widget.icon))),
+                    // suffixIcon: widget.icon != null &&
+                    //         widget.icon == Icons.calendar_today_rounded
+                    //     ? GestureDetector(
+                    //         onTap: () {
+                    //           _selectDate(context);
+                    //         },
+                    //         child: Icon(widget.icon),
+                    //       )
+                    //     : Icon(widget.icon)
           ),
         ),
       ],

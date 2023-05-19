@@ -146,13 +146,13 @@ class SignUpView extends GetView<SignUpController> {
                                   padding: const EdgeInsets.only(
                                     top: 10,
                                   ),
-                                  child: Text(
-                                    StringConstant.gender,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.sp,
-                                        color: colors.grey),
-                                  ),
+                                    child: Text(
+                                      StringConstant.gender,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12.sp,
+                                          color: colors.grey),
+                                    ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
@@ -199,13 +199,104 @@ class SignUpView extends GetView<SignUpController> {
                         validation: true,
                         fieldValue: controller.addressController,
                       ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 15, left: 15),
+                              child: FaIcon(
+                                FontAwesomeIcons.cakeCandles,
+                                color: colors.darkbrown,
+                                size: 20.sp,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 8,
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // const SizedBox(height: 8),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: TextFormField(
+                                      style: TextStyle(
+                                          color: colors.black,
+                                          fontWeight: FontWeight.bold),
+                                      cursorColor: colors.darkbrown,
+                                      controller: controller.birthController,
+                                      decoration: InputDecoration(
+                                        hintText: StringConstant.birthdaydate,
+                                        errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: colors.darkbrown),
+                                        ),
+                                        disabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: colors.darkbrown),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: colors.darkbrown),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: colors.darkbrown),
+                                        ),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: colors.darkbrown),
+                                        ),
+                                        border: InputBorder.none,
+                                        hintStyle: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: colors.grey,
+                                            fontSize: 12.sp),
+                                      ),
+                                    ),
+                                  ),
+                                  // if (errorText != null && errorText.isNotEmpty)
+                                  //   const SizedBox(height: 8),
+                                  // if (errorText != null && errorText.isNotEmpty)
+                                  //   Text(errorText, style: const TextStyle(color: Colors.redAccent))
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 15,
+                              ),
+                              child: GestureDetector(
+                                onTap: (){
+                                  controller.selectDate(context);
+                                },
+                                child: FaIcon(
+                                  FontAwesomeIcons.calendar,
+                                  color: colors.darkbrown,
+                                  size: 20.sp,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       CustomeTextFields(
-                        iconfat: FontAwesomeIcons.cakeCandles,
+                        iconfat: FontAwesomeIcons.personCircleCheck,
                         keyboard: 0,
-                        hint: StringConstant.birthdaydate,
+                        isReadonly: true,
+                        hint: "0",
                         validation: true,
-                        fieldValue: controller.birthController,
-                        icon: Icons.calendar_today_rounded,
+                        fieldValue: controller.agecontroller,
                       ),
                       CustomeTextFields(
                         iconfat: FontAwesomeIcons.solidEnvelope,
@@ -314,7 +405,9 @@ class SignUpView extends GetView<SignUpController> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
-                                  child: Text(StringConstant.buissness,),
+                                  child: Text(
+                                    StringConstant.buissness,
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
@@ -661,6 +754,7 @@ class SignUpView extends GetView<SignUpController> {
                                   controller.selectedgender.value,
                                   controller.addressController.text,
                                   controller.birthController.text,
+                                  controller.agecontroller.text,
                                   controller.emailController.text,
                                   controller.passwordController.text,
                                   controller.mobileController.text,
