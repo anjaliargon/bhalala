@@ -38,17 +38,19 @@ class FamilyAddController extends GetxController {
       print("NotFound");
     }
   }
+
   Future<void> users() async {
     isLoading(true);
     errorOccurred(false);
     try {
-      checkstatus.value = await ApiProvider().statuscheck();
-
-
+      var result = await ApiProvider().statuscheck();
+      if(result.status == 1){
+        checkstatus.value = result;
+      }
     } catch (e) {
       errorOccurred(true);
     } finally {
-      isLoading(false);
+
     }
   }
   void increment() => count.value++;

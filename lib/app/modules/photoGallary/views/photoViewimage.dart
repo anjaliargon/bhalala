@@ -36,7 +36,7 @@ class PhotoViewPage extends StatelessWidget {
           heroAttributes: PhotoViewHeroAttributes(tag: photos[index]),
         ),
         pageController: PageController(initialPage: index),
-        enableRotation: true,
+        enableRotation: false,
       ),
     );
   }

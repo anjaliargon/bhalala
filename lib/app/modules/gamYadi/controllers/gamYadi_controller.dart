@@ -11,7 +11,6 @@ class GamYadiController extends GetxController {
 
   final getvillageData = BasicModel().obs;
   final getmemberData = MemberCount().obs;
-  RxList<String> accountVillageListData = <String>[].obs;
 
   @override
   void onInit() {

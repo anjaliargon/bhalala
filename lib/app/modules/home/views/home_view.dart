@@ -102,7 +102,7 @@ class HomeView extends GetView<HomeController> {
                   TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
-                  Icons.verified,
+                  Icons.notifications,
                   color: colors.darkbrown,
                   size: 20.sp,
                 ),
@@ -231,7 +231,7 @@ class HomeView extends GetView<HomeController> {
                   TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 leading: Icon(
-                  Icons.phone,
+                  Icons.developer_board,
                   color: colors.darkbrown,
                   size: 20.sp,
                 ),

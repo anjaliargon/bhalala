@@ -7,6 +7,7 @@ import 'package:bhalala/app/modules/photoGallary/model/Gallaryalbum.dart';
 import 'package:bhalala/app/modules/profile/model/profileModel.dart';
 import 'package:bhalala/app/modules/searchMember/model/search_model.dart';
 import 'package:bhalala/app/constant/toast.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -428,7 +429,7 @@ class ApiProvider {
   Future<BasicModel> getBasicData() async {
     BasicModel basicmodel = BasicModel();
     String query = GlobalData.basicdataUrl;
-
+    RxList<VillageBasic> accountVillageListData = RxList<VillageBasic>([]);
     var request = http.MultipartRequest('GET', Uri.parse(query));
 
     var response = await request.send();
@@ -437,10 +438,36 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       basicmodel = BasicModel.fromJson(result);
+      accountVillageListData.value = basicmodel.village!;
+      VillageBasic shakiNagar = accountVillageListData.last;
+      accountVillageListData.remove(shakiNagar);
+      accountVillageListData.insert(15, shakiNagar);
     } else {
       print(response.reasonPhrase);
     }
     return basicmodel;
+  }
+  void swapElements(List list, int index1, int index2) {
+    if (index1 >= 0 &&
+        index1 < list.length &&
+        index2 >= 0 &&
+        index2 < list.length &&
+        index1 != index2) {
+      dynamic temp = list[index1];
+      list[index1] = list[index2];
+      list[index2] = temp;
+    }
+  }
+  void changePosition(List list,int oldIndex, int newIndex) {
+    if (oldIndex < 0 ||
+        oldIndex >= list.length ||
+        newIndex < 0 ||
+        newIndex >= list.length) {
+      return;
+    }
+    String item = list.removeAt(oldIndex);
+    list.insert(newIndex, item);
+
   }
 
   Future<Parivarsamiti> familySamiti() async {
@@ -520,6 +547,7 @@ class ApiProvider {
   Future<MemberCount> memberCount() async {
     MemberCount memberModel = MemberCount();
     String query = GlobalData.membercountUrl;
+    RxList<memberData> accountVillageListData = RxList<memberData>([]);
     var request = http.MultipartRequest('GET', Uri.parse(query));
 
     var response = await request.send();
@@ -528,6 +556,10 @@ class ApiProvider {
 
     if (response1.statusCode == 200) {
       memberModel = MemberCount.fromJson(result);
+      accountVillageListData.value = memberModel.data!;
+      memberData shakiNagar = accountVillageListData.last;
+      accountVillageListData.remove(shakiNagar);
+      accountVillageListData.insert(15, shakiNagar);
       print(response1.body);
     } else {
       print(response.reasonPhrase);

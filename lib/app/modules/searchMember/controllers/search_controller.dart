@@ -237,16 +237,24 @@ class searchController extends GetxController {
     BasicModel result = await ApiProvider().getBasicData();
     if (result.status == 1) {
       accountVillageListData.value = result.village!;
+      changePosition(accountVillageListData, 116, 16);
       isLoading(true);
       return true;
-      // for (var element in result.village!) {
-      //   accountVillageListData.add(element.vName.toString());
-      //   isLoading(true);
-      // }
     } else {
       isLoading(false);
       return true;
     }
+  }
+  void changePosition(List list,int oldIndex, int newIndex) {
+    if (oldIndex < 0 ||
+        oldIndex >= list.length ||
+        newIndex < 0 ||
+        newIndex >= list.length) {
+      return;
+    }
+    String item = list.removeAt(oldIndex);
+    list.insert(newIndex, item);
+
   }
 
   Future<void> getAccountBloodList() async {

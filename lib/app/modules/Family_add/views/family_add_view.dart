@@ -21,10 +21,11 @@ class FamilyAddView extends GetView<FamilyAddController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.darkbrown,
-        title: const Text('Add Members'),
+        title: const Text('Add Family'),
         centerTitle: true,
       ),
-      body: Obx(()=> LoadingAndErrorScreen(
+      body: (controller.checkstatus.value.data?.length == 0)?
+      Obx(()=> LoadingAndErrorScreen(
           isLoading: controller.isLoading.value,
           errorOccurred: controller.errorOccurred.value,
           errorResolvingFunction: controller.users,
@@ -141,8 +142,14 @@ class FamilyAddView extends GetView<FamilyAddController> {
               );
             },
           ),
-        ),
-      ),
+        )
+      ):Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(child: Text("No Any Family Found",style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.bold),))
+        ],
+      )
     );
   }
 }

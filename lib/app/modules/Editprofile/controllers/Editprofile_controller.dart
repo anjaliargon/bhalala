@@ -189,7 +189,17 @@ class EditProfileController extends GetxController {
       isLoadingDustry(false);
     }
   }
+  void changePosition(List list,int oldIndex, int newIndex) {
+    if (oldIndex < 0 ||
+        oldIndex >= list.length ||
+        newIndex < 0 ||
+        newIndex >= list.length) {
+      return;
+    }
+    String item = list.removeAt(oldIndex);
+    list.insert(newIndex, item);
 
+  }
   Future<void> getAccountVillageList() async {
     accountVillageListData.clear();
     accountVillageListData.add(StringConstant.villagegroup);
